@@ -1,0 +1,180 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use App\Models\Template;
+use App\Models\GeneratedDocument;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\RateLimiter;
+use App\Services\WordExportService;
+use Illuminate\Support\Str;
+
+class TemplateController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $searchQuery = $request->input('q');
+
+        // --- ЛОГИКА ПОПУЛЯРНЫХ ШАБЛОНОВ ---
+        $popularTemplateIds = GeneratedDocument::query()
+            ->select('template_id', DB::raw('count(*) as count'))
+            ->groupBy('template_id')
+            ->orderByDesc('count')
+            ->limit(4)
+            ->pluck('template_id');
+
+        $popularTemplates = Template::whereIn('id', $popularTemplateIds)
+            ->with('translation')
+            ->get();
+
+        // --- НОВАЯ ЛОГИКА ПОИСКА ---
+        // 1. Всегда загружаем ВСЕ категории и шаблоны
+        $categories = Category::with(['templates' => function ($query) {
+            $query->where('is_active', true)->with('translation');
+        }])->get();
+
+        // 2. Если есть поисковый запрос, находим ID совпадающих шаблонов
+        $matchingTemplateIds = [];
+        if ($searchQuery) {
+            $matchingTemplateIds = Template::query()
+                ->whereHas('translations', function ($translationQuery) use ($searchQuery) {
+                    $translationQuery->where('title', 'like', "%{$searchQuery}%")
+                        ->orWhere('description', 'like', "%{$searchQuery}%");
+                })
+                ->pluck('id') // Нам нужны только ID
+                ->toArray();
+        }
+
+        // 3. Передаем все данные в представление
+        return view('home', compact('categories', 'popularTemplates', 'searchQuery', 'matchingTemplateIds'));
+    }
+
+    public function show(Request $request, string $locale, Template $template)
+    {
+        if (!$template->is_active) {
+            abort(404);
+        }
+
+        $prefillData = [];
+
+        // 1. Данные из кнопки "Использовать снова" имеют наивысший приоритет
+        if ($request->has('data')) {
+            $prefillData = $request->input('data', []);
+        }
+        // 2. Если их нет, пытаемся заполнить из "Цифрового ящика"
+        elseif (Auth::check() && Auth::user()->details) {
+            $userDetails = Auth::user()->details;
+            $templateFields = json_decode($template->fields, true) ?? [];
+
+            foreach ($templateFields as $field) {
+                $fieldName = $field['name'];
+                $fieldLabel = strtolower($field['labels'][app()->getLocale()] ?? '');
+                // --- УМНОЕ СОПОСТАВЛЕНИЕ ---
+                // Сопоставляем разные возможные названия полей с данными из профиля
+                switch (true) {
+                    // Обработка полей с именем
+                    case str_contains($fieldName, 'name'):
+                        // ИСПРАВЛЕНО: Сначала проверяем, не нужны ли инициалы
+                        if (str_contains($fieldName, 'short') || str_contains($fieldLabel, 'ініціали') || str_contains($fieldLabel, 'inicjały')) {
+                            // Вызываем новый метод getShortNameAttribute()
+                            $prefillData[$fieldName] = $userDetails->short_name;
+                        } elseif (str_contains($fieldName, 'genitive') || str_contains($fieldLabel, '(в род. відмінку)') || str_contains($fieldLabel, '(dopełniacz)')) {
+                            $prefillData[$fieldName] = $userDetails->full_name_genitive;
+                        }
+                        break;
+                    case str_contains($fieldName, 'address'):
+                        $prefillData[$fieldName] = $userDetails->address_factual ?? $userDetails->address_registered;
+                        break;
+
+                    case str_contains($fieldName, 'phone'):
+                        $prefillData[$fieldName] = $userDetails->phone_number;
+                        break;
+
+                    case str_contains($fieldName, 'tax_id'):
+                    case str_contains($fieldName, 'tin'):
+                        $prefillData[$fieldName] = $userDetails->tax_id_number;
+                        break;
+
+                    // Прямое совпадение для остальных полей
+                    default:
+                        if (isset($userDetails->$fieldName)) {
+                            $prefillData[$fieldName] = $userDetails->$fieldName;
+                        }
+                        break;
+                }
+            }
+        }
+
+        return view('templates.show', compact('template', 'prefillData'));
+    }
+
+    public function generatePdf(Request $request, string $locale, Template $template)
+    {
+        if (!Auth::check()) {
+            $executed = RateLimiter::attempt('generate-pdf:'.$request->ip(), 1, function() {});
+            if (!$executed) {
+                return back()->with('error', __('messages.rate_limit_exceeded'));
+            }
+        }
+        $validatedData = $this->validateFormData($request, $template);
+        if (Auth::check()) {
+            GeneratedDocument::create([
+                'user_id' => Auth::id(),
+                'template_id' => $template->id,
+                'data' => $validatedData,
+            ]);
+        }
+        $pdf = Pdf::loadView($template->blade_view, ['data' => $validatedData]);
+        $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
+        return $pdf->download($fileName);
+    }
+
+    public function generateDocx(Request $request, string $locale, Template $template, WordExportService $wordExportService)
+    {
+        $validatedData = $this->validateFormData($request, $template);
+
+        // --- ВАЖНО: ЭТОТ БЛОК КОДА НУЖНО ДОБАВИТЬ ---
+        // Он отвечает за запись сгенерированного документа в историю для авторизованного пользователя.
+        if (Auth::check()) {
+            GeneratedDocument::create([
+                'user_id' => Auth::id(),
+                'template_id' => $template->id,
+                'data' => $validatedData,
+            ]);
+        }
+        // --- КОНЕЦ ВАЖНОГО БЛОКА ---
+
+        $fileName = Str::slug($template->title) . '-' . time() . '.docx';
+
+        return $wordExportService->generate($template->blade_view, $validatedData, $fileName);
+    }
+    private function validateFormData(Request $request, Template $template): array
+    {
+        $rules = [];
+        $attributeNames = [];
+        $locale = app()->getLocale();
+        $fields = is_array($template->fields) ? $template->fields : json_decode($template->fields, true) ?? [];
+        foreach ($fields as $field) {
+            if ($field['required']) {
+                $rules[$field['name']] = 'required';
+            } else {
+                $rules[$field['name']] = 'nullable';
+            }
+            if ($field['type'] === 'email') $rules[$field['name']] .= '|email';
+            if ($field['type'] === 'number') $rules[$field['name']] .= '|numeric';
+            $attributeNames[$field['name']] = $field['labels'][$locale] ?? $field['name'];
+        }
+        return $request->validate($rules, [], $attributeNames);
+    }
+
+}
