@@ -20,6 +20,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}#templates">{{ __('messages.templates') }}</a>
                     </li>
+
+                    {{-- === ВОТ НОВАЯ ССЫЛКА НА БЛОГ === --}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('posts.*') ? 'active' : '' }}" href="{{ route('posts.index', ['locale' => app()->getLocale()]) }}">
+                            Блог
+                        </a>
+                    </li>
+                    {{-- =================================== --}}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pricing', ['locale' => app()->getLocale()]) }}">{{ __('messages.pricing') }}</a>
                     </li>

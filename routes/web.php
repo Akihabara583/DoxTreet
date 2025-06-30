@@ -6,6 +6,7 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController; // Убедитесь, что этот контроллер подключен
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Middleware\InitializeLocale;
 
@@ -25,13 +26,16 @@ Route::prefix('{locale}')
 
         // Публичные страницы
         Route::get('/', [TemplateController::class, 'index'])->name('home');
-
-        // ИСПРАВЛЕНИЕ: Мы убрали ':slug'. Теперь модель Template сама будет отвечать за поиск по slug.
         Route::get('/templates/{template}', [TemplateController::class, 'show'])->name('templates.show');
-
         Route::post('/templates/{template}/generate', [TemplateController::class, 'generatePdf'])->name('templates.generate');
         Route::get('/pricing', function () { return view('pricing'); })->name('pricing');
         Route::post('/templates/{template}/generate-docx', [TemplateController::class, 'generateDocx'])->name('templates.generate.docx');
+
+        // --- ИЗМЕНЕНИЕ ЗДЕСЬ ---
+        Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
+        // Меняем {post:slug} на {slug} для явной передачи
+        Route::get('/blog/{slug}', [PostController::class, 'show'])->name('posts.show');
+        // -----------------------
 
         // Админ-панель
         Route::prefix('admin')
@@ -41,6 +45,7 @@ Route::prefix('{locale}')
                 Route::get('/', function() { return view('admin.dashboard'); })->name('dashboard');
                 Route::resource('categories', Admin\CategoryController::class)->except(['show']);
                 Route::resource('templates', Admin\TemplateController::class)->except(['show']);
+                Route::resource('posts', Admin\PostController::class)->except(['show']);
             });
 
         // Личный кабинет

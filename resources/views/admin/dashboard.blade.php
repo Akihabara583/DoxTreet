@@ -6,17 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="list-group">
-                    <a href="{{ route('admin.dashboard', app()->getLocale()) }}" class="list-group-item list-group-item-action active" aria-current="true">
-                        <i class="bi bi-speedometer2"></i> {{ __('messages.dashboard') }}
-                    </a>
-                    <a href="{{ route('admin.categories.index', app()->getLocale()) }}" class="list-group-item list-group-item-action">
-                        <i class="bi bi-tags"></i> {{ __('messages.categories') }}
-                    </a>
-                    <a href="{{ route('admin.templates.index', app()->getLocale()) }}" class="list-group-item list-group-item-action">
-                        <i class="bi bi-file-earmark-text"></i> {{ __('messages.templates') }}
-                    </a>
-                </div>
+                @include('admin.partials._sidebar')
             </div>
             <div class="col-md-9">
                 <h1><i class="bi bi-speedometer2"></i> {{ __('messages.dashboard') }}</h1>
