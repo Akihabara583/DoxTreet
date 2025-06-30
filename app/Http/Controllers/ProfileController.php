@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\GeneratedDocument;
-use App\Models\UserDetail; // Добавляем модель UserDetail
+use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
     /**
      * Show the user's profile dashboard.
      */
-    public function show()
+    public function show(): View
     {
         return view('profile.show');
     }
@@ -22,7 +24,7 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the user's profile.
      */
-    public function edit()
+    public function edit(): View
     {
         return view('profile.edit', [
             'user' => Auth::user(),
@@ -32,7 +34,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $user = Auth::user();
 
@@ -54,14 +56,13 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit', app()->getLocale())->with('status', 'profile-updated');
     }
 
-
     /**
      * Display the user's document history.
      */
-    public function history()
+    public function history(): View
     {
         $documents = GeneratedDocument::where('user_id', Auth::id())
-            ->with('template.translation')
+            ->with('template')
             ->latest()
             ->paginate(10);
 
@@ -71,51 +72,52 @@ class ProfileController extends Controller
     }
 
     /**
-     * Reuse an old document's data.
+     * --- ФИНАЛЬНЫЙ РАБОЧИЙ КОД ---
      *
-     * ФИНАЛЬНОЕ ИСПРАВЛЕНИЕ:
-     * Вместо того чтобы принимать объект, мы принимаем строку с ID ($documentId) из URL.
-     * Затем мы находим документ в базе данных вручную.
-     * Это решает проблему, обходя неработающий Route Model Binding.
+     * @param string $locale Язык из URL.
+     * @param string $document ID документа из URL.
+     * @return RedirectResponse
      */
-    public function reuse(string $documentId)
+    public function reuse(string $locale, string $document): RedirectResponse
     {
-        // 1. Находим документ вручную или выбрасываем ошибку 404, если его нет.
-        $document = GeneratedDocument::findOrFail($documentId);
+        // 1. Находим документ в базе данных. Если его нет, Laravel выдаст ошибку 404.
+        $documentModel = GeneratedDocument::findOrFail($document);
 
-        // 2. Убеждаемся, что пользователь может использовать только свои документы.
-        if ($document->user_id !== Auth::id()) {
-            abort(403); // Ошибка "Доступ запрещен"
+        // 2. Убеждаемся, что документ принадлежит текущему пользователю.
+        if ($documentModel->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
         }
 
-        // 3. Перенаправляем на страницу шаблона с GET-параметрами.
+        // 3. Получаем связанный с ним шаблон.
+        $template = $documentModel->template;
+
+        // 4. Проверяем, что шаблон существует (его могли удалить).
+        if (!$template) {
+            return redirect()->route('profile.history', ['locale' => $locale])
+                ->with('error', 'Этот шаблон больше недоступен.');
+        }
+
+        // 5. Перенаправляем пользователя на страницу шаблона для повторного заполнения.
         return redirect()->route('templates.show', [
-            'locale' => app()->getLocale(),
-            'template' => $document->template->slug,
-            'data' => $document->data
+            'locale' => $locale,
+            'template' => $template->slug, // Используем slug для поиска, как настроено в модели Template
+            'data' => $documentModel->data
         ]);
     }
-
-
-    // --- НОВЫЕ МЕТОДЫ, КОТОРЫЕ БЫЛИ ДОБАВЛЕНЫ ---
 
     /**
      * Show the form for editing the user's personal details.
      */
-    public function myData()
+    public function myData(): View
     {
-        // Находим данные пользователя или создаем новый пустой объект
         $details = Auth::user()->details ?? new UserDetail();
-
-        return view('profile.my-data', [
-            'details' => $details,
-        ]);
+        return view('profile.my-data', ['details' => $details]);
     }
 
     /**
      * Update the user's personal details.
      */
-    public function updateMyData(Request $request)
+    public function updateMyData(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'full_name_nominative' => 'nullable|string|max:255',
@@ -130,10 +132,9 @@ class ProfileController extends Controller
             'passport_date' => 'nullable|date',
         ]);
 
-        // Используем updateOrCreate, чтобы создать запись, если ее нет, или обновить, если есть
         Auth::user()->details()->updateOrCreate(
-            ['user_id' => Auth::id()], // Условие для поиска
-            $validatedData // Данные для обновления или создания
+            ['user_id' => Auth::id()],
+            $validatedData
         );
 
         return redirect()->route('profile.my-data', app()->getLocale())->with('status', 'details-updated');

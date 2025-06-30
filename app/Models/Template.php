@@ -23,7 +23,13 @@ class Template extends Model
         'is_active' => 'boolean',
     ];
 
-    public function getRouteKeyName()
+    /**
+     * --- КЛЮЧЕВОЙ МЕТОД ДЛЯ ИСПРАВЛЕНИЯ ОШИБКИ 404 ---
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -53,17 +59,8 @@ class Template extends Model
         return $this->translation->description ?? $this->translations->first()->description ?? '';
     }
 
-    // !====== ВОТ НОВАЯ ФУНКЦИЯ, КОТОРАЯ ВСЁ ИСПРАВИТ ======!
-    /**
-     * Get the template's fields and ensure it's an array.
-     *
-     * @param  string  $value
-     * @return array
-     */
     public function getFieldsAttribute($value)
     {
-        // Эта функция принудительно декодирует JSON-строку в массив
-        return json_decode($value, true);
+        return json_decode($value, true) ?? [];
     }
-    // !=================================================!
 }
