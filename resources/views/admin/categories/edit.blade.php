@@ -8,7 +8,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.categories.update', ['locale' => app()->getLocale(), 'category' => $category->id]) }}" method="POST">
+                <form action="{{ route('admin.categories.update', ['locale' => app()->getLocale(), 'category' => $category->slug]) }}" method="POST">
                     @csrf
                     @method('PUT')
 

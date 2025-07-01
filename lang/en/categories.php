@@ -6,4 +6,12 @@ return [
     'legal-claims' => 'Legal & Claims',
     'government-agencies' => 'Government Agencies',
     'medicine' => 'Medicine',
+    'business-and-work' => 'Business & Work',
+    'personal-and-family' => 'Personal & Family',
+    'real-estate' => 'Real Estate',
+    'legal-documents' => 'Legal Documents',
+    'education' => 'Education',
+    'health-and-medicine' => 'Health & Medicine',
+    'events-and-travel' => 'Events & Travel',
+    'automotive' => 'Automotive',
 ];

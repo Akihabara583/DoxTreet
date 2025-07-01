@@ -135,4 +135,5 @@ return [
     'total_templates' => 'Всього шаблонів',
     'total_categories' => 'Всього категорій',
     'download_docx' => 'Завантажити .docx',
+
 ];

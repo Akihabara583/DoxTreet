@@ -36,10 +36,10 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
                             <td>
-                                <a href="{{ route('admin.categories.edit', ['locale' => app()->getLocale(), 'category' => $category->id]) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('admin.categories.edit', ['locale' => app()->getLocale(), 'category' => $category->slug]) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-fill"></i>
                                 </a>
-                                <form action="{{ route('admin.categories.destroy', ['locale' => app()->getLocale(), 'category' => $category->id]) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ __('messages.are_you_sure') }}');">
+                                <form action="{{ route('admin.categories.destroy', ['locale' => app()->getLocale(), 'category' => $category->slug]) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ __('messages.are_you_sure') }}');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">

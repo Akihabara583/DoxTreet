@@ -74,7 +74,7 @@ class TemplateController extends Controller
         // 2. Если их нет, пытаемся заполнить из "Цифрового ящика"
         elseif (Auth::check() && Auth::user()->details) {
             $userDetails = Auth::user()->details;
-            $templateFields = json_decode($template->fields, true) ?? [];
+            $templateFields = $template->fields;
 
             foreach ($templateFields as $field) {
                 $fieldName = $field['name'];
@@ -120,22 +120,61 @@ class TemplateController extends Controller
 
     public function generatePdf(Request $request, string $locale, Template $template)
     {
+        // Блок валидации и сохранения в историю остается без изменений
+        if (!$template->is_active) { abort(404); }
         if (!Auth::check()) {
             $executed = RateLimiter::attempt('generate-pdf:'.$request->ip(), 1, function() {});
-            if (!$executed) {
-                return back()->with('error', __('messages.rate_limit_exceeded'));
-            }
+            if (!$executed) { return back()->with('error', __('messages.rate_limit_exceeded')); }
         }
         $validatedData = $this->validateFormData($request, $template);
         if (Auth::check()) {
             GeneratedDocument::create([
-                'user_id' => Auth::id(),
-                'template_id' => $template->id,
-                'data' => $validatedData,
+                'user_id' => Auth::id(), 'template_id' => $template->id, 'data' => $validatedData,
             ]);
         }
-        $pdf = Pdf::loadView($template->blade_view, ['data' => $validatedData]);
-        $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
+
+        // --- ГИБРИДНАЯ ЛОГИКА ГЕНЕРАЦИИ ---
+        $pdf = null;
+
+        // ПРОВЕРКА: Если в базе есть HTML для тела документа, используем НОВУЮ систему
+        if (!empty($template->body_html)) {
+
+            $replacePlaceholders = function ($html, $data) {
+                if (empty($html)) return '';
+
+                // Сначала заменяем плейсхолдеры из данных формы
+                foreach ($data as $key => $value) {
+                    $html = str_replace("[[{$key}]]", e($value), $html);
+                }
+
+                // Теперь заменяем наши системные плейсхолдеры (например, текущую дату)
+                $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
+
+                return $html;
+            };
+
+            $header = $replacePlaceholders($template->header_html, $validatedData);
+            $body = $replacePlaceholders($template->body_html, $validatedData);
+            $footer = $replacePlaceholders($template->footer_html, $validatedData);
+
+            $pdf = Pdf::loadView('pdf.document-layout', [
+                'title' => $template->translation->title,
+                'header' => $header, 'body' => $body, 'footer' => $footer,
+            ]);
+
+        } else { // Иначе, используем СТАРУЮ систему с отдельными Blade-файлами
+
+            // Проверяем, что старый файл шаблона существует
+            if ($template->blade_view && view()->exists($template->blade_view)) {
+                $pdf = Pdf::loadView($template->blade_view, ['data' => $validatedData]);
+            } else {
+                // Если не найдено ни HTML в базе, ни файла, возвращаем ошибку
+                return response('PDF template content or view file not found.', 500);
+            }
+        }
+        // --- КОНЕЦ ГИБРИДНОЙ ЛОГИКИ ---
+
+        $fileName = Str::slug($template->translation->title) . '-' . time() . '.pdf';
         return $pdf->download($fileName);
     }
 

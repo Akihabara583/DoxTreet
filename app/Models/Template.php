@@ -13,13 +13,15 @@ class Template extends Model
     protected $fillable = [
         'category_id',
         'slug',
-        'blade_view',
         'fields',
         'is_active',
+        'header_html',
+        'body_html',
+        'footer_html',
     ];
 
     protected $casts = [
-        'fields' => 'array',
+
         'is_active' => 'boolean',
     ];
 
@@ -61,6 +63,9 @@ class Template extends Model
 
     public function getFieldsAttribute($value)
     {
+        // Этот метод будет принудительно преобразовывать поле fields в массив
+        // при каждом обращении к нему
         return json_decode($value, true) ?? [];
     }
+
 }

@@ -135,4 +135,5 @@ return [
     'total_templates' => 'Total Templates',
     'total_categories' => 'Total Categories',
     'download_docx' => 'Download .docx',
+
 ];

@@ -40,32 +40,38 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Category created. Please add translations to lang files.');
     }
 
-    public function edit(Category $category)
+    public function edit(string $locale, string $category)
     {
+        $category = \App\Models\Category::where('slug', $category)->firstOrFail();
         return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, string $locale, string $category)
     {
+        $categoryModel = \App\Models\Category::where('slug', $category)->firstOrFail();
+
         $request->validate([
-            'slug' => 'required|alpha_dash|unique:categories,slug,' . $category->id,
+            'slug' => 'required|alpha_dash|unique:categories,slug,' . $categoryModel->id,
             'name_en' => 'required|string|max:255',
             'name_uk' => 'required|string|max:255',
             'name_pl' => 'required|string|max:255',
         ]);
 
-        $category->update(['slug' => $request->slug]);
+        $categoryModel->update(['slug' => $request->slug]);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated. Please update translations in lang files if slug changed.');
+        return redirect()->route('admin.categories.index', ['locale' => $locale])->with('success', 'Category updated.');
     }
 
-    public function destroy(Category $category)
+    public function destroy(string $locale, string $category)
     {
-        // Add logic to check if category has templates before deleting
-        if ($category->templates()->count() > 0) {
+        $categoryModel = \App\Models\Category::where('slug', $category)->firstOrFail();
+
+        if ($categoryModel->templates()->count() > 0) {
             return back()->with('error', 'Cannot delete category with associated templates.');
         }
-        $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted.');
+
+        $categoryModel->delete();
+
+        return redirect()->route('admin.categories.index', ['locale' => $locale])->with('success', 'Category deleted.');
     }
 }

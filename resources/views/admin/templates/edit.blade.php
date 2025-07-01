@@ -57,11 +57,6 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="blade_view" class="form-label">Blade View для PDF</label>
-                            <input type="text" class="form-control @error('blade_view') is-invalid @enderror" id="blade_view" name="blade_view" value="{{ old('blade_view', $template->blade_view) }}" required>
-                            @error('blade_view') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <label for="is_active" class="form-label">{{ __('messages.status') }}</label>
                             <select class="form-select" id="is_active" name="is_active">
                                 <option value="1" {{ old('is_active', $template->is_active) == 1 ? 'selected' : '' }}>{{ __('messages.active') }}</option>
@@ -69,6 +64,30 @@
                             </select>
                         </div>
                     </div>
+
+                    {{-- ВСТАВЬТЕ ЭТОТ БЛОК ПЕРЕД ПОЛЕМ "Поля формы (JSON)" --}}
+                    <hr>
+                    <div class="alert alert-info small">
+                        <b>Подсказка:</b> В полях ниже вы можете использовать HTML-теги для оформления и переменные в формате <code>[[field_name]]</code>.
+                        Например: <code>[[full_name]]</code>.
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="header_html" class="form-label">Шапка документа (HTML)</label>
+                        {{-- old('header_html', $template->header_html) - подставляет старое значение при ошибке валидации, иначе - значение из базы --}}
+                        <textarea class="form-control" id="header_html" name="header_html" rows="5">{{ old('header_html', $template->header_html) }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="body_html" class="form-label">Тело документа (HTML)</label>
+                        <textarea class="form-control" id="body_html" name="body_html" rows="15">{{ old('body_html', $template->body_html) }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="footer_html" class="form-label">Подвал документа (HTML)</label>
+                        <textarea class="form-control" id="footer_html" name="footer_html" rows="5">{{ old('footer_html', $template->footer_html) }}</textarea>
+                    </div>
+                    <hr>
 
                     <div class="mb-3">
                         <label for="fields" class="form-label">Поля формы (JSON)</label>
