@@ -81,7 +81,13 @@ return [
 
     'locale' => 'en',
     'fallback_locale' => 'en',
-    'available_locales' => ['en', 'uk', 'pl'],
+    'available_locales' => ['en', 'uk', 'pl', 'de'],
+    'available_countries' => [
+        'PL' => 'Польша',
+        'UA' => 'Украина',
+        'DE' => 'Німеччина',
+
+    ],
 
 
 

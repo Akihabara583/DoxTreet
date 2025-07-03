@@ -180,22 +180,25 @@ class TemplateController extends Controller
 
     public function generateDocx(Request $request, string $locale, Template $template, WordExportService $wordExportService)
     {
-        $validatedData = $this->validateFormData($request, $template);
+        $formData = $request->except(['_token']);
 
-        // --- ВАЖНО: ЭТОТ БЛОК КОДА НУЖНО ДОБАВИТЬ ---
-        // Он отвечает за запись сгенерированного документа в историю для авторизованного пользователя.
-        if (Auth::check()) {
-            GeneratedDocument::create([
-                'user_id' => Auth::id(),
-                'template_id' => $template->id,
-                'data' => $validatedData,
-            ]);
+        // 1. Собираем полный HTML из полей в базе данных
+        $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
+
+        // 2. Заменяем плейсхолдеры [[field_name]] на данные из формы
+        foreach ($formData as $key => $value) {
+            // Используем htmlspecialchars для безопасности, чтобы избежать вставки вредоносного HTML
+            $fullHtml = str_replace("[[{$key}]]", htmlspecialchars($value), $fullHtml);
         }
-        // --- КОНЕЦ ВАЖНОГО БЛОКА ---
 
-        $fileName = Str::slug($template->title) . '-' . time() . '.docx';
+        // 3. Заменяем системные переменные, например, текущую дату
+        $fullHtml = str_replace('[[current_date]]', now()->format('d.m.Y'), $fullHtml);
 
-        return $wordExportService->generate($template->blade_view, $validatedData, $fileName);
+        // 4. Генерируем имя файла
+        $fileName = Str::slug($template->title) . '.docx';
+
+        // 5. Вызываем НОВЫЙ метод сервиса, передавая ему готовый HTML
+        return $wordExportService->generateFromHtml($fullHtml, $fileName);
     }
     private function validateFormData(Request $request, Template $template): array
     {

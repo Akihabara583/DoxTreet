@@ -71,6 +71,7 @@
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
+
 @include('partials.header')
 
 <main class="flex-shrink-0">

@@ -20,7 +20,8 @@ class TemplateController extends Controller
     {
         $categories = Category::all();
         $locales = config('app.available_locales');
-        return view('admin.templates.create', compact('categories', 'locales'));
+        $countries = config('app.available_countries');
+        return view('admin.templates.create', compact('categories', 'locales', 'countries'));
     }
 
     // В файле app/Http/Controllers/Admin/TemplateController.php
@@ -35,6 +36,7 @@ class TemplateController extends Controller
             'fields' => 'required|json',
             'is_active' => 'required|boolean',
             'header_html' => 'nullable|string', // Добавляем новые поля
+            'country_code' => 'nullable|string|max:5',
             'body_html' => 'nullable|string',
             'footer_html' => 'nullable|string',
         ];
@@ -50,7 +52,7 @@ class TemplateController extends Controller
         DB::transaction(function () use ($request, $locales) {
             // Забираем все нужные поля из запроса
             $templateData = $request->only(
-                'category_id', 'slug', 'fields', 'is_active', 'header_html', 'body_html', 'footer_html'
+                'category_id', 'slug', 'fields', 'is_active', 'header_html', 'body_html', 'footer_html','country_code',
             );
 
             $template = Template::create($templateData);
@@ -74,9 +76,10 @@ class TemplateController extends Controller
         $template = Template::with('translations')->findOrFail($templateId);
         $categories = Category::all();
         $locales = config('app.available_locales');
+        $countries = config('app.available_countries');
         $translations = $template->translations->keyBy('locale');
 
-        return view('admin.templates.edit', compact('template', 'categories', 'locales', 'translations'));
+        return view('admin.templates.edit', compact('template', 'categories', 'locales', 'translations', 'countries'));
     }
 
     public function update(Request $request, string $locale, string $templateId)
@@ -90,6 +93,7 @@ class TemplateController extends Controller
             'fields' => 'required|json',
             'is_active' => 'required|boolean',
             'header_html' => 'nullable|string', // Добавляем новые поля
+            'country_code' => 'nullable|string|max:5',
             'body_html' => 'nullable|string',
             'footer_html' => 'nullable|string',
         ];
@@ -104,7 +108,7 @@ class TemplateController extends Controller
         DB::transaction(function () use ($request, $template, $locales) {
             // Обновляем основные поля и новые HTML-поля
             $template->update($request->only(
-                'category_id', 'slug', 'fields', 'is_active', 'header_html', 'body_html', 'footer_html'
+                'category_id', 'slug', 'fields', 'is_active', 'header_html', 'body_html', 'footer_html','country_code',
             ));
 
             foreach ($locales as $locale) {

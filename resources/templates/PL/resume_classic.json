@@ -1,0 +1,49 @@
+{
+    "template_info": {
+        "name": "Klasyczne CV"
+    },
+    "structure": [
+        { "id": "personal_info", "type": "section" },
+        { "id": "first_name", "type": "text", "required": true, "section": "personal_info" },
+        { "id": "last_name", "type": "text", "required": true, "section": "personal_info" },
+        { "id": "photo", "type": "image", "section": "personal_info" },
+        { "id": "phone", "type": "tel", "required": true, "section": "personal_info" },
+        { "id": "email", "type": "email", "required": true, "section": "personal_info" },
+        { "id": "pesel", "type": "text", "required": false, "section": "personal_info" },
+        { "id": "address", "type": "textarea", "required": true, "section": "personal_info" },
+        { "id": "experience", "type": "section_repeatable" },
+        { "id": "job_title", "type": "text", "required": true, "section": "experience" },
+        { "id": "company", "type": "text", "required": true, "section": "experience" },
+        { "id": "gdpr_clause", "type": "static_text", "section": "footer" }
+    ],
+    "localization": {
+        "pl": {
+            "personal_info": "Dane osobowe",
+            "first_name": "Imię",
+            "last_name": "Nazwisko",
+            "photo": "Zdjęcie",
+            "phone": "Telefon",
+            "email": "E-mail",
+            "pesel": "PESEL (opcjonalnie)",
+            "address": "Adres",
+            "experience": "Doświadczenie zawodowe",
+            "job_title": "Stanowisko",
+            "company": "Firma",
+            "gdpr_clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji..."
+        },
+        "uk": {
+            "personal_info": "Особисті дані",
+            "first_name": "Ім'я",
+            "last_name": "Прізвище",
+            "photo": "Фото",
+            "phone": "Телефон",
+            "email": "E-mail",
+            "pesel": "PESEL (необов'язково)",
+            "address": "Адреса",
+            "experience": "Досвід роботи",
+            "job_title": "Посада",
+            "company": "Компанія",
+            "gdpr_clause": "Я даю згоду на обробку моїх персональних даних для потреб процесу рекрутації..."
+        }
+    }
+}

@@ -36,7 +36,16 @@ Route::prefix('{locale}')
         // Меняем {post:slug} на {slug} для явной передачи
         Route::get('/blog/{slug}', [PostController::class, 'show'])->name('posts.show');
         // -----------------------
-
+// +++ НАШ НОВЫЙ РОУТ ДЛЯ СПИСКА ДОКУМЕНТОВ +++
+        Route::get('/documents', [\App\Http\Controllers\DocumentListController::class, 'index'])
+            ->name('documents.index');
+// +++++++++++++++++++++++++++++++++++++++++++++
+        Route::get('/documents/country/{countryCode}', [\App\Http\Controllers\DocumentListController::class, 'showByCountry'])->name('documents.by_country');
+        Route::get('/documents/{countryCode}/{templateSlug}', [\App\Http\Controllers\DocumentController::class, 'show'])
+            ->name('documents.show');
+// А этот роут будет принимать данные с формы
+        Route::post('/documents/{countryCode}/{templateSlug}/generate', [\App\Http\Controllers\DocumentController::class, 'generate'])
+            ->name('documents.generate');
         // Админ-панель
         Route::prefix('admin')
             ->middleware(['auth', IsAdminMiddleware::class])

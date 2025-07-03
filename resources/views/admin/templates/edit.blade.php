@@ -63,6 +63,20 @@
                                 <option value="0" {{ old('is_active', $template->is_active) == 0 ? 'selected' : '' }}>{{ __('messages.inactive') }}</option>
                             </select>
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="country_code" class="form-label">Код страны</label>
+                            <select class="form-select @error('country_code') is-invalid @enderror" id="country_code" name="country_code">
+                                <option value="">Глобальный шаблон</option>
+                                @foreach($countries as $code => $name)
+                                    {{-- Для edit.blade.php --}}
+                                    <option value="{{ $code }}" {{ old('country_code', $template->country_code ?? '') == $code ? 'selected' : '' }}>
+                                        {{ $name }} ({{ $code }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('country_code') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
                     </div>
 
                     {{-- ВСТАВЬТЕ ЭТОТ БЛОК ПЕРЕД ПОЛЕМ "Поля формы (JSON)" --}}

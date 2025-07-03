@@ -8,15 +8,21 @@ return [
     'categories' => 'Categories',
     'all_templates' => 'All Templates',
     'navigation' => 'Navigation',
-    'go_home' => 'Go to Home Page',
-    'fill_form' => 'Fill out the form',
+    'go_home' => 'Go to Homepage',
+    'fill_form' => 'Fill Out Form',
     'generate_pdf' => 'Generate PDF',
+    'download_docx' => 'Download .docx',
+    'docs_by_country' => 'Documents by Country',
+    'template_catalog' => 'Template Catalog',
+    'docs_for' => 'Documents for',
+    'fill_out' => 'Fill Out',
+    'no_templates_for_country' => 'No templates available for this country yet.',
 
     // Search & Popular
-    'search_placeholder' => 'Find a document, e.g., "complaint about a neighbor"',
+    'search_placeholder' => 'Find a document, e.g., "complaint against a neighbor"',
     'popular_templates' => 'Popular Templates',
     'search_results_for' => 'Search results for:',
-    'no_results_found' => 'Nothing found for your request. Try changing the query.',
+    'no_results_found' => 'No results found for your query. Try changing your search terms.',
 
     // Auth & Profile
     'login' => 'Login',
@@ -43,16 +49,16 @@ return [
     'confirm_password' => 'Confirm Password',
 
     // "My Data" Page
-    'my_data_text' => 'Save your personal information once to autofill it in all documents. This data is stored securely and is only accessible to you.',
+    'my_data_text' => 'Save your personal information once to automatically fill it in all documents. This data is securely stored and only accessible to you.',
     'my_data_updated_successfully' => 'Your data has been saved successfully!',
     'section_general_data' => 'General Information',
     'full_name_nominative' => 'Full Name (Nominative)',
     'full_name_genitive' => 'Full Name (Genitive)',
-    'tax_id_number' => 'Tax ID Number',
+    'tax_id_number' => 'Tax Identification Number',
     'phone_number' => 'Phone Number',
     'address_registered' => 'Registered Address',
-    'address_factual' => 'Factual Address',
-    'section_passport_data' => 'Passport Details',
+    'address_factual' => 'Factual Residential Address',
+    'section_passport_data' => 'Passport Data',
     'passport_series' => 'Passport Series',
     'passport_number' => 'Passport Number',
     'passport_issuer' => 'Issuing Authority',
@@ -63,29 +69,28 @@ return [
     'creation_date' => 'Creation Date',
     'reuse' => 'Reuse',
     'no_documents_yet' => 'You haven\'t created any documents yet. Start by choosing a template!',
-    'document_history_text' => 'Here you can find all the documents you have previously generated. You can reuse the data for a new document at any time.',
+    'document_history_text' => 'Here you can find all the documents you have created in the past. You can reuse the data for a new document at any time.',
 
     // Home Page (Premium)
-    'hero_title' => 'Documents ready in 5 minutes. Without lawyers and queues.',
+    'hero_title' => 'Ready documents in 5 minutes. No lawyers, no queues.',
     'hero_subtitle' => 'Answer a few simple questions and get a legally sound document, ready to print and sign. Save time and money.',
-    'pick_template' => 'Choose a template',
-    'see_pricing' => 'See pricing',
-    'how_it_works' => 'How it works?',
-    'feature_1_title' => '1. Select a Template',
+    'pick_template' => 'Choose a Template',
+    'see_pricing' => 'See Pricing',
+    'how_it_works' => 'How It Works',
+    'feature_1_title' => '1. Choose a Template',
     'feature_1_text' => 'Find the document you need in our catalog, which covers all life situations.',
-    'feature_2_title' => '2. Fill out the Form',
+    'feature_2_title' => '2. Fill Out the Form',
     'feature_2_text' => 'Answer simple questions. Our system will automatically insert the data into the right places.',
-    'feature_3_title' => '3. Download PDF',
+    'feature_3_title' => '3. Download the PDF',
     'feature_3_text' => 'Get a print-ready PDF file. Save your document history in your personal account.',
-    'template_catalog' => 'Template Catalog',
 
     // Pricing Page
-    'pricing_title' => 'Our Tariffs',
-    'pricing_subtitle' => 'Choose the plan that suits you best. Cancel your subscription at any time.',
+    'pricing_title' => 'Our Pricing',
+    'pricing_subtitle' => 'Choose the plan that\'s right for you. Cancel anytime.',
     'free_plan' => 'Free',
     'pro_plan' => 'Pro',
     'per_month' => '/month',
-    'start_free' => 'Start for free',
+    'start_free' => 'Start for Free',
     'choose_pro' => 'Choose Pro',
     'feature_daily_limit' => '1 document per day',
     'feature_all_templates' => 'Access to all templates',
@@ -95,12 +100,12 @@ return [
     'feature_priority_support' => 'Priority support',
 
     // Rate Limiter
-    'rate_limit_exceeded' => 'You have exceeded the daily limit for PDF generation. Please register to generate unlimited documents.',
-    'rate_limit_info' => 'Guests can generate one document per day.',
+    'rate_limit_exceeded' => 'You have exceeded the daily limit for PDF creation. Please register for unlimited access.',
+    'rate_limit_info' => 'Guests can create one document per day.',
     'for_unlimited_access' => 'for unlimited access',
 
     // SEO & Meta
-    'seo_default_description' => 'A convenient service for quickly generating standard documents and applications online based on ready-made templates. Save your time!',
+    'seo_default_description' => 'A convenient service for quickly creating standard documents and applications online from ready-made templates. Save your time!',
 
     // Errors
     'error_404_title' => 'Page Not Found',
@@ -134,6 +139,11 @@ return [
     'inactive' => 'Inactive',
     'total_templates' => 'Total Templates',
     'total_categories' => 'Total Categories',
-    'download_docx' => 'Download .docx',
-
+    'country_code' => 'Country Code',
+    'blog' => 'Blog',
+    'our_blog' => 'Our Blog',
+    'no_articles_yet' => 'No articles yet.',
+    'country_pl' => 'Poland',
+    'country_de' => 'Germany',
+    'country_ua' => 'Ukraine',
 ];

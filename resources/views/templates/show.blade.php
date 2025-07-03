@@ -1,4 +1,4 @@
-{{-- Это финальный и правильный код для resources/views/templates/show.blade.php --}}
+{{-- Это финальный и правильный код для resources/views/templates/generate.blade.php --}}
 @extends('layouts.app')
 
 @section('title', $template->title . ' - ' . config('app.name'))

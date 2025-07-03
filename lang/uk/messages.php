@@ -11,6 +11,15 @@ return [
     'go_home' => 'Перейти на головну',
     'fill_form' => 'Заповнити форму',
     'generate_pdf' => 'Створити PDF',
+    'download_docx' => 'Завантажити .docx',
+    'docs_by_country' => 'Документи за країною',
+    'template_catalog' => 'Каталог Шаблонів',
+    'docs_for' => 'Документи для',
+    'fill_out' => 'Заповнити',
+    'no_templates_for_country' => 'Для цієї країни поки що немає доступних шаблонів.',
+    'blog' => 'Блог',
+    'our_blog' => 'Наш Блог',
+    'no_articles_yet' => 'Статей поки немає.',
 
     // Search & Popular
     'search_placeholder' => 'Знайдіть документ, напр. "скарга на сусідів"',
@@ -77,7 +86,6 @@ return [
     'feature_2_text' => 'Дайте відповідь на прості запитання. Наша система автоматично підставить дані в потрібні місця.',
     'feature_3_title' => '3. Завантажте PDF',
     'feature_3_text' => 'Отримайте готовий до друку PDF-файл. Зберігайте історію документів в особистому кабінеті.',
-    'template_catalog' => 'Каталог Шаблонів',
 
     // Pricing Page
     'pricing_title' => 'Наші Тарифи',
@@ -134,6 +142,8 @@ return [
     'inactive' => 'Неактивний',
     'total_templates' => 'Всього шаблонів',
     'total_categories' => 'Всього категорій',
-    'download_docx' => 'Завантажити .docx',
-
+    'country_code' => 'Код країни',
+    'country_pl' => 'Польща',
+    'country_de' => 'Німеччина',
+    'country_ua' => 'Україна',
 ];

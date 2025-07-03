@@ -24,7 +24,7 @@
                     {{-- === ВОТ НОВАЯ ССЫЛКА НА БЛОГ === --}}
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('posts.*') ? 'active' : '' }}" href="{{ route('posts.index', ['locale' => app()->getLocale()]) }}">
-                            Блог
+                            {{ __('messages.blog') }}
                         </a>
                     </li>
                     {{-- =================================== --}}
@@ -32,6 +32,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pricing', ['locale' => app()->getLocale()]) }}">{{ __('messages.pricing') }}</a>
                     </li>
+                    @include('partials._country_nav')
                 </ul>
 
                 <!-- Right Side Of Navbar -->

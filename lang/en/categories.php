@@ -14,4 +14,5 @@ return [
     'health-and-medicine' => 'Health & Medicine',
     'events-and-travel' => 'Events & Travel',
     'automotive' => 'Automotive',
+
 ];

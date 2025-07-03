@@ -22,6 +22,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">{{ __('messages.title') }}</th>
+                        <th scope="col">{{ __('messages.country_code') }}</th>
                         <th scope="col">{{ __('messages.category') }}</th>
                         <th scope="col">{{ __('messages.status') }}</th>
                         <th scope="col">{{ __('messages.actions') }}</th>
@@ -32,6 +33,7 @@
                         <tr>
                             <th scope="row">{{ $template->id }}</th>
                             <td>{{ $template->title }}</td>
+                            <td><span class="badge bg-info text-dark">{{ $template->country_code ?? 'Глобальный' }}</span></td>
                             <td>{{ $template->category->name }}</td>
                             <td>
                                 @if($template->is_active)

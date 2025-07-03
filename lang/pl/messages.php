@@ -8,20 +8,26 @@ return [
     'categories' => 'Kategorie',
     'all_templates' => 'Wszystkie szablony',
     'navigation' => 'Nawigacja',
-    'go_home' => 'Przejdź do strony głównej',
+    'go_home' => 'Przejdź na stronę główną',
     'fill_form' => 'Wypełnij formularz',
     'generate_pdf' => 'Wygeneruj PDF',
+    'download_docx' => 'Pobierz .docx',
+    'docs_by_country' => 'Dokumenty według kraju',
+    'template_catalog' => 'Katalog szablonów',
+    'docs_for' => 'Dokumenty dla',
+    'fill_out' => 'Wypełnij',
+    'no_templates_for_country' => 'Brak dostępnych szablonów dla tego kraju.',
 
     // Search & Popular
     'search_placeholder' => 'Znajdź dokument, np. "skarga na sąsiada"',
     'popular_templates' => 'Popularne szablony',
     'search_results_for' => 'Wyniki wyszukiwania dla:',
-    'no_results_found' => 'Nic nie znaleziono dla Twojego zapytania. Spróbuj zmienić zapytanie.',
+    'no_results_found' => 'Nic nie znaleziono dla Twojego zapytania. Spróbuj zmienić hasło.',
 
     // Auth & Profile
     'login' => 'Zaloguj się',
     'register' => 'Zarejestruj się',
-    'logout' => 'Wyloguj',
+    'logout' => 'Wyloguj się',
     'dashboard' => 'Panel',
     'my_account' => 'Moje konto',
     'overview' => 'Przegląd',
@@ -48,10 +54,10 @@ return [
     'section_general_data' => 'Informacje ogólne',
     'full_name_nominative' => 'Imię i nazwisko (mianownik)',
     'full_name_genitive' => 'Imię i nazwisko (dopełniacz)',
-    'tax_id_number' => 'Numer NIP/PESEL',
+    'tax_id_number' => 'Numer PESEL/NIP',
     'phone_number' => 'Numer telefonu',
     'address_registered' => 'Adres zameldowania',
-    'address_factual' => 'Adres zamieszkania',
+    'address_factual' => 'Faktyczny adres zamieszkania',
     'section_passport_data' => 'Dane paszportowe',
     'passport_series' => 'Seria paszportu',
     'passport_number' => 'Numer paszportu',
@@ -63,7 +69,7 @@ return [
     'creation_date' => 'Data utworzenia',
     'reuse' => 'Użyj ponownie',
     'no_documents_yet' => 'Nie utworzyłeś jeszcze żadnych dokumentów. Zacznij od wyboru szablonu!',
-    'document_history_text' => 'Tutaj możesz znaleźć wszystkie dokumenty, które wcześniej wygenerowałeś. Możesz ponownie wykorzystać dane do nowego dokumentu w dowolnym momencie.',
+    'document_history_text' => 'Tutaj możesz znaleźć wszystkie dokumenty, które utworzyłeś w przeszłości. Możesz ponownie wykorzystać dane do nowego dokumentu w dowolnym momencie.',
 
     // Home Page (Premium)
     'hero_title' => 'Gotowe dokumenty w 5 minut. Bez prawników i kolejek.',
@@ -77,14 +83,13 @@ return [
     'feature_2_text' => 'Odpowiedz na proste pytania. Nasz system automatycznie wstawi dane w odpowiednie miejsca.',
     'feature_3_title' => '3. Pobierz PDF',
     'feature_3_text' => 'Otrzymaj gotowy do druku plik PDF. Zapisuj historię dokumentów na swoim koncie osobistym.',
-    'template_catalog' => 'Katalog Szablonów',
 
     // Pricing Page
-    'pricing_title' => 'Nasz Cennik',
-    'pricing_subtitle' => 'Wybierz plan, który najbardziej Ci odpowiada. Anuluj subskrypcję w dowolnym momencie.',
+    'pricing_title' => 'Nasz cennik',
+    'pricing_subtitle' => 'Wybierz plan, który jest dla Ciebie odpowiedni. Anuluj w dowolnym momencie.',
     'free_plan' => 'Darmowy',
     'pro_plan' => 'Pro',
-    'per_month' => '/mies',
+    'per_month' => '/miesiąc',
     'start_free' => 'Zacznij za darmo',
     'choose_pro' => 'Wybierz Pro',
     'feature_daily_limit' => '1 dokument dziennie',
@@ -92,25 +97,25 @@ return [
     'feature_email_support' => 'Wsparcie przez e-mail',
     'feature_unlimited' => '<strong>Nielimitowane</strong> tworzenie dokumentów',
     'feature_history' => '<strong>Historia dokumentów</strong> na koncie',
-    'feature_priority_support' => 'Wsparcie priorytetowe',
+    'feature_priority_support' => 'Priorytetowe wsparcie',
 
     // Rate Limiter
-    'rate_limit_exceeded' => 'Przekroczyłeś dzienny limit generowania plików PDF. Zarejestruj się, aby generować dokumenty bez ograniczeń.',
-    'rate_limit_info' => 'Goście mogą wygenerować jeden dokument dziennie.',
-    'for_unlimited_access' => 'aby uzyskać nieograniczony dostęp',
+    'rate_limit_exceeded' => 'Przekroczyłeś dzienny limit tworzenia PDF. Zarejestruj się, aby uzyskać nieograniczony dostęp.',
+    'rate_limit_info' => 'Goście mogą tworzyć jeden dokument dziennie.',
+    'for_unlimited_access' => 'dla nieograniczonego dostępu',
 
     // SEO & Meta
-    'seo_default_description' => 'Wygodna usługa do szybkiego generowania standardowych dokumentów i wniosków online na podstawie gotowych szablonów. Oszczędzaj swój czas!',
+    'seo_default_description' => 'Wygodna usługa do szybkiego tworzenia standardowych dokumentów i wniosków online z gotowych szablonów. Oszczędzaj swój czas!',
 
     // Errors
     'error_404_title' => 'Nie znaleziono strony',
-    'error_404_text' => 'Niestety, nie udało nam się znaleźć strony, której szukałeś.',
+    'error_404_text' => 'Niestety, nie mogliśmy znaleźć strony, której szukałeś.',
     'error_403_title' => 'Dostęp zabroniony',
     'error_403_text' => 'Nie masz niezbędnych uprawnień, aby uzyskać dostęp do tej strony.',
 
     // Admin Panel
-    'admin_panel' => 'Panel administratora',
-    'admin_welcome' => 'Witamy w panelu administratora. Tutaj możesz zarządzać szablonami dokumentów i kategoriami.',
+    'admin_panel' => 'Panel administracyjny',
+    'admin_welcome' => 'Witaj w panelu administracyjnym. Tutaj możesz zarządzać szablonami dokumentów i kategoriami.',
     'manage_categories' => 'Zarządzaj kategoriami',
     'manage_templates' => 'Zarządzaj szablonami',
     'add_category' => 'Dodaj kategorię',
@@ -132,8 +137,13 @@ return [
     'status' => 'Status',
     'active' => 'Aktywny',
     'inactive' => 'Nieaktywny',
-    'total_templates' => 'Łączna liczba szablonów',
-    'total_categories' => 'Łączna liczba kategorii',
-    'download_docx' => 'Pobierz .docx',
-
+    'total_templates' => 'Wszystkich szablonów',
+    'total_categories' => 'Wszystkich kategorii',
+    'country_code' => 'Kod kraju',
+    'blog' => 'Blog',
+    'our_blog' => 'Nasz Blog',
+    'no_articles_yet' => 'Na razie brak artykułów.',
+    'country_pl' => 'Polska',
+    'country_de' => 'Niemcy',
+    'country_ua' => 'Ukraina',
 ];

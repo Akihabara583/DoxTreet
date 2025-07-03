@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View; // ✅ Убедитесь, что это подключено
+use App\Http\View\Composers\CountryNavigationComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        View::composer(
+            'partials._country_nav',
+            CountryNavigationComposer::class
+        );
     }
 }

@@ -16,6 +16,7 @@ class Template extends Model
         'fields',
         'is_active',
         'header_html',
+        'country_code',
         'body_html',
         'footer_html',
     ];

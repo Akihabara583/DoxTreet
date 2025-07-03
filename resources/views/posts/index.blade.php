@@ -6,7 +6,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h1 class="mb-4">Наш Блог</h1>
+                <h1 class="mb-4">{{ __('messages.our_blog') }}</h1>
 
                 @forelse ($posts as $post)
                     <div class="card mb-4">
@@ -28,7 +28,7 @@
                     </div>
                 @empty
                     <div class="alert alert-info">
-                        Статей пока нет.
+                        {{ __('messages.no_articles_yet') }}
                     </div>
                 @endforelse
 
