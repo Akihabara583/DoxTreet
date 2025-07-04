@@ -10,28 +10,20 @@ class Template extends Model
 {
     use HasFactory;
 
+    // Теперь здесь только непереводимые поля
     protected $fillable = [
         'category_id',
         'slug',
-        'fields',
         'is_active',
-        'header_html',
         'country_code',
-        'body_html',
-        'footer_html',
+        'fields',
     ];
 
     protected $casts = [
-
         'is_active' => 'boolean',
+        'fields' => 'array',
     ];
 
-    /**
-     * --- КЛЮЧЕВОЙ МЕТОД ДЛЯ ИСПРАВЛЕНИЯ ОШИБКИ 404 ---
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -47,26 +39,37 @@ class Template extends Model
         return $this->hasMany(TemplateTranslation::class);
     }
 
+    // Получает перевод для текущего языка
     public function translation()
     {
         return $this->hasOne(TemplateTranslation::class)->where('locale', App::getLocale());
     }
 
+    // Далее идут "аксессоры", чтобы легко получать переведенные поля
     public function getTitleAttribute()
     {
-        return $this->translation->title ?? $this->translations->first()->title ?? 'No Title';
+        return $this->translation->title ?? '';
     }
 
     public function getDescriptionAttribute()
     {
-        return $this->translation->description ?? $this->translations->first()->description ?? '';
+        return $this->translation->description ?? '';
     }
 
-    public function getFieldsAttribute($value)
+    public function getHeaderHtmlAttribute()
     {
-        // Этот метод будет принудительно преобразовывать поле fields в массив
-        // при каждом обращении к нему
-        return json_decode($value, true) ?? [];
+        return $this->translation->header_html ?? '';
     }
+
+    public function getBodyHtmlAttribute()
+    {
+        return $this->translation->body_html ?? '';
+    }
+
+    public function getFooterHtmlAttribute()
+    {
+        return $this->translation->footer_html ?? '';
+    }
+
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -6,7 +7,6 @@ use App\Models\Template;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class TemplateController extends Controller
 {
@@ -24,52 +24,45 @@ class TemplateController extends Controller
         return view('admin.templates.create', compact('categories', 'locales', 'countries'));
     }
 
-    // В файле app/Http/Controllers/Admin/TemplateController.php
-
     public function store(Request $request)
     {
         $locales = config('app.available_locales');
+
+        // Правила валидации для общих и переводимых полей
         $validationRules = [
             'category_id' => 'required|exists:categories,id',
             'slug' => 'required|unique:templates,slug|alpha_dash',
-            // 'blade_view' больше не нужен, его можно удалить из валидации
-            'fields' => 'required|json',
             'is_active' => 'required|boolean',
-            'header_html' => 'nullable|string', // Добавляем новые поля
             'country_code' => 'nullable|string|max:5',
-            'body_html' => 'nullable|string',
-            'footer_html' => 'nullable|string',
+            'fields' => 'required|json', // Поле fields теперь общее
         ];
 
         foreach ($locales as $locale) {
             $validationRules["translations.{$locale}.title"] = 'required|string|max:255';
-            $validationRules["translations.{$locale}.description"] = 'required|string';
+            $validationRules["translations.{$locale}.description"] = 'nullable|string';
+            $validationRules["translations.{$locale}.header_html"] = 'nullable|string';
+            $validationRules["translations.{$locale}.body_html"] = 'nullable|string';
+            $validationRules["translations.{$locale}.footer_html"] = 'nullable|string';
         }
 
         $request->validate($validationRules);
 
-        // Используем DB::transaction, как у вас и было - это хорошо
         DB::transaction(function () use ($request, $locales) {
-            // Забираем все нужные поля из запроса
-            $templateData = $request->only(
-                'category_id', 'slug', 'fields', 'is_active', 'header_html', 'body_html', 'footer_html','country_code',
-            );
+            $templateData = $request->only('category_id', 'slug', 'is_active', 'country_code');
+
+            // ДОБАВЬТЕ ЭТУ СТРОКУ:
+            // Мы вручную декодируем JSON перед передачей в модель
+            $templateData['fields'] = json_decode($request->input('fields'), true);
 
             $template = Template::create($templateData);
 
             foreach ($locales as $locale) {
-                $template->translations()->create([
-                    'locale' => $locale,
-                    'title' => $request->input("translations.{$locale}.title"),
-                    'description' => $request->input("translations.{$locale}.description"),
-                ]);
+                $template->translations()->create($request->input("translations.{$locale}"));
             }
         });
 
-        return redirect()->route('admin.templates.index')->with('success', 'Template created successfully.');
+        return redirect()->route('admin.templates.index')->with('success', 'Шаблон успешно создан.');
     }
-
-    // В файле app/Http/Controllers/Admin/TemplateController.php
 
     public function edit(string $locale, string $templateId)
     {
@@ -85,51 +78,52 @@ class TemplateController extends Controller
     public function update(Request $request, string $locale, string $templateId)
     {
         $template = Template::findOrFail($templateId);
-
         $locales = config('app.available_locales');
+
+        // Правила валидации для общих и переводимых полей
         $validationRules = [
             'category_id' => 'required|exists:categories,id',
             'slug' => 'required|alpha_dash|unique:templates,slug,' . $template->id,
-            'fields' => 'required|json',
             'is_active' => 'required|boolean',
-            'header_html' => 'nullable|string', // Добавляем новые поля
             'country_code' => 'nullable|string|max:5',
-            'body_html' => 'nullable|string',
-            'footer_html' => 'nullable|string',
+            'fields' => 'required|json', // Поле fields теперь общее
         ];
 
         foreach ($locales as $locale) {
             $validationRules["translations.{$locale}.title"] = 'required|string|max:255';
-            $validationRules["translations.{$locale}.description"] = 'required|string';
+            $validationRules["translations.{$locale}.description"] = 'nullable|string';
+            $validationRules["translations.{$locale}.header_html"] = 'nullable|string';
+            $validationRules["translations.{$locale}.body_html"] = 'nullable|string';
+            $validationRules["translations.{$locale}.footer_html"] = 'nullable|string';
         }
 
         $request->validate($validationRules);
 
+        // В методе update
         DB::transaction(function () use ($request, $template, $locales) {
-            // Обновляем основные поля и новые HTML-поля
-            $template->update($request->only(
-                'category_id', 'slug', 'fields', 'is_active', 'header_html', 'body_html', 'footer_html','country_code',
-            ));
+            $updateData = $request->only('category_id', 'slug', 'is_active', 'country_code');
+
+            // ДОБАВЬТЕ ЭТУ СТРОКУ:
+            // Мы также вручную декодируем JSON перед обновлением
+            $updateData['fields'] = json_decode($request->input('fields'), true);
+
+            $template->update($updateData);
 
             foreach ($locales as $locale) {
                 $template->translations()->updateOrCreate(
                     ['locale' => $locale],
-                    [
-                        'title' => $request->input("translations.{$locale}.title"),
-                        'description' => $request->input("translations.{$locale}.description"),
-                    ]
+                    $request->input("translations.{$locale}")
                 );
             }
         });
 
-        // Перенаправляем с правильным locale
-        return redirect()->route('admin.templates.index', ['locale' => app()->getLocale()])->with('success', 'Template updated successfully.');
+        return redirect()->route('admin.templates.index', ['locale' => app()->getLocale()])->with('success', 'Шаблон успешно обновлен.');
     }
 
     public function destroy(string $locale, string $templateId)
     {
         $template = Template::findOrFail($templateId);
         $template->delete();
-        return redirect()->route('admin.templates.index', ['locale' => app()->getLocale()])->with('success', 'Template deleted successfully.');
+        return redirect()->route('admin.templates.index', ['locale' => app()->getLocale()])->with('success', 'Шаблон удален.');
     }
 }
