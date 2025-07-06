@@ -9,7 +9,8 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             'housing-issues', 'school-education', 'work',
-            'legal-claims', 'government-agencies', 'medicine'
+            'legal-claims', 'government-agencies', 'medicine',
+            'personal-family', 'automobiles', 'events-travel',
         ];
         foreach ($categories as $slug) {
             Category::create(['slug' => $slug]);

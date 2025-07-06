@@ -18,6 +18,7 @@ class UaCategorySeeder extends Seeder
             'school-education' => ['Освіта', 'Education', 'Edukacja', 'Bildung'],
             'medicine' => ['Здоров\'я та медицина', 'Health and Medicine', 'Zdrowie i medycyna', 'Gesundheit und Medizin'],
             'automobiles' => ['Автомобілі', 'Automobiles', 'Samochody', 'Automobile'],
+            'events-travel' => ['Заходи та подорожі', 'Events and Travel', 'Wydarzenia i podróże', 'Veranstaltungen und Reisen'],
         ];
 
         foreach ($categories as $slug => $names) {
