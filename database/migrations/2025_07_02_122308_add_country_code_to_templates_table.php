@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('templates', function (Blueprint $table) {
-            // Добавляем поле для кода страны (PL, UA, DE и т.д.)
+            // Добавляем поле для кода страны (PL,UA, DE и т.д.)
             // nullable() означает, что поле может быть пустым (для общих шаблонов)
             $table->string('country_code', 5)->nullable();
         });

@@ -1,6 +1,8 @@
 <?php
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
+use \Database\Seeders\UA\UaCategorySeeder;
+use \Database\Seeders\UA\UaWorkSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -10,6 +12,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             TemplateSeeder::class,
+            UaCategorySeeder::class,
+            UaWorkSeeder::class,
+
         ]);
+
+
     }
 }
