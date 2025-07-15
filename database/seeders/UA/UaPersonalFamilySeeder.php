@@ -15,7 +15,7 @@ class UaPersonalFamilySeeder extends Seeder
         // и только потом сохранить или обновить.
         public function run(): void
     {
-        $category = Category::where('slug', 'personal-family')->first();
+        $category = Category::where('slug', 'personal-family-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "personal-family" not found.');
             return;

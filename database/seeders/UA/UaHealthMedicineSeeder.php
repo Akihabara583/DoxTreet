@@ -11,7 +11,7 @@ class UaHealthMedicineSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'medicine')->first();
+        $category = Category::where('slug', 'medicine-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "medicine" not found.');
             return;

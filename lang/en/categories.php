@@ -3,6 +3,7 @@ return [
     'housing-issues' => 'Housing Issues',
     'school-education' => 'School & Education',
     'work' => 'Work',
+    'work-pl' => 'Work',
     'legal-claims' => 'Legal & Claims',
     'government-agencies' => 'Government Agencies',
     'medicine' => 'Medicine',

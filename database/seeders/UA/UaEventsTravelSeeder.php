@@ -11,7 +11,7 @@ class UaEventsTravelSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'events-travel')->first();
+        $category = Category::where('slug', 'events-travel-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "events-travel" not found.');
             return;

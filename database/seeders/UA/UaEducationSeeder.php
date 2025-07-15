@@ -11,7 +11,7 @@ class UaEducationSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'school-education')->first();
+        $category = Category::where('slug', 'school-education-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "school-education" not found.');
             return;

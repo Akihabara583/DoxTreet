@@ -11,6 +11,7 @@ return [
     'housing-issues' => 'Wohnungsangelegenheiten',
     'school-education' => 'Schule & Bildung',
     'work' => 'Arbeit',
+    'work-pl' => 'Arbeit',
     'legal-claims' => 'Recht & Ansprüche',
     'government-agencies' => 'Behörden',
     'medicine' => 'Medizin',

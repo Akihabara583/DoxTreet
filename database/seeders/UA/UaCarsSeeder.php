@@ -11,7 +11,7 @@ class UaCarsSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'automobiles')->first();
+        $category = Category::where('slug', 'automobiles-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "automobiles" not found.');
             return;

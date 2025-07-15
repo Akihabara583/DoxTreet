@@ -11,7 +11,7 @@ class UaRealEstateSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'housing-issues')->first();
+        $category = Category::where('slug', 'housing-issues-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "housing-issues" not found.');
             return;

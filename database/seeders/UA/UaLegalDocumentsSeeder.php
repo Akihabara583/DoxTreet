@@ -11,7 +11,7 @@ class UaLegalDocumentsSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'legal-claims')->first();
+        $category = Category::where('slug', 'legal-claims-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "legal-claims" not found.');
             return;

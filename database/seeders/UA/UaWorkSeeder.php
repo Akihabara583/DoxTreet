@@ -11,7 +11,7 @@ class UaWorkSeeder extends Seeder
 {
     public function run(): void
     {
-        $category = Category::where('slug', 'work')->first();
+        $category = Category::where('slug', 'work-ua')->first();
         if (!$category) {
             $this->command->error('Category with slug "work" not found.');
             return;

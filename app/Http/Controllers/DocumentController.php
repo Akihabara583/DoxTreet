@@ -79,6 +79,11 @@ class DocumentController extends Controller
         if ($request->has('generate_docx')) {
             // --- Используем вашу рабочую логику для DOCX ---
             $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
+
+            // 1. СНАЧАЛА исправляем все теги <br> на <br />
+            $fullHtml = str_replace('<br>', '<br />', $fullHtml);
+
+            // 2. ПОТОМ подставляем данные в уже исправленный HTML
             $processedHtml = $replacePlaceholders($fullHtml, $validatedData);
 
             // Мы не можем передавать сервис в метод generate, т.к. роут не настроен
