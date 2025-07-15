@@ -9,7 +9,7 @@
                     <path d="M9 13H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M9 17H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span class="fw-bold">{{ config('app.name', 'DocuFlow') }}</span>
+                <span class="fw-bold">{{ config('app.name', 'DoxTreet') }}</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

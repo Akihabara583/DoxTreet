@@ -21,6 +21,20 @@ use \Database\Seeders\PL\PlHealthMedicineSeeder;
 use \Database\Seeders\PL\PlEventsTravelSeeder;
 use \Database\Seeders\PL\PlCarsTravelSeeder;
 
+use \Database\Seeders\DE\DeWorkSeeder;
+use \Database\Seeders\DE\DePersonalFamilySeeder;
+use \Database\Seeders\DE\DeRealEstateSeeder;
+use \Database\Seeders\DE\DeLegalDocumentsSeeder;
+use \Database\Seeders\DE\DeEducationSeeder;
+use \Database\Seeders\DE\DeHealthMedicineSeeder;
+use \Database\Seeders\DE\DeEventsTravelSeeder;
+use \Database\Seeders\DE\DeCarsTravelSeeder;
+
+
+
+
+
+
 
 
 class DatabaseSeeder extends Seeder
@@ -49,6 +63,15 @@ class DatabaseSeeder extends Seeder
             PlHealthMedicineSeeder::class,
             PlEventsTravelSeeder::class,
             PlCarsTravelSeeder::class,
+
+            DeWorkSeeder::class,
+            DePersonalFamilySeeder::class,
+            DeRealEstateSeeder::class,
+            DeLegalDocumentsSeeder::class,
+            DeEducationSeeder::class,
+            DeHealthMedicineSeeder::class,
+            DeEventsTravelSeeder::class,
+            DeCarsTravelSeeder::class,
         ]);
 
 

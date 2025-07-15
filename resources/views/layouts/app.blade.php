@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', config('app.name', 'DocuFlow'))</title>
+    <title>@yield('title', config('app.name', 'DoxTreet'))</title>
 
     <meta name="description" content="@yield('description', __('messages.seo_default_description'))">
     <link rel="canonical" href="{{ url()->current() }}" />
@@ -17,7 +17,7 @@
     <meta property="og:title" content="@yield('title')">
     <meta property="og:description" content="@yield('description')">
     <meta property="og:image" content="{{ asset('og-image.png') }}">
-    <meta property="og:site_name" content="{{ config('app.name', 'DocuFlow') }}">
+    <meta property="og:site_name" content="{{ config('app.name', 'DoxTreet') }}">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z' fill='%230D6EFD' fill-opacity='0.3'/><path d='M14 2V8H20' stroke='%230D6EFD' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/><path d='M9 13H15' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M9 17H15' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>">
