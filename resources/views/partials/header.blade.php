@@ -1,7 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
         <div class="container">
-            {{-- ИЗМЕНЕНО: Добавлен SVG-логотип и новое название --}}
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
                     <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="#0D6EFD" fill-opacity="0.3"/>
@@ -15,32 +14,31 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}#templates">{{ __('messages.templates') }}</a>
                     </li>
-
-                    {{-- === ВОТ НОВАЯ ССЫЛКА НА БЛОГ === --}}
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('posts.*') ? 'active' : '' }}" href="{{ route('posts.index', ['locale' => app()->getLocale()]) }}">
                             {{ __('messages.blog') }}
                         </a>
                     </li>
-                    {{-- =================================== --}}
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pricing', ['locale' => app()->getLocale()]) }}">{{ __('messages.pricing') }}</a>
                     </li>
                     @include('partials._country_nav')
                 </ul>
 
-                <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
-                    <!-- Language Switcher -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-translate"></i> {{ strtoupper(app()->getLocale()) }}
+                            <i class="bi bi-translate"></i>
+                            {{-- ✅ ИЗМЕНЕНИЕ №1: Отображение текущего языка --}}
+                            @if(app()->getLocale() == 'uk')
+                                UA
+                            @else
+                                {{ strtoupper(app()->getLocale()) }}
+                            @endif
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownLang">
                             @foreach(config('app.available_locales') as $locale_code)
@@ -55,14 +53,18 @@
                                 @endphp
                                 <li>
                                     <a class="dropdown-item" href="{{ $url }}">
-                                        {{ strtoupper($locale_code) }}
+                                        {{-- ✅ ИЗМЕНЕНИЕ №2: Отображение языков в списке --}}
+                                        @if($locale_code == 'uk')
+                                            UA
+                                        @else
+                                            {{ strtoupper($locale_code) }}
+                                        @endif
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
 
-                    <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -76,7 +78,6 @@
                             </li>
                         @endif
                     @else
-                        {{-- ОБНОВЛЕННЫЙ БЛОК ДЛЯ АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ --}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}

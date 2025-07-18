@@ -110,9 +110,13 @@ class ProfileController extends Controller
      */
     public function myData(): View
     {
-        $details = Auth::user()->details ?? new UserDetail();
+        // ✅ **ИЗМЕНЕНО**: Используем `firstOrNew` для большей надежности
+        $details = Auth::user()->details()->firstOrNew([
+            'user_id' => Auth::id()
+        ]);
         return view('profile.my-data', ['details' => $details]);
     }
+
 
     /**
      * Update the user's personal details.
@@ -121,15 +125,26 @@ class ProfileController extends Controller
     {
         $validatedData = $request->validate([
             'full_name_nominative' => 'nullable|string|max:255',
-            'full_name_genitive' => 'nullable|string|max:255',
-            'address_registered' => 'nullable|string|max:255',
-            'address_factual' => 'nullable|string|max:255',
-            'phone_number' => 'nullable|string|max:255',
-            'tax_id_number' => 'nullable|string|max:255',
-            'passport_series' => 'nullable|string|max:10',
-            'passport_number' => 'nullable|string|max:20',
-            'passport_issuer' => 'nullable|string|max:255',
-            'passport_date' => 'nullable|date',
+            'full_name_genitive'   => 'nullable|string|max:255',
+            'address_registered'   => 'nullable|string|max:255',
+            'address_factual'      => 'nullable|string|max:255',
+            'phone_number'         => 'nullable|string|max:255',
+            'tax_id_number'        => 'nullable|string|max:255',
+            'passport_series'      => 'nullable|string|max:10',
+            'passport_number'      => 'nullable|string|max:20',
+            'passport_issuer'      => 'nullable|string|max:255',
+            'passport_date'        => 'nullable|date',
+            'id_card_number'       => 'nullable|string|max:255',
+            'position'             => 'nullable|string|max:255',
+            // --- ВАЛИДАЦИЯ НОВЫХ ПОЛЕЙ ---
+            'contact_email'        => 'nullable|email|max:255',
+            'website'              => 'nullable|url|max:255',
+            'legal_entity_name'    => 'nullable|string|max:255',
+            'legal_entity_address' => 'nullable|string|max:255',
+            'legal_entity_tax_id'  => 'nullable|string|max:255',
+            'represented_by'       => 'nullable|string|max:255',
+            'bank_name'            => 'nullable|string|max:255',
+            'bank_iban'            => 'nullable|string|max:255',
         ]);
 
         Auth::user()->details()->updateOrCreate(
@@ -139,4 +154,5 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.my-data', app()->getLocale())->with('status', 'details-updated');
     }
+
 }

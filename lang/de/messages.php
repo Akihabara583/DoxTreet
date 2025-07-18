@@ -146,4 +146,97 @@ return [
     'country_pl' => 'Polen',
     'country_de' => 'Deutschland',
     'country_ua' => 'Ukraine',
+    'country_us' => 'America',
+
+
+    'back' => 'Zurück',
+
+    'clear_search_and_return' => 'Suche löschen und zum Katalog zurückkehren',
+
+    'section_personal_data' => 'Persönliche Daten',
+    'section_company_data' => 'Firmendaten / Einzelunternehmer',
+    'section_bank_details' => 'Bankverbindung',
+    'section_contact_info' => 'Kontaktinformationen',
+
+    'legal_entity_name' => 'Vollständiger Firmenname oder Name des Inhabers',
+    'legal_entity_address' => 'Rechtsgültige Adresse',
+    'legal_entity_tax_id' => 'Steuernummer / USt-IdNr.',
+    'position' => 'Position',
+    'represented_by' => 'Vertreten durch (Position, vollständiger Name)',
+    'represented_by_placeholder' => 'z.B.: Geschäftsführer Max Mustermann',
+
+    'bank_name' => 'Name der Bank',
+    'bank_iban' => 'IBAN',
+
+    'contact_email' => 'Kontakt-E-Mail',
+    'website' => 'Webseite',
+
+
+    'legal_disclaimer' => 'Haftungsausschluss: Die auf dieser Website bereitgestellten Vorlagen dienen nur als Muster und sind keine rechtsverbindlichen Dokumente. Sie ersetzen keine Beratung durch einen qualifizierten Rechtsanwalt. Für die Verwendung von Dokumenten in offiziellen Verfahren, vor Gericht oder in rechtlichen Angelegenheiten wird dringend empfohlen, die Vorlage mit Hilfe eines professionellen Rechtsanwalts anzupassen, der die Besonderheiten Ihrer Situation und die geltende Gesetzgebung berücksichtigt.',
+
+
+    'legal' => 'Rechtliches',
+    'terms_of_service' => 'Nutzungsbedingungen',
+    'privacy_policy' => 'Datenschutzrichtlinie',
+    'faq' => 'FAQ',
+    'about_us' => 'Über uns',
+    'my_profile' => 'Mein Profil',
+
+
+    // --- Datenschutzrichtlinie ---
+    'privacy_policy_title' => 'Datenschutzrichtlinie',
+    'privacy_policy_content' => '
+<h2>1. Einleitung</h2>
+<p>Diese Datenschutzrichtlinie erklärt, wie DoxTreet ("wir", "uns", "unser") Ihre persönlichen Informationen sammelt, verwendet und schützt, wenn Sie unsere Website nutzen. Wir verpflichten uns, Ihre Privatsphäre zu schützen und die Sicherheit Ihrer Daten zu gewährleisten.</p>
+<h2>2. Welche Daten wir sammeln</h2>
+<p>Wir können folgende Arten von Informationen sammeln:</p>
+<ul>
+    <li><strong>Persönliche Identifikationsdaten:</strong> Name, E-Mail-Adresse, die Sie bei der Registrierung angeben.</li>
+    <li><strong>Daten zur Dokumentenerstellung:</strong> Informationen, die Sie in Formulare zur Erstellung von Dokumenten eingeben (vollständiger Name, Passdaten, Adressen usw.). Diese Daten werden in Ihrem Profil zur einfacheren Wiederverwendung gespeichert.</li>
+    <li><strong>Technische Daten:</strong> IP-Adresse, Browsertyp, Betriebssystem und Nutzungsdaten der Website, die automatisch erfasst werden.</li>
+</ul>
+<h2>3. Wie wir Ihre Daten verwenden</h2>
+<p>Ihre Daten werden für folgende Zwecke verwendet: Zur Bereitstellung und Aufrechterhaltung der Funktionalität unseres Dienstes; Zur Personalisierung Ihrer Erfahrung und zum automatischen Ausfüllen von Formularen; Um Sie bezüglich Ihres Kontos zu kontaktieren; Zur Analyse und Verbesserung der Leistung unserer Website.</p>
+<h2>4. Datenspeicherung und -sicherheit</h2>
+<p>Wir ergreifen alle notwendigen technischen und organisatorischen Maßnahmen, um Ihre Daten vor unbefugtem Zugriff zu schützen. Ihre Dokumentendaten werden in Ihrem persönlichen Konto gespeichert.</p>
+<h2>5. Ihre Rechte (DSGVO)</h2>
+<p>Sie haben das Recht auf Zugang, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Um diese Rechte auszuüben, kontaktieren Sie uns bitte.</p>
+<h2>6. Kontaktinformationen</h2>
+<p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter support@doxtreet.com.</p>
+',
+
+// --- Nutzungsbedingungen ---
+    'terms_of_use_title' => 'Nutzungsbedingungen',
+    'terms_of_use_content' => '
+<h2>1. Annahme der Bedingungen</h2>
+<p>Durch die Nutzung der DoxTreet-Website ("Dienst") stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie mit diesen Bedingungen nicht einverstanden sind, nutzen Sie unseren Dienst bitte nicht.</p>
+<h2>2. Beschreibung des Dienstes</h2>
+<p>Der Dienst bietet Benutzern Zugriff auf Dokumentvorlagen, die online ausgefüllt und heruntergeladen werden können. Der Dienst soll den Prozess der Erstellung von Standarddokumenten vereinfachen.</p>
+<h2>3. Verantwortung des Nutzers</h2>
+<p>Sie sind allein verantwortlich für die Richtigkeit und Vollständigkeit der Daten, die Sie in die Vorlagen eingeben. Sie stimmen zu, den Dienst nicht für rechtswidrige Zwecke zu nutzen.</p>
+<h2>4. Geistiges Eigentum</h2>
+<p>Alle Inhalte, einschließlich des Website-Designs, der Texte und der Vorlagen, sind Eigentum von DoxTreet. Das Kopieren oder Verbreiten von Website-Materialien ohne unsere vorherige Zustimmung ist untersagt.</p>
+<h2>5. Gewährleistungsausschluss</h2>
+<p>Der Dienst und die Vorlagen werden "wie besehen" bereitgestellt. Wir garantieren nicht, dass die Vorlagen rechtlich einwandfrei oder für einen bestimmten Zweck geeignet sind. Wie in unserem Haftungsausschluss angegeben, ist zur Klärung rechtlicher Fragen eine Beratung durch einen professionellen Rechtsanwalt erforderlich.</p>
+',
+
+// --- FAQ ---
+    'faq_title' => 'Häufig gestellte Fragen (FAQ)',
+    'faq_content' => '
+<h3>Ist der Dienst kostenlos?</h3>
+<p>Die Grundfunktionalität, einschließlich des Zugriffs auf bestimmte Vorlagen, ist kostenlos. Wir bieten auch Premium-Pläne mit erweiterten Funktionen und Zugriff auf alle Vorlagen an.</p>
+<h3>Haben die Dokumente Rechtskraft?</h3>
+<p>Nein. Wie in unserem <a href="{{ route(\'terms\', app()->getLocale()) }}">Haftungsausschluss</a> angegeben, sind unsere Vorlagen nur Muster. Um einem Dokument Rechtskraft zu verleihen, empfehlen wir dringend, sich von einem qualifizierten Rechtsanwalt beraten zu lassen.</p>
+<h3>Wie werden meine Daten geschützt?</h3>
+<p>Wir nehmen die Sicherheit sehr ernst. Alle Daten, die Sie auf der Seite "Meine Daten" eingeben, werden in Ihrem Profil gespeichert und ausschließlich zum automatischen Ausfüllen von Formularen verwendet. Lesen Sie mehr darüber in unserer <a href="{{ route(\'privacy\', app()->getLocale()) }}">Datenschutzrichtlinie</a>.</p>
+',
+
+// --- Über uns ---
+    'about_us_title' => 'Über uns',
+    'about_us_content' => '
+<h2>Unsere Mission</h2>
+<p>Die Mission von DoxTreet ist es, den Prozess der Erstellung von Standarddokumenten für Einzelpersonen und Unternehmen zu vereinfachen und zu beschleunigen. Wir wissen, wie komplex Bürokratie sein kann, und bemühen uns, sie ein wenig weniger belastend zu machen, um Ihnen Zeit und Nerven zu sparen.</p>
+<h2>Wer wir sind</h2>
+<p>Wir sind ein Team von Enthusiasten, die glauben, dass Technologie alltägliche Probleme lösen kann. Unser Projekt entstand aus unserer eigenen Erfahrung mit dem endlosen Ausfüllen derselben Papiere. Wir entschieden, dass es einen besseren Weg geben muss – und schufen DoxTreet.</p>
+',
 ];

@@ -9,6 +9,11 @@ class UserDetail extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'user_id',
         'full_name_nominative',
@@ -21,19 +26,39 @@ class UserDetail extends Model
         'passport_number',
         'passport_issuer',
         'passport_date',
+        'id_card_number',
+        'company_name', // Можно считать устаревшим, но оставим для совместимости
+        'position',
+        // --- НОВЫЕ ПОЛЯ ---
+        'contact_email',
+        'website',
+        'legal_entity_name',
+        'legal_entity_address',
+        'legal_entity_tax_id',
+        'represented_by',
+        'bank_name',
+        'bank_iban',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'passport_date' => 'date',
     ];
 
+    /**
+     * Get the user that owns the details.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     /**
-     * НОВАЯ ФУНКЦИЯ: Автоматически создает "Фамилию И. О."
+     * НОВЫЙ АКСЕССОР: Автоматически создает "Фамилию И. О."
      * из полного имени. Например, "Іванов Іван Іванович" -> "Іванов І. І."
      *
      * @return string|null
@@ -51,7 +76,6 @@ class UserDetail extends Model
         $firstNameInitial = !empty($parts[1]) ? mb_substr($parts[1], 0, 1) . '.' : '';
         $middleNameInitial = !empty($parts[2]) ? mb_substr($parts[2], 0, 1) . '.' : '';
 
-        // Собираем обратно и убираем лишние пробелы
-        return trim("{$lastName} {$firstNameInitial} {$middleNameInitial}");
+        return trim("$lastName $firstNameInitial $middleNameInitial");
     }
 }

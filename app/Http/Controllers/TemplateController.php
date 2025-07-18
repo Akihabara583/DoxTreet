@@ -20,24 +20,81 @@ class TemplateController extends Controller
 {
     public function index(Request $request)
     {
-        $searchQuery = $request->input('q');
-        $popularTemplateIds = GeneratedDocument::query()->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
-        $popularTemplates = Template::whereIn('id', $popularTemplateIds)->with('translation')->get();
-        $categories = Category::with(['templates' => function ($query) {
-            $query->where('is_active', true)->with('translation');
-        }])->get();
-        $matchingTemplateIds = [];
+        $locale = app()->getLocale();
+        $searchQuery = $request->query('q');
+        $searchResults = null;
+
+        // Готовим массив с переводами названий стран, он понадобится в любом случае
+        $countryNames = [
+            'UA' => ['uk' => 'Україна', 'en' => 'Ukraine', 'pl' => 'Ukraina', 'de' => 'Ukraine'],
+            'PL' => ['uk' => 'Польща', 'en' => 'Poland', 'pl' => 'Polska', 'de' => 'Polen'],
+            'DE' => ['uk' => 'Німеччина', 'en' => 'Germany', 'pl' => 'Niemcy', 'de' => 'Deutschland'],
+        ];
+
+        // --- ЛОГИКА ПОИСКА ---
         if ($searchQuery) {
-            $matchingTemplateIds = Template::query()
-                ->whereHas('translations', function ($translationQuery) use ($searchQuery) {
-                    $translationQuery->where('title', 'like', "%{$searchQuery}%")
-                        ->orWhere('description', 'like', "%{$searchQuery}%");
+            // Если есть поисковый запрос, ищем шаблоны
+            $searchResults = Template::where('is_active', true)
+                ->whereHas('translations', function ($query) use ($searchQuery) {
+                    $query->where('title', 'LIKE', "%$searchQuery%")
+                        ->orWhere('description', 'LIKE', "%$searchQuery%");
                 })
-                ->pluck('id')
-                ->toArray();
+                ->with('translation') // Подгружаем перевод для текущего языка
+                ->get();
         }
-        return view('home', compact('categories', 'popularTemplates', 'searchQuery', 'matchingTemplateIds'));
+
+        // --- ЛОГИКА ДЛЯ ОБЫЧНОЙ ЗАГРУЗКИ СТРАНИЦЫ (БЕЗ ПОИСКА) ---
+        $countries = null;
+        $popularTemplates = null;
+        $dataByCountry = null;
+
+        if (!$searchQuery) {
+            // Вся ваша рабочая логика для интерактивного каталога
+            $popularTemplateIds = GeneratedDocument::query()->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
+            $popularTemplates = Template::with('translation')->whereIn('id', $popularTemplateIds)->get();
+
+            $allCategories = Category::query()
+                ->whereHas('templates', fn($q) => $q->where('is_active', true))
+                ->with(['templates' => function ($query) {
+                    $query->where('is_active', true)->with('translation');
+                }])
+                ->get();
+
+            $allCategories->each(function ($category) use ($locale) {
+                $category->name = $category->getTranslation('name', $locale);
+            });
+
+            $dataByCountry = [];
+            $allCategories->groupBy('country_code')->each(function ($categoriesInCountry, $countryCode) use (&$dataByCountry, $locale) {
+                $dataByCountry[$countryCode] = $categoriesInCountry->map(function ($category) use ($locale) {
+                    return [
+                        'id' => $category->id, 'slug' => $category->slug, 'name' => $category->getTranslation('name', $locale),
+                        'templates' => $category->templates->map(function ($template) {
+                            return ['id' => $template->id, 'slug' => $template->slug, 'country_code' => $template->country_code, 'title' => $template->title, 'description' => $template->description];
+                        })->values(),
+                    ];
+                })->values();
+            });
+
+            foreach ($countryNames as $code => $translations) {
+                if (isset($dataByCountry[$code])) {
+                    $countries[] = (object)['code' => $code, 'name' => $translations[$locale] ?? $translations['en']];
+                }
+            }
+        }
+
+        // Передаем все возможные переменные в вид
+        return view('home', compact(
+            'searchQuery',
+            'searchResults',
+            'popularTemplates',
+            'countries',
+            'dataByCountry',
+            'countryNames', // Передаем для отображения страны в результатах поиска
+            'locale'
+        ));
     }
+
 
     public function show(Request $request, string $locale, Template $template)
     {

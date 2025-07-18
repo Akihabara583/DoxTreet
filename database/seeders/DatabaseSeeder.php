@@ -31,6 +31,18 @@ use \Database\Seeders\DE\DeEventsTravelSeeder;
 use \Database\Seeders\DE\DeCarsTravelSeeder;
 
 
+use \Database\Seeders\US\UsCarsTravelSeeder;
+use \Database\Seeders\US\UsEducationSeeder;
+use \Database\Seeders\US\UsEventsTravelSeeder;
+use \Database\Seeders\US\UsHealthMedicineSeeder;
+use \Database\Seeders\US\UsLegalDocumentsSeeder;
+use \Database\Seeders\US\UsPersonalFamilySeeder;
+use \Database\Seeders\US\UsRealEstateSeeder;
+use \Database\Seeders\US\UsWorkSeeder;
+
+
+
+
 
 
 
@@ -72,6 +84,16 @@ class DatabaseSeeder extends Seeder
             DeHealthMedicineSeeder::class,
             DeEventsTravelSeeder::class,
             DeCarsTravelSeeder::class,
+
+            //UsWorkSeeder::class,
+            //UsPersonalFamilySeeder::class,
+           //UsRealEstateSeeder::class,
+            ////UsLegalDocumentsSeeder::class,
+           //UsEducationSeeder::class,
+            //UsHealthMedicineSeeder::class,
+            //UsEventsTravelSeeder::class,
+            //UsCarsTravelSeeder::class,
+
         ]);
 
 

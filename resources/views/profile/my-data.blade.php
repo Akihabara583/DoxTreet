@@ -17,7 +17,6 @@
                     <a href="{{ route('profile.history', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-clock-history"></i> {{ __('messages.document_history') }}
                     </a>
-                    {{-- Активный пункт меню --}}
                     <a href="{{ route('profile.my-data', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action active" aria-current="true">
                         <i class="bi bi-safe"></i> {{ __('messages.my_data') }}
                     </a>
@@ -43,8 +42,8 @@
                                 </div>
                             @endif
 
-                            {{-- ОБЩИЕ ДАННЫЕ --}}
-                            <h5 class="mt-4">{{ __('messages.section_general_data') }}</h5>
+                            {{-- ЛИЧНЫЕ ДАННЫЕ --}}
+                            <h5 class="mt-4">{{ __('messages.section_personal_data') }}</h5>
                             <hr>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -98,8 +97,66 @@
                                     <input type="date" class="form-control" id="passport_date" name="passport_date" value="{{ old('passport_date', optional($details->passport_date)->format('Y-m-d')) }}">
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="id_card_number" class="form-label">{{ __('messages.id_card_number') }}</label>
+                                <input type="text" class="form-control" id="id_card_number" name="id_card_number" value="{{ old('id_card_number', $details->id_card_number) }}">
+                            </div>
 
-                            <button type="submit" class="btn btn-primary mt-3">{{ __('messages.save') }}</button>
+                            {{-- ДАННЫЕ КОМПАНИИ / ФОП --}}
+                            <h5 class="mt-4">{{ __('messages.section_company_data') }}</h5>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="legal_entity_name" class="form-label">{{ __('messages.legal_entity_name') }}</label>
+                                <input type="text" class="form-control" id="legal_entity_name" name="legal_entity_name" value="{{ old('legal_entity_name', $details->legal_entity_name) }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="legal_entity_address" class="form-label">{{ __('messages.legal_entity_address') }}</label>
+                                <input type="text" class="form-control" id="legal_entity_address" name="legal_entity_address" value="{{ old('legal_entity_address', $details->legal_entity_address) }}">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="legal_entity_tax_id" class="form-label">{{ __('messages.legal_entity_tax_id') }}</label>
+                                    <input type="text" class="form-control" id="legal_entity_tax_id" name="legal_entity_tax_id" value="{{ old('legal_entity_tax_id', $details->legal_entity_tax_id) }}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="position" class="form-label">{{ __('messages.position') }}</label>
+                                    <input type="text" class="form-control" id="position" name="position" value="{{ old('position', $details->position) }}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="represented_by" class="form-label">{{ __('messages.represented_by') }}</label>
+                                <input type="text" class="form-control" id="represented_by" name="represented_by" value="{{ old('represented_by', $details->represented_by) }}" placeholder="{{ __('messages.represented_by_placeholder') }}">
+                            </div>
+
+                            {{-- БАНКОВСКИЕ РЕКВИЗИТЫ --}}
+                            <h5 class="mt-4">{{ __('messages.section_bank_details') }}</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="bank_name" class="form-label">{{ __('messages.bank_name') }}</label>
+                                    <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ old('bank_name', $details->bank_name) }}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="bank_iban" class="form-label">{{ __('messages.bank_iban') }}</label>
+                                    <input type="text" class="form-control" id="bank_iban" name="bank_iban" value="{{ old('bank_iban', $details->bank_iban) }}">
+                                </div>
+                            </div>
+
+                            {{-- КОНТАКТНАЯ ИНФОРМАЦИЯ --}}
+                            <h5 class="mt-4">{{ __('messages.section_contact_info') }}</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="contact_email" class="form-label">{{ __('messages.contact_email') }}</label>
+                                    <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ old('contact_email', $details->contact_email) }}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="website" class="form-label">{{ __('messages.website') }}</label>
+                                    <input type="url" class="form-control" id="website" name="website" value="{{ old('website', $details->website) }}" placeholder="https://example.com">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-3 w-100">{{ __('messages.save') }}</button>
                         </form>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController; // Убедитесь, что этот контроллер подключен
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Middleware\InitializeLocale;
+use App\Http\Controllers\StaticPageController;
 
 // --- РОУТЫ БЕЗ ЯЗЫКОВОГО ПРЕФИКСА ---
 Route::get('/', function () { $locale = session('locale', config('app.fallback_locale')); return redirect($locale); });
@@ -40,6 +41,7 @@ Route::prefix('{locale}')
         Route::get('/documents', [\App\Http\Controllers\DocumentListController::class, 'index'])
             ->name('documents.index');
 // +++++++++++++++++++++++++++++++++++++++++++++
+
         Route::get('/documents/country/{countryCode}', [\App\Http\Controllers\DocumentListController::class, 'showByCountry'])->name('documents.by_country');
         Route::get('/documents/{countryCode}/{templateSlug}', [\App\Http\Controllers\DocumentController::class, 'show'])
             ->name('documents.show');
@@ -71,7 +73,12 @@ Route::prefix('{locale}')
                 Route::patch('/my-data', [ProfileController::class, 'updateMyData'])->name('my-data.update');
             });
     });
-
+Route::middleware('web')->group(function () {
+    Route::get('/{locale}/terms', [StaticPageController::class, 'show'])->name('terms');
+    Route::get('/{locale}/privacy', [StaticPageController::class, 'show'])->name('privacy');
+    Route::get('/{locale}/faq', [StaticPageController::class, 'show'])->name('faq');
+    Route::get('/{locale}/about', [StaticPageController::class, 'show'])->name('about');
+});
 Route::get('/info', function () {
     phpinfo();
 });

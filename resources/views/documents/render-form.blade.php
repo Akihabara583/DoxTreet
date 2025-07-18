@@ -19,8 +19,7 @@
                             @csrf
 
                             @php
-                                // Laravel уже преобразовал JSON в массив, поэтому json_decode не нужен.
-                                $fields = $templateModel->fields;
+                                $fields = $templateModel->fields ?? [];
                             @endphp
 
                             @if(is_array($fields))
@@ -29,6 +28,12 @@
                                         $label = $field['labels'][$currentLocale] ?? $field['name'];
                                         $isRequired = $field['required'] ?? false;
                                         $fieldName = $field['name'];
+
+                                        // Логика автозаполнения:
+                                        // 1. Сначала берем старое значение (если была ошибка валидации).
+                                        // 2. Если его нет, берем данные для предзаполнения из профиля ($prefillData).
+                                        // 3. Если и их нет, используем пустую строку.
+                                        $fieldValue = old($fieldName, $prefillData[$fieldName] ?? '');
                                     @endphp
 
                                     <div class="mb-3">
@@ -39,18 +44,18 @@
                                             @endif
                                         </label>
 
-                                        @if($field['type'] === 'textarea')
+                                        @if(($field['type'] ?? 'text') === 'textarea')
                                             <textarea id="{{ $fieldName }}"
                                                       name="{{ $fieldName }}"
                                                       rows="4"
                                                       class="form-control @error($fieldName) is-invalid @enderror"
-                                                      @if($isRequired) required @endif>{{ old($fieldName) }}</textarea>
+                                                      @if($isRequired) required @endif>{{ $fieldValue }}</textarea>
                                         @else
-                                            <input type="{{ $field['type'] }}"
+                                            <input type="{{ $field['type'] ?? 'text' }}"
                                                    id="{{ $fieldName }}"
                                                    name="{{ $fieldName }}"
                                                    class="form-control @error($fieldName) is-invalid @enderror"
-                                                   value="{{ old($fieldName) }}"
+                                                   value="{{ $fieldValue }}"
                                                    @if($isRequired) required @endif>
                                         @endif
 
@@ -72,7 +77,9 @@
                                     <i class="bi bi-file-earmark-word-fill me-2"></i> {{ __('messages.download_docx') }}
                                 </button>
                             </div>
+
                         </form>
+
                     </div>
                 </div>
             </div>

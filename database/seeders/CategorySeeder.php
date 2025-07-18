@@ -83,6 +83,8 @@ class CategorySeeder extends Seeder
                 'translations' => ['pl' => 'Wydarzenia i podróże', 'uk' => 'Заходи та подорожі', 'en' => 'Events and Travel', 'de' => 'Veranstaltungen und Reisen']
             ],
 
+
+
             // --- DE ---
             'work-de' => [
                 'country_code' => 'DE',
@@ -114,6 +116,42 @@ class CategorySeeder extends Seeder
             ],
             'events-travel-de' => [
                 'country_code' => 'DE',
+                'translations' => ['pl' => 'Wydarzenia i podróże', 'uk' => 'Заходи та подорожі', 'en' => 'Events and Travel', 'de' => 'Veranstaltungen und Reisen']
+            ],
+
+
+
+            // --- US ---
+            'work-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Biznes i praca', 'uk' => 'Бізнес і робота', 'en' => 'Business and Work', 'de' => 'Geschäft und Arbeit']
+            ],
+            'personal-family-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Sprawy osobiste i rodzinne', 'uk' => 'Особисті та сімейні', 'en' => 'Personal and Family', 'de' => 'Persönliches und Familie']
+            ],
+            'housing-issues-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Nieruchomości', 'uk' => 'Нерухомість', 'en' => 'Real Estate', 'de' => 'Immobilien']
+            ],
+            'legal-claims-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Dokumenty prawne', 'uk' => 'Юридичні документи', 'en' => 'Legal Documents', 'de' => 'Rechtsdokumente']
+            ],
+            'school-education-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Edukacja', 'uk' => 'Освіта', 'en' => 'Education', 'de' => 'Bildung']
+            ],
+            'medicine-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Zdrowie i medycyna', 'uk' => 'Здоров\'я та медицина', 'en' => 'Health and Medicine', 'de' => 'Gesundheit und Medizin']
+            ],
+            'automobiles-us' => [
+                'country_code' => 'US',
+                'translations' => ['pl' => 'Samochody', 'uk' => 'Автомобілі', 'en' => 'Automobiles', 'de' => 'Automobile']
+            ],
+            'events-travel-us' => [
+                'country_code' => 'US',
                 'translations' => ['pl' => 'Wydarzenia i podróże', 'uk' => 'Заходи та подорожі', 'en' => 'Events and Travel', 'de' => 'Veranstaltungen und Reisen']
             ],
         ];
