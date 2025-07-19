@@ -6,10 +6,11 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PostController; // Убедитесь, что этот контроллер подключен
+use App\Http\Controllers\PostController;
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Middleware\InitializeLocale;
 use App\Http\Controllers\StaticPageController;
+use App\Http\Controllers\UserTemplateController;
 
 // --- РОУТЫ БЕЗ ЯЗЫКОВОГО ПРЕФИКСА ---
 Route::get('/', function () { $locale = session('locale', config('app.fallback_locale')); return redirect($locale); });
@@ -31,23 +32,13 @@ Route::prefix('{locale}')
         Route::post('/templates/{template}/generate', [TemplateController::class, 'generatePdf'])->name('templates.generate');
         Route::get('/pricing', function () { return view('pricing'); })->name('pricing');
         Route::post('/templates/{template}/generate-docx', [TemplateController::class, 'generateDocx'])->name('templates.generate.docx');
-
-        // --- ИЗМЕНЕНИЕ ЗДЕСЬ ---
         Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
-        // Меняем {post:slug} на {slug} для явной передачи
         Route::get('/blog/{slug}', [PostController::class, 'show'])->name('posts.show');
-        // -----------------------
-// +++ НАШ НОВЫЙ РОУТ ДЛЯ СПИСКА ДОКУМЕНТОВ +++
-        Route::get('/documents', [\App\Http\Controllers\DocumentListController::class, 'index'])
-            ->name('documents.index');
-// +++++++++++++++++++++++++++++++++++++++++++++
-
+        Route::get('/documents', [\App\Http\Controllers\DocumentListController::class, 'index'])->name('documents.index');
         Route::get('/documents/country/{countryCode}', [\App\Http\Controllers\DocumentListController::class, 'showByCountry'])->name('documents.by_country');
-        Route::get('/documents/{countryCode}/{templateSlug}', [\App\Http\Controllers\DocumentController::class, 'show'])
-            ->name('documents.show');
-// А этот роут будет принимать данные с формы
-        Route::post('/documents/{countryCode}/{templateSlug}/generate', [\App\Http\Controllers\DocumentController::class, 'generate'])
-            ->name('documents.generate');
+        Route::get('/documents/{countryCode}/{templateSlug}', [\App\Http\Controllers\DocumentController::class, 'show'])->name('documents.show');
+        Route::post('/documents/{countryCode}/{templateSlug}/generate', [\App\Http\Controllers\DocumentController::class, 'generate'])->name('documents.generate');
+
         // Админ-панель
         Route::prefix('admin')
             ->middleware(['auth', IsAdminMiddleware::class])
@@ -71,14 +62,19 @@ Route::prefix('{locale}')
                 Route::get('/history/reuse/{document}', [ProfileController::class, 'reuse'])->name('history.reuse');
                 Route::get('/my-data', [ProfileController::class, 'myData'])->name('my-data');
                 Route::patch('/my-data', [ProfileController::class, 'updateMyData'])->name('my-data.update');
+
+                // ++ ВОТ ИСПРАВЛЕНИЕ: РОУТ ТЕПЕРЬ ВНУТРИ ГРУППЫ С ЯЗЫКОМ И АВТОРИЗАЦИЕЙ ++
+                Route::resource('my-templates', UserTemplateController::class);
             });
     });
+
 Route::middleware('web')->group(function () {
     Route::get('/{locale}/terms', [StaticPageController::class, 'show'])->name('terms');
     Route::get('/{locale}/privacy', [StaticPageController::class, 'show'])->name('privacy');
     Route::get('/{locale}/faq', [StaticPageController::class, 'show'])->name('faq');
     Route::get('/{locale}/about', [StaticPageController::class, 'show'])->name('about');
 });
+
 Route::get('/info', function () {
     phpinfo();
 });

@@ -25,6 +25,10 @@
                     <a href="{{ route('pricing', app()->getLocale()) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-gem"></i> {{ __('messages.my_subscription') }}
                     </a>
+                    {{-- ИЗМЕНЕНИЕ ЗДЕСЬ: Добавлен префикс 'profile.' к имени роута --}}
+                    <a href="{{ route('profile.my-templates.create', app()->getLocale()) }}" class="list-group-item list-group-item-action">
+                        <i class="bi bi-plus-circle"></i> Создать свой шаблон
+                    </a>
                 </div>
 
             </div>
