@@ -8,49 +8,35 @@ use App\Models\GeneratedDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\Pdf; // Убедитесь, что этот фасад импортирован
-use Illuminate\Support\Facades\RateLimiter;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Services\WordExportService;
 use Illuminate\Support\Str;
 
-// Если вы использовали 'use Dompdf\Options;' ранее, удалите ее,
-// так как мы будем использовать полный путь '\Dompdf\Options' для ясности.
-
 class TemplateController extends Controller
 {
+    // Метод index остается без изменений
     public function index(Request $request)
     {
         $locale = app()->getLocale();
         $searchQuery = $request->query('q');
         $searchResults = null;
 
-        // Готовим массив с переводами названий стран, он понадобится в любом случае
         $countryNames = [
             'UA' => ['uk' => 'Україна', 'en' => 'Ukraine', 'pl' => 'Ukraina', 'de' => 'Ukraine'],
             'PL' => ['uk' => 'Польща', 'en' => 'Poland', 'pl' => 'Polska', 'de' => 'Polen'],
             'DE' => ['uk' => 'Німеччина', 'en' => 'Germany', 'pl' => 'Niemcy', 'de' => 'Deutschland'],
         ];
 
-        // --- ЛОГИКА ПОИСКА ---
         if ($searchQuery) {
-            // Если есть поисковый запрос, ищем шаблоны
             $searchResults = Template::where('is_active', true)
                 ->whereHas('translations', function ($query) use ($searchQuery) {
                     $query->where('title', 'LIKE', "%$searchQuery%")
                         ->orWhere('description', 'LIKE', "%$searchQuery%");
                 })
-                ->with('translation') // Подгружаем перевод для текущего языка
+                ->with('translation')
                 ->get();
-        }
-
-        // --- ЛОГИКА ДЛЯ ОБЫЧНОЙ ЗАГРУЗКИ СТРАНИЦЫ (БЕЗ ПОИСКА) ---
-        $countries = null;
-        $popularTemplates = null;
-        $dataByCountry = null;
-
-        if (!$searchQuery) {
-            // Вся ваша рабочая логика для интерактивного каталога
-            $popularTemplateIds = GeneratedDocument::query()->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
+        } else {
+            $popularTemplateIds = GeneratedDocument::query()->whereNotNull('template_id')->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
             $popularTemplates = Template::with('translation')->whereIn('id', $popularTemplateIds)->get();
 
             $allCategories = Category::query()
@@ -76,6 +62,7 @@ class TemplateController extends Controller
                 })->values();
             });
 
+            $countries = [];
             foreach ($countryNames as $code => $translations) {
                 if (isset($dataByCountry[$code])) {
                     $countries[] = (object)['code' => $code, 'name' => $translations[$locale] ?? $translations['en']];
@@ -83,21 +70,16 @@ class TemplateController extends Controller
             }
         }
 
-        // Передаем все возможные переменные в вид
         return view('home', compact(
-            'searchQuery',
-            'searchResults',
-            'popularTemplates',
-            'countries',
-            'dataByCountry',
-            'countryNames', // Передаем для отображения страны в результатах поиска
-            'locale'
+            'searchQuery', 'searchResults', 'popularTemplates', 'countries',
+            'dataByCountry', 'countryNames', 'locale'
         ));
     }
 
-
+    // Метод show остается без изменений
     public function show(Request $request, string $locale, Template $template)
     {
+        // ... ваш код для show ...
         if (!$template->is_active) {
             abort(404);
         }
@@ -139,75 +121,52 @@ class TemplateController extends Controller
         return view('templates.show', compact('template', 'prefillData'));
     }
 
-    // Вспомогательный приватный метод для обработки данных
-    private function processTemplateData(Template $template, array $validatedData): array
-    {
-        $templateFields = is_array($template->fields) ? $template->fields : json_decode($template->fields, true) ?? [];
-        $textareaFields = [];
-        foreach ($templateFields as $field) {
-            if ($field['type'] === 'textarea') {
-                $textareaFields[] = $field['name'];
-            }
-        }
-
-        $processedData = [];
-        foreach ($validatedData as $key => $value) {
-            if (in_array($key, $textareaFields)) {
-                // Заменяем переносы строк на <br/> для лучшей совместимости с DOCX
-                $processedData[$key] = nl2br(e($value));
-            } else {
-                $processedData[$key] = e($value);
-            }
-        }
-        return $processedData;
-    }
-
-
-    public function generateUserTemplatePdf(Request $request, string $locale, \App\Models\UserTemplate $userTemplate)
-    {
-        if ($userTemplate->user_id !== Auth::id()) { abort(403); }
-
-        $fields = is_array($userTemplate->fields) ? $userTemplate->fields : json_decode($userTemplate->fields, true) ?? [];
-        $rules = [];
-        foreach ($fields as $field) {
-            $rules[$field['key']] = 'required|string|max:255';
-        }
-        $validatedData = $request->validate($rules);
-
-        $html = $userTemplate->layout;
-        foreach ($validatedData as $key => $value) {
-            $html = str_replace("@{{$key}}", e($value), $html);
-        }
-        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
-
-        $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
-        $fileName = Str::slug($userTemplate->name) . '-' . time() . '.pdf';
-        return $pdf->download($fileName);
-    }
-
     /**
-     * ✅ НОВЫЙ МЕТОД: Генерирует DOCX из ПОЛЬЗОВАТЕЛЬСКОГО шаблона.
+     * ✅ НОВЫЙ ЕДИНЫЙ МЕТОД ДЛЯ ГЕНЕРАЦИИ
+     * Генерирует PDF или DOCX из системного шаблона и сохраняет историю.
      */
-    public function generateUserTemplateDocx(Request $request, string $locale, \App\Models\UserTemplate $userTemplate, WordExportService $wordExportService)
+    public function generateDocument(Request $request, string $locale, Template $template, WordExportService $wordExportService)
     {
-        if ($userTemplate->user_id !== Auth::id()) { abort(403); }
+        // 1. Валидируем данные из формы
+        $validatedData = $this->validateFormData($request, $template);
+        // 2. Обрабатываем данные (например, заменяем переносы строк для textarea)
+        $processedData = $this->processTemplateData($template, $validatedData);
 
-        $fields = is_array($userTemplate->fields) ? $userTemplate->fields : json_decode($userTemplate->fields, true) ?? [];
-        $rules = [];
-        foreach ($fields as $field) {
-            $rules[$field['key']] = 'required|string|max:255';
-        }
-        $validatedData = $request->validate($rules);
+        // 3. Собираем полный HTML документа из частей
+        $html = $template->header_html . $template->body_html . $template->footer_html;
 
-        $html = $userTemplate->layout;
-        foreach ($validatedData as $key => $value) {
-            $html = str_replace("@{{$key}}", e($value), $html);
+        // 4. Заменяем плейсхолдеры в HTML на данные пользователя
+        foreach ($processedData as $key => $value) {
+            $html = str_replace("{{{$key}}}", $value, $html);
         }
+        // Заменяем системные плейсхолдеры
         $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
 
-        $fileName = Str::slug($userTemplate->name) . '.docx';
-        return $wordExportService->generateFromHtml($html, $fileName);
+        // 5. ✅ СОХРАНЯЕМ ЗАПИСЬ В ИСТОРИЮ
+        GeneratedDocument::create([
+            'user_id' => Auth::id(),
+            'template_id' => $template->id, // ID системного шаблона
+            'user_template_id' => null,      // Пользовательского шаблона здесь нет
+            'data' => $validatedData,        // Сохраняем данные для повторного использования
+        ]);
+
+        // 6. Генерируем и отдаем нужный файл
+        if ($request->has('generate_pdf')) {
+            $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
+            $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
+            return $pdf->download($fileName);
+
+        } elseif ($request->has('generate_docx')) {
+            $fileName = Str::slug($template->title) . '.docx';
+            return $wordExportService->generateFromHtml($html, $fileName);
+        }
+
+        // Если что-то пошло не так
+        return back()->with('error', 'Произошла ошибка при генерации документа.');
     }
+
+
+    // Вспомогательные методы, которые мы используем выше
     private function validateFormData(Request $request, Template $template): array
     {
         $rules = [];
@@ -228,5 +187,26 @@ class TemplateController extends Controller
                 $attributeNames[$field['name']] = $field['labels'][$locale] ?? $field['name'];
         }
         return $request->validate($rules, [], $attributeNames);
+    }
+
+    private function processTemplateData(Template $template, array $validatedData): array
+    {
+        $templateFields = is_array($template->fields) ? $template->fields : json_decode($template->fields, true) ?? [];
+        $textareaFields = [];
+        foreach ($templateFields as $field) {
+            if ($field['type'] === 'textarea') {
+                $textareaFields[] = $field['name'];
+            }
+        }
+
+        $processedData = [];
+        foreach ($validatedData as $key => $value) {
+            if (in_array($key, $textareaFields)) {
+                $processedData[$key] = nl2br(e($value));
+            } else {
+                $processedData[$key] = e($value);
+            }
+        }
+        return $processedData;
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
     <div class="container py-5">
         <div class="row">
-            {{-- Боковое меню --}}
+            {{-- Боковое меню (без изменений) --}}
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="{{ route('profile.show', app()->getLocale()) }}" class="list-group-item list-group-item-action">
@@ -51,9 +51,25 @@
                                 <tbody>
                                 @forelse($documents as $document)
                                     <tr>
-                                        <td>{{ $document->template->title }}</td>
+                                        {{-- ✅ НАЧАЛО ИСПРАВЛЕНИЯ --}}
+                                        <td>
+                                            @if ($document->template)
+                                                {{-- Если это системный шаблон, показываем его title --}}
+                                                {{ $document->template->title }}
+                                            @elseif ($document->userTemplate)
+                                                {{-- Если это шаблон пользователя, показываем его name --}}
+                                                {{ $document->userTemplate->name }}
+                                                <span class="badge bg-secondary">{{ __('messages.user_template') }}</span>
+                                            @else
+                                                {{-- Если шаблон был удален --}}
+                                                <span class="text-muted">{{ __('messages.template_deleted') }}</span>
+                                            @endif
+                                        </td>
+                                        {{-- ✅ КОНЕЦ ИСПРАВЛЕНИЯ --}}
+
                                         <td>{{ $document->created_at->format('d.m.Y H:i') }}</td>
                                         <td>
+                                            {{-- Кнопка "Повторить" остается без изменений, т.к. логика в контроллере --}}
                                             <a href="{{ route('profile.history.reuse', ['locale' => app()->getLocale(), 'document' => $document->id]) }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-arrow-repeat"></i> {{ __('messages.reuse') }}
                                             </a>

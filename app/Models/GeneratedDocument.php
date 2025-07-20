@@ -4,14 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth; // ✅ Добавлен use Auth
 
 class GeneratedDocument extends Model
 {
     use HasFactory;
 
+    /**
+     * ✅ ШАГ 1: Добавляем 'user_template_id' в список разрешенных для записи полей.
+     */
     protected $fillable = [
         'user_id',
         'template_id',
+        'user_template_id', // <--- ДОБАВЛЕНО
         'data',
     ];
 
@@ -22,7 +27,11 @@ class GeneratedDocument extends Model
 
     public static function replacePlaceholders(string $content): string
     {
+        // Этот метод не используется для сохранения, оставляем без изменений
         $user = Auth::user();
+        if (!$user || !$user->details) {
+            return $content;
+        }
         $details = $user->details;
 
         // Собираем все возможные данные в один массив для удобства
@@ -65,5 +74,14 @@ class GeneratedDocument extends Model
     public function template()
     {
         return $this->belongsTo(Template::class);
+    }
+
+    /**
+     * ✅ ШАГ 2: Добавляем новую связь с моделью UserTemplate.
+     * Это позволит нам получать информацию о пользовательском шаблоне из истории.
+     */
+    public function userTemplate()
+    {
+        return $this->belongsTo(UserTemplate::class);
     }
 }

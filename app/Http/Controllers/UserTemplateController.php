@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\WordExportService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
+// ✅ ШАГ 1: Импортируем модель для сохранения истории
+use App\Models\GeneratedDocument;
 
 class UserTemplateController extends Controller
 {
@@ -87,6 +89,14 @@ class UserTemplateController extends Controller
         $validatedData = $this->validateFormData($request, $userTemplate);
         // Обрабатываем плейсхолдеры
         $html = $this->processPlaceholders($userTemplate, $validatedData);
+
+        // ✅ ШАГ 2: Сохраняем запись в историю перед генерацией файла
+        GeneratedDocument::create([
+            'user_id' => Auth::id(),
+            'user_template_id' => $userTemplate->id, // ID пользовательского шаблона
+            'template_id' => null, // Системного шаблона здесь нет
+            'data' => $validatedData,
+        ]);
 
         // Определяем, какую кнопку нажал пользователь
         if ($request->has('generate_pdf')) {

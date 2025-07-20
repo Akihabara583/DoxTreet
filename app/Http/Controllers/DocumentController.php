@@ -11,6 +11,8 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Services\WordExportService;
+// ✅ ШАГ 1: Импортируем модель для сохранения истории
+use App\Models\GeneratedDocument;
 
 class DocumentController extends Controller
 {
@@ -132,7 +134,6 @@ class DocumentController extends Controller
 
     /**
      * Генерирует PDF или DOCX на основе данных из формы.
-     * (Цей метод залишається без змін)
      */
     public function generate(Request $request, string $locale, string $countryCode, string $templateSlug)
     {
@@ -142,6 +143,15 @@ class DocumentController extends Controller
             ->firstOrFail();
 
         $validatedData = $this->validateFormData($request, $template);
+
+        // ✅ ШАГ 2: Сохраняем запись в историю перед генерацией файла
+        if (Auth::check()) {
+            GeneratedDocument::create([
+                'user_id' => Auth::id(),
+                'template_id' => $template->id,
+                'data' => $validatedData,
+            ]);
+        }
 
         $replacePlaceholders = function ($html, $data) {
             if (empty($html)) return '';
@@ -190,7 +200,6 @@ class DocumentController extends Controller
 
     /**
      * Метод для валидации полей формы.
-     * (Цей метод залишається без змін)
      */
     private function validateFormData(Request $request, Template $template): array
     {
