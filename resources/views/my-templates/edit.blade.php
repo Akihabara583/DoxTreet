@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
+@section('title', __('messages.editing_template_title') . ' - ' . config('app.name'))
+
 @section('content')
     <div class="container py-4"
          x-data='{
              categoriesByCountry: {{ json_encode($categoriesByCountry) }},
              countries: {{ json_encode($countries) }},
-             selectedCountry: "{{ old('country_code', '') }}",
-             fields: {{ old('fields') ? json_encode(json_decode(old('fields'))) : '[]' }},
+             selectedCountry: "{{ old('country_code', $userTemplate->country_code) }}",
+             fields: {!! old('fields', json_encode($userTemplate->fields)) !!},
              newFieldLabel: "",
 
              generateKey(label) {
@@ -43,20 +45,19 @@
                 this.$event.target.value = "";
              }
          }'>
-
-        <h2>{{ __('messages.create_new_template_title') }}</h2>
+        <h2>{{ __('messages.edit_template_title', ['name' => $userTemplate->name]) }}</h2>
 
         <div class="alert alert-info mt-4">
             <h4 class="alert-heading">{{ __('messages.how_to_create_template_title') }}</h4>
             <ol class="mb-0">
-                {{-- Я адаптировал ключи под твою упрощенную инструкцию --}}
                 <li>{!! __('messages.how_to_step_1') !!}</li>
                 <li>{!! __('messages.how_to_step_2') !!}</li>
             </ol>
         </div>
 
-        <form method="POST" action="{{ route('profile.my-templates.store', app()->getLocale()) }}">
+        <form method="POST" action="{{ route('profile.my-templates.update', ['locale' => app()->getLocale(), 'userTemplate' => $userTemplate->id]) }}">
             @csrf
+            @method('PATCH')
 
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -70,7 +71,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="category_id" class="form-label">{{ __('messages.category') }}</label>
-                    <select name="category_id" id="category_id" class="form-select" :disabled="!selectedCountry" required>
+                    <select name="category_id" id="category_id" class="form-select" :disabled="!selectedCountry" required x-init="$nextTick(() => { $el.value = '{{ old('category_id', $userTemplate->category_id) }}' })">
                         <option value="">{{ __('messages.select_country_first') }}</option>
                         <template x-if="selectedCountry && categoriesByCountry[selectedCountry]">
                             <template x-for="category in categoriesByCountry[selectedCountry]" :key="category.id">
@@ -83,7 +84,7 @@
 
             <div class="form-group mb-3">
                 <label for="templateName" class="form-label">{{ __('messages.template_name') }}</label>
-                <input type="text" id="templateName" name="name" class="form-control" value="{{ old('name') }}" required>
+                <input type="text" id="templateName" name="name" class="form-control" value="{{ old('name', $userTemplate->name) }}" required>
             </div>
 
             <div class="card mb-3">
@@ -116,11 +117,11 @@
                             </template>
                         </select>
                     </div>
-                    <textarea id="layoutEditor" name="layout" class="form-control" rows="10">{{ old('layout') }}</textarea>
+                    <textarea id="layoutEditor" name="layout" class="form-control" rows="10">{{ old('layout', $userTemplate->layout) }}</textarea>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success mt-3">{{ __('messages.save_template_button') }}</button>
+            <button type="submit" class="btn btn-success mt-3">{{ __('messages.save_changes_button') }}</button>
         </form>
     </div>
 @endsection
@@ -134,7 +135,8 @@
                 selector: '#layoutEditor',
                 plugins: 'lists link image table code help wordcount',
                 toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image table',
-                height: 400
+                height: 400,
+                placeholder: '{{ __('messages.add_new_field_placeholder') }}'
             });
         });
     </script>

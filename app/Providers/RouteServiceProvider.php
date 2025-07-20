@@ -7,7 +7,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use App\Models\GeneratedDocument; // 1. ИМПОРТИРУЕМ МОДЕЛЬ
+use App\Models\GeneratedDocument;
+
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -43,5 +44,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+        Route::model('my_template', \App\Models\UserTemplate::class);
     }
 }

@@ -63,6 +63,67 @@ return [
     'passport_number' => 'Passnummer',
     'passport_issuer' => 'Ausstellende Behörde',
     'passport_date' => 'Ausstellungsdatum',
+    'my_templates' => 'Meine Vorlagen',
+    'create_template' => 'Vorlage erstellen',
+    'id_card_number' => 'Ausweisnummer',
+
+
+
+    'edit_template_title' => 'Vorlage bearbeiten: :name',
+    'editing_template_title' => 'Vorlage bearbeiten',
+    'field_with_this_key_exists' => 'Ein Feld mit diesem Systemnamen existiert bereits!',
+    'save_changes_button' => 'Änderungen speichern',
+    'fill_template_title' => 'Vorlage ausfüllen: :name',
+    'create_pdf_button' => 'PDF erstellen',
+    'download_docx_button' => 'DOCX herunterladen',
+    'my_templates_title' => 'Meine Vorlagen',
+    'my_templates_header' => 'Meine Vorlagen',
+    'create_new_template_button' => 'Neue Vorlage erstellen',
+    'no_templates_yet_text' => 'Sie haben noch keine Vorlagen erstellt.',
+    'create_first_template_link' => 'Erste Vorlage erstellen',
+    'table_header_name' => 'Name',
+    'table_header_category' => 'Kategorie',
+    'table_header_country' => 'Land',
+    'table_header_actions' => 'Aktionen',
+    'use_button' => 'Verwenden',
+    'edit_button' => 'Bearbeiten',
+    'delete_button' => 'Löschen',
+    'delete_confirm_message' => 'Sind Sie sicher, dass Sie diese Vorlage löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+
+
+
+
+
+
+
+
+
+    'create_new_template_title' => 'Neue Vorlage erstellen',
+    'how_to_create_template_title' => 'Wie erstelle ich eine Vorlage?',
+    'how_to_step_1' => '<strong>1. Felder hinzufügen:</strong> Geben Sie einen Feldnamen ein (z. B. "Vollständiger Name des Kunden"), wählen Sie den Typ (Text, Zahl oder Datum) und klicken Sie auf "Hinzufügen".',
+    'how_to_step_2' => '<strong>2. Layout erstellen:</strong> Schreiben Sie den Dokumententext im Editor unten. Fügen Sie an den richtigen Stellen die erstellten Felder über das Dropdown-Menü "Feld einfügen" ein.',
+    'how_to_step_3' => '<strong>3. Für einen schnellen Start:</strong> Verwenden Sie das Menü "Schnellvorlage anwenden", um eine fertige Struktur für ein offizielles Schreiben zu laden.',
+    'country' => 'Land',
+    'select_country' => 'Land auswählen...',
+    'category' => 'Kategorie',
+    'select_country_first' => 'Wählen Sie zuerst ein Land aus',
+    'template_name' => 'Vorlagenname',
+    'input_fields' => 'Eingabefelder',
+    'add_new_field_placeholder' => 'Neuen Feldnamen eingeben (z. B. Vollständiger Name des Kunden)',
+    'add_button' => 'Hinzufügen',
+    'document_layout' => 'Dokumentenlayout',
+    'insert_field_label' => 'Feld einfügen:',
+    'select_field' => 'Feld auswählen...',
+    'save_template_button' => 'Vorlage speichern',
+    'field_type_text' => 'Text',
+    'field_type_number' => 'Zahl',
+    'field_type_date' => 'Datum',
+    'apply_quick_template_label' => 'Schnellvorlage anwenden:',
+    'quick_template_select' => 'Auswählen...',
+    'quick_template_official_letter' => 'Offizielles Schreiben',
+    'add_new_field_label' => 'Neues Feld hinzufügen:',
+
+
 
     // History Page
     'template_name' => 'Vorlagenname',

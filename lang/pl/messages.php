@@ -47,6 +47,76 @@ return [
     'update_password_text' => 'Upewnij się, że Twoje konto używa długiego, losowego hasła, aby pozostać bezpiecznym. Pozostaw puste, jeśli nie chcesz go zmieniać.',
     'new_password' => 'Nowe hasło',
     'confirm_password' => 'Potwierdź hasło',
+    'my_templates_section' => 'Moje Szablony',
+    'my_templates' => 'Moje Szablony',
+    'create_template' => 'Utwórz Szablon',
+
+
+
+    'edit_template_title' => 'Edycja szablonu: :name',
+    'editing_template_title' => 'Edytuj szablon',
+    'field_with_this_key_exists' => 'Pole o tej nazwie systemowej już istnieje!',
+    'save_changes_button' => 'Zapisz zmiany',
+    'fill_template_title' => 'Wypełnij szablon: :name',
+    'create_pdf_button' => 'Utwórz PDF',
+    'download_docx_button' => 'Pobierz .docx',
+    'my_templates_title' => 'Moje szablony',
+    'my_templates_header' => 'Moje szablony',
+    'create_new_template_button' => 'Utwórz nowy szablon',
+    'no_templates_yet_text' => 'Nie utworzyłeś jeszcze żadnych szablonów.',
+    'create_first_template_link' => 'Utwórz swój pierwszy szablon',
+    'table_header_name' => 'Nazwa',
+    'table_header_category' => 'Kategoria',
+    'table_header_country' => 'Kraj',
+    'table_header_actions' => 'Akcje',
+    'use_button' => 'Użyj',
+    'edit_button' => 'Edytuj',
+    'delete_button' => 'Usuń',
+    'delete_confirm_message' => 'Czy na pewno chcesz usunąć ten szablon? Tej akcji nie można cofnąć.',
+
+
+
+
+
+
+
+
+
+
+
+    'create_new_template_title' => 'Utwórz nowy szablon',
+    'how_to_create_template_title' => 'Jak utworzyć szablon?',
+    'how_to_step_1' => '<strong>1. Dodaj pola:</strong> Wprowadź nazwę pola (np. "Imię i nazwisko klienta"), wybierz jego typ (tekst, liczba lub data) i kliknij "Dodaj".',
+    'how_to_step_2' => '<strong>2. Utwórz układ:</strong> Napisz tekst dokumentu w edytorze poniżej. W odpowiednich miejscach wstaw utworzone pola za pomocą listy rozwijanej "Wstaw pole do układu".',
+    'how_to_step_3' => '<strong>3. Aby szybko zacząć:</strong> Użyj menu "Zastosuj szybki szablon", aby załadować gotową strukturę listu oficjalnego.',
+    'country' => 'Kraj',
+    'select_country' => 'Wybierz kraj...',
+    'category' => 'Kategoria',
+    'select_country_first' => 'Najpierw wybierz kraj',
+    'template_name' => 'Nazwa szablonu',
+    'input_fields' => 'Pola do wprowadzenia',
+    'add_new_field_placeholder' => 'Wprowadź nazwę nowego pola (np. Imię i nazwisko klienta)',
+    'add_button' => 'Dodaj',
+    'document_layout' => 'Układ dokumentu',
+    'insert_field_label' => 'Wstaw pole do układu:',
+    'select_field' => 'Wybierz pole...',
+    'save_template_button' => 'Zapisz szablon',
+    'field_type_text' => 'Tekst',
+    'field_type_number' => 'Liczba',
+    'field_type_date' => 'Data',
+    'apply_quick_template_label' => 'Zastosuj szybki szablon:',
+    'quick_template_select' => 'Wybierz...',
+    'quick_template_official_letter' => 'List oficjalny',
+    'add_new_field_label' => 'Dodaj nowe pole:',
+
+
+
+
+
+
+
+
+
 
     // "My Data" Page
     'my_data_text' => 'Zapisz swoje dane osobowe raz, aby automatycznie wypełniać je we wszystkich dokumentach. Dane te są bezpiecznie przechowywane i dostępne tylko dla Ciebie.',
@@ -63,6 +133,7 @@ return [
     'passport_number' => 'Numer paszportu',
     'passport_issuer' => 'Organ wydający',
     'passport_date' => 'Data wydania',
+    'id_card_number' => 'Numer dowodu osobistego',
 
     // History Page
     'template_name' => 'Nazwa szablonu',

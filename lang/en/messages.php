@@ -47,6 +47,75 @@ return [
     'update_password_text' => 'Ensure your account is using a long, random password to stay secure. Leave blank if you don\'t want to change it.',
     'new_password' => 'New Password',
     'confirm_password' => 'Confirm Password',
+    'my_templates_section' => 'My Templates',
+    'my_templates' => 'My Templates',
+    'create_template' => 'Create Template',
+
+
+
+    'edit_template_title' => 'Editing Template: :name',
+    'editing_template_title' => 'Edit Template',
+    'field_with_this_key_exists' => 'A field with this system name already exists!',
+    'save_changes_button' => 'Save Changes',
+    'fill_template_title' => 'Fill Template: :name',
+    'create_pdf_button' => 'Create PDF',
+    'download_docx_button' => 'Download .docx',
+    'my_templates_title' => 'My Templates',
+    'my_templates_header' => 'My Templates',
+    'create_new_template_button' => 'Create New Template',
+    'no_templates_yet_text' => 'You haven\'t created any templates yet.',
+    'create_first_template_link' => 'Create your first template',
+    'table_header_name' => 'Name',
+    'table_header_category' => 'Category',
+    'table_header_country' => 'Country',
+    'table_header_actions' => 'Actions',
+    'use_button' => 'Use',
+    'edit_button' => 'Edit',
+    'delete_button' => 'Delete',
+    'delete_confirm_message' => 'Are you sure you want to delete this template? This action cannot be undone.',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    'create_new_template_title' => 'Create New Template',
+    'how_to_create_template_title' => 'How to create a template?',
+    'how_to_step_1' => '<strong>1. Add fields:</strong> Enter a field name (e.g., "Client\'s Full Name"), select its type (text, number, or date), and click "Add".',
+    'how_to_step_2' => '<strong>2. Create layout:</strong> Write the document text in the editor below. At the right places, insert the created fields using the "Insert field into layout" dropdown.',
+    'how_to_step_3' => '<strong>3. For a quick start:</strong> Use the "Apply quick template" menu to load a ready-made structure for an official letter.',
+    'country' => 'Country',
+    'select_country' => 'Select country...',
+    'category' => 'Category',
+    'select_country_first' => 'Select a country first',
+    'template_name' => 'Template Name',
+    'input_fields' => 'Input Fields',
+    'add_new_field_placeholder' => 'Enter new field name (e.g., Client\'s Full Name)',
+    'add_button' => 'Add',
+    'document_layout' => 'Document Layout',
+    'insert_field_label' => 'Insert field into layout:',
+    'select_field' => 'Select field...',
+    'save_template_button' => 'Save Template',
+    'field_type_text' => 'Text',
+    'field_type_number' => 'Number',
+    'field_type_date' => 'Date',
+    'apply_quick_template_label' => 'Apply quick template:',
+    'quick_template_select' => 'Select...',
+    'quick_template_official_letter' => 'Official Letter',
+    'add_new_field_label' => 'Add new field:',
+
+
+
+
 
     // "My Data" Page
     'my_data_text' => 'Save your personal information once to automatically fill it in all documents. This data is securely stored and only accessible to you.',
@@ -63,6 +132,7 @@ return [
     'passport_number' => 'Passport Number',
     'passport_issuer' => 'Issuing Authority',
     'passport_date' => 'Date of Issue',
+    'id_card_number' => 'ID Card Number',
 
     // History Page
     'template_name' => 'Template Name',

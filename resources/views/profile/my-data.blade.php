@@ -23,6 +23,12 @@
                     <a href="{{ route('pricing', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-gem"></i> {{ __('messages.my_subscription') }}
                     </a>
+                    <a href="{{ route('profile.my-templates.index', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('profile.my-templates.*') && !request()->routeIs('profile.my-templates.create') ? 'active' : '' }}">
+                        <i class="bi bi-collection me-2"></i> {{ __('messages.my_templates') }}
+                    </a>
+                    <a href="{{ route('profile.my-templates.create', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('profile.my-templates.create') ? 'active' : '' }}">
+                        <i class="bi bi-plus-circle me-2"></i> {{ __('messages.create_template') }}
+                    </a>
                 </div>
             </div>
 

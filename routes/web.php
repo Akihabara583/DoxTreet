@@ -64,7 +64,30 @@ Route::prefix('{locale}')
                 Route::patch('/my-data', [ProfileController::class, 'updateMyData'])->name('my-data.update');
 
                 // ++ ВОТ ИСПРАВЛЕНИЕ: РОУТ ТЕПЕРЬ ВНУТРИ ГРУППЫ С ЯЗЫКОМ И АВТОРИЗАЦИЕЙ ++
-                Route::resource('my-templates', UserTemplateController::class);
+                // routes/web.php, внутри группы ->name('profile.')
+
+                // routes/web.php, внутри группы ->name('profile.')
+                Route::prefix('my-templates')->name('my-templates.')->group(function() {
+                    Route::get('/', [UserTemplateController::class, 'index'])->name('index');
+                    Route::get('/create', [UserTemplateController::class, 'create'])->name('create');
+                    Route::post('/', [UserTemplateController::class, 'store'])->name('store');
+
+                    // Используем {userTemplate} для единообразия
+                    Route::get('/{userTemplate}', [UserTemplateController::class, 'show'])->name('show');
+
+                    // ✅ Вот правильные маршруты для генерации, указывающие на UserTemplateController
+                    Route::post('/{userTemplate}/generate', [UserTemplateController::class, 'generateDocument'])->name('generate');
+
+                    Route::get('/{userTemplate}/edit', [UserTemplateController::class, 'edit'])->name('edit');
+
+                    // Маршрут для обновления данных после редактирования
+                    Route::patch('/{userTemplate}', [UserTemplateController::class, 'update'])->name('update');
+
+                    // Маршрут для удаления шаблона
+                    Route::delete('/{userTemplate}', [UserTemplateController::class, 'destroy'])->name('destroy');
+                });
+
+
             });
     });
 

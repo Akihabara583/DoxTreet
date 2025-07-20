@@ -163,128 +163,51 @@ class TemplateController extends Controller
     }
 
 
-    public function generatePdf(Request $request, string $locale, Template $template)
+    public function generateUserTemplatePdf(Request $request, string $locale, \App\Models\UserTemplate $userTemplate)
     {
-        if (!$template->is_active) { abort(404); }
-        if (!Auth::check()) {
-            $executed = RateLimiter::attempt('generate-pdf:'.$request->ip(), 1, function() {});
-            if (!$executed) { return back()->with('error', __('messages.rate_limit_exceeded')); }
+        if ($userTemplate->user_id !== Auth::id()) { abort(403); }
+
+        $fields = is_array($userTemplate->fields) ? $userTemplate->fields : json_decode($userTemplate->fields, true) ?? [];
+        $rules = [];
+        foreach ($fields as $field) {
+            $rules[$field['key']] = 'required|string|max:255';
         }
-        $validatedData = $this->validateFormData($request, $template);
-        if (Auth::check()) {
-            GeneratedDocument::create(['user_id' => Auth::id(), 'template_id' => $template->id, 'data' => $validatedData]);
+        $validatedData = $request->validate($rules);
+
+        $html = $userTemplate->layout;
+        foreach ($validatedData as $key => $value) {
+            $html = str_replace("@{{$key}}", e($value), $html);
         }
+        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
 
-        // Используем новый приватный метод для обработки данных
-        $processedData = $this->processTemplateData($template, $validatedData);
-
-        // Получаем HTML для текущего языка
-        $currentTranslation = $template->translations->where('locale', $locale)->first();
-        if (!$currentTranslation) {
-            // Если перевода для текущей локали нет, используем украинский как запасной
-            $currentTranslation = $template->translations->where('locale', 'uk')->first();
-        }
-
-        $headerHtml = $currentTranslation->header_html ?? '';
-        $bodyHtml = $currentTranslation->body_html ?? '';
-        $footerHtml = $currentTranslation->footer_html ?? '';
-
-        $fullHtml = $headerHtml . $bodyHtml . $footerHtml;
-
-        foreach ($processedData as $key => $value) {
-            $fullHtml = str_replace("[[{$key}]]", $value, $fullHtml);
-        }
-
-        // Форматируем дату в зависимости от локали
-        $formattedDate = '';
-        switch ($locale) {
-            case 'uk':
-                $formattedDate = now()->format('d.m.Y') . ' р.'; // 05.07.2025 р.
-                break;
-            case 'pl':
-                $formattedDate = now()->format('d.m.Y'); // 05.07.2025
-                break;
-            case 'de':
-                $formattedDate = now()->format('d.m.Y'); // 05.07.2025
-                break;
-            default:
-                $formattedDate = now()->format('Y-m-d'); // Default for 'en' and others
-                break;
-        }
-        $fullHtml = str_replace('[[current_date]]', $formattedDate, $fullHtml);
-
-
-        // Настройка DomPDF для поддержки Unicode и шрифтов
-        // Вместо создания объекта Dompdf\Options, передаем массив настроек
-        $pdfOptions = [
-            'isHtml5ParserEnabled' => true,
-            'isRemoteEnabled' => true,
-            'defaultFont' => 'DejaVu Sans', // Убедитесь, что этот шрифт доступен
-            'unicodeEnabled' => true, // КЛЮЧЕВОЙ ПАРАМЕТР
-            'enable_font_subsetting' => false, // Отключить подмножество шрифтов
-        ];
-
-        // Используем setOptions() с массивом
-        $pdf = Pdf::loadHTML($fullHtml)->setOptions($pdfOptions);
-
-        // Безопасное получение заголовка для имени файла
-        $fileName = Str::slug($currentTranslation->title ?? $template->slug) . '-' . time() . '.pdf';
+        $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
+        $fileName = Str::slug($userTemplate->name) . '-' . time() . '.pdf';
         return $pdf->download($fileName);
     }
 
-
-    public function generateDocx(Request $request, string $locale, Template $template, WordExportService $wordExportService)
+    /**
+     * ✅ НОВЫЙ МЕТОД: Генерирует DOCX из ПОЛЬЗОВАТЕЛЬСКОГО шаблона.
+     */
+    public function generateUserTemplateDocx(Request $request, string $locale, \App\Models\UserTemplate $userTemplate, WordExportService $wordExportService)
     {
-        $validatedData = $this->validateFormData($request, $template);
+        if ($userTemplate->user_id !== Auth::id()) { abort(403); }
 
-        // Используем тот же самый приватный метод для обработки данных
-        $processedData = $this->processTemplateData($template, $validatedData);
-
-        // Получаем HTML для текущего языка
-        $currentTranslation = $template->translations->where('locale', $locale)->first();
-        if (!$currentTranslation) {
-            // Если перевода для текущей локали нет, используем украинский как запасной
-            $currentTranslation = $template->translations->where('locale', 'uk')->first();
+        $fields = is_array($userTemplate->fields) ? $userTemplate->fields : json_decode($userTemplate->fields, true) ?? [];
+        $rules = [];
+        foreach ($fields as $field) {
+            $rules[$field['key']] = 'required|string|max:255';
         }
+        $validatedData = $request->validate($rules);
 
-        $headerHtml = $currentTranslation->header_html ?? '';
-        $bodyHtml = $currentTranslation->body_html ?? '';
-        $footerHtml = $currentTranslation->footer_html ?? '';
-
-        $fullHtml = $headerHtml . $bodyHtml . $footerHtml;
-
-        foreach ($processedData as $key => $value) {
-            $fullHtml = str_replace("[[{$key}]]", $value, $fullHtml);
+        $html = $userTemplate->layout;
+        foreach ($validatedData as $key => $value) {
+            $html = str_replace("@{{$key}}", e($value), $html);
         }
+        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
 
-        // Форматируем дату в зависимости от локали
-        $formattedDate = '';
-        switch ($locale) {
-            case 'uk':
-                $formattedDate = now()->format('d.m.Y') . ' р.'; // 05.07.2025 р.
-                break;
-            case 'pl':
-                $formattedDate = now()->format('d.m.Y'); // 05.07.2025
-                break;
-            case 'de':
-                $formattedDate = now()->format('d.m.Y'); // 05.07.2025
-                break;
-            default:
-                $formattedDate = now()->format('Y-m-d'); // Default for 'en' and others
-                break;
-        }
-        $fullHtml = str_replace('[[current_date]]', $formattedDate, $fullHtml);
-
-
-        // Дополнительная очистка HTML для DOCX
-        $fullHtml = preg_replace('/\s+/', ' ', $fullHtml); // Заменяем множественные пробелы на один
-        $fullHtml = str_replace(['<p> </p>', '<p></p>'], '', $fullHtml); // Удаляем пустые параграфы
-
-        // Безопасное получение заголовка для имени файла
-        $fileName = Str::slug($currentTranslation->title ?? $template->slug) . '.docx';
-        return $wordExportService->generateFromHtml($fullHtml, $fileName);
+        $fileName = Str::slug($userTemplate->name) . '.docx';
+        return $wordExportService->generateFromHtml($html, $fileName);
     }
-
     private function validateFormData(Request $request, Template $template): array
     {
         $rules = [];

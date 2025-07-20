@@ -1,91 +1,208 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
+use App\Models\UserTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Services\WordExportService;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 
 class UserTemplateController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Показывает список шаблонов, созданных пользователем.
      */
     public function index()
     {
-        //
+        $userTemplates = Auth::user()->userTemplates()->with('category')->latest()->paginate(10);
+        return view('my-templates.index', compact('userTemplates'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Показывает форму для создания нового пользовательского шаблона.
      */
     public function create()
     {
-        // Получаем все категории и группируем их по коду страны
-        $categoriesByCountry = Category::all()->groupBy('country_code');
+        $allCategories = Category::where('is_active', true)->get();
 
-        // Получаем список стран, для которых есть категории
-        $countries = $categoriesByCountry->keys();
+        $categoriesWithTranslations = $allCategories->map(function ($category) {
+            return [
+                'id' => $category->id,
+                'country_code' => $category->country_code,
+                'name' => $category->getTranslations('name'),
+            ];
+        });
 
-        // Передаем обе переменные в вид
+        $categoriesByCountry = $categoriesWithTranslations->groupBy('country_code');
+        $countries = $categoriesByCountry->keys()->sort();
+
         return view('my-templates.create', compact('categoriesByCountry', 'countries'));
     }
 
+    /**
+     * ✅ ИСПРАВЛЕННЫЙ МЕТОД
+     * Сохраняет новый пользовательский шаблон в базу данных.
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
-            'country_code'  => 'required|string|exists:categories,country_code', // Проверяем, что такая страна есть
-            'category_id'   => 'required|integer|exists:categories,id', // Проверяем, что такая категория есть
+            'country_code'  => 'required|string',
+            'category_id'   => 'required|integer|exists:categories,id',
             'fields'        => 'required|json',
             'layout'        => 'required|string',
         ]);
 
-        $fieldsArray = json_decode($validated['fields'], true);
-        if (empty($fieldsArray)) {
-            return back()->withErrors(['fields' => 'Нужно добавить хотя бы одно поле.'])->withInput();
+        // Раскодируем JSON в массив перед созданием
+        $validated['fields'] = json_decode($validated['fields'], true);
+
+        // Я убрал лишнюю проверку, которая вызывала ошибку
+        Auth::user()->userTemplates()->create($validated);
+
+        return redirect()->route('profile.my-templates.index', app()->getLocale())
+            ->with('success', 'Шаблон успешно создан!');
+    }
+
+    public function show(string $locale, UserTemplate $userTemplate)
+    {
+        if ($userTemplate->user_id !== Auth::id()) {
+            abort(403);
+        }
+        return view('my-templates.show', ['template' => $userTemplate]);
+    }
+
+    /**
+     * Генерирует PDF из пользовательского шаблона.
+     */
+    public function generateDocument(Request $request, string $locale, UserTemplate $userTemplate, WordExportService $wordExportService)
+    {
+        if ($userTemplate->user_id !== Auth::id()) {
+            abort(403);
         }
 
-        // Сохраняем шаблон с новыми полями
-        Auth::user()->userTemplates()->create([
-            'name'          => $validated['name'],
-            'country_code'  => $validated['country_code'],
-            'category_id'   => $validated['category_id'],
-            'fields'        => $fieldsArray,
-            'layout'        => $validated['layout'],
+        // Валидируем данные
+        $validatedData = $this->validateFormData($request, $userTemplate);
+        // Обрабатываем плейсхолдеры
+        $html = $this->processPlaceholders($userTemplate, $validatedData);
+
+        // Определяем, какую кнопку нажал пользователь
+        if ($request->has('generate_pdf')) {
+            // --- Логика для PDF ---
+            $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
+            $fileName = Str::slug($userTemplate->name) . '-' . time() . '.pdf';
+            return $pdf->download($fileName);
+
+        } elseif ($request->has('generate_docx')) {
+            // --- Логика для DOCX ---
+            // Убедись, что в макете шаблона нет <br>, а есть <br />
+            $fileName = Str::slug($userTemplate->name) . '.docx';
+            return $wordExportService->generateFromHtml($html, $fileName);
+        }
+
+        // Если что-то пошло не так, просто возвращаемся назад
+        return back();
+    }
+
+
+    /**
+     * Заменяет плейсхолдеры в макете.
+     */
+    private function processPlaceholders(UserTemplate $template, array $data): string
+    {
+        $html = htmlspecialchars_decode($template->layout);
+
+        // ✅ ИЩЕМ НОВЫЙ, ПРОСТОЙ ФОРМАТ __ключ__
+        foreach ($data as $key => $value) {
+            $placeholderToFind = "__".$key."__";
+            $html = str_replace($placeholderToFind, e($value), $html);
+        }
+
+        // Заменяем системные плейсхолдеры
+        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
+
+        // Применяем форматирование
+        $html = nl2br($html);
+        $html = str_replace('<br>', '<br />', $html);
+
+        return $html;
+    }
+
+    public function edit(string $locale, UserTemplate $userTemplate)
+    {
+        if ($userTemplate->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $allCategories = Category::where('is_active', true)->get();
+        $categoriesWithTranslations = $allCategories->map(function ($category) {
+            return [
+                'id' => $category->id,
+                'country_code' => $category->country_code,
+                'name' => $category->getTranslations('name'),
+            ];
+        });
+        $categoriesByCountry = $categoriesWithTranslations->groupBy('country_code');
+        $countries = $categoriesByCountry->keys()->sort();
+
+        return view('my-templates.edit', compact('userTemplate', 'categoriesByCountry', 'countries'));
+    }
+
+    /**
+     * ✅ ИСПРАВЛЕННЫЙ МЕТОД
+     * Обновляет данные шаблона в базе данных.
+     */
+    public function update(Request $request, string $locale, UserTemplate $userTemplate)
+    {
+        if ($userTemplate->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'name'          => 'required|string|max:255',
+            'country_code'  => 'required|string',
+            'category_id'   => 'required|integer|exists:categories,id',
+            'fields'        => 'required|json',
+            'layout'        => 'required|string',
         ]);
 
-        // Редирект можно сделать на список своих шаблонов (когда он появится)
-        return redirect()->route('profile.show', app()->getLocale())->with('success', 'Шаблон успешно создан!');
-    }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        // Раскодируем JSON в массив перед обновлением
+        $validated['fields'] = json_decode($validated['fields'], true);
+
+        $userTemplate->update($validated);
+
+        return redirect()->route('profile.my-templates.index', $locale)
+            ->with('success', 'Шаблон успешно обновлен!');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Удаляет шаблон.
      */
-    public function edit(string $id)
+    public function destroy(string $locale, UserTemplate $userTemplate)
     {
-        //
+        if ($userTemplate->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $userTemplate->delete();
+
+        return redirect()->route('profile.my-templates.index', $locale)
+            ->with('success', 'Шаблон успешно удален!');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Валидирует данные формы на основе полей шаблона.
      */
-    public function update(Request $request, string $id)
+    private function validateFormData(Request $request, UserTemplate $template): array
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $rules = [];
+        // Убедимся, что $template->fields это массив
+        $fields = is_array($template->fields) ? $template->fields : json_decode($template->fields, true) ?? [];
+        foreach ($fields as $field) {
+            $rules[$field['key']] = 'required|string|max:255';
+        }
+        return $request->validate($rules);
     }
 }

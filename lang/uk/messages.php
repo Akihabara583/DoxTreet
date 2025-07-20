@@ -50,6 +50,75 @@ return [
     'update_password_text' => 'Переконайтеся, що ваш обліковий запис використовує довгий, випадковий пароль, щоб залишатися в безпеці. Залиште порожнім, якщо не хочете його змінювати.',
     'new_password' => 'Новий пароль',
     'confirm_password' => 'Підтвердити пароль',
+    'my_templates_section' => 'Мої Шаблони',
+    'my_templates' => 'Мої Шаблони',
+    'create_template' => 'Створити Шаблон',
+
+
+
+    'edit_template_title' => 'Редагування шаблону: :name',
+    'editing_template_title' => 'Редагувати шаблон',
+    'field_with_this_key_exists' => 'Поле з такою системною назвою вже існує!',
+    'save_changes_button' => 'Зберегти зміни',
+    'fill_template_title' => 'Заповнити шаблон: :name',
+    'create_pdf_button' => 'Створити PDF',
+    'download_docx_button' => 'Завантажити .docx',
+    'my_templates_title' => 'Мої шаблони',
+    'my_templates_header' => 'Мої шаблони',
+    'create_new_template_button' => 'Створити новий шаблон',
+    'no_templates_yet_text' => 'Ви ще не створили жодного шаблону.',
+    'create_first_template_link' => 'Створити свій перший шаблон',
+    'table_header_name' => 'Назва',
+    'table_header_category' => 'Категорія',
+    'table_header_country' => 'Країна',
+    'table_header_actions' => 'Дії',
+    'use_button' => 'Використати',
+    'edit_button' => 'Редагувати',
+    'delete_button' => 'Видалити',
+    'delete_confirm_message' => 'Ви впевнені, що хочете видалити цей шаблон? Цю дію неможливо скасувати.',
+
+
+
+
+
+
+
+
+
+    'create_new_template_title' => 'Створити новий шаблон',
+    'how_to_create_template_title' => 'Як створити шаблон?',
+    'how_to_step_1' => '<strong>1. Додайте поля:</strong> Введіть назву поля (наприклад, "ПІБ клієнта"), виберіть його тип (текст, число або дата) і натисніть "Додати".',
+    'how_to_step_2' => '<strong>2. Створіть макет:</strong> Напишіть текст документа в редакторі нижче. У потрібних місцях вставляйте створені поля за допомогою випадаючого списку "Вставити поле в макет".',
+    'how_to_step_3' => '<strong>3. Для швидкого старту:</strong> Використовуйте меню "Застосувати швидкий шаблон", щоб завантажити готову структуру для офіційного листа.',
+    'country' => 'Країна',
+    'select_country' => 'Виберіть країну...',
+
+    'select_country_first' => 'Спочатку виберіть країну',
+
+    'input_fields' => 'Поля для введення',
+    'add_new_field_placeholder' => 'Введіть назву нового поля (наприклад, ПІБ клієнта)',
+    'add_button' => 'Додати',
+    'document_layout' => 'Макет документа',
+    'insert_field_label' => 'Вставити поле в макет:',
+    'select_field' => 'Виберіть поле...',
+    'save_template_button' => 'Зберегти шаблон',
+    'field_type_text' => 'Текст',
+    'field_type_number' => 'Число',
+    'field_type_date' => 'Дата',
+    'apply_quick_template_label' => 'Застосувати швидкий шаблон:',
+    'quick_template_select' => 'Виберіть...',
+    'quick_template_official_letter' => 'Офіційний лист',
+    'add_new_field_label' => 'Додати нове поле:',
+
+
+
+
+
+
+
+
+
+
 
     // "My Data" Page
     'my_data_text' => 'Збережіть вашу особисту інформацію один раз, щоб автоматично заповнювати її в усіх документах. Ці дані надійно зберігаються і доступні тільки вам.',
@@ -66,6 +135,7 @@ return [
     'passport_number' => 'Номер паспорта',
     'passport_issuer' => 'Ким виданий',
     'passport_date' => 'Дата видачі',
+    'id_card_number' => 'Номер ID-картки',
 
     // History Page
     'template_name' => 'Назва шаблону',
