@@ -62,12 +62,19 @@ Route::prefix('{locale}')
             Route::patch('/update', [ProfileController::class, 'update'])->name('update');
             Route::get('/history', [ProfileController::class, 'history'])->name('history');
             Route::get('/history/reuse/{document}', [ProfileController::class, 'reuse'])->name('history.reuse');
+
+            // --- НАЧАЛО ИЗМЕНЕНИЙ: МАРШРУТЫ ДЛЯ УДАЛЕНИЯ ИЗ ИСТОРИИ ---
+            Route::post('/history/delete-selected', [ProfileController::class, 'deleteSelectedGeneratedDocuments'])->name('history.delete-selected');
+            Route::post('/history/delete-all', [ProfileController::class, 'deleteAllGeneratedDocuments'])->name('history.delete-all');
+            // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
             Route::get('/my-data', [ProfileController::class, 'myData'])->name('my-data');
             Route::patch('/my-data', [ProfileController::class, 'updateMyData'])->name('my-data.update');
 
-            // ✅ ИСПРАВЛЕНИЕ: Этот роут теперь находится внутри группы 'profile.'
             Route::get('/signed-documents', [ProfileController::class, 'signedDocumentsHistory'])->name('signed-documents.history');
             Route::get('/signed-documents/{document}/download', [ProfileController::class, 'downloadSignedDocument'])->name('signed-documents.download');
+            Route::post('/signed-documents/delete-selected', [ProfileController::class, 'deleteSelectedSignedDocuments'])->name('signed-documents.delete-selected');
+            Route::post('/signed-documents/delete-all', [ProfileController::class, 'deleteAllSignedDocuments'])->name('signed-documents.delete-all');
 
             Route::prefix('my-templates')->name('my-templates.')->group(function() {
                 Route::get('/', [UserTemplateController::class, 'index'])->name('index');

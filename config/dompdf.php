@@ -181,7 +181,7 @@ return [
          *
          * @var string
          */
-        'default_font' => 'dejavu sans', // *** ИЗМЕНЕНО: Установлен DejaVu Sans как шрифт по умолчанию ***
+        'default_font' => 'DejaVu Sans', // *** ИЗМЕНЕНО: Установлен DejaVu Sans как шрифт по умолчанию ***
 
         /**
          * Image DPI setting

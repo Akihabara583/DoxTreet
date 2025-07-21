@@ -27,6 +27,23 @@ class SignatureController extends Controller
         ]);
 
         $user = Auth::user();
+
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        // Проверяем количество документов пользователя
+        $documentCount = SignedDocument::where('user_id', $user->id)->count();
+
+        // Если документов 20 или больше, удаляем самый старый
+        if ($documentCount >= 20) {
+            $oldestDocument = SignedDocument::where('user_id', $user->id)->oldest()->first();
+            if ($oldestDocument) {
+                // Удаляем старый файл с диска
+                Storage::disk('public')->delete($oldestDocument->signed_file_path);
+                // Удаляем запись из базы данных
+                $oldestDocument->delete();
+            }
+        }
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
         $file = $request->file('document');
         $signatureDataUrl = $request->input('signature');
 
@@ -60,7 +77,8 @@ class SignatureController extends Controller
             'signed_file_path' => $relativePath,
         ]);
 
-        return response()->download($outputFilePath)->deleteFileAfterSend(true);
+        // Убираем .deleteFileAfterSend(true)
+        return response()->download($outputFilePath);
     }
 
     /**

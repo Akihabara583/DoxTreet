@@ -134,7 +134,13 @@ return [
     'draw_in_this_box' => 'Rysuj w tym polu. Ten podpis zostanie dodany do dokumentu.',
     'click_or_drag_to_place_signature' => 'Kliknij na dokumencie, aby umieścić podpis, lub przeciągnij znacznik w wybrane miejsce.',
     'signature_placement' => 'Miejsce podpisu',
-
+    'delete_selected' => 'Usuń zaznaczone',
+    'delete_all' => 'Usuń wszystko',
+    'documents_stored' => 'Zapisano: :count z 20',
+    'history_limit_warning' => 'Uwaga: W historii przechowywanych jest maksymalnie 20 dokumentów. Po dodaniu nowego dokumentu, najstarszy zostanie usunięty.',
+    'alert_no_documents_selected' => 'Proszę wybrać przynajmniej jeden dokument do usunięcia.',
+    'confirm_delete_selected' => 'Czy na pewno chcesz usunąć :count zaznaczonych dokumentów?',
+    'confirm_delete_all' => 'UWAGA! Czy na pewno chcesz usunąć WSZYSTKIE swoje podpisane dokumenty? Ta operacja jest nieodwracalna.',
 
 
 

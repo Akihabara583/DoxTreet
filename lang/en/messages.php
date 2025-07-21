@@ -135,7 +135,13 @@ return [
     'draw_in_this_box' => 'Draw in this box. This signature will be added to the document.',
     'click_or_drag_to_place_signature' => 'Click on the document to place your signature, or drag the marker to the desired position.',
     'signature_placement' => 'Signature Placement',
-
+    'delete_selected' => 'Delete Selected',
+    'delete_all' => 'Delete All',
+    'documents_stored' => 'Stored: :count of 20',
+    'history_limit_warning' => 'Please note: A maximum of 20 documents are stored in the history. When adding a new document, the oldest one will be deleted.',
+    'alert_no_documents_selected' => 'Please select at least one document to delete.',
+    'confirm_delete_selected' => 'Are you sure you want to delete :count selected document(s)?',
+    'confirm_delete_all' => 'WARNING! Are you sure you want to delete ALL your signed documents? This action is irreversible.',
 
 
     // "My Data" Page

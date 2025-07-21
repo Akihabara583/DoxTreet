@@ -11,17 +11,11 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Services\WordExportService;
-// ✅ ШАГ 1: Импортируем модель для сохранения истории
 use App\Models\GeneratedDocument;
 
 class DocumentController extends Controller
 {
-    /**
-     * ✅ **ФІНАЛЬНА УНІВЕРСАЛЬНА ВЕРСІЯ**
-     * Показує форму і "розумно" передзаповнює її даними, аналізуючи назви полів.
-     * Працює для різних шаблонів (договори, резюме тощо).
-     */
-    public function show(string $locale, string $countryCode, string $templateSlug): View
+    public function show(Request $request, string $locale, string $countryCode, string $templateSlug): View
     {
         $template = Template::query()
             ->where('country_code', $countryCode)
@@ -29,22 +23,22 @@ class DocumentController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
-        $prefillData = [];
+        if ($request->has('data') && is_array($request->input('data'))) {
+            $prefillData = $request->input('data');
+        } else {
+            $prefillData = [];
+            if (Auth::check()) {
+                $user = Auth::user();
+                $details = $user->details;
 
-        if (Auth::check()) {
-            $user = Auth::user();
-            $details = $user->details;
-
-            if ($details) {
-                $fields = $template->fields ?? [];
-
-                foreach ($fields as $field) {
-                    $fieldName = $field['name'];
-                    // Отримуємо значення за допомогою нової універсальної функції
-                    $fieldValue = $this->getPrefillValueForField($fieldName, $details, $user);
-
-                    if ($fieldValue) {
-                        $prefillData[$fieldName] = $fieldValue;
+                if ($details) {
+                    $fields = $template->fields ?? [];
+                    foreach ($fields as $field) {
+                        $fieldName = $field['name'];
+                        $fieldValue = $this->getPrefillValueForField($fieldName, $details, $user);
+                        if ($fieldValue) {
+                            $prefillData[$fieldName] = $fieldValue;
+                        }
                     }
                 }
             }
@@ -57,71 +51,45 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Універсальна функція для визначення, які дані підставити в поле.
-     * @param string $fieldName - системне ім'я поля
-     * @param \App\Models\UserDetail $details - модель з даними користувача
-     * @param \App\Models\User $user - модель користувача
-     * @return string|null
-     */
     private function getPrefillValueForField(string $fieldName, UserDetail $details, User $user): ?string
     {
         $fieldNameLower = strtolower($fieldName);
 
-        // --- Логіка "розумного" співставлення за ключовими словами ---
         switch (true) {
-            // --- Особисті дані (Працівник, Заявник, Автор резюме) ---
             case $this->fieldContains($fieldNameLower, ['pib', 'піб', 'fio', 'full_name', 'employee_name']):
                 return $details->full_name_nominative;
-
             case $this->fieldContains($fieldNameLower, ['posada', 'position', 'должность', 'employee_position']):
                 return $details->position;
-
             case $this->fieldContains($fieldNameLower, ['phone', 'телефон', 'telefon']):
                 return $details->phone_number;
-
             case $this->fieldContains($fieldNameLower, ['email']):
                 return $details->contact_email ?? $user->email;
-
             case $this->fieldContains($fieldNameLower, ['address_registered', 'employee_address', 'адреса_реєстрації', 'прописка']):
                 return $details->address_registered;
-
             case $this->fieldContains($fieldNameLower, ['tax_id', 'ipn', 'рнокпп', 'іпн', 'employee_rnekpp']):
                 return $details->tax_id_number;
-
             case $this->fieldContains($fieldNameLower, ['passport', 'паспорт', 'employee_passport']):
                 if ($details->passport_series && $details->passport_number) {
                     $passportDate = optional($details->passport_date)->format('d.m.Y');
                     return "серія {$details->passport_series} № {$details->passport_number}, виданий {$details->passport_issuer} {$passportDate} р.";
                 }
                 return null;
-
-            // --- Дані Компанії (Роботодавець, Виконавець) ---
             case $this->fieldContains($fieldNameLower, ['company_name', 'роботодавець', 'виконавець']):
                 return $details->legal_entity_name;
-
             case $this->fieldContains($fieldNameLower, ['company_tax_id', 'edrpou', 'єдрпоу', 'company_edrpou']):
                 return $details->legal_entity_tax_id;
-
             case $this->fieldContains($fieldNameLower, ['company_address', 'юридична_адреса']):
                 return $details->legal_entity_address;
-
             case $this->fieldContains($fieldNameLower, ['represented_by', 'представник', 'director_name']):
                 return $details->represented_by;
-
-            // --- Інше ---
             case $this->fieldContains($fieldNameLower, ['linkedin']):
             case $this->fieldContains($fieldNameLower, ['website', 'сайт']):
                 return $details->website;
-
             default:
                 return null;
         }
     }
 
-    /**
-     * Вспомогательная функция для проверки наличия ключевых слов в строке.
-     */
     private function fieldContains(string $haystack, array $needles): bool
     {
         foreach ($needles as $needle) {
@@ -132,9 +100,6 @@ class DocumentController extends Controller
         return false;
     }
 
-    /**
-     * Генерирует PDF или DOCX на основе данных из формы.
-     */
     public function generate(Request $request, string $locale, string $countryCode, string $templateSlug)
     {
         $template = Template::query()
@@ -144,63 +109,86 @@ class DocumentController extends Controller
 
         $validatedData = $this->validateFormData($request, $template);
 
-        // ✅ ШАГ 2: Сохраняем запись в историю перед генерацией файла
         if (Auth::check()) {
+            $user = Auth::user();
+            $documentCount = GeneratedDocument::where('user_id', $user->id)->count();
+            if ($documentCount >= 20) {
+                GeneratedDocument::where('user_id', $user->id)->oldest()->first()?->delete();
+            }
             GeneratedDocument::create([
-                'user_id' => Auth::id(),
+                'user_id' => $user->id,
                 'template_id' => $template->id,
                 'data' => $validatedData,
             ]);
         }
 
-        $replacePlaceholders = function ($html, $data) {
-            if (empty($html)) return '';
-            foreach ($data as $key => $value) {
-                $html = str_replace("[[{$key}]]", e($value), $html);
-            }
-            if (auth()->check()) {
-                $details = auth()->user()->details;
-                if ($details) {
-                    $html = str_replace('[[user_full_name_nominative]]', e($details->full_name_nominative), $html);
-                    $html = str_replace('[[company_name]]', e($details->legal_entity_name), $html);
-                }
-            }
-            $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
-            return $html;
-        };
+        // ✅ ИЗМЕНЕНИЕ: Объединяем HTML до всех замен
+        $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
+
+        // ✅ ШАГ 1: Обрабатываем условные блоки
+        $fullHtml = $this->replaceConditionalPlaceholders($fullHtml, $validatedData);
+
+        // ✅ ШАГ 2: Обрабатываем обычные плейсхолдеры
+        $fullHtml = $this->replaceSimplePlaceholders($fullHtml, $validatedData);
 
         $fileName = Str::slug($template->title) . '-' . time();
 
         if ($request->has('generate_pdf')) {
-            $header = $replacePlaceholders($template->header_html, $validatedData);
-            $body   = $replacePlaceholders($template->body_html, $validatedData);
-            $footer = $replacePlaceholders($template->footer_html, $validatedData);
-
-            $pdf = Pdf::loadView('pdf.document-layout', [
-                'title'  => $template->title,
-                'header' => $header,
-                'body'   => $body,
-                'footer' => $footer,
-            ]);
-
+            $pdf = Pdf::loadHTML($fullHtml);
             return $pdf->download($fileName . '.pdf');
         }
 
         if ($request->has('generate_docx')) {
-            $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
-            $fullHtml = str_replace('<br>', '<br />', $fullHtml);
-            $processedHtml = $replacePlaceholders($fullHtml, $validatedData);
-
             $wordService = new WordExportService();
-            return $wordService->generateFromHtml($processedHtml, $fileName . '.docx');
+            return $wordService->generateFromHtml($fullHtml, $fileName . '.docx');
         }
 
         return redirect()->back()->with('error', 'Не удалось определить тип файла для генерации.');
     }
 
     /**
-     * Метод для валидации полей формы.
+     * ✅ НОВЫЙ МЕТОД
+     * Заменяет простые плейсхолдеры вида [[key]] на значения.
      */
+    private function replaceSimplePlaceholders(string $html, array $data): string
+    {
+        foreach ($data as $key => $value) {
+            $html = str_replace("[[{$key}]]", e($value), $html);
+        }
+        if (auth()->check()) {
+            $details = auth()->user()->details;
+            if ($details) {
+                $html = str_replace('[[user_full_name_nominative]]', e($details->full_name_nominative), $html);
+                $html = str_replace('[[company_name]]', e($details->legal_entity_name), $html);
+            }
+        }
+        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
+        return $html;
+    }
+
+    /**
+     * ✅ НОВЫЙ МЕТОД
+     * Обрабатывает условные блоки [[key]]...[[/key]].
+     */
+    private function replaceConditionalPlaceholders(string $html, array $data): string
+    {
+        // Регулярное выражение для поиска блоков [[key]]...[[/key]]
+        $pattern = '/\[\[([a-zA-Z0-9_]+)\]\](.*?)\[\[\/\1\]\]/s';
+
+        return preg_replace_callback($pattern, function ($matches) use ($data) {
+            $key = $matches[1];
+            $content = $matches[2];
+
+            // Если ключ существует в данных и его значение не пустое, возвращаем содержимое блока.
+            if (isset($data[$key]) && !empty($data[$key])) {
+                return $content;
+            }
+
+            // Иначе, удаляем весь блок (возвращаем пустую строку).
+            return '';
+        }, $html);
+    }
+
     private function validateFormData(Request $request, Template $template): array
     {
         $rules = [];

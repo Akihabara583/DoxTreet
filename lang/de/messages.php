@@ -92,7 +92,13 @@ return [
     'draw_in_this_box' => 'Zeichnen Sie in dieses Feld. Diese Unterschrift wird dem Dokument hinzugefügt.',
     'click_or_drag_to_place_signature' => 'Klicken Sie auf das Dokument, um Ihre Unterschrift zu platzieren, oder ziehen Sie die Markierung an die gewünschte Position.',
     'signature_placement' => 'Platzierung der Unterschrift',
-
+    'delete_selected' => 'Ausgewählte löschen',
+    'delete_all' => 'Alle löschen',
+    'documents_stored' => 'Gespeichert: :count von 20',
+    'history_limit_warning' => 'Bitte beachten Sie: Es werden maximal 20 Dokumente im Verlauf gespeichert. Beim Hinzufügen eines neuen Dokuments wird das älteste gelöscht.',
+    'alert_no_documents_selected' => 'Bitte wählen Sie mindestens ein Dokument zum Löschen aus.',
+    'confirm_delete_selected' => 'Sind Sie sicher, dass Sie :count ausgewählte Dokument(e) löschen möchten?',
+    'confirm_delete_all' => 'WARNUNG! Sind Sie sicher, dass Sie ALLE Ihre signierten Dokumente löschen möchten? Diese Aktion ist unumkehrbar.',
 
 
 

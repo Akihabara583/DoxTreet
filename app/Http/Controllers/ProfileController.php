@@ -11,23 +11,16 @@ use Illuminate\Validation\Rules;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\SignedDocument;
-
-use Illuminate\Support\Facades\Gate; // Добавьте этот use
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show the user's profile dashboard.
-     */
     public function show(): View
     {
         return view('profile.show');
     }
 
-    /**
-     * Show the form for editing the user's profile.
-     */
     public function edit(): View
     {
         return view('profile.edit', [
@@ -35,9 +28,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(Request $request): RedirectResponse
     {
         $user = Auth::user();
@@ -60,13 +50,10 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit', app()->getLocale())->with('status', 'profile-updated');
     }
 
-    /**
-     * Display the user's document history.
-     */
     public function history(): View
     {
         $documents = GeneratedDocument::where('user_id', Auth::id())
-            ->with('template')
+            ->with(['template', 'userTemplate'])
             ->latest()
             ->paginate(10);
 
@@ -75,56 +62,63 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * --- ФИНАЛЬНЫЙ РАБОЧИЙ КОД ---
-     *
-     * @param string $locale Язык из URL.
-     * @param string $document ID документа из URL.
-     * @return RedirectResponse
-     */
     public function reuse(string $locale, string $document): RedirectResponse
     {
-        // 1. Находим документ в базе данных. Если его нет, Laravel выдаст ошибку 404.
-        $documentModel = GeneratedDocument::findOrFail($document);
+        $documentModel = GeneratedDocument::with(['template', 'userTemplate'])->findOrFail($document);
 
-        // 2. Убеждаемся, что документ принадлежит текущему пользователю.
         if ($documentModel->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
 
-        // 3. Получаем связанный с ним шаблон.
-        $template = $documentModel->template;
-
-        // 4. Проверяем, что шаблон существует (его могли удалить).
-        if (!$template) {
-            return redirect()->route('profile.history', ['locale' => $locale])
-                ->with('error', 'Этот шаблон больше недоступен.');
+        if ($documentModel->template) {
+            return redirect()->route('documents.show', [
+                'locale' => $locale,
+                'countryCode' => $documentModel->template->country_code,
+                'templateSlug' => $documentModel->template->slug,
+                'data' => $documentModel->data
+            ]);
         }
 
-        // 5. Перенаправляем пользователя на страницу шаблона для повторного заполнения.
-        return redirect()->route('templates.show', [
-            'locale' => $locale,
-            'template' => $template->slug, // Используем slug для поиска, как настроено в модели Template
-            'data' => $documentModel->data
-        ]);
+        if ($documentModel->userTemplate) {
+            return redirect()->route('profile.my-templates.show', [
+                'locale' => $locale,
+                'userTemplate' => $documentModel->userTemplate->id,
+                'data' => $documentModel->data
+            ]);
+        }
+
+        return redirect()->route('profile.history', ['locale' => $locale])
+            ->with('error', __('messages.template_deleted'));
     }
 
-    /**
-     * Show the form for editing the user's personal details.
-     */
+    // --- НАЧАЛО НОВЫХ МЕТОДОВ ДЛЯ ИСТОРИИ ДОКУМЕНТОВ ---
+    public function deleteSelectedGeneratedDocuments(Request $request): RedirectResponse
+    {
+        $request->validate(['documents' => 'required|array']);
+        $documentIds = $request->input('documents');
+
+        GeneratedDocument::where('user_id', Auth::id())
+            ->whereIn('id', $documentIds)
+            ->delete();
+
+        return redirect()->back()->with('status', 'Выбранные документы были удалены.');
+    }
+
+    public function deleteAllGeneratedDocuments(): RedirectResponse
+    {
+        GeneratedDocument::where('user_id', Auth::id())->delete();
+        return redirect()->back()->with('status', 'Вся история документов была очищена.');
+    }
+    // --- КОНЕЦ НОВЫХ МЕТОДОВ ---
+
     public function myData(): View
     {
-        // ✅ **ИЗМЕНЕНО**: Используем `firstOrNew` для большей надежности
         $details = Auth::user()->details()->firstOrNew([
             'user_id' => Auth::id()
         ]);
         return view('profile.my-data', ['details' => $details]);
     }
 
-
-    /**
-     * Update the user's personal details.
-     */
     public function updateMyData(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
@@ -140,7 +134,6 @@ class ProfileController extends Controller
             'passport_date'        => 'nullable|date',
             'id_card_number'       => 'nullable|string|max:255',
             'position'             => 'nullable|string|max:255',
-            // --- ВАЛИДАЦИЯ НОВЫХ ПОЛЕЙ ---
             'contact_email'        => 'nullable|email|max:255',
             'website'              => 'nullable|url|max:255',
             'legal_entity_name'    => 'nullable|string|max:255',
@@ -170,20 +163,51 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function downloadSignedDocument(string $locale, SignedDocument $document): BinaryFileResponse
+    public function downloadSignedDocument(string $locale, string $document): BinaryFileResponse
     {
-        // ✅ ИСПРАВЛЕНИЕ: Заменяем сложную систему Gate на простую и надежную проверку.
-        // Убеждаемся, что ID текущего пользователя совпадает с ID владельца документа.
-        if (auth()->id() !== $document->user_id) {
+        $documentModel = SignedDocument::findOrFail($document);
+
+        if (auth()->id() !== $documentModel->user_id) {
             abort(403, 'This action is unauthorized.');
         }
 
-        $filePath = storage_path('app/public/' . $document->signed_file_path);
+        $filePath = storage_path('app/public/' . $documentModel->signed_file_path);
 
         if (!file_exists($filePath)) {
             abort(404, 'Файл не найден.');
         }
 
-        return response()->download($filePath, $document->original_filename);
+        return response()->download($filePath, $documentModel->original_filename);
+    }
+
+    public function deleteSelectedSignedDocuments(Request $request): RedirectResponse
+    {
+        $request->validate(['documents' => 'required|array']);
+        $documentIds = $request->input('documents');
+
+        $documentsToDelete = SignedDocument::where('user_id', Auth::id())
+            ->whereIn('id', $documentIds)
+            ->get();
+
+        foreach ($documentsToDelete as $document) {
+            Storage::disk('public')->delete($document->signed_file_path);
+        }
+
+        SignedDocument::destroy($documentsToDelete->pluck('id'));
+
+        return redirect()->back()->with('status', 'Выбранные документы были удалены.');
+    }
+
+    public function deleteAllSignedDocuments(): RedirectResponse
+    {
+        $documentsToDelete = SignedDocument::where('user_id', Auth::id())->get();
+
+        foreach ($documentsToDelete as $document) {
+            Storage::disk('public')->delete($document->signed_file_path);
+        }
+
+        SignedDocument::where('user_id', Auth::id())->delete();
+
+        return redirect()->back()->with('status', 'Все ваши подписанные документы были удалены.');
     }
 }
