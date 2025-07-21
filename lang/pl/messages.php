@@ -113,6 +113,27 @@ return [
 
 
 
+    // --- Funkcja Podpisu ---
+    'sign_document' => 'Podpisz dokument',
+    'sign_document_description' => 'Prześlij swój dokument PDF, narysuj podpis, umieść go na dokumencie i pobierz podpisany plik.',
+    'upload_document' => 'Prześlij dokument',
+    'select_pdf_file' => 'Wybierz plik PDF',
+    'document_preview' => 'Podgląd dokumentu',
+    'draw_signature' => 'Narysuj podpis',
+    'clear' => 'Wyczyść',
+    'save_signature_to_profile' => 'Zapisz podpis w moim profilu do przyszłego użytku',
+    'sign_and_download' => 'Podpisz i pobierz',
+    'please_provide_a_signature' => 'Proszę najpierw złożyć podpis.',
+    'signed_documents' => 'Podpisane dokumenty',
+    'signed_documents_history_text' => 'Oto lista dokumentów, które podpisałeś.',
+    'document_name' => 'Nazwa dokumentu',
+    'signing_date' => 'Data podpisania',
+    'no_signed_documents_yet' => 'Nie masz jeszcze podpisanych dokumentów.',
+    'upload_and_review_document' => '1. Prześlij i przejrzyj dokument',
+    'place_your_signature_here' => '2. Narysuj swój podpis tutaj',
+    'draw_in_this_box' => 'Rysuj w tym polu. Ten podpis zostanie dodany do dokumentu.',
+    'click_or_drag_to_place_signature' => 'Kliknij na dokumencie, aby umieścić podpis, lub przeciągnij znacznik w wybrane miejsce.',
+    'signature_placement' => 'Miejsce podpisu',
 
 
 

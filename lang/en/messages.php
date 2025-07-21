@@ -114,6 +114,27 @@ return [
     'add_new_field_label' => 'Add new field:',
 
 
+    // --- Signature Feature ---
+    'sign_document' => 'Sign Document',
+    'sign_document_description' => 'Upload your PDF document, draw your signature, place it on the document, and download the signed file.',
+    'upload_document' => 'Upload Document',
+    'select_pdf_file' => 'Select PDF file',
+    'document_preview' => 'Document Preview',
+    'draw_signature' => 'Draw Signature',
+    'clear' => 'Clear',
+    'save_signature_to_profile' => 'Save signature to my profile for future use',
+    'sign_and_download' => 'Sign and Download',
+    'please_provide_a_signature' => 'Please provide a signature first.',
+    'signed_documents' => 'Signed Documents',
+    'signed_documents_history_text' => 'Here is a list of documents you have signed.',
+    'document_name' => 'Document Name',
+    'signing_date' => 'Signing Date',
+    'no_signed_documents_yet' => 'You have no signed documents yet.',
+    'upload_and_review_document' => '1. Upload and Review Document',
+    'place_your_signature_here' => '2. Draw Your Signature Here',
+    'draw_in_this_box' => 'Draw in this box. This signature will be added to the document.',
+    'click_or_drag_to_place_signature' => 'Click on the document to place your signature, or drag the marker to the desired position.',
+    'signature_placement' => 'Signature Placement',
 
 
 

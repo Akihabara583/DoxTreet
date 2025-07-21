@@ -23,6 +23,9 @@
                     <a href="{{ route('pricing', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-gem"></i> {{ __('messages.my_subscription') }}
                     </a>
+                    <a href="{{ route('profile.signed-documents.history', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('profile.signed-documents.history') ? 'active' : '' }}">
+                        <i class="bi bi-pen"></i> {{ __('messages.signed_documents') }}
+                    </a>
                     <a href="{{ route('profile.my-templates.index', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('profile.my-templates.*') && !request()->routeIs('profile.my-templates.create') ? 'active' : '' }}">
                         <i class="bi bi-collection me-2"></i> {{ __('messages.my_templates') }}
                     </a>

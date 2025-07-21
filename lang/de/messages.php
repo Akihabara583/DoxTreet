@@ -69,6 +69,33 @@ return [
 
 
 
+
+
+    // --- Signaturfunktion ---
+    'sign_document' => 'Dokument unterschreiben',
+    'sign_document_description' => 'Laden Sie Ihr PDF-Dokument hoch, zeichnen Sie Ihre Unterschrift, platzieren Sie sie auf dem Dokument und laden Sie die signierte Datei herunter.',
+    'upload_document' => 'Dokument hochladen',
+    'select_pdf_file' => 'PDF-Datei auswählen',
+    'document_preview' => 'Dokumentenvorschau',
+    'draw_signature' => 'Unterschrift zeichnen',
+    'clear' => 'Löschen',
+    'save_signature_to_profile' => 'Unterschrift für zukünftige Verwendung in meinem Profil speichern',
+    'sign_and_download' => 'Unterschreiben und herunterladen',
+    'please_provide_a_signature' => 'Bitte geben Sie zuerst eine Unterschrift an.',
+    'signed_documents' => 'Unterzeichnete Dokumente',
+    'signed_documents_history_text' => 'Hier ist eine Liste der von Ihnen unterzeichneten Dokumente.',
+    'document_name' => 'Dokumentenname',
+    'signing_date' => 'Datum der Unterzeichnung',
+    'no_signed_documents_yet' => 'Sie haben noch keine Dokumente unterzeichnet.',
+    'upload_and_review_document' => '1. Dokument hochladen und überprüfen',
+    'place_your_signature_here' => '2. Zeichnen Sie hier Ihre Unterschrift',
+    'draw_in_this_box' => 'Zeichnen Sie in dieses Feld. Diese Unterschrift wird dem Dokument hinzugefügt.',
+    'click_or_drag_to_place_signature' => 'Klicken Sie auf das Dokument, um Ihre Unterschrift zu platzieren, oder ziehen Sie die Markierung an die gewünschte Position.',
+    'signature_placement' => 'Platzierung der Unterschrift',
+
+
+
+
     'edit_template_title' => 'Vorlage bearbeiten: :name',
     'editing_template_title' => 'Vorlage bearbeiten',
     'field_with_this_key_exists' => 'Ein Feld mit diesem Systemnamen existiert bereits!',

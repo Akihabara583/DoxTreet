@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Models\SignedDocument;
+
+use Illuminate\Support\Facades\Gate; // Добавьте этот use
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ProfileController extends Controller
 {
@@ -155,4 +159,31 @@ class ProfileController extends Controller
         return redirect()->route('profile.my-data', app()->getLocale())->with('status', 'details-updated');
     }
 
+    public function signedDocumentsHistory(): View
+    {
+        $signedDocuments = SignedDocument::where('user_id', Auth::id())
+            ->latest()
+            ->paginate(10);
+
+        return view('profile.signed_history', [
+            'documents' => $signedDocuments,
+        ]);
+    }
+
+    public function downloadSignedDocument(string $locale, SignedDocument $document): BinaryFileResponse
+    {
+        // ✅ ИСПРАВЛЕНИЕ: Заменяем сложную систему Gate на простую и надежную проверку.
+        // Убеждаемся, что ID текущего пользователя совпадает с ID владельца документа.
+        if (auth()->id() !== $document->user_id) {
+            abort(403, 'This action is unauthorized.');
+        }
+
+        $filePath = storage_path('app/public/' . $document->signed_file_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'Файл не найден.');
+        }
+
+        return response()->download($filePath, $document->original_filename);
+    }
 }

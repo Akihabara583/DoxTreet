@@ -27,6 +27,11 @@
                         <a class="nav-link" href="{{ route('pricing', ['locale' => app()->getLocale()]) }}">{{ __('messages.pricing') }}</a>
                     </li>
                     @include('partials._country_nav')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('sign.index', ['locale' => app()->getLocale()]) }}">
+                            <i class="bi  me-1"></i> {{ __('messages.sign_document') }}
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto">

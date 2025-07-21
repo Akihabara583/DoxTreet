@@ -13,6 +13,7 @@ use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\UserTemplateController;
 use App\Http\Controllers\DocumentListController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\SignatureController;
 
 // --- РОУТЫ БЕЗ ЯЗЫКОВОГО ПРЕФИКСА ---
 Route::get('/', function () { $locale = session('locale', config('app.fallback_locale')); return redirect($locale); });
@@ -28,13 +29,16 @@ Route::prefix('{locale}')
     ->middleware(InitializeLocale::class)
     ->group(function () {
 
+        // Роуты для подписания документов
+        Route::prefix('sign-document')->middleware('auth')->name('sign.')->group(function() {
+            Route::get('/', [SignatureController::class, 'index'])->name('index');
+            Route::post('/upload', [SignatureController::class, 'sign'])->name('upload');
+        });
+
         // Публичные страницы
         Route::get('/', [TemplateController::class, 'index'])->name('home');
         Route::get('/templates/{template}', [TemplateController::class, 'show'])->name('templates.show');
-
-        // ✅ ИСПРАВЛЕНО: Один маршрут для генерации всех типов документов из системных шаблонов
         Route::post('/templates/{template}/generate', [TemplateController::class, 'generateDocument'])->name('templates.generate');
-
         Route::get('/pricing', function () { return view('pricing'); })->name('pricing');
         Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
         Route::get('/blog/{slug}', [PostController::class, 'show'])->name('posts.show');
@@ -43,7 +47,7 @@ Route::prefix('{locale}')
         Route::get('/documents/{countryCode}/{templateSlug}', [DocumentController::class, 'show'])->name('documents.show');
         Route::post('/documents/{countryCode}/{templateSlug}/generate', [DocumentController::class, 'generate'])->name('documents.generate');
 
-        // Админ-панель (без изменений)
+        // Админ-панель
         Route::prefix('admin')->middleware(['auth', IsAdminMiddleware::class])->name('admin.')->group(function () {
             Route::get('/', function() { return view('admin.dashboard'); })->name('dashboard');
             Route::resource('categories', Admin\CategoryController::class)->except(['show']);
@@ -51,7 +55,7 @@ Route::prefix('{locale}')
             Route::resource('posts', Admin\PostController::class)->except(['show']);
         });
 
-        // Личный кабинет (без изменений)
+        // Личный кабинет
         Route::prefix('profile')->middleware('auth')->name('profile.')->group(function () {
             Route::get('/', [ProfileController::class, 'show'])->name('show');
             Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
@@ -60,6 +64,11 @@ Route::prefix('{locale}')
             Route::get('/history/reuse/{document}', [ProfileController::class, 'reuse'])->name('history.reuse');
             Route::get('/my-data', [ProfileController::class, 'myData'])->name('my-data');
             Route::patch('/my-data', [ProfileController::class, 'updateMyData'])->name('my-data.update');
+
+            // ✅ ИСПРАВЛЕНИЕ: Этот роут теперь находится внутри группы 'profile.'
+            Route::get('/signed-documents', [ProfileController::class, 'signedDocumentsHistory'])->name('signed-documents.history');
+            Route::get('/signed-documents/{document}/download', [ProfileController::class, 'downloadSignedDocument'])->name('signed-documents.download');
+
             Route::prefix('my-templates')->name('my-templates.')->group(function() {
                 Route::get('/', [UserTemplateController::class, 'index'])->name('index');
                 Route::get('/create', [UserTemplateController::class, 'create'])->name('create');
@@ -73,7 +82,7 @@ Route::prefix('{locale}')
         });
     });
 
-// Статические страницы (без изменений)
+// Статические страницы
 Route::middleware('web')->group(function () {
     Route::get('/{locale}/terms', [StaticPageController::class, 'show'])->name('terms');
     Route::get('/{locale}/privacy', [StaticPageController::class, 'show'])->name('privacy');
