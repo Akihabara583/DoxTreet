@@ -9,8 +9,9 @@
                 <h5>{{ __('messages.categories') }}</h5>
                 <ul class="list-unstyled">
                     {{-- Выводим до 5 категорий в футере --}}
-                    @foreach(\App\Models\Category::all()->take(5) as $category)
-                        <li><a href="{{ route('home', app()->getLocale()) }}#category-{{ $category->id }}" class="text-white-50 text-decoration-none">{{ $category->name }}</a></li>
+                    @foreach(\App\Models\Category::query()->take(5)->get() as $category)
+                        {{-- ✅ ИЗМЕНЕНИЕ: Добавлен резервный вариант на случай отсутствия перевода --}}
+                        <li><a href="{{ route('home', app()->getLocale()) }}#category-{{ $category->id }}" class="text-white-50 text-decoration-none">{{ $category->getTranslation('name', app()->getLocale()) ?? $category->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -32,14 +33,13 @@
             <div class="col-md-3 mb-3">
                 <h5>{{ __('messages.legal') }}</h5>
                 <ul class="list-unstyled">
-                    {{-- ✅ ДОДАНО: Посилання на юридичні документи --}}
                     <li><a href="{{ route('terms', app()->getLocale()) }}" class="text-white-50 text-decoration-none">{{ __('messages.terms_of_service') }}</a></li>
                     <li><a href="{{ route('privacy', app()->getLocale()) }}" class="text-white-50 text-decoration-none">{{ __('messages.privacy_policy') }}</a></li>
                 </ul>
             </div>
         </div>
 
-        {{-- Дисклеймер та копірайт --}}
+        {{-- Дисклеймер и копирайт --}}
         <div class="pt-4 mt-4 border-top border-secondary">
             <p class="text-center text-white-50" style="font-size: 0.8rem;">
                 {{ __('messages.legal_disclaimer') }}

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use App\Models\GeneratedDocument;
 
-
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -19,31 +18,28 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/'; // ИЗМЕНЕНО: '/{locale}' может вызывать ошибки, лучше просто '/'
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
     public function boot(): void
     {
+        // Эту часть мы не трогаем, она нужна
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
 
-        // 2. ДОБАВЛЯЕМ ЯВНУЮ ПРИВЯЗКУ МОДЕЛИ
-        // Этот код говорит Laravel: "Когда видишь в маршруте параметр {generatedDocument},
-        // найди запись в модели GeneratedDocument по этому ID".
         Route::model('generatedDocument', GeneratedDocument::class);
+        Route::model('my_template', \App\Models\UserTemplate::class);
 
 
+        // ✅ ГЛАВНОЕ ИЗМЕНЕНИЕ: Мы упростили этот блок
+        // Теперь он загружает ТОЛЬКО твой основной файл web.php,
+        // который, как мы знаем, работает надежно.
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
-        Route::model('my_template', \App\Models\UserTemplate::class);
     }
 }

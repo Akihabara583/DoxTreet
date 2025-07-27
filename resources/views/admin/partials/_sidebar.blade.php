@@ -12,4 +12,7 @@
     <a href="{{ route('admin.posts.index', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
         <i class="bi bi-newspaper"></i> Статьи
     </a>
+    <a href="{{ route('admin.users.index', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+        <i class="bi bi-people-fill"></i> Пользователи
+    </a>
 </div>

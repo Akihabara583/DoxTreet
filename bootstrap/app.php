@@ -10,10 +10,30 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
+    ->withMiddleware(function (Middleware $middleware) {
+        // Добавляем наш маршрут вебхука в исключения для CSRF-проверки
+        $middleware->validateCsrfTokens(except: [
+            'webhooks/gumroad'
+        ]);
 
-        $middleware->appendToGroup('web', \App\Http\Middleware\InitializeLocale::class);
+        // ✅ НАЧАЛО ИЗМЕНЕНИЙ: Добавляем middleware для проверки cookie
+        $middleware->append(\App\Http\Middleware\CheckCookieConsent::class);
+        // 🔚 КОНЕЦ ИЗМЕНЕНИЙ
+
+        $middleware->append(\App\Http\Middleware\EnsureLocaleForApi::class);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
+    ->withExceptions(function (Exceptions $exceptions) {
+        // Этот блок кода мы добавили ранее, он остается без изменений
+        $exceptions->renderable(function (Throwable $e, \Illuminate\Http\Request $request) {
+            if ($request->is('webhooks/gumroad')) {
+                \Illuminate\Support\Facades\Log::error(
+                    'Webhook processing error: ' . $e->getMessage(),
+                    ['trace' => $e->getTraceAsString()]
+                );
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'An internal server error occurred.',
+                ], 500);
+            }
+        });
     })->create();

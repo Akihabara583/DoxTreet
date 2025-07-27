@@ -33,7 +33,6 @@ return [
     'overview' => 'Overview',
     'edit_profile' => 'Edit Profile',
     'document_history' => 'Document History',
-    'my_subscription' => 'My Subscription',
     'my_data' => 'My Data',
     'welcome_back' => 'Welcome back',
     'profile_dashboard_text' => 'From this dashboard, you can manage your profile, view your subscription, and access your document history.',
@@ -50,7 +49,6 @@ return [
     'my_templates_section' => 'My Templates',
     'my_templates' => 'My Templates',
     'create_template' => 'Create Template',
-
 
 
     'edit_template_title' => 'Editing Template: :name',
@@ -73,19 +71,6 @@ return [
     'edit_button' => 'Edit',
     'delete_button' => 'Delete',
     'delete_confirm_message' => 'Are you sure you want to delete this template? This action cannot be undone.',
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     'create_new_template_title' => 'Create New Template',
@@ -144,6 +129,80 @@ return [
     'confirm_delete_all' => 'WARNING! Are you sure you want to delete ALL your signed documents? This action is irreversible.',
 
 
+    // Ошибки лимитов
+    'limit_exhausted_error' => 'Your daily document download limit has been reached. Please <a href=":url" class="alert-link">upgrade your plan</a> to continue.',
+    'limit_exhausted_signature_error' => 'Your daily document signing limit has been reached. Please <a href=":url" class="alert-link">upgrade your plan</a>.',
+    'limit_exhausted_custom_template_error' => 'Your limit for creating custom templates has been reached. Please <a href=":url" class="alert-link">upgrade your plan</a>.',
+
+    // Страница тарифов (Pricing)
+    'pricing_title' => 'Our Pricing Plans',
+    'pricing_subtitle' => 'Choose the plan that fits your needs.',
+    'pricing_seo_description' => 'Choose a suitable plan for generating documents. Free, Standard, and Pro plans are available.',
+    'per_month' => 'per month',
+    'choose_plan' => 'Choose Plan',
+    'start_free' => 'Start for Free',
+
+
+
+    // --- Subscription Page ---
+
+    'auto_renewal_info' => 'Your subscription will be automatically renewed. You can cancel auto-renewal at any time.',
+    'confirm_cancel_sub' => 'Are you sure you want to cancel your subscription auto-renewal?',
+    'cancel_auto_renewal_button' => 'Cancel auto-renewal',
+    'auto_renewal_cancelled_info' => 'Auto-renewal for this subscription has already been canceled. You can use it until :date.',
+
+    // --- Subscription Cancellation Flash Messages ---
+    'sub_cancel_fail_not_found' => 'Could not find an active subscription to cancel.',
+    'sub_cancel_fail_server_error' => 'A server error occurred. Please contact support.',
+    'sub_cancel_success' => 'Subscription auto-renewal has been successfully canceled.',
+    'sub_cancel_fail_api_error' => 'Could not cancel the subscription. Please contact support.',
+
+    'validation_error_title' => 'Please correct the errors:',
+    'your_current_plan' => 'Your Current Plan',
+    'plan_free_title' => 'Base',
+    'plan_base_title' => 'Base',
+    'plan_base_feature1' => ':count document downloads per day',
+    'plan_base_feature2' => ':count document signing per day',
+    'plan_base_feature3' => 'Access to all templates',
+
+    'plan_standard_title' => 'Standard',
+    'plan_standard_feature1' => ':count document downloads per day',
+    'plan_standard_feature2' => ':count document signings per day',
+    'plan_standard_feature3' => 'Document history',
+    'plan_standard_feature4' => 'Email support',
+
+    'plan_pro_title' => 'Pro',
+    'plan_pro_feature1' => ':count document downloads per day',
+    'plan_pro_feature2' => ':count document signings per day',
+    'plan_pro_feature3' => ':count custom template creations per day',
+    'plan_pro_feature4' => 'Priority support',
+
+    // Страница "Моя подписка"
+    'my_subscription' => 'My Subscription',
+    'current_plan_details' => 'Current Plan Details',
+    'subscription_valid_until' => 'Subscription valid until',
+    'indefinite_subscription' => 'Indefinite (free) plan',
+    'change_plan' => 'View Plans',
+    'daily_limits_usage' => 'Daily Limits Usage',
+    'limit_downloads' => 'Downloads',
+    'limit_signatures' => 'Signatures',
+    'limit_custom_templates' => 'Custom Templates',
+
+    'cookie_consent_text' => 'We use cookies to improve your experience. By continuing to browse, you agree to our <a href=":termsUrl">Terms of Service</a> and <a href=":privacyUrl">Privacy Policy</a>.',
+    'cookie_consent_accept_button' => 'Accept',
+    'cookie_consent_decline_button' => 'Decline',
+
+    // --- Daily Limit Reset ---
+    'limit_reset_title' => 'Daily Limit Reached?',
+    'limit_reset_text' => 'Refresh your daily limits for the Base plan and continue working without waiting for tomorrow.',
+    'limit_reset_button' => 'Refresh Limits for :price',
+
+    'daily_limits_usage_title'      => 'Daily Limits Usage',
+    'limit_downloads_used'          => 'Downloads Used',
+    'limit_signatures_used'         => 'Signatures Used',
+    'limit_custom_templates_used'   => 'Custom Templates Created',
+
+
     // "My Data" Page
     'my_data_text' => 'Save your personal information once to automatically fill it in all documents. This data is securely stored and only accessible to you.',
     'my_data_updated_successfully' => 'Your data has been saved successfully!',
@@ -182,12 +241,9 @@ return [
     'feature_3_text' => 'Get a print-ready PDF file. Save your document history in your personal account.',
 
     // Pricing Page
-    'pricing_title' => 'Our Pricing',
-    'pricing_subtitle' => 'Choose the plan that\'s right for you. Cancel anytime.',
+
     'free_plan' => 'Free',
     'pro_plan' => 'Pro',
-    'per_month' => '/month',
-    'start_free' => 'Start for Free',
     'choose_pro' => 'Choose Pro',
     'feature_daily_limit' => '1 document per day',
     'feature_all_templates' => 'Access to all templates',
@@ -283,61 +339,115 @@ return [
 
 
 
-    // --- Privacy Policy ---
+
+
+
+
+
+
+
+    // --- IMPROVED LEGAL CONTENT ---
+
     'privacy_policy_title' => 'Privacy Policy',
     'privacy_policy_content' => '
-<h2>1. Introduction</h2>
-<p>This Privacy Policy explains how DoxTreet ("we", "us", "our") collects, uses, and protects your personal information when you use our website. We are committed to protecting your privacy and ensuring the security of your data.</p>
-<h2>2. What data do we collect</h2>
-<p>We may collect the following types of information:</p>
-<ul>
-    <li><strong>Personal identification data:</strong> Name, email address that you provide during registration.</li>
-    <li><strong>Data for document generation:</strong> Information you enter into forms to create documents (full name, passport data, addresses, etc.). This data is stored in your profile for ease of reuse.</li>
-    <li><strong>Technical data:</strong> IP address, browser type, operating system, and site usage data collected automatically.</li>
-</ul>
-<h2>3. How we use your data</h2>
-<p>Your data is used for the following purposes: To provide and maintain the functionality of our service; To personalize your experience and auto-fill forms; To contact you regarding your account; To analyze and improve our website\'s performance.</p>
-<h2>4. Data storage and security</h2>
-<p>We take all necessary technical and organizational measures to protect your data from unauthorized access. Your document data is stored in your personal account.</p>
-<h2>5. Your rights (GDPR)</h2>
-<p>You have the right to access, correct, delete, or restrict the processing of your personal data. To exercise these rights, please contact us.</p>
-<h2>6. Contact Information</h2>
-<p>If you have any questions about this Privacy Policy, please contact us at support@doxtreet.com.</p>
-',
+        <h2>1. Introduction</h2>
+        <p>Welcome to DoxTreet. This Privacy Policy outlines our commitment to protecting the privacy of our users. It explains how we collect, use, disclose, and safeguard your information when you visit our website. By using our service, you consent to the data practices described in this policy.</p>
 
-// --- Terms of Use ---
+        <h2>2. Information We Collect</h2>
+        <p>We may collect personally identifiable information and non-personal information. The types of information we collect include:</p>
+        <ul>
+            <li><strong>Personal Data:</strong> Name, email address, and payment information you provide when registering for an account or subscribing to a plan.</li>
+            <li><strong>Document Data:</strong> Information you voluntarily enter into our document templates, such as names, addresses, passport details, and other personal or business data. This data is encrypted and stored securely in your account for your convenience.</li>
+            <li><strong>Usage Data:</strong> Information your browser automatically sends, such as your IP address, browser type, browser version, the pages you visit, the time and date of your visit, and other diagnostic data.</li>
+            <li><strong>Cookies and Tracking Technologies:</strong> We use cookies to track activity on our service and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</li>
+        </ul>
+
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the collected data for various purposes:</p>
+        <ul>
+            <li>To provide, maintain, and improve our Service.</li>
+            <li>To manage your account and provide you with customer support.</li>
+            <li>To personalize your experience by auto-filling document templates with your saved data.</li>
+            <li>To process transactions and manage subscriptions.</li>
+            <li>To communicate with you about updates, security alerts, and support messages.</li>
+            <li>To monitor the usage of our Service and for internal analysis.</li>
+        </ul>
+
+        <h2>4. Data Storage, Security, and Retention</h2>
+        <p>We implement a variety of security measures to maintain the safety of your personal information. Your data is stored on secure servers, and all payment transactions are encrypted using SSL technology. We will retain your information only for as long as is necessary for the purposes set out in this policy or as required by law.</p>
+
+        <h2>5. Your Data Protection Rights (GDPR)</h2>
+        <p>If you are a resident of the European Economic Area (EEA), you have certain data protection rights:</p>
+        <ul>
+            <li>The right to access, update, or delete the information we have on you.</li>
+            <li>The right of rectification.</li>
+            <li>The right to object to processing.</li>
+            <li>The right of restriction.</li>
+            <li>The right to data portability.</li>
+            <li>The right to withdraw consent at any time.</li>
+        </ul>
+        <p>To exercise these rights, please access your account settings or contact us directly.</p>
+
+        <h2>6. Contact Us</h2>
+        <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <span style="font-weight: bold;">doxtreet@gmail.com</span></p>
+    ',
+
     'terms_of_use_title' => 'Terms of Use',
     'terms_of_use_content' => '
-<h2>1. Acceptance of terms</h2>
-<p>By using the DoxTreet website ("Service"), you agree to these Terms of Use. If you do not agree with these terms, please do not use our Service.</p>
-<h2>2. Description of the Service</h2>
-<p>The Service provides users with access to document templates that can be filled out online and downloaded. The Service is designed to simplify the process of creating standard documents.</p>
-<h2>3. User responsibility</h2>
-<p>You are solely responsible for the accuracy and completeness of the data you enter into the templates. You agree not to use the Service for any illegal purposes.</p>
-<h2>4. Intellectual property</h2>
-<p>All content, including the site design, texts, and templates, is the property of DoxTreet. Copying or distributing site materials without our prior consent is prohibited.</p>
-<h2>5. Disclaimer of warranties</h2>
-<p>The Service and templates are provided "as is". We do not guarantee that the templates are legally flawless or suitable for any specific purpose. As stated in our disclaimer, legal consultation with a professional lawyer is necessary to resolve legal issues.</p>
-',
+        <h2>1. Agreement to Terms</h2>
+        <p>By accessing or using the DoxTreet website and services (the "Service"), you agree to be bound by these Terms of Use. If you disagree with any part of the terms, then you may not access the Service. These terms apply to all visitors, users, and others who wish to access or use the Service.</p>
 
-// --- FAQ ---
+        <h2>2. Description of Service</h2>
+        <p>DoxTreet provides users with a platform to generate, manage, and download documents based on pre-made templates. The Service is intended to simplify document creation but does not constitute legal advice.</p>
+
+        <h2>3. User Accounts and Responsibilities</h2>
+        <p>When you create an account with us, you guarantee that you are above the age of 18 and that the information you provide is accurate, complete, and current. You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password. You agree not to use the Service for any unlawful purpose or in any way that might harm, damage, or disparage any other party.</p>
+
+        <h2>4. Intellectual Property</h2>
+        <p>The Service and its original content, features, and functionality are and will remain the exclusive property of DoxTreet and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of DoxTreet.</p>
+
+        <h2>5. Disclaimer of Warranties and Limitation of Liability</h2>
+        <p>The Service and the templates are provided on an "AS IS" and "AS AVAILABLE" basis. DoxTreet makes no warranties, expressed or implied, and hereby disclaims all other warranties. We do not warrant that the templates are legally sound or suitable for any specific purpose. As stated in our disclaimer, consultation with a professional lawyer is necessary to address legal matters. In no event shall DoxTreet be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the Service.</p>
+
+        <h2>6. Termination</h2>
+        <p>We may terminate or suspend your account and bar access to the Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+
+
+    ',
+
     'faq_title' => 'Frequently Asked Questions (FAQ)',
     'faq_content' => '
-<h3>Is the service free?</h3>
-<p>The basic functionality, including access to certain templates, is free. We also offer premium plans with advanced features and access to all templates.</p>
-<h3>Do the documents have legal force?</h3>
-<p>No. As stated in our <a href="{{ route(\'terms\', app()->getLocale()) }}">Disclaimer</a>, our templates are only samples. To give a document legal force, we strongly recommend consulting with a qualified lawyer.</p>
-<h3>How is my data protected?</h3>
-<p>We take security very seriously. All data you enter on the "My Data" page is stored in your profile and used solely for auto-filling forms. Read more about this in our <a href="{{ route(\'privacy\', app()->getLocale()) }}">Privacy Policy</a>.</p>
-',
+        <h3>General Questions</h3>
+        <p><strong>Is the service free?</strong><br>DoxTreet offers a free base plan with daily limits. For unlimited access and advanced features, we offer affordable premium subscription plans.</p>
+        <p><strong>Do the documents have legal force?</strong><br>No. Our templates are provided for convenience and are for sample purposes only. They are not a substitute for legal advice. As stated in our <a href="{{ route(\'terms\', app()->getLocale()) }}">Disclaimer</a>, to ensure a document is legally binding and suitable for your specific situation, we strongly recommend consulting with a qualified lawyer.</p>
 
-// --- About Us ---
+        <h3>Data and Security</h3>
+        <p><strong>How is my data protected?</strong><br>We take your security very seriously. All data you enter is transmitted over an encrypted connection (SSL). Data saved in your "My Data" profile is stored securely and is only used to auto-fill forms for your convenience. For more details, please review our <a href="{{ route(\'privacy\', app()->getLocale()) }}">Privacy Policy</a>.</p>
+        <p><strong>Can I delete my data?</strong><br>Yes. You have full control over your data. You can edit or delete any information saved in your "My Data" profile at any time. You can also delete your entire account, which will permanently remove all your associated data from our systems.</p>
+
+        <h3>Account and Subscription</h3>
+        <p><strong>How can I manage my subscription?</strong><br>You can view your current plan, usage limits, and manage your subscription from the "My Subscription" page in your account dashboard.</p>
+    ',
+
     'about_us_title' => 'About Us',
     'about_us_content' => '
-<h2>Our Mission</h2>
-<p>DoxTreet\'s mission is to simplify and accelerate the process of creating standard documents for individuals and businesses. We know how complex bureaucracy can be and strive to make it a little less burdensome, saving you time and nerves.</p>
-<h2>Who we are</h2>
-<p>We are a team of enthusiasts who believe that technology can solve everyday problems. Our project was born from our own experience of endlessly filling out the same papers. We decided there had to be a better way — and created DoxTreet.</p>
-',
+        <h2>Our Mission</h2>
+        <p>In a world cluttered with paperwork and bureaucracy, DoxTreet was founded with a clear mission: to simplify and streamline the creation of essential documents for everyone. We believe that generating a standard contract, application, or letter shouldn\'t require expensive legal fees or hours of tedious work. Our goal is to empower individuals and small businesses by providing accessible, easy-to-use tools that save time, money, and stress.</p>
+
+        <h2>Who We Are</h2>
+        <p>We are a team of technology enthusiasts and legal-tech professionals who have experienced the frustrations of document management firsthand. Born from a desire to find a better way, DoxTreet combines smart technology with carefully crafted templates to make your life easier. We are dedicated to continuous improvement, constantly expanding our template library and refining our platform to meet the evolving needs of our users.</p>
+
+        <h2>Why Choose DoxTreet?</h2>
+        <p>We focus on creating a seamless user experience, ensuring data security, and providing real value. Whether you are drafting a business agreement, a personal application, or a formal complaint, DoxTreet is your reliable partner in navigating the complexities of documentation.</p>
+    ',
+
+
+
+
+
+
+
+
+
 
 ];

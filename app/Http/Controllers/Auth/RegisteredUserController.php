@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Services\SubscriptionService; // ✅ 1. Добавляем импорт сервиса
 
 class RegisteredUserController extends Controller
 {
@@ -27,7 +28,8 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    // ✅ 2. Внедряем сервис в метод
+    public function store(Request $request, SubscriptionService $subscriptionService): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -41,10 +43,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // ✅ 3. Назначаем базовый план и лимиты новому пользователю
+        $subscriptionService->assignPlan($user, 'base', null);
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('home', app()->getLocale()));
     }
 }

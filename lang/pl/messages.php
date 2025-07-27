@@ -18,6 +18,20 @@ return [
     'fill_out' => 'Wypełnij',
     'no_templates_for_country' => 'Brak dostępnych szablonów dla tego kraju.',
 
+
+
+
+    // --- Daily Limit Reset ---
+    'limit_reset_title' => 'Osiągnięto dzienny limit?',
+    'limit_reset_text' => 'Odśwież swoje dzienne limity dla planu Podstawowego i kontynuuj pracę, не czekając na jutro.',
+    'limit_reset_button' => 'Odśwież limity za :price',
+
+
+    'daily_limits_usage_title'      => 'Wykorzystanie dziennych limitów',
+    'limit_downloads_used'          => 'Wykorzystane pobrania',
+    'limit_signatures_used'         => 'Wykorzystane podpisy',
+    'limit_custom_templates_used'   => 'Stworzone własne szablony',
+
     // Search & Popular
     'search_placeholder' => 'Znajdź dokument, np. "skarga na sąsiada"',
     'popular_templates' => 'Popularne szablony',
@@ -184,7 +198,7 @@ return [
 
     // Pricing Page
     'pricing_title' => 'Nasz cennik',
-    'pricing_subtitle' => 'Wybierz plan, który jest dla Ciebie odpowiedni. Anuluj w dowolnym momencie.',
+    'pricing_subtitle' => 'Wybierz plan, który jest dla Ciebie odpowiedni.',
     'free_plan' => 'Darmowy',
     'pro_plan' => 'Pro',
     'per_month' => '/miesiąc',
@@ -196,6 +210,51 @@ return [
     'feature_unlimited' => '<strong>Nielimitowane</strong> tworzenie dokumentów',
     'feature_history' => '<strong>Historia dokumentów</strong> na koncie',
     'feature_priority_support' => 'Priorytetowe wsparcie',
+
+    'validation_error_title' => 'Proszę poprawić błędy:',
+    'limit_exhausted_error' => 'Twój dzienny limit pobierania dokumentów został osiągnięty. Proszę <a href=":url" class="alert-link">zaktualizować swój plan</a>, aby kontynuować.',
+    'limit_exhausted_signature_error' => 'Twój dzienny limit podpisywania dokumentów został osiągnięty. Proszę <a href=":url" class="alert-link">zaktualizować swój plan</a>.',
+    'limit_exhausted_custom_template_error' => 'Twój limit na tworzenie własnych szablonów został osiągnięty. Proszę <a href=":url" class="alert-link">zaktualizować swój plan</a>.',
+    'your_current_plan' => 'Twój obecny plan',
+    'choose_plan' => 'Wybierz plan',
+    'plan_base_feature1' => ':count pobrania dokumentów dziennie',
+    'plan_base_feature2' => ':count podpisania dokumentów dziennie',
+    'plan_standard_feature1' => ':count pobrań dokumentów dziennie',
+    'plan_standard_feature2' => ':count podpisań dokumentów dziennie',
+    'plan_standard_feature3' => 'Historia dokumentów',
+    'plan_pro_feature1' => ':count pobrań dokumentów dziennie',
+    'plan_pro_feature2' => ':count podpisań dokumentów dziennie',
+    'plan_pro_feature3' => ':count tworzenia własnych szablonów dziennie',
+
+
+
+
+
+
+
+
+    // --- Subscription Page ---
+    'current_plan_details' => 'Szczegóły bieżącego planu',
+    'plan_base_title' => 'Plan Podstawowy (darmowy)',
+    'plan_standard_title' => 'Plan Standard',
+    'plan_pro_title' => 'Plan Pro',
+    'subscription_valid_until' => 'Subskrypcja ważna do',
+    'indefinite_subscription' => 'Plan bezterminowy (darmowy)',
+    'change_plan' => 'Zobacz plany',
+    'daily_limits_usage' => 'Wykorzystanie limitów dziennych',
+    'limit_downloads' => 'Pobrania',
+    'limit_signatures' => 'Podpisy',
+    'limit_custom_templates' => 'Własne szablony',
+    'auto_renewal_info' => 'Twoja subskrypcja zostanie automatycznie odnowiona. Możesz anulować automatyczne odnawianie w dowolnym momencie.',
+    'confirm_cancel_sub' => 'Czy na pewno chcesz anulować automatyczne odnawianie subskrypcji?',
+    'cancel_auto_renewal_button' => 'Anuluj automatyczne odnawianie',
+    'auto_renewal_cancelled_info' => 'Automatyczne odnawianie tej subskrypcji zostało już anulowane. Możesz z niej korzystać do :date.',
+
+    // --- Subscription Cancellation Flash Messages ---
+    'sub_cancel_fail_not_found' => 'Nie można znaleźć aktywnej subskrypcji do anulowania.',
+    'sub_cancel_fail_server_error' => 'Wystąpił błąd serwera. Prosimy o kontakt z pomocą techniczną.',
+    'sub_cancel_success' => 'Automatyczne odnawianie subskrypcji zostało pomyślnie anulowane.',
+    'sub_cancel_fail_api_error' => 'Nie udało się anulować subskrypcji. Prosimy o kontakt z pomocą techniczną.',
 
     // Rate Limiter
     'rate_limit_exceeded' => 'Przekroczyłeś dzienny limit tworzenia PDF. Zarejestruj się, aby uzyskać nieograniczony dostęp.',
@@ -285,62 +344,101 @@ return [
 
 
 
-    // --- Polityka prywatności ---
-    'privacy_policy_title' => 'Polityka prywatności',
+// --- IMPROVED LEGAL CONTENT ---
+
+    'privacy_policy_title' => 'Polityka Prywatności',
     'privacy_policy_content' => '
-<h2>1. Wprowadzenie</h2>
-<p>Niniejsza Polityka Prywatności wyjaśnia, w jaki sposób DoxTreet ("my", "nas", "nasz") gromadzi, wykorzystuje i chroni Twoje dane osobowe podczas korzystania z naszej strony internetowej. Zobowiązujemy się do ochrony Twojej prywatności i zapewnienia bezpieczeństwa Twoich danych.</p>
-<h2>2. Jakie dane zbieramy</h2>
-<p>Możemy zbierać następujące rodzaje informacji:</p>
-<ul>
-    <li><strong>Dane identyfikacyjne:</strong> Imię, adres e-mail podawane podczas rejestracji.</li>
-    <li><strong>Dane do generowania dokumentów:</strong> Informacje wprowadzane w formularzach w celu tworzenia dokumentów (imię i nazwisko, dane paszportowe, adresy itp.). Dane te są przechowywane w Twoim profilu w celu ułatwienia ponownego użycia.</li>
-    <li><strong>Dane techniczne:</strong> Adres IP, typ przeglądarki, system operacyjny i dane dotyczące korzystania ze strony, zbierane automatycznie.</li>
-</ul>
-<h2>3. Jak wykorzystujemy Twoje dane</h2>
-<p>Twoje dane są wykorzystywane w następujących celach: W celu świadczenia i utrzymania funkcjonalności naszego serwisu; W celu personalizacji Twojego doświadczenia i automatycznego wypełniania formularzy; W celu kontaktowania się z Tobą w sprawach dotyczących Twojego konta; W celu analizy i ulepszania działania naszej strony.</p>
-<h2>4. Przechowywanie i bezpieczeństwo danych</h2>
-<p>Podejmujemy wszelkie niezbędne środki techniczne i organizacyjne w celu ochrony Twoich danych przed nieautoryzowanym dostępem. Twoje dane do dokumentów są przechowywane na Twoim koncie osobistym.</p>
-<h2>5. Twoje prawa (RODO)</h2>
-<p>Masz prawo do dostępu, sprostowania, usunięcia lub ograniczenia przetwarzania swoich danych osobowych. Aby skorzystać z tych praw, skontaktuj się z nami.</p>
-<h2>6. Informacje kontaktowe</h2>
-<p>Jeśli masz pytania dotyczące niniejszej Polityki Prywatności, skontaktuj się z nami pod adresem support@doxtreet.com.</p>
-',
+        <h2>1. Wprowadzenie</h2>
+        <p>Witamy w DoxTreet. Niniejsza Polityka Prywatności określa nasze zobowiązanie do ochrony prywatności naszych użytkowników. Wyjaśnia, w jaki sposób gromadzimy, wykorzystujemy, ujawniamy i chronimy Twoje informacje podczas odwiedzania naszej strony internetowej. Korzystając z naszej usługi, wyrażasz zgodę na praktyki dotyczące danych opisane w niniejszej polityce.</p>
 
-// --- Warunki korzystania ---
-    'terms_of_use_title' => 'Warunki korzystania',
+        <h2>2. Jakie informacje zbieramy</h2>
+        <p>Możemy zbierać dane osobowe i dane nieosobowe. Rodzaje zbieranych przez nas informacji obejmują:</p>
+        <ul>
+            <li><strong>Dane Osobowe:</strong> Imię i nazwisko, adres e-mail oraz informacje o płatnościach, które podajesz podczas rejestracji konta lub subskrypcji planu.</li>
+            <li><strong>Dane do Dokumentów:</strong> Informacje, które dobrowolnie wprowadzasz do naszych szablonów dokumentów, takie jak imiona i nazwiska, adresy, dane paszportowe i inne dane osobowe lub biznesowe. Dane te są szyfrowane i bezpiecznie przechowywane na Twoim koncie dla Twojej wygody.</li>
+            <li><strong>Dane Użytkowania:</strong> Informacje, które Twoja przeglądarka wysyła automatycznie, takie jak adres IP, typ przeglądarki, wersja przeglądarki, odwiedzane strony, godzina i data wizyty oraz inne dane diagnostyczne.</li>
+            <li><strong>Pliki Cookie i Technologie Śledzące:</strong> Używamy plików cookie do śledzenia aktywności w naszej usłudze i przechowywania określonych informacji. Możesz poinstruować swoją przeglądarkę, aby odrzucała wszystkie pliki cookie lub informowała, kiedy plik cookie jest wysyłany.</li>
+        </ul>
+
+        <h2>3. Jak wykorzystujemy Twoje informacje</h2>
+        <p>Zebrane dane wykorzystujemy w różnych celach:</p>
+        <ul>
+            <li>Aby świadczyć, utrzymywać i ulepszać naszą Usługę.</li>
+            <li>Aby zarządzać Twoim kontem i zapewniać Ci obsługę klienta.</li>
+            <li>Aby personalizować Twoje doświadczenie poprzez automatyczne wypełnianie szablonów dokumentów zapisanymi danymi.</li>
+            <li>Aby przetwarzać transakcje i zarządzać subskrypcjami.</li>
+            <li>Aby komunikować się z Tobą w sprawie aktualizacji, alertów bezpieczeństwa i wiadomości wsparcia.</li>
+            <li>Aby monitorować korzystanie z naszej Usługi i do celów analizy wewnętrznej.</li>
+        </ul>
+
+        <h2>4. Przechowywanie, bezpieczeństwo i retencja danych</h2>
+        <p>Wdrażamy różnorodne środki bezpieczeństwa w celu ochrony Twoich danych osobowych. Twoje dane są przechowywane na bezpiecznych serwerach, a wszystkie transakcje płatnicze są szyfrowane przy użyciu technologii SSL. Będziemy przechowywać Twoje informacje tylko tak długo, jak będzie to konieczne do celów określonych w niniejszej polityce lub zgodnie z wymogami prawa.</p>
+
+        <h2>5. Twoje prawa do ochrony danych (RODO)</h2>
+        <p>Jeśli jesteś mieszkańcem Europejskiego Obszaru Gospodarczego (EOG), przysługują Ci określone prawa do ochrony danych:</p>
+        <ul>
+            <li>Prawo do dostępu, aktualizacji lub usunięcia informacji, które posiadamy na Twój temat.</li>
+            <li>Prawo do sprostowania danych.</li>
+            <li>Prawo do sprzeciwu wobec przetwarzania.</li>
+            <li>Prawo do ograniczenia przetwarzania.</li>
+            <li>Prawo do przenoszenia danych.</li>
+            <li>Prawo do wycofania zgody w dowolnym momencie.</li>
+        </ul>
+        <p>Aby skorzystać z tych praw, przejdź do ustawień swojego konta lub skontaktuj się z nami bezpośrednio.</p>
+
+        <h2>6. Skontaktuj się z nami</h2>
+        <p>Jeśli masz jakiekolwiek pytania lub sugestie dotyczące naszej Polityki Prywatności, nie wahaj się skontaktować z nami pod adresem <span style="font-weight: bold;">doxtreet@gmail.com</span></p>
+    ',
+
+    'terms_of_use_title' => 'Warunki Korzystania',
     'terms_of_use_content' => '
-<h2>1. Akceptacja warunków</h2>
-<p>Korzystając ze strony DoxTreet ("Serwis"), zgadzasz się na niniejsze Warunki Korzystania. Jeśli не zgadzasz się na te warunki, prosimy o niekorzystanie z naszego Serwisu.</p>
-<h2>2. Opis Usługi</h2>
-<p>Serwis zapewnia użytkownikom dostęp do szablonów dokumentów, które można wypełniać online i pobierać. Serwis ma na celu uproszczenie procesu tworzenia standardowych dokumentów.</p>
-<h2>3. Odpowiedzialność użytkownika</h2>
-<p>Ponosisz pełną odpowiedzialność za dokładność i kompletność danych, które wprowadzasz do szablonów. Zgadzasz się не używać Serwisu w żadnych celach niezgodnych z prawem.</p>
-<h2>4. Własność intelektualna</h2>
-<p>Cała zawartość, w tym projekt strony, teksty i szablony, jest własnością DoxTreet. Kopiowanie lub rozpowszechnianie materiałów ze strony bez naszej uprzedniej zgody jest zabronione.</p>
-<h2>5. Wyłączenie gwarancji</h2>
-<p>Serwis i szablony są dostarczane "tak jak są". Nie gwarantujemy, że szablony są prawnie nienaganne lub odpowiednie do jakiegokolwiek konkretnego celu. Jak stwierdzono w naszym zastrzeżeniu prawnym, w celu rozwiązania kwestii prawnych konieczna jest konsultacja z profesjonalnym prawnikiem.</p>
-',
+        <h2>1. Akceptacja Warunków</h2>
+        <p>Uzyskując dostęp do strony internetowej i usług DoxTreet ("Usługa") lub korzystając z nich, zgadzasz się na przestrzeganie niniejszych Warunków Korzystania. Jeśli nie zgadzasz się z jakąkolwiek częścią warunków, nie możesz korzystać z Usługi. Niniejsze warunki dotyczą wszystkich odwiedzających, użytkowników i innych osób, które chcą uzyskać dostęp do Usługi lub z niej korzystać.</p>
 
-// --- FAQ ---
-    'faq_title' => 'Często zadawane pytania (FAQ)',
+        <h2>2. Opis Usługi</h2>
+        <p>DoxTreet zapewnia użytkownikom platformę do generowania, zarządzania i pobierania dokumentów na podstawie gotowych szablonów. Usługa ma na celu uproszczenie tworzenia dokumentów, ale nie stanowi porady prawnej.</p>
+
+        <h2>3. Konta użytkowników i obowiązki</h2>
+        <p>Tworząc u nas konto, gwarantujesz, że masz ukończone 18 lat i że podane przez Ciebie informacje są dokładne, kompletne i aktualne. Jesteś odpowiedzialny za ochronę hasła, którego używasz do uzyskania dostępu do Usługi, oraz za wszelkie działania lub czynności wykonywane przy użyciu Twojego hasła. Zgadzasz się nie używać Usługi w żadnym celu niezgodnym z prawem ani w sposób, który mógłby zaszkodzić, uszkodzić lub zdyskredytować jakąkolwiek inną stronę.</p>
+
+        <h2>4. Własność Intelektualna</h2>
+        <p>Usługa oraz jej oryginalna treść, funkcje i funkcjonalność są i pozostaną wyłączną własnością DoxTreet i jej licencjodawców. Nasze znaki towarowe i wygląd handlowy nie mogą być używane w związku z żadnym produktem lub usługą bez uprzedniej pisemnej zgody DoxTreet.</p>
+
+        <h2>5. Wyłączenie gwarancji i ograniczenie odpowiedzialności</h2>
+        <p>Usługa i szablony są dostarczane na zasadzie "TAK JAK JEST" i "W MIARĘ DOSTĘPNOŚCI". DoxTreet nie udziela żadnych gwarancji, wyraźnych ani dorozumianych, i niniejszym wyłącza wszelkie inne gwarancje. Nie gwarantujemy, że szablony są prawnie poprawne lub odpowiednie do jakiegokolwiek konkretnego celu. Jak stwierdzono w naszym zastrzeżeniu, w celu rozwiązania kwestii prawnych konieczna jest konsultacja z profesjonalnym prawnikiem. W żadnym wypadku DoxTreet не ponosi odpowiedzialności za jakiekolwiek szkody pośrednie, przypadkowe, specjalne, wynikowe lub karne wynikające z korzystania z Usługi.</p>
+
+        <h2>6. Zakończenie świadczenia usług</h2>
+        <p>Możemy zakończyć lub zawiesić Twoje konto i zablokować dostęp do Usługi natychmiast, bez uprzedniego powiadomienia lub odpowiedzialności, według naszego wyłącznego uznania, z dowolnego powodu, w tym między innymi w przypadku naruszenia przez Ciebie Warunków.</p>
+
+
+
+    ',
+
+    'faq_title' => 'Często Zadawane Pytania (FAQ)',
     'faq_content' => '
-<h3>Czy usługa jest bezpłatna?</h3>
-<p>Podstawowa funkcjonalność, w tym dostęp do niektórych szablonów, jest bezpłatna. Oferujemy również plany premium z zaawansowanymi funkcjami i dostępem do wszystkich szablonów.</p>
-<h3>Czy dokumenty mają moc prawną?</h3>
-<p>Nie. Jak stwierdzono w naszym <a href="{{ route(\'terms\', app()->getLocale()) }}">Zastrzeżeniu prawnym</a>, nasze szablony są tylko wzorami. Aby nadać dokumentowi moc prawną, zdecydowanie zalecamy skonsultowanie się z wykwalifikowanym prawnikiem.</p>
-<h3>Jak chronione są moje dane?</h3>
-<p>Bardzo poważnie podchodzimy do kwestii bezpieczeństwa. Wszystkie dane, które wprowadzasz na stronie "Moje dane", są przechowywane w Twoim profilu i wykorzystywane wyłącznie do automatycznego wypełniania formularzy. Przeczytaj więcej na ten temat w naszej <a href="{{ route(\'privacy\', app()->getLocale()) }}">Polityce prywatności</a>.</p>
-',
+        <h3>Pytania Ogólne</h3>
+        <p><strong>Czy usługa jest bezpłatna?</strong><br>DoxTreet oferuje bezpłatny plan podstawowy z dziennymi limitami. W celu uzyskania nieograniczonego dostępu i zaawansowanych funkcji, oferujemy przystępne cenowo plany subskrypcji premium.</p>
+        <p><strong>Czy dokumenty mają moc prawną?</strong><br>Nie. Nasze szablony są dostarczane dla wygody i służą wyłącznie jako wzory. Nie zastępują porady prawnej. Jak stwierdzono w naszym <a href="{{ route(\'terms\', app()->getLocale()) }}">Zastrzeżeniu</a>, w celu zapewnienia, że dokument jest prawnie wiążący i odpowiedni do Twojej konkretnej sytuacji, zdecydowanie zalecamy skonsultowanie się z wykwalifikowanym prawnikiem.</p>
 
-// --- O nas ---
-    'about_us_title' => 'O nas',
+        <h3>Dane i Bezpieczeństwo</h3>
+        <p><strong>Jak chronione są moje dane?</strong><br>Traktujemy Twoje bezpieczeństwo bardzo poważnie. Wszystkie dane, które wprowadzasz, są przesyłane za pośrednictwem szyfrowanego połączenia (SSL). Dane zapisane w Twoim profilu "Moje dane" są bezpiecznie przechowywane i wykorzystywane wyłącznie do automatycznego wypełniania formularzy dla Twojej wygody. Więcej szczegółów znajdziesz w naszej <a href="{{ route(\'privacy\', app()->getLocale()) }}">Polityce Prywatności</a>.</p>
+        <p><strong>Czy mogę usunąć swoje dane?</strong><br>Tak. Masz pełną kontrolę nad swoimi danymi. Możesz edytować lub usuwać wszelkie informacje zapisane w swoim profilu "Moje dane" w dowolnym momencie. Możesz również usunąć całe swoje konto, co spowoduje trwałe usunięcie wszystkich powiązanych z nim danych z naszych systemów.</p>
+
+        <h3>Konto i Subskrypcja</h3>
+        <p><strong>Jak mogę zarządzać swoją subskrypcją?</strong><br>Możesz przeglądać swój obecny plan, limity użytkowania i zarządzać subskrypcją na stronie "Moja subskrypcja" w panelu swojego konta.</p>
+    ',
+
+    'about_us_title' => 'O Nas',
     'about_us_content' => '
-<h2>Nasza misja</h2>
-<p>Misją DoxTreet jest uproszczenie i przyspieszenie procesu tworzenia standardowych dokumentów dla osób prywatnych i firm. Wiemy, jak skomplikowana może być biurokracja, i staramy się uczynić ją nieco mniej uciążliwą, oszczędzając Twój czas i nerwy.</p>
-<h2>Kim jesteśmy</h2>
-<p>Jesteśmy zespołem entuzjastów, którzy wierzą, że technologia może rozwiązywać codzienne problemy. Nasz projekt narodził się z własnego doświadczenia niekończącego się wypełniania tych samych dokumentów. Postanowiliśmy, że musi istnieć lepszy sposób — i stworzyliśmy DoxTreet.</p>
-',
+        <h2>Nasza Misja</h2>
+        <p>W świecie zagraconym papierkową robotą i biurokracją, DoxTreet został założony z jasną misją: uproszczenie i usprawnienie tworzenia niezbędnych dokumentów dla wszystkich. Wierzymy, że generowanie standardowej umowy, wniosku czy listu nie powinno wymagać drogich opłat prawnych ani godzin żmudnej pracy. Naszym celem jest wzmocnienie pozycji osób fizycznych i małych firm poprzez dostarczanie dostępnych, łatwych w użyciu narzędzi, które oszczędzają czas, pieniądze i stres.</p>
+
+        <h2>Kim Jesteśmy</h2>
+        <p>Jesteśmy zespołem entuzjastów technologii i profesjonalistów z branży legal-tech, którzy na własnej skórze doświadczyli frustracji związanych z zarządzaniem dokumentami. Zrodzony z chęci znalezienia lepszego sposobu, DoxTreet łączy inteligentną technologię z starannie opracowanymi szablonami, aby ułatwić Ci życie. Poświęcamy się ciągłemu doskonaleniu, stale poszerzając naszą bibliotekę szablonów i udoskonalając naszą platformę, aby sprostać zmieniającym się potrzebom naszych użytkowników.</p>
+
+        <h2>Dlaczego Wybrać DoxTreet?</h2>
+        <p>Skupiamy się na tworzeniu bezproblemowego doświadczenia użytkownika, zapewnianiu bezpieczeństwa danych i dostarczaniu realnej wartości. Niezależnie od tego, czy sporządzasz umowę biznesową, wniosek osobisty czy formalną skargę, DoxTreet jest Twoim niezawodnym partnerem w nawigacji po zawiłościach dokumentacji.</p>
+    ',
 
 
 ];

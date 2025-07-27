@@ -1,5 +1,7 @@
 <?php
 
+// Файл: app/Http/Controllers/SignatureController.php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -28,21 +30,20 @@ class SignatureController extends Controller
 
         $user = Auth::user();
 
-        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
-        // Проверяем количество документов пользователя
-        $documentCount = SignedDocument::where('user_id', $user->id)->count();
+        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
+        if (!$user->canPerformAction('signature')) {
+            $errorMessage = __('messages.limit_exhausted_signature_error', ['url' => route('pricing', app()->getLocale())]);
+            return back()->with('error_html', $errorMessage);
+        }
 
-        // Если документов 20 или больше, удаляем самый старый
+        $documentCount = SignedDocument::where('user_id', $user->id)->count();
         if ($documentCount >= 20) {
             $oldestDocument = SignedDocument::where('user_id', $user->id)->oldest()->first();
             if ($oldestDocument) {
-                // Удаляем старый файл с диска
                 Storage::disk('public')->delete($oldestDocument->signed_file_path);
-                // Удаляем запись из базы данных
                 $oldestDocument->delete();
             }
         }
-        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
         $file = $request->file('document');
         $signatureDataUrl = $request->input('signature');
@@ -77,15 +78,11 @@ class SignatureController extends Controller
             'signed_file_path' => $relativePath,
         ]);
 
-        // Убираем .deleteFileAfterSend(true)
+        $user->decrementLimit('signature');
+
         return response()->download($outputFilePath);
     }
 
-    /**
-     * ✅ ОБНОВЛЕННАЯ ФУНКЦИЯ ПОЗИЦИОНИРОВАНИЯ
-     * Накладывает изображение подписи на указанную страницу PDF.
-     * Теперь центр подписи будет находиться в указанных координатах (в %).
-     */
     private function placeSignatureOnPdf(string $pdfPath, string $signatureDataUrl, int $pageNumber, int $xPercent, int $yPercent): string
     {
         $pdf = new Fpdi();
@@ -109,12 +106,9 @@ class SignatureController extends Controller
         $signatureImagePath = tempnam(sys_get_temp_dir(), 'sig') . '.png';
         file_put_contents($signatureImagePath, $signatureImage);
 
-        // Размеры подписи (в мм)
         $signatureWidth = 50;
         $signatureHeight = 25;
 
-        // ✅ НОВАЯ ЛОГИКА РАСЧЕТА КООРДИНАТ
-        // Теперь позиция (x, y) - это ЦЕНТР подписи, а не левый верхний угол.
         $pageWidth = $pdf->getPageWidth();
         $pageHeight = $pdf->getPageHeight();
         $xPos = ($pageWidth * ($xPercent / 100)) - ($signatureWidth / 2);

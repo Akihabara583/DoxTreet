@@ -20,7 +20,8 @@
                     <a href="{{ route('profile.my-data', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action active" aria-current="true">
                         <i class="bi bi-safe"></i> {{ __('messages.my_data') }}
                     </a>
-                    <a href="{{ route('pricing', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action">
+                    {{-- ✅ ИСПРАВЛЕННЫЙ МАРШРУТ --}}
+                    <a href="{{ route('profile.subscription', app()->getLocale()) }}" class="list-group-item list-group-item-action">
                         <i class="bi bi-gem"></i> {{ __('messages.my_subscription') }}
                     </a>
                     <a href="{{ route('profile.signed-documents.history', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('profile.signed-documents.history') ? 'active' : '' }}">

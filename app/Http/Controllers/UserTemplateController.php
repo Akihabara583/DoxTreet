@@ -1,5 +1,7 @@
 <?php
 
+// Файл: app/Http/Controllers/UserTemplateController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -9,23 +11,16 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\WordExportService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
-// ✅ ШАГ 1: Импортируем модель для сохранения истории
 use App\Models\GeneratedDocument;
 
 class UserTemplateController extends Controller
 {
-    /**
-     * Показывает список шаблонов, созданных пользователем.
-     */
     public function index()
     {
         $userTemplates = Auth::user()->userTemplates()->with('category')->latest()->paginate(10);
         return view('my-templates.index', compact('userTemplates'));
     }
 
-    /**
-     * Показывает форму для создания нового пользовательского шаблона.
-     */
     public function create()
     {
         $allCategories = Category::where('is_active', true)->get();
@@ -44,12 +39,16 @@ class UserTemplateController extends Controller
         return view('my-templates.create', compact('categoriesByCountry', 'countries'));
     }
 
-    /**
-     * ✅ ИСПРАВЛЕННЫЙ МЕТОД
-     * Сохраняет новый пользовательский шаблон в базу данных.
-     */
     public function store(Request $request)
     {
+        $user = $request->user();
+
+        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
+        if (!$user->canPerformAction('custom_template')) {
+            $errorMessage = __('messages.limit_exhausted_custom_template_error', ['url' => route('pricing', app()->getLocale())]);
+            return back()->withInput()->with('error_html', $errorMessage);
+        }
+
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
             'country_code'  => 'required|string',
@@ -58,15 +57,15 @@ class UserTemplateController extends Controller
             'layout'        => 'required|string',
         ]);
 
-        // Раскодируем JSON в массив перед созданием
         $validated['fields'] = json_decode($validated['fields'], true);
-
-        // Я убрал лишнюю проверку, которая вызывала ошибку
         Auth::user()->userTemplates()->create($validated);
+
+        $user->decrementLimit('custom_template');
 
         return redirect()->route('profile.my-templates.index', app()->getLocale())
             ->with('success', 'Шаблон успешно создан!');
     }
+
 
     public function show(string $locale, UserTemplate $userTemplate)
     {
@@ -76,64 +75,55 @@ class UserTemplateController extends Controller
         return view('my-templates.show', ['template' => $userTemplate]);
     }
 
-    /**
-     * Генерирует PDF из пользовательского шаблона.
-     */
     public function generateDocument(Request $request, string $locale, UserTemplate $userTemplate, WordExportService $wordExportService)
     {
         if ($userTemplate->user_id !== Auth::id()) {
             abort(403);
         }
 
-        // Валидируем данные
+        $user = $request->user();
+
+        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
+        if (!$user->canPerformAction('download')) {
+            $errorMessage = __('messages.limit_exhausted_error', ['url' => route('pricing', app()->getLocale())]);
+            return back()->withInput()->with('error_html', $errorMessage);
+        }
+
         $validatedData = $this->validateFormData($request, $userTemplate);
-        // Обрабатываем плейсхолдеры
         $html = $this->processPlaceholders($userTemplate, $validatedData);
 
-        // ✅ ШАГ 2: Сохраняем запись в историю перед генерацией файла
         GeneratedDocument::create([
             'user_id' => Auth::id(),
-            'user_template_id' => $userTemplate->id, // ID пользовательского шаблона
-            'template_id' => null, // Системного шаблона здесь нет
+            'user_template_id' => $userTemplate->id,
+            'template_id' => null,
             'data' => $validatedData,
         ]);
 
-        // Определяем, какую кнопку нажал пользователь
+        $user->decrementLimit('download');
+
         if ($request->has('generate_pdf')) {
-            // --- Логика для PDF ---
             $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
             $fileName = Str::slug($userTemplate->name) . '-' . time() . '.pdf';
             return $pdf->download($fileName);
 
         } elseif ($request->has('generate_docx')) {
-            // --- Логика для DOCX ---
-            // Убедись, что в макете шаблона нет <br>, а есть <br />
             $fileName = Str::slug($userTemplate->name) . '.docx';
             return $wordExportService->generateFromHtml($html, $fileName);
         }
 
-        // Если что-то пошло не так, просто возвращаемся назад
         return back();
     }
 
-
-    /**
-     * Заменяет плейсхолдеры в макете.
-     */
     private function processPlaceholders(UserTemplate $template, array $data): string
     {
         $html = htmlspecialchars_decode($template->layout);
 
-        // ✅ ИЩЕМ НОВЫЙ, ПРОСТОЙ ФОРМАТ __ключ__
         foreach ($data as $key => $value) {
             $placeholderToFind = "__".$key."__";
             $html = str_replace($placeholderToFind, e($value), $html);
         }
 
-        // Заменяем системные плейсхолдеры
         $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
-
-        // Применяем форматирование
         $html = nl2br($html);
         $html = str_replace('<br>', '<br />', $html);
 
@@ -160,10 +150,6 @@ class UserTemplateController extends Controller
         return view('my-templates.edit', compact('userTemplate', 'categoriesByCountry', 'countries'));
     }
 
-    /**
-     * ✅ ИСПРАВЛЕННЫЙ МЕТОД
-     * Обновляет данные шаблона в базе данных.
-     */
     public function update(Request $request, string $locale, UserTemplate $userTemplate)
     {
         if ($userTemplate->user_id !== Auth::id()) {
@@ -178,18 +164,13 @@ class UserTemplateController extends Controller
             'layout'        => 'required|string',
         ]);
 
-        // Раскодируем JSON в массив перед обновлением
         $validated['fields'] = json_decode($validated['fields'], true);
-
         $userTemplate->update($validated);
 
         return redirect()->route('profile.my-templates.index', $locale)
             ->with('success', 'Шаблон успешно обновлен!');
     }
 
-    /**
-     * Удаляет шаблон.
-     */
     public function destroy(string $locale, UserTemplate $userTemplate)
     {
         if ($userTemplate->user_id !== Auth::id()) {
@@ -202,13 +183,9 @@ class UserTemplateController extends Controller
             ->with('success', 'Шаблон успешно удален!');
     }
 
-    /**
-     * Валидирует данные формы на основе полей шаблона.
-     */
     private function validateFormData(Request $request, UserTemplate $template): array
     {
         $rules = [];
-        // Убедимся, что $template->fields это массив
         $fields = is_array($template->fields) ? $template->fields : json_decode($template->fields, true) ?? [];
         foreach ($fields as $field) {
             $rules[$field['key']] = 'required|string|max:255';

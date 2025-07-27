@@ -1,5 +1,7 @@
 <?php
 
+// Файл: app/Http/Controllers/DocumentController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Template;
@@ -107,28 +109,30 @@ class DocumentController extends Controller
             ->where('slug', $templateSlug)
             ->firstOrFail();
 
-        $validatedData = $this->validateFormData($request, $template);
+        $user = $request->user();
 
-        if (Auth::check()) {
-            $user = Auth::user();
-            $documentCount = GeneratedDocument::where('user_id', $user->id)->count();
-            if ($documentCount >= 20) {
-                GeneratedDocument::where('user_id', $user->id)->oldest()->first()?->delete();
-            }
-            GeneratedDocument::create([
-                'user_id' => $user->id,
-                'template_id' => $template->id,
-                'data' => $validatedData,
-            ]);
+        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
+        if (!$user->canPerformAction('download')) {
+            $errorMessage = __('messages.limit_exhausted_error', ['url' => route('pricing', app()->getLocale())]);
+            return back()->withInput()->with('error_html', $errorMessage);
         }
 
-        // ✅ ИЗМЕНЕНИЕ: Объединяем HTML до всех замен
+        $validatedData = $this->validateFormData($request, $template);
+
+        $documentCount = GeneratedDocument::where('user_id', $user->id)->count();
+        if ($documentCount >= 20) {
+            GeneratedDocument::where('user_id', $user->id)->oldest()->first()?->delete();
+        }
+        GeneratedDocument::create([
+            'user_id' => $user->id,
+            'template_id' => $template->id,
+            'data' => $validatedData,
+        ]);
+
+        $user->decrementLimit('download');
+
         $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
-
-        // ✅ ШАГ 1: Обрабатываем условные блоки
         $fullHtml = $this->replaceConditionalPlaceholders($fullHtml, $validatedData);
-
-        // ✅ ШАГ 2: Обрабатываем обычные плейсхолдеры
         $fullHtml = $this->replaceSimplePlaceholders($fullHtml, $validatedData);
 
         $fileName = Str::slug($template->title) . '-' . time();
@@ -146,10 +150,6 @@ class DocumentController extends Controller
         return redirect()->back()->with('error', 'Не удалось определить тип файла для генерации.');
     }
 
-    /**
-     * ✅ НОВЫЙ МЕТОД
-     * Заменяет простые плейсхолдеры вида [[key]] на значения.
-     */
     private function replaceSimplePlaceholders(string $html, array $data): string
     {
         foreach ($data as $key => $value) {
@@ -166,25 +166,18 @@ class DocumentController extends Controller
         return $html;
     }
 
-    /**
-     * ✅ НОВЫЙ МЕТОД
-     * Обрабатывает условные блоки [[key]]...[[/key]].
-     */
     private function replaceConditionalPlaceholders(string $html, array $data): string
     {
-        // Регулярное выражение для поиска блоков [[key]]...[[/key]]
         $pattern = '/\[\[([a-zA-Z0-9_]+)\]\](.*?)\[\[\/\1\]\]/s';
 
         return preg_replace_callback($pattern, function ($matches) use ($data) {
             $key = $matches[1];
             $content = $matches[2];
 
-            // Если ключ существует в данных и его значение не пустое, возвращаем содержимое блока.
             if (isset($data[$key]) && !empty($data[$key])) {
                 return $content;
             }
 
-            // Иначе, удаляем весь блок (возвращаем пустую строку).
             return '';
         }, $html);
     }

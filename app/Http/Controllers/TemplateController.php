@@ -14,12 +14,17 @@ use Illuminate\Support\Str;
 
 class TemplateController extends Controller
 {
-    // Метод index остается без изменений
     public function index(Request $request)
     {
         $locale = app()->getLocale();
         $searchQuery = $request->query('q');
+
+        // --- ИСПРАВЛЕНИЕ: Инициализируем все переменные здесь, чтобы избежать ошибки ---
         $searchResults = null;
+        $popularTemplates = collect();
+        $countries = [];
+        $dataByCountry = [];
+        // --------------------------------------------------------------------------
 
         $countryNames = [
             'UA' => ['uk' => 'Україна', 'en' => 'Ukraine', 'pl' => 'Ukraina', 'de' => 'Ukraine'],
@@ -28,6 +33,7 @@ class TemplateController extends Controller
         ];
 
         if ($searchQuery) {
+            // Логика поиска
             $searchResults = Template::where('is_active', true)
                 ->whereHas('translations', function ($query) use ($searchQuery) {
                     $query->where('title', 'LIKE', "%$searchQuery%")
@@ -35,7 +41,17 @@ class TemplateController extends Controller
                 })
                 ->with('translation')
                 ->get();
+
+            // --- ИСПРАВЛЕНИЕ: Добавляем название страны к результатам поиска ---
+            if ($searchResults) {
+                $searchResults->each(function ($template) use ($countryNames, $locale) {
+                    $template->countryName = $countryNames[$template->country_code][$locale] ?? $template->country_code;
+                });
+            }
+            // ----------------------------------------------------------------
+
         } else {
+            // Логика для главной страницы (когда нет поиска)
             $popularTemplateIds = GeneratedDocument::query()->whereNotNull('template_id')->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
             $popularTemplates = Template::with('translation')->whereIn('id', $popularTemplateIds)->get();
 
@@ -50,7 +66,6 @@ class TemplateController extends Controller
                 $category->name = $category->getTranslation('name', $locale);
             });
 
-            $dataByCountry = [];
             $allCategories->groupBy('country_code')->each(function ($categoriesInCountry, $countryCode) use (&$dataByCountry, $locale) {
                 $dataByCountry[$countryCode] = $categoriesInCountry->map(function ($category) use ($locale) {
                     return [
@@ -62,7 +77,6 @@ class TemplateController extends Controller
                 })->values();
             });
 
-            $countries = [];
             foreach ($countryNames as $code => $translations) {
                 if (isset($dataByCountry[$code])) {
                     $countries[] = (object)['code' => $code, 'name' => $translations[$locale] ?? $translations['en']];
@@ -70,16 +84,15 @@ class TemplateController extends Controller
             }
         }
 
+        // Теперь все переменные гарантированно существуют, и `compact()` сработает без ошибок
         return view('home', compact(
             'searchQuery', 'searchResults', 'popularTemplates', 'countries',
             'dataByCountry', 'countryNames', 'locale'
         ));
     }
 
-    // Метод show остается без изменений
     public function show(Request $request, string $locale, Template $template)
     {
-        // ... ваш код для show ...
         if (!$template->is_active) {
             abort(404);
         }
@@ -121,36 +134,24 @@ class TemplateController extends Controller
         return view('templates.show', compact('template', 'prefillData'));
     }
 
-    /**
-     * ✅ НОВЫЙ ЕДИНЫЙ МЕТОД ДЛЯ ГЕНЕРАЦИИ
-     * Генерирует PDF или DOCX из системного шаблона и сохраняет историю.
-     */
     public function generateDocument(Request $request, string $locale, Template $template, WordExportService $wordExportService)
     {
-        // 1. Валидируем данные из формы
         $validatedData = $this->validateFormData($request, $template);
-        // 2. Обрабатываем данные (например, заменяем переносы строк для textarea)
         $processedData = $this->processTemplateData($template, $validatedData);
-
-        // 3. Собираем полный HTML документа из частей
         $html = $template->header_html . $template->body_html . $template->footer_html;
 
-        // 4. Заменяем плейсхолдеры в HTML на данные пользователя
         foreach ($processedData as $key => $value) {
             $html = str_replace("{{{$key}}}", $value, $html);
         }
-        // Заменяем системные плейсхолдеры
         $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
 
-        // 5. ✅ СОХРАНЯЕМ ЗАПИСЬ В ИСТОРИЮ
         GeneratedDocument::create([
             'user_id' => Auth::id(),
-            'template_id' => $template->id, // ID системного шаблона
-            'user_template_id' => null,      // Пользовательского шаблона здесь нет
-            'data' => $validatedData,        // Сохраняем данные для повторного использования
+            'template_id' => $template->id,
+            'user_template_id' => null,
+            'data' => $validatedData,
         ]);
 
-        // 6. Генерируем и отдаем нужный файл
         if ($request->has('generate_pdf')) {
             $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
             $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
@@ -161,12 +162,9 @@ class TemplateController extends Controller
             return $wordExportService->generateFromHtml($html, $fileName);
         }
 
-        // Если что-то пошло не так
         return back()->with('error', 'Произошла ошибка при генерации документа.');
     }
 
-
-    // Вспомогательные методы, которые мы используем выше
     private function validateFormData(Request $request, Template $template): array
     {
         $rules = [];

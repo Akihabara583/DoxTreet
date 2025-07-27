@@ -1,5 +1,7 @@
 <?php
 
+// Файл: app/Http/Controllers/ProfileController.php (ФИНАЛЬНАЯ БОЕВАЯ ВЕРСИЯ)
+
 namespace App\Http\Controllers;
 
 use App\Models\GeneratedDocument;
@@ -13,6 +15,8 @@ use Illuminate\View\View;
 use App\Models\SignedDocument;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -62,11 +66,12 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function reuse(string $locale, string $document): RedirectResponse
+    public function reuse(Request $request, string $locale, string $document): RedirectResponse
     {
+        $user = $request->user();
         $documentModel = GeneratedDocument::with(['template', 'userTemplate'])->findOrFail($document);
 
-        if ($documentModel->user_id !== Auth::id()) {
+        if ($documentModel->user_id !== $user->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -91,16 +96,11 @@ class ProfileController extends Controller
             ->with('error', __('messages.template_deleted'));
     }
 
-    // --- НАЧАЛО НОВЫХ МЕТОДОВ ДЛЯ ИСТОРИИ ДОКУМЕНТОВ ---
     public function deleteSelectedGeneratedDocuments(Request $request): RedirectResponse
     {
         $request->validate(['documents' => 'required|array']);
         $documentIds = $request->input('documents');
-
-        GeneratedDocument::where('user_id', Auth::id())
-            ->whereIn('id', $documentIds)
-            ->delete();
-
+        GeneratedDocument::where('user_id', Auth::id())->whereIn('id', $documentIds)->delete();
         return redirect()->back()->with('status', 'Выбранные документы были удалены.');
     }
 
@@ -109,13 +109,10 @@ class ProfileController extends Controller
         GeneratedDocument::where('user_id', Auth::id())->delete();
         return redirect()->back()->with('status', 'Вся история документов была очищена.');
     }
-    // --- КОНЕЦ НОВЫХ МЕТОДОВ ---
 
     public function myData(): View
     {
-        $details = Auth::user()->details()->firstOrNew([
-            'user_id' => Auth::id()
-        ]);
+        $details = Auth::user()->details()->firstOrNew(['user_id' => Auth::id()]);
         return view('profile.my-data', ['details' => $details]);
     }
 
@@ -144,39 +141,31 @@ class ProfileController extends Controller
             'bank_iban'            => 'nullable|string|max:255',
         ]);
 
-        Auth::user()->details()->updateOrCreate(
-            ['user_id' => Auth::id()],
-            $validatedData
-        );
-
+        Auth::user()->details()->updateOrCreate(['user_id' => Auth::id()], $validatedData);
         return redirect()->route('profile.my-data', app()->getLocale())->with('status', 'details-updated');
     }
 
     public function signedDocumentsHistory(): View
     {
-        $signedDocuments = SignedDocument::where('user_id', Auth::id())
-            ->latest()
-            ->paginate(10);
-
-        return view('profile.signed_history', [
-            'documents' => $signedDocuments,
-        ]);
+        $signedDocuments = SignedDocument::where('user_id', Auth::id())->latest()->paginate(10);
+        return view('profile.signed_history', ['documents' => $signedDocuments]);
     }
 
-    public function downloadSignedDocument(string $locale, string $document): BinaryFileResponse
+    public function downloadSignedDocument(Request $request, string $locale, string $document)
     {
+        $user = $request->user();
+        if (!$user->canPerformAction('download')) {
+            return back()->with('error', 'Ваш дневной лимит на скачивание документов исчерпан.');
+        }
         $documentModel = SignedDocument::findOrFail($document);
-
-        if (auth()->id() !== $documentModel->user_id) {
+        if ($user->id !== $documentModel->user_id) {
             abort(403, 'This action is unauthorized.');
         }
-
         $filePath = storage_path('app/public/' . $documentModel->signed_file_path);
-
         if (!file_exists($filePath)) {
             abort(404, 'Файл не найден.');
         }
-
+        $user->decrementLimit('download');
         return response()->download($filePath, $documentModel->original_filename);
     }
 
@@ -184,30 +173,74 @@ class ProfileController extends Controller
     {
         $request->validate(['documents' => 'required|array']);
         $documentIds = $request->input('documents');
-
-        $documentsToDelete = SignedDocument::where('user_id', Auth::id())
-            ->whereIn('id', $documentIds)
-            ->get();
-
+        $documentsToDelete = SignedDocument::where('user_id', Auth::id())->whereIn('id', $documentIds)->get();
         foreach ($documentsToDelete as $document) {
             Storage::disk('public')->delete($document->signed_file_path);
         }
-
         SignedDocument::destroy($documentsToDelete->pluck('id'));
-
         return redirect()->back()->with('status', 'Выбранные документы были удалены.');
     }
 
     public function deleteAllSignedDocuments(): RedirectResponse
     {
         $documentsToDelete = SignedDocument::where('user_id', Auth::id())->get();
-
         foreach ($documentsToDelete as $document) {
             Storage::disk('public')->delete($document->signed_file_path);
         }
-
         SignedDocument::where('user_id', Auth::id())->delete();
-
         return redirect()->back()->with('status', 'Все ваши подписанные документы были удалены.');
+    }
+
+    public function subscription(): View
+    {
+        $user = Auth::user();
+        $user->checkAndResetLimits();
+        return view('profile.subscription', ['user' => $user]);
+    }
+
+    /**
+     * Отменяет автоматическое продление подписки в Gumroad.
+     */
+    public function cancelSubscription(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        if (!$user->gumroad_subscriber_id) {
+            return back()->with('error', __('messages.sub_cancel_fail_not_found'));
+        }
+
+        $accessToken = env('GUMROAD_ACCESS_TOKEN');
+        if (!$accessToken) {
+            Log::error('GUMROAD_ACCESS_TOKEN не установлен в .env');
+            return back()->with('error', __('messages.sub_cancel_fail_server_error'));
+        }
+
+        try {
+            // ✅ ИЗМЕНЕНИЕ: Убран блок ->when(...) для отключения проверки SSL.
+            // Этот код является чистой и безопасной версией для боевого сервера.
+            $response = Http::withToken($accessToken)->delete(
+                "https://api.gumroad.com/v2/subscribers/{$user->gumroad_subscriber_id}"
+            );
+
+            if ($response->successful()) {
+                $user->gumroad_subscriber_id = null;
+                $user->save();
+                return back()->with('success', __('messages.sub_cancel_success'));
+            }
+
+            Log::error('Ошибка отмены подписки Gumroad', [
+                'user_id' => $user->id,
+                'status' => $response->status(),
+                'response' => $response->json()
+            ]);
+            return back()->with('error', __('messages.sub_cancel_fail_api_error'));
+
+        } catch (\Exception $e) {
+            Log::error('Исключение при отмене подписки Gumroad', [
+                'user_id' => $user->id,
+                'exception_message' => $e->getMessage()
+            ]);
+            return back()->with('error', __('messages.sub_cancel_fail_api_error'));
+        }
     }
 }

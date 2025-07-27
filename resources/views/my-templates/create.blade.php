@@ -49,7 +49,6 @@
         <div class="alert alert-info mt-4">
             <h4 class="alert-heading">{{ __('messages.how_to_create_template_title') }}</h4>
             <ol class="mb-0">
-                {{-- Я адаптировал ключи под твою упрощенную инструкцию --}}
                 <li>{!! __('messages.how_to_step_1') !!}</li>
                 <li>{!! __('messages.how_to_step_2') !!}</li>
             </ol>
@@ -127,7 +126,8 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="https://cdn.tiny.cloud/1/l718ds64re4lehaeqqhkzz3rp16ttmv4o24orxkme8qtmtf6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    {{-- ✅ ИЗМЕНЕНО: Используем общедоступную версию TinyMCE без ключа API, чтобы убрать ошибку домена --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js" xintegrity="sha512-VF1TAsggHIM5s6jU024owDyIFb5vLwM9H2f5Gv+4QtmOoXyEALi0PSsYGeHk0W3fTqS9byL4Fj2I+2ioS/iQ/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             tinymce.init({
@@ -135,6 +135,7 @@
                 plugins: 'lists link image table code help wordcount',
                 toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image table',
                 height: 400
+                // Опция promotion: false больше не нужна, так как это не облачная версия
             });
         });
     </script>

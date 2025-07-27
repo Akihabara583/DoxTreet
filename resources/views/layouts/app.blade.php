@@ -33,6 +33,10 @@
     @stack('styles')
 
     <style>
+        html {
+            /* Устанавливаем базовый размер шрифта в 90% от стандартного */
+            font-size: 90%;
+        }
         :root {
             --bs-primary: #0D6EFD;
             --bs-dark: #212529;
@@ -73,7 +77,7 @@
 <body class="d-flex flex-column min-vh-100">
 
 @include('partials.header')
-
+<x-alert />
 <main class="flex-shrink-0">
     @yield('content')
 </main>
@@ -81,6 +85,7 @@
 @include('partials.footer')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+@include('partials.cookie_consent_banner')
 @stack('scripts')
 </body>
 </html>
