@@ -4,25 +4,23 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-// Мы убрали 'use App' и 'use URL', так как укажем полный путь ниже
+use Illuminate\Support\Facades\App; // Используем 'use' для чистоты кода
 use Symfony\Component\HttpFoundation\Response;
 
 class InitializeLocale
 {
     public function handle(Request $request, Closure $next): Response
     {
+        // Получаем язык из первого сегмента URL (например, 'ru' из '/ru/login')
         $locale = $request->segment(1);
-        $available_locales = config('app.available_locales', ['en']);
 
-        if (in_array($locale, $available_locales)) {
-            // Здесь мы используем полный путь к классу, чтобы PhpStorm его понял
-            \Illuminate\Support\Facades\App::setLocale($locale);
-
-            // И здесь тоже используем полный путь
-            \Illuminate\Support\Facades\URL::defaults(['locale' => $locale]);
+        // Проверяем, есть ли такой язык в списке доступных в конфиге
+        if (in_array($locale, config('app.available_locales', []))) {
+            // Устанавливаем язык для всего приложения
+            App::setLocale($locale);
+            // Сохраняем язык в сессию, чтобы он не терялся
+            session()->put('locale', $locale);
         }
-        // Мы убрали блок 'else' с редиректом, так как он мешал работе роутов авторизации.
-        // Laravel сам обработает некорректные URL.
 
         return $next($request);
     }

@@ -49,7 +49,6 @@ return [
     'document_history' => 'Historia dokumentów',
     'my_subscription' => 'Moja subskrypcja',
     'my_data' => 'Moje dane',
-    'welcome_back' => 'Witaj z powrotem',
     'profile_dashboard_text' => 'Z tego panelu możesz zarządzać swoim profilem, przeglądać subskrypcję i uzyskiwać dostęp do historii dokumentów.',
     'documents_created' => 'Utworzono dokumentów',
     'current_plan' => 'Obecny plan',
@@ -92,10 +91,53 @@ return [
 
 
 
+    'email' => 'Adres e-mail',
+    'password' => 'Hasło',
+    'user_name' => 'Imię',
+
+    // Strona logowania
+    'welcome_back' => 'Witaj z powrotem!',
+    'login_prompt' => 'Zaloguj się na swoje konto, aby kontynuować.',
+    'remember_me' => 'Zapamiętaj mnie',
+    'forgot_password' => 'Nie pamiętasz hasła?',
+    'log_in_button' => 'Zaloguj się',
+    'or_continue_with' => 'Lub kontynuuj za pomocą',
+    'dont_have_account' => 'Nie masz konta?',
+    'sign_up_link' => 'Zarejestruj się',
+
+    // Strona rejestracji
+    'create_account' => 'Utwórz konto',
+    'start_journey' => 'Rozpocznij swoją podróż z nami już dziś.',
+    'your_name_placeholder' => 'Twoje imię',
+
+    'register_button' => 'Zarejestruj się',
+    'or_sign_up_with' => 'Lub zarejestruj się za pomocą',
+    'already_have_account' => 'Masz już konto?',
+    'log_in_link' => 'Zaloguj się',
+
+    // Strona weryfikacji kodu
+    'verify_code_intro' => 'Kod weryfikacyjny został wysłany na Twój adres e-mail. Wprowadź go poniżej.',
+    'verification_code' => 'Kod weryfikacyjny',
+    'verify_email_button' => 'Zweryfikuj e-mail',
 
 
 
 
+
+
+
+    'book_welcome_title' => 'Witaj z powrotem w DoxTreet!',
+    'book_welcome_text' => 'Cieszymy się, że znowu Cię widzimy. Twoje dokumenty czekają na Ciebie, gotowe do pracy. Zaloguj się, aby rozpocząć.',
+    'book_register_title' => 'Stwórz swój świat dokumentów',
+    'book_register_text' => 'Dołącz do społeczności DoxTreet i uzyskaj dostęp do tysięcy szablonów. Twoja podróż do łatwego zarządzania dokumentami zaczyna się tutaj!',
+
+
+    'verification_sent' => 'Kod weryfikacyjny został wysłany na Twój adres e-mail.',
+    'registration_error' => 'Błąd rejestracji. Proszę spróbować ponownie.',
+    'session_expired' => 'Twoja sesja wygasła. Proszę rozpocząć proces rejestracji od nowa.',
+    'code_expired' => 'Kod weryfikacyjny wygasł. Proszę rozpocząć proces rejestracji od nowa.',
+    'invalid_code' => 'Nieprawidłowy kod weryfikacyjny.',
+    'account_creation_error' => 'Wystąpił błąd podczas tworzenia konta. Proszę spróbować ponownie.',
 
 
     'create_new_template_title' => 'Utwórz nowy szablon',

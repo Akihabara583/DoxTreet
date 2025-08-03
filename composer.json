@@ -1,5 +1,4 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
@@ -11,8 +10,11 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^3.1",
+        "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^12.0",
+        "laravel/socialite": "^5.23",
         "laravel/tinker": "^2.10.1",
+        "phpmailer/phpmailer": "^6.10",
         "phpoffice/phpword": "^1.3",
         "setasign/fpdi": "^2.6",
         "spatie/laravel-sitemap": "^7.3",
@@ -35,7 +37,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "exclude-from-classmap": [
+            "vendor/laravel/pint/app/Providers/AppServiceProvider.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -80,8 +85,14 @@
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         },
-        "cafile": "C:\\php\\cacert.pem"
+        "cafile": "C:\\laragon\\etc\\ssl\\cacert.pem"
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://repo.packagist.org"
+        }
+    }
 }

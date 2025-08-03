@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View; // ✅ Убедитесь, что это подключено
 use App\Http\View\Composers\CountryNavigationComposer;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
             'partials._country_nav',
             CountryNavigationComposer::class
         );
+        URL::defaults(['locale' => $this->app->getLocale()]);
     }
 }

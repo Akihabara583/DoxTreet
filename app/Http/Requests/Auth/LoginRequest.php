@@ -49,6 +49,28 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        // ✅ НАЧАЛО ИЗМЕНЕНИЙ
+
+        // Список email-адресов администраторов, для которых верификация не требуется
+        $adminEmails = [
+            'admin@example.com',
+            'employee.admin@example.com',
+        ];
+
+        $user = Auth::user();
+
+        // Проверяем, подтвержден ли email пользователя, И не является ли он админом из списка
+        if (! $user->hasVerifiedEmail() && ! in_array($user->email, $adminEmails, true)) {
+            // Если email не подтвержден и это не админ, вылогиниваем его и выдаем ошибку
+            Auth::logout();
+
+            throw ValidationException::withMessages([
+                'email' => 'Your email address is not verified. Please check your inbox for a verification code.',
+            ]);
+        }
+
+        // ✅ КОНЕЦ ИЗМЕНЕНИЙ
+
         RateLimiter::clear($this->throttleKey());
     }
 

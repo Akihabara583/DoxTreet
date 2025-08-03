@@ -19,7 +19,7 @@ class LanguageController extends Controller
     {
         // 1. Проверяем, что запрашиваемый язык поддерживается
         if (!in_array($language, config('app.available_locales'))) {
-            // Если нет, просто возвращаемся назад без изменений
+            // Если нет, просто возвращаемся назад без изменеяний
             return back();
         }
 
@@ -50,5 +50,17 @@ class LanguageController extends Controller
         }
 
         return redirect($newPath);
+    }
+
+    public function setLocale(string $locale)
+    {
+        // Проверяем, что язык поддерживается
+        if (in_array($locale, config('app.available_locales'))) {
+            // Сохраняем выбранный язык в сессии
+            Session::put('locale', $locale);
+        }
+
+        // Возвращаемся на предыдущую страницу
+        return redirect()->back();
     }
 }

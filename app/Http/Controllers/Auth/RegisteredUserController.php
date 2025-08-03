@@ -4,19 +4,21 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use App\Services\SubscriptionService; // ✅ 1. Добавляем импорт сервиса
+use App\Notifications\SendVerificationCode;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Показать форму регистрации.
      */
     public function create(): View
     {
@@ -24,12 +26,11 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
+     * Обработать входящий запрос на регистрацию.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    // ✅ 2. Внедряем сервис в метод
-    public function store(Request $request, SubscriptionService $subscriptionService): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -37,19 +38,36 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        Log::info('Validation passed for pre-registration', ['email' => $request->email]);
 
-        // ✅ 3. Назначаем базовый план и лимиты новому пользователю
-        $subscriptionService->assignPlan($user, 'base', null);
+        try {
+            $code = random_int(100000, 999999);
 
-        event(new Registered($user));
+            Session::put('registration_data', [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'verification_code' => $code,
+                'expires_at' => Carbon::now()->addMinutes(10)
+            ]);
+            Log::info('Registration data stored in session', ['email' => $request->email]);
 
-        Auth::login($user);
+            Notification::route('mail', $request->email)
+                ->notify(new SendVerificationCode($code));
+            Log::info('Verification email sent to', ['email' => $request->email]);
 
-        return redirect(route('home', app()->getLocale()));
+            // ✅ ИЗМЕНЕНИЕ: Используем ключ перевода
+            return redirect()->route('verification.code.form', ['locale' => app()->getLocale()])
+                ->with('status', __('messages.verification_sent'));
+
+        } catch (\Exception $e) {
+            Log::error('Pre-registration process failed', [
+                'email' => $request->email,
+                'error' => $e->getMessage()
+            ]);
+
+            // ✅ ИЗМЕНЕНИЕ: Используем ключ перевода
+            return back()->with('error', __('messages.registration_error'));
+        }
     }
 }

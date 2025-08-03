@@ -15,22 +15,47 @@ use App\Http\Controllers\UserTemplateController;
 use App\Http\Controllers\DocumentListController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SignatureController;
-use App\Http\Controllers\WebhookController; // ✅ Убедитесь, что этот use-импорт есть
+use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\Auth\EmailVerificationCodeController;
+
+
+
+Route::get('/verify-email-code', [EmailVerificationCodeController::class, 'showVerificationForm'])->name('verification.code.form');
+Route::post('/verify-email-code', [EmailVerificationCodeController::class, 'verifyCode'])->name('verification.code.verify');
 
 // --- РОУТЫ БЕЗ ЯЗЫКОВОГО ПРЕФИКСА ---
 
-// ✅ Убедитесь, что этот маршрут находится здесь, ВНЕ группы с языком
 Route::post('/webhooks/gumroad', [WebhookController::class, 'handleGumroad'])->name('webhooks.gumroad');
+
+Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->name('social.redirect');
+Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
+Route::get('/my-super-secret-page', function () {
+    return 'My Secret Page';
+})->middleware(['auth', 'verified']);
+
+// ✅ ИЗМЕНЕНИЕ: Оставляем только один роут для переключения языка.
+// Второй, который был ниже, я удалил.
+Route::get('/language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('/cookie-consent/accept', [CookieConsentController::class, 'accept'])->name('cookie.accept');
 Route::get('/cookie-consent/decline', [CookieConsentController::class, 'decline'])->name('cookie.decline');
 
-Route::get('/', function () { $locale = session('locale', config('app.fallback_locale')); return redirect($locale); });
+Route::get('/', function () {
+    $locale = session('locale', config('app.fallback_locale'));
+    // ✅ ИЗМЕНЕНИЕ: Убедимся, что редирект идет на именованный роут 'home'
+    return redirect()->route('home', ['locale' => $locale]);
+});
+
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');
-Route::get('/robots.txt', function () { $sitemapUrl = route('sitemap.index'); $content = "User-agent: *\nAllow: /\n\nSitemap: {$sitemapUrl}"; return response($content, 200)->header('Content-Type', 'text/plain'); });
-require __DIR__.'/auth.php';
-Route::get('/dashboard', function () { return redirect()->route('home', ['locale' => app()->getLocale()]); })->middleware(['auth'])->name('dashboard');
-Route::get('/language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
+Route::get('/robots.txt', function () {
+    $sitemapUrl = route('sitemap.index');
+    $content = "User-agent: *\nAllow: /\n\nSitemap: {$sitemapUrl}";
+    return response($content, 200)->header('Content-Type', 'text/plain');
+});
+
+// ❌ ИЗМЕНЕНИЕ: ЭТА СТРОКА УДАЛЕНА ОТСЮДА
+// require __DIR__.'/auth.php';
 
 // --- ГРУППА РОУТОВ С ЯЗЫКОВЫМ ПРЕФИКСОМ ---
 Route::prefix('{locale}')
@@ -38,6 +63,18 @@ Route::prefix('{locale}')
     ->middleware(InitializeLocale::class)
     ->group(function () {
 
+        // ✅ КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: Все роуты аутентификации (login, register, и т.д.)
+        // теперь находятся внутри этой группы и будут иметь префикс /en/, /ru/ и т.д.
+        require __DIR__.'/auth.php';
+
+        // Дашборд теперь тоже внутри, чтобы у него был языковой префикс
+        Route::get('/dashboard', function () {
+            return redirect()->route('home', ['locale' => app()->getLocale()]);
+        })->middleware(['auth'])->name('dashboard');
+
+        //
+        // --- Все ваши остальные роуты остаются без изменений ---
+        //
         Route::prefix('sign-document')->middleware('auth')->name('sign.')->group(function() {
             Route::get('/', [SignatureController::class, 'index'])->name('index');
             Route::post('/upload', [SignatureController::class, 'sign'])->name('upload');
@@ -69,6 +106,7 @@ Route::prefix('{locale}')
             Route::get('users', [Admin\UserController::class, 'index'])->name('users.index');
             Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
             Route::patch('users/{user}/subscription', [Admin\UserController::class, 'updateSubscription'])->name('users.subscription.update');
+            Route::delete('users/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
         });
 
         Route::prefix('profile')->middleware('auth')->name('profile.')->group(function () {
@@ -89,7 +127,6 @@ Route::prefix('{locale}')
             Route::post('/profile/subscription/cancel', [App\Http\Controllers\ProfileController::class, 'cancelSubscription'])
                 ->name('subscription.cancel');
 
-
             Route::prefix('my-templates')->name('my-templates.')->group(function() {
                 Route::get('/', [UserTemplateController::class, 'index'])->name('index');
                 Route::get('/create', [UserTemplateController::class, 'create'])->name('create');
@@ -101,14 +138,15 @@ Route::prefix('{locale}')
                 Route::delete('/{userTemplate}', [UserTemplateController::class, 'destroy'])->name('destroy');
             });
         });
+
+        // Статические страницы теперь тоже внутри группы, чтобы иметь языковой префикс
+        Route::get('/terms', [StaticPageController::class, 'show'])->name('terms');
+        Route::get('/privacy', [StaticPageController::class, 'show'])->name('privacy');
+        Route::get('/faq', [StaticPageController::class, 'show'])->name('faq');
+        Route::get('/about', [StaticPageController::class, 'show'])->name('about');
     });
 
-// Статические страницы
-Route::middleware('web')->group(function () {
-    Route::get('/{locale}/terms', [StaticPageController::class, 'show'])->name('terms');
-    Route::get('/{locale}/privacy', [StaticPageController::class, 'show'])->name('privacy');
-    Route::get('/{locale}/faq', [StaticPageController::class, 'show'])->name('faq');
-    Route::get('/{locale}/about', [StaticPageController::class, 'show'])->name('about');
-});
+// ❌ ИЗМЕНЕНИЕ: Эта группа больше не нужна, так как роуты перенесены выше
+// Route::middleware('web')->group(function () { ... });
 
 Route::get('/info', function () { phpinfo(); });

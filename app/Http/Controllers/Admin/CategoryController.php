@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -64,14 +65,19 @@ class CategoryController extends Controller
 
     public function destroy(string $locale, string $category)
     {
-        $categoryModel = \App\Models\Category::where('slug', $category)->firstOrFail();
-
-        if ($categoryModel->templates()->count() > 0) {
-            return back()->with('error', 'Cannot delete category with associated templates.');
+        // Проверяем, является ли текущий пользователь "админом для сотрудников"
+        if (Auth::user()->isEmployeeAdmin()) { //
+            return redirect()->back()->with('error', 'У вас нет прав для удаления категорий.'); //
         }
 
-        $categoryModel->delete();
+        $categoryModel = \App\Models\Category::where('slug', $category)->firstOrFail(); //
 
-        return redirect()->route('admin.categories.index', ['locale' => $locale])->with('success', 'Category deleted.');
+        if ($categoryModel->templates()->count() > 0) { //
+            return back()->with('error', 'Невозможно удалить категорию со связанными шаблонами.'); //
+        }
+
+        $categoryModel->delete(); //
+
+        return redirect()->route('admin.categories.index', ['locale' => $locale])->with('success', 'Категория удалена.'); //
     }
 }

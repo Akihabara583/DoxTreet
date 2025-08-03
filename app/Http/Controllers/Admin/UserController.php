@@ -62,4 +62,17 @@ class UserController extends Controller
         return redirect()->route('admin.users.show', ['locale' => $locale, 'user' => $user->id])
             ->with('success', 'Подписка пользователя успешно обновлена!');
     }
+    public function destroy(string $locale, User $user): RedirectResponse
+    {
+        // Проверка, чтобы админ не удалил сам себя
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users.index', $locale)
+                ->with('error', 'Вы не можете удалить свой собственный аккаунт.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('admin.users.index', $locale)
+            ->with('success', 'Пользователь успешно удален.');
+    }
 }

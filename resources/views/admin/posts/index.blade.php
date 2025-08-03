@@ -48,17 +48,21 @@
                                         </td>
                                         <td>{{ $post->created_at->format('d.m.Y H:i') }}</td>
                                         <td>
-                                            {{-- ИСПРАВЛЕНИЕ ЗДЕСЬ: Добавляем 'locale' в параметры маршрута --}}
+                                            {{-- Кнопка "Редактировать" остается видимой для всех админов (включая сотрудников) --}}
                                             <a href="{{ route('admin.posts.edit', ['locale' => app()->getLocale(), 'post' => $post->id]) }}" class="btn btn-sm btn-warning">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
-                                            <form action="{{ route('admin.posts.destroy', ['locale' => app()->getLocale(), 'post' => $post->id]) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </button>
-                                            </form>
+
+                                            {{-- Форма "Удалить" обернута в проверку: она будет видна ТОЛЬКО если пользователь НЕ является "админом для сотрудников" --}}
+                                            @if (!Auth::user()->isEmployeeAdmin())
+                                                <form action="{{ route('admin.posts.destroy', ['locale' => app()->getLocale(), 'post' => $post->id]) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

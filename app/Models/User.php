@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Auth\MustVerifyEmail;// Импортируем фасад Crypt
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -28,6 +30,10 @@ class User extends Authenticatable
         'custom_templates_left',
         'limits_reset_at',
         'gumroad_subscriber_id',
+        'last_seen',
+        'provider_name', // Добавлено для совместимости с SocialController
+        'provider_id',
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -43,7 +49,60 @@ class User extends Authenticatable
             'is_admin' => 'boolean',
             'subscription_expires_at' => 'datetime',
             'limits_reset_at' => 'date',
+            'last_seen' => 'datetime',
         ];
+    }
+
+    // Массив атрибутов, которые нужно зашифровать
+    protected $encrypted = [
+        'name',
+
+        // 'gumroad_subscriber_id', // Возможно, это тоже стоит зашифровать, если он конфиденциален.
+        // Решение за вами, если да, раскомментируйте.
+    ];
+
+    /**
+     * Динамическое получение атрибутов, которые должны быть зашифрованы/расшифрованы.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function getAttribute($key)
+    {
+        $value = parent::getAttribute($key);
+
+        if (in_array($key, $this->encrypted) && ! is_null($value)) {
+            try {
+                return Crypt::decryptString($value);
+            } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+                // Обработка ошибки дешифрования.
+                // Возможно, данные были не зашифрованы или ключ изменился.
+                // В данном случае, возвращаем оригинальное значение,
+                // чтобы избежать падения приложения.
+                // В реальном приложении это может быть логирование или выброс исключения.
+                return $value;
+            }
+        }
+
+        return $value;
+    }
+
+    /**
+     * Динамическая установка атрибутов, которые должны быть зашифрованы.
+     *
+     * @param  string  $key
+     * @param  mixed  $value
+     * @return $this
+     */
+    public function setAttribute($key, $value)
+    {
+        if (in_array($key, $this->encrypted) && ! is_null($value)) {
+            $this->attributes[$key] = Crypt::encryptString($value);
+        } else {
+            parent::setAttribute($key, $value);
+        }
+
+        return $this;
     }
 
     // --- ✅ НОВЫЕ АКСЕССОРЫ ДЛЯ АДМИНИСТРАТОРОВ ---
@@ -55,7 +114,10 @@ class User extends Authenticatable
      */
     public function getSubscriptionPlanAttribute($value)
     {
-        if ($this->is_admin) {
+        // Используем $this->attributes['is_admin'] для прямого доступа к оригинальному значению,
+        // чтобы избежать рекурсии или нежелательного поведения, если 'is_admin' тоже будет зашифровано.
+        // Хотя 'is_admin' у вас boolean и не требует шифрования.
+        if ($this->attributes['is_admin']) {
             return 'pro';
         }
         return $value;
@@ -66,7 +128,7 @@ class User extends Authenticatable
      */
     public function getSubscriptionExpiresAtAttribute($value)
     {
-        if ($this->is_admin) {
+        if ($this->attributes['is_admin']) {
             return Carbon::now()->addYears(100);
         }
         return $value;
@@ -77,7 +139,7 @@ class User extends Authenticatable
     public function checkAndResetLimits(): void
     {
         // Для администраторов лимиты не проверяем и не сбрасываем
-        if ($this->is_admin) {
+        if ($this->attributes['is_admin']) {
             $this->setLimitsForPlan('pro'); // Убедимся, что лимиты всегда максимальные
             return;
         }
@@ -106,7 +168,7 @@ class User extends Authenticatable
     public function canPerformAction(string $actionType): bool
     {
         // ✅ Администратор может выполнять любое действие без ограничений
-        if ($this->is_admin) {
+        if ($this->attributes['is_admin']) {
             return true;
         }
 
@@ -127,7 +189,7 @@ class User extends Authenticatable
     public function decrementLimit(string $actionType): void
     {
         // Для администраторов лимиты не уменьшаем
-        if ($this->is_admin) {
+        if ($this->attributes['is_admin']) {
             return;
         }
 
@@ -143,6 +205,8 @@ class User extends Authenticatable
                 break;
         }
     }
+
+
 
     protected function setLimitsForPlan(string $planName): void
     {
@@ -190,5 +254,15 @@ class User extends Authenticatable
     public function signedDocuments()
     {
         return $this->hasMany(SignedDocument::class);
+    }
+
+    public function isEmployeeAdmin(): bool
+    {
+        // ВНИМАНИЕ: Если 'email' снова станет зашифрованным, эта проверка сломается.
+        // Более надежный способ - проверять по ID, если ID этого аккаунта не изменится.
+        return $this->email === 'employee.admin@example.com';
+
+        // ИЛИ, если вы знаете ID этого пользователя (например, если он 8):
+         return $this->id === 1;
     }
 }

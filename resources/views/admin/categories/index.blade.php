@@ -39,6 +39,7 @@
                                 <a href="{{ route('admin.categories.edit', ['locale' => app()->getLocale(), 'category' => $category->slug]) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-fill"></i>
                                 </a>
+                                @if (!Auth::user()->isEmployeeAdmin()) {{-- Если не админ-сотрудник, показываем кнопку удаления --}}
                                 <form action="{{ route('admin.categories.destroy', ['locale' => app()->getLocale(), 'category' => $category->slug]) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ __('messages.are_you_sure') }}');">
                                     @csrf
                                     @method('DELETE')
@@ -46,6 +47,7 @@
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                     @empty

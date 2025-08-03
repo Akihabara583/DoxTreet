@@ -16,10 +16,15 @@ return Application::configure(basePath: dirname(__DIR__))
             'webhooks/gumroad'
         ]);
 
-        // ✅ НАЧАЛО ИЗМЕНЕНИЙ: Добавляем middleware для проверки cookie
-        $middleware->append(\App\Http\Middleware\CheckCookieConsent::class);
-        // 🔚 КОНЕЦ ИЗМЕНЕНИЙ
+        // ✅ ИЗМЕНЕНИЕ: Добавляем наш middleware в группу 'web', а не глобально
+        $middleware->appendToGroup('web', [
+            \App\Http\Middleware\TrackUserActivity::class,
+            \App\Http\Middleware\SetLocale::class, // <-- ВОТ ЭТА СТРОКА ДОБАВЛЕНА
+        ]);
 
+
+        // Эти строки остаются без изменений
+        $middleware->append(\App\Http\Middleware\CheckCookieConsent::class);
         $middleware->append(\App\Http\Middleware\EnsureLocaleForApi::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {

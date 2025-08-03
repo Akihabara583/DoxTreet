@@ -7,6 +7,7 @@ use App\Models\Template;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TemplateController extends Controller
 {
@@ -122,8 +123,13 @@ class TemplateController extends Controller
 
     public function destroy(string $locale, string $templateId)
     {
-        $template = Template::findOrFail($templateId);
-        $template->delete();
-        return redirect()->route('admin.templates.index', ['locale' => app()->getLocale()])->with('success', 'Шаблон удален.');
+        // Проверяем, является ли текущий пользователь "админом для сотрудников"
+        if (Auth::user()->isEmployeeAdmin()) { //
+            return redirect()->back()->with('error', 'У вас нет прав для удаления шаблонов.'); //
+        }
+
+        $template = Template::findOrFail($templateId); //
+        $template->delete(); //
+        return redirect()->route('admin.templates.index', ['locale' => app()->getLocale()])->with('success', 'Шаблон удален.'); //
     }
 }

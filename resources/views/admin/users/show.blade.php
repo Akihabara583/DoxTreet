@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    {{-- ✅ ИЗМЕНЕННЫЙ БЛОК УПРАВЛЕНИЯ ПОДПИСКОЙ --}}
+                    {{-- Блок управления подпиской --}}
                     <div class="col-md-6">
                         <div class="card mb-4">
                             <div class="card-header">Управление подпиской</div>
@@ -63,7 +63,8 @@
                                     <span class="badge bg-primary text-uppercase">{{ $user->subscription_plan ?? 'base' }}</span>
                                 </p>
                                 @if($user->subscription_expires_at)
-                                    <p><strong>Действует до:</strong> {{ $user->subscription_expires_at->format('d.m.Y H:i') }}</p>
+                                    {{-- ✅ ИСПРАВЛЕНИЕ ЗДЕСЬ: Добавили \Carbon\Carbon::parse() --}}
+                                    <p><strong>Действует до:</strong> {{ \Carbon\Carbon::parse($user->subscription_expires_at)->format('d.m.Y H:i') }}</p>
                                 @endif
                                 <hr>
 
@@ -73,13 +74,11 @@
                                     <div class="mb-3">
                                         <label for="plan" class="form-label">Выдать подписку</label>
                                         <select name="plan" id="plan" class="form-select">
-                                            {{-- Добавили опцию для базового плана --}}
                                             <option value="base" @if(($user->subscription_plan ?? 'base') == 'base') selected @endif>База (бесплатно)</option>
                                             <option value="standard" @if($user->subscription_plan == 'standard') selected @endif>Стандарт</option>
                                             <option value="pro" @if($user->subscription_plan == 'pro') selected @endif>Про</option>
                                         </select>
                                     </div>
-                                    {{-- Обернули поле в div для управления видимостью --}}
                                     <div class="mb-3" id="duration-div">
                                         <label for="duration" class="form-label">Срок (в днях)</label>
                                         <input type="number" name="duration" id="duration" class="form-control" value="30" min="1">
@@ -89,12 +88,18 @@
                                     </button>
                                 </form>
                                 <hr>
-                                <button class="btn btn-danger" disabled>Удалить пользователя</button>
+                                <form action="{{ route('admin.users.destroy', ['locale' => app()->getLocale(), 'user' => $user->id]) }}" method="POST" onsubmit="return confirm('Вы уверены, что хотите навсегда удалить этого пользователя? Это действие необратимо.');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Удалить пользователя
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- Блок активности (без изменений) --}}
+                {{-- Блок активности --}}
                 <div class="card">
                     <div class="card-header">Активность пользователя</div>
                     <div class="card-body">

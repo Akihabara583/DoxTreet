@@ -35,7 +35,7 @@ return [
     'document_history' => 'Dokumentenverlauf',
     'my_subscription' => 'Mein Abonnement',
     'my_data' => 'Meine Daten',
-    'welcome_back' => 'Willkommen zurück',
+
     'profile_dashboard_text' => 'Von diesem Dashboard aus können Sie Ihr Profil verwalten, Ihr Abonnement einsehen und auf Ihren Dokumentenverlauf zugreifen.',
     'documents_created' => 'Erstellte Dokumente',
     'current_plan' => 'Aktueller Plan',
@@ -46,7 +46,21 @@ return [
     'update_password' => 'Passwort aktualisieren',
     'update_password_text' => 'Stellen Sie sicher, dass Ihr Konto ein langes, zufälliges Passwort verwendet, um sicher zu bleiben. Lassen Sie es leer, wenn Sie es nicht ändern möchten.',
     'new_password' => 'Neues Passwort',
-    'confirm_password' => 'Passwort bestätigen',
+
+
+
+
+    'book_welcome_title' => 'Willkommen zurück bei DoxTreet!',
+    'book_welcome_text' => 'Wir freuen uns, Sie wiederzusehen. Ihre Dokumente warten auf Sie, bereit zum Einsatz. Melden Sie sich einfach an, um loszulegen.',
+    'book_register_title' => 'Erschaffen Sie Ihre Welt der Dokumente',
+    'book_register_text' => 'Treten Sie der DoxTreet-Community bei und erhalten Sie Zugriff auf Tausende von Vorlagen. Ihre Reise zur einfachen Dokumentenverwaltung beginnt hier!',
+
+
+
+
+
+
+
 
     // "My Data" Page
     'my_data_text' => 'Speichern Sie Ihre persönlichen Informationen einmal, um sie automatisch in allen Dokumenten auszufüllen. Diese Daten werden sicher gespeichert und sind nur für Sie zugänglich.',
@@ -68,7 +82,34 @@ return [
     'id_card_number' => 'Ausweisnummer',
 
 
+    'email' => 'E-Mail-Adresse',
+    'password' => 'Passwort',
 
+
+    // Anmeldeseite
+    'welcome_back' => 'Willkommen zurück!',
+    'login_prompt' => 'Melden Sie sich bei Ihrem Konto an, um fortzufahren.',
+    'remember_me' => 'Angemeldet bleiben',
+    'forgot_password' => 'Passwort vergessen?',
+    'log_in_button' => 'Anmelden',
+    'or_continue_with' => 'Oder weitermachen mit',
+    'dont_have_account' => 'Haben Sie noch kein Konto?',
+    'sign_up_link' => 'Registrieren',
+
+    // Registrierungsseite
+    'create_account' => 'Konto erstellen',
+    'start_journey' => 'Beginnen Sie noch heute Ihre Reise mit uns.',
+    'your_name_placeholder' => 'Ihr Name',
+    'confirm_password' => 'Passwort bestätigen',
+    'register_button' => 'Registrieren',
+    'or_sign_up_with' => 'Oder registrieren mit',
+    'already_have_account' => 'Haben Sie bereits ein Konto?',
+    'log_in_link' => 'Anmelden',
+
+    // Code-Verifizierungsseite
+    'verify_code_intro' => 'Ein Bestätigungscode wurde an Ihre E-Mail-Adresse gesendet. Bitte geben Sie ihn unten ein.',
+    'verification_code' => 'Bestätigungscode',
+    'verify_email_button' => 'E-Mail bestätigen',
 
 
     // --- Signaturfunktion ---
@@ -159,7 +200,6 @@ return [
 
 
     // History Page
-    'template_name' => 'Vorlagenname',
     'creation_date' => 'Erstellungsdatum',
     'reuse' => 'Wiederverwenden',
     'no_documents_yet' => 'Sie haben noch keine Dokumente erstellt. Beginnen Sie mit der Auswahl einer Vorlage!',
@@ -214,7 +254,12 @@ return [
     'for_unlimited_access' => 'für unbegrenzten Zugriff',
 
 
-
+    'verification_sent' => 'Ein Bestätigungscode wurde an Ihre E-Mail gesendet.',
+    'registration_error' => 'Registrierungsfehler. Bitte versuchen Sie es erneut.',
+    'session_expired' => 'Ihre Sitzung ist abgelaufen. Bitte starten Sie den Registrierungsprozess erneut.',
+    'code_expired' => 'Der Bestätigungscode ist abgelaufen. Bitte starten Sie den Registrierungsprozess erneut.',
+    'invalid_code' => 'Ungültiger Bestätigungscode.',
+    'account_creation_error' => 'Beim Erstellen Ihres Kontos ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
 
 
 
@@ -292,7 +337,6 @@ return [
     'no_categories_found' => 'Keine Kategorien gefunden.',
     'no_templates_found' => 'Keine Vorlagen gefunden.',
     'translations' => 'Übersetzungen',
-    'category' => 'Kategorie',
     'status' => 'Status',
     'active' => 'Aktiv',
     'inactive' => 'Inaktiv',

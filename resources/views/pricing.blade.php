@@ -58,12 +58,12 @@
 
                         {{-- ✅ УПРОЩЕННАЯ ЛОГИКА --}}
                         @auth
-                            @if(auth()->user()->subscription_plan == 'base')
+                            @if(auth()->user()->subscription_plan == 'basic')
                                 <div class="card text-white bg-primary mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ __('messages.limit_reset_title') }}</h5>
                                         <p class="card-text small">{{ __('messages.limit_reset_text') }}</p>
-                                        <a href="https://doxtreet.gumroad.com/l/limitreset?email={{ auth()->user()->email }}" class="btn btn-light fw-bold w-100">{{ __('messages.limit_reset_button', ['price' => '$3']) }}</a>
+                                        <a href="https://doxtreet.gumroad.com/l/limitreset?email={{ auth()->user()->email }}" class="btn btn-light fw-bold w-100">{{ __('messages.limit_reset_button', ['price' => '$1.50']) }}</a>
                                     </div>
                                 </div>
                             @endif

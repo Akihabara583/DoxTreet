@@ -1,18 +1,28 @@
 <div class="list-group">
-    <a href="{{ route('admin.dashboard', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-        <i class="bi bi-speedometer2"></i> {{ __('messages.dashboard') }}
+    {{-- Скрываем ссылку на Дашборд, если это "админ для сотрудников" --}}
+    @if (!Auth::user()->isEmployeeAdmin())
+        <a href="{{ route('admin.dashboard', app()->getLocale()) }}" class="list-group-item list-group-item-action">
+            <i class="bi bi-speedometer"></i> Панель управления
+        </a>
+    @endif
+
+    {{-- Эти три вкладки видны всем админам (и супер, и сотрудникам) --}}
+    <a href="{{ route('admin.categories.index', app()->getLocale()) }}" class="list-group-item list-group-item-action">
+        <i class="bi bi-tags"></i> Категории
     </a>
-    <a href="{{ route('admin.categories.index', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-        <i class="bi bi-tags"></i> {{ __('messages.categories') }}
+
+    <a href="{{ route('admin.templates.index', app()->getLocale()) }}" class="list-group-item list-group-item-action">
+        <i class="bi bi-file-earmark-code"></i> Шаблоны
     </a>
-    <a href="{{ route('admin.templates.index', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.templates.*') ? 'active' : '' }}">
-        <i class="bi bi-file-earmark-text"></i> {{ __('messages.templates') }}
-    </a>
-    {{-- Новая ссылка на Статьи --}}
-    <a href="{{ route('admin.posts.index', ['locale' => app()->getLocale()]) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
+
+    <a href="{{ route('admin.posts.index', app()->getLocale()) }}" class="list-group-item list-group-item-action">
         <i class="bi bi-newspaper"></i> Статьи
     </a>
-    <a href="{{ route('admin.users.index', app()->getLocale()) }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-        <i class="bi bi-people-fill"></i> Пользователи
-    </a>
+
+    {{-- Скрываем ссылку на Пользователей, если это "админ для сотрудников" --}}
+    @if (!Auth::user()->isEmployeeAdmin())
+        <a href="{{ route('admin.users.index', app()->getLocale()) }}" class="list-group-item list-group-item-action">
+            <i class="bi bi-people"></i> Пользователи
+        </a>
+    @endif
 </div>

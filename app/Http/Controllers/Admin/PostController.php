@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Template;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -98,8 +99,14 @@ class PostController extends Controller
      */
     public function destroy(string $locale, string $post)
     {
-        $post = Post::findOrFail($post);
-        $post->delete();
-        return redirect()->route('admin.posts.index', ['locale' => app()->getLocale()])->with('success', 'Статья успешно удалена.');
+        // Проверяем, является ли текущий пользователь "админом для сотрудников"
+        if (Auth::user()->isEmployeeAdmin()) { //
+            return redirect()->back()->with('error', 'У вас нет прав для удаления статей.'); //
+        }
+
+        $postModel = Post::findOrFail($post); //
+        $postModel->delete(); //
+
+        return redirect()->route('admin.posts.index', ['locale' => app()->getLocale()])->with('success', 'Статья успешно удалена.'); //
     }
 }

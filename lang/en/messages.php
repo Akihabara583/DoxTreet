@@ -34,7 +34,6 @@ return [
     'edit_profile' => 'Edit Profile',
     'document_history' => 'Document History',
     'my_data' => 'My Data',
-    'welcome_back' => 'Welcome back',
     'profile_dashboard_text' => 'From this dashboard, you can manage your profile, view your subscription, and access your document history.',
     'documents_created' => 'Documents Created',
     'current_plan' => 'Current Plan',
@@ -45,7 +44,6 @@ return [
     'update_password' => 'Update Password',
     'update_password_text' => 'Ensure your account is using a long, random password to stay secure. Leave blank if you don\'t want to change it.',
     'new_password' => 'New Password',
-    'confirm_password' => 'Confirm Password',
     'my_templates_section' => 'My Templates',
     'my_templates' => 'My Templates',
     'create_template' => 'Create Template',
@@ -141,6 +139,50 @@ return [
     'per_month' => 'per month',
     'choose_plan' => 'Choose Plan',
     'start_free' => 'Start for Free',
+
+    'email' => 'Email',
+    'password' => 'Password',
+    'user_name' => 'Name',
+
+
+    'verification_sent' => 'A verification code has been sent to your email.',
+    'registration_error' => 'Registration error. Please try again.',
+    'session_expired' => 'Your session has expired. Please start the registration process again.',
+    'code_expired' => 'The verification code has expired. Please start the registration process again.',
+    'invalid_code' => 'Invalid verification code.',
+    'account_creation_error' => 'An error occurred while creating your account. Please try again.',
+
+    // Login Page
+    'welcome_back' => 'Welcome back!',
+    'login_prompt' => 'Log in to your account to continue.',
+    'remember_me' => 'Remember me',
+    'forgot_password' => 'Forgot your password?',
+    'log_in_button' => 'Log in',
+    'or_continue_with' => 'Or continue with',
+    'dont_have_account' => "Don't have an account?",
+    'sign_up_link' => 'Sign up',
+
+    // Register Page
+    'create_account' => 'Create an account',
+    'start_journey' => 'Start your journey with us today.',
+    'your_name_placeholder' => 'Your name',
+    'confirm_password' => 'Confirm Password',
+    'register_button' => 'Register',
+    'or_sign_up_with' => 'Or sign up with',
+    'already_have_account' => 'Already have an account?',
+    'log_in_link' => 'Log in',
+
+    // Verify Code Page
+    'verify_code_intro' => 'A verification code has been sent to your email address. Please enter it below.',
+    'verification_code' => 'Verification Code',
+    'verify_email_button' => 'Verify Email',
+
+
+
+    'book_welcome_title' => 'Welcome back to DoxTreet!',
+    'book_welcome_text' => "We're glad to see you again. Your documents are waiting for you, ready to go. Just log in to get started.",
+    'book_register_title' => 'Create Your World of Documents',
+    'book_register_text' => "Join the DoxTreet community and get access to thousands of templates. Your journey to easy document management starts here!",
 
 
 

@@ -2,12 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
-                    <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="#0D6EFD" fill-opacity="0.3"/>
-                    <path d="M14 2V8H20" stroke="#0D6EFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9 13H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9 17H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <x-application-logo class="me-2" style="width: 32px; height: 32px;" />
                 <span class="fw-bold">{{ config('app.name', 'DoxTreet') }}</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,19 +41,10 @@
                             @endif
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownLang">
+                            {{-- ✅ ИЗМЕНЕНИЕ №1: Упрощенная и надежная логика ссылок --}}
                             @foreach(config('app.available_locales') as $locale_code)
-                                @php
-                                    $currentRouteName = Route::currentRouteName();
-                                    $currentParameters = Route::current()->parameters();
-                                    $currentParameters['locale'] = $locale_code;
-
-                                    $url = (Route::current()->hasParameter('locale') && $currentRouteName)
-                                           ? route($currentRouteName, $currentParameters)
-                                           : route('home', ['locale' => $locale_code]);
-                                @endphp
                                 <li>
-                                    <a class="dropdown-item" href="{{ $url }}">
-                                        {{-- ✅ ИЗМЕНЕНИЕ №2: Отображение языков в списке --}}
+                                    <a class="dropdown-item" href="{{ route('language.switch', ['language' => $locale_code]) }}">
                                         @if($locale_code == 'uk')
                                             UA
                                         @else
@@ -71,15 +57,16 @@
                     </li>
 
                     @guest
+                        {{-- ✅ ИЗМЕНЕНИЕ №2: Добавлен параметр языка в роуты --}}
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a>
+                                <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">{{ __('messages.login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link btn btn-primary btn-sm text-white px-3" href="{{ route('register') }}">{{ __('messages.register') }}</a>
+                                <a class="nav-link btn btn-primary btn-sm text-white px-3" href="{{ route('register', app()->getLocale()) }}">{{ __('messages.register') }}</a>
                             </li>
                         @endif
                     @else

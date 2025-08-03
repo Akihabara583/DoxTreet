@@ -1,47 +1,84 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <!-- Установка заголовка для вкладки браузера -->
+    <x-slot name="title">
+        DoxTreet - {{ __('messages.log_in_button') }}
+    </x-slot>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <div class="w-full sm:max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <!-- Левая колонка: Форма -->
+            <div class="w-full md:w-1/2 p-8 sm:p-12">
+                <div class="w-full">
+                    <div class="text-center mb-8">
+                        <a href="{{ route('home', ['locale' => app()->getLocale()]) }}">
+                            <x-application-logo class="w-20 h-20 mx-auto" />
+                        </a>
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{{ __('messages.welcome_back') }}</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8">{{ __('messages.login_prompt') }}</p>
+
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
+                    <x-input-error :messages="session('error')" class="mb-4" />
+
+                    <form method="POST" action="{{ route('login', ['locale' => app()->getLocale()]) }}">
+                        @csrf
+
+                        <div class="mb-5">
+                            <x-input-label for="email" :value="__('messages.email')" />
+                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="your@email.com" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        </div>
+
+                        <div class="mb-5">
+                            <x-input-label for="password" :value="__('messages.password')" />
+                            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        </div>
+
+                        <div class="flex items-center justify-between mb-6">
+                            <label for="remember_me" class="inline-flex items-center"><input id="remember_me" type="checkbox" class="rounded border-gray-300 dark:border-gray-600 text-blue-600 shadow-sm focus:ring-blue-500" name="remember"><span class="ms-2 text-sm text-gray-700 dark:text-gray-300">{{ __('messages.remember_me') }}</span></label>
+                            @if (Route::has('password.request'))
+                                <a class="text-sm font-medium text-blue-600 hover:underline" href="{{ route('password.request', ['locale' => app()->getLocale()]) }}">{{ __('messages.forgot_password') }}</a>
+                            @endif
+                        </div>
+
+                        <div class="mb-6">
+                            <x-primary-button class="w-full justify-center text-base py-3">{{ __('messages.log_in_button') }}</x-primary-button>
+                        </div>
+
+                        <!-- ИЗМЕНЕНИЕ: Убрана кнопка Facebook -->
+                        <div>
+                            <div class="relative my-6">
+                                <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-300 dark:border-gray-600"></div></div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">{{ __('messages.or_continue_with') }}</span>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <a href="{{ route('social.redirect', ['provider' => 'google', 'locale' => app()->getLocale()]) }}" class="w-full flex items-center justify-center py-2.5 px-4 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 transition duration-300">
+                                    <img class="w-5 h-5 mr-2" src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="Google icon"> Google
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-600 dark:text-gray-300 text-center mt-8">{{ __("messages.dont_have_account") }} <a href="{{ route('register', ['locale' => app()->getLocale()]) }}" class="font-medium text-blue-600 hover:underline">{{ __('messages.sign_up_link') }}</a></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Правая колонка: Иллюстрация -->
+            <div class="hidden md:flex w-1/2 bg-blue-600 items-center justify-center p-12 flex-col text-white relative">
+                <div class="absolute top-4 right-4 z-50">
+                    <x-language-switcher />
+                </div>
+                <div class="max-w-sm text-center">
+                    <h2 class="text-3xl font-bold mt-6">{{ __('messages.book_welcome_title') }}</h2>
+                    <p class="mt-4 text-blue-200">{{ __('messages.book_welcome_text') }}</p>
+                </div>
+            </div>
+
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>
