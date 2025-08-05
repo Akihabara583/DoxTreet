@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
+use App\Services\SubscriptionService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Auth\MustVerifyEmail;// Импортируем фасад Crypt
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -131,7 +135,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->attributes['is_admin']) {
             return Carbon::now()->addYears(100);
         }
-        return $value;
+        return $value ? Carbon::parse($value) : null;
     }
 
     // --- ЛОГИКА УПРАВЛЕНИЯ ЛИМИТАМИ ---
@@ -151,6 +155,7 @@ class User extends Authenticatable implements MustVerifyEmail
             $this->setLimitsForPlan('base');
             $this->attributes['subscription_plan'] = 'base';
             $this->attributes['subscription_expires_at'] = null;
+            $this->attributes['gumroad_subscriber_id'] = null;
             $needsSave = true;
         }
 
@@ -255,6 +260,30 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(SignedDocument::class);
     }
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            // ✅ ИСПРАВЛЕНИЕ 2: Теперь этот вызов будет работать правильно
+            try {
+                $subscriptionService = app(SubscriptionService::class);
+                $subscriptionService->cancel($user);
+            } catch (\Exception $e) {
+                Log::critical("Не удалось отменить подписку для пользователя {$user->id} при удалении аккаунта.", [
+                    'error' => $e->getMessage()
+                ]);
+            }
+
+            // Очистка связанных данных
+            $user->userTemplates()->delete();
+            $user->generatedDocuments()->delete();
+            $user->details()->delete();
+            $user->signedDocuments->each(function ($document) {
+                Storage::disk('public')->delete($document->signed_file_path);
+                $document->delete();
+            });
+        });
+    }
+
 
     public function isEmployeeAdmin(): bool
     {

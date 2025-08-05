@@ -20,7 +20,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ __('messages.limit_reset_title') }}</h5>
                             <p class="card-text">{{ __('messages.limit_reset_text') }}</p>
-                            <a href="https://doxtreet.gumroad.com/l/limitreset?email={{ $user->email }}" class="btn btn-light fw-bold">{{ __('messages.limit_reset_button', ['price' => '$3']) }}</a>
+                            <a href="https://doxtreet.gumroad.com/l/limitreset?email={{ $user->email }}" class="btn btn-light fw-bold">{{ __('messages.limit_reset_button', ['price' => '$1.50']) }}</a>
                         </div>
                     </div>
                 @endif

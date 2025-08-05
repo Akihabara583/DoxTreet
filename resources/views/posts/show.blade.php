@@ -13,9 +13,11 @@
                 <h1 class="fw-bolder mb-1">{{ $post->title }}</h1>
 
                 <!-- Мета-информация -->
-                <div class="text-muted fst-italic mb-4">
-                    Опубликовано: {{ $post->published_at->format('d.m.Y') }}
-                </div>
+                @if($post->published_at)
+                    <div class="text-muted fst-italic mb-4">
+                        {{ __('messages.published_on') }}: {{ $post->published_at->format('d.m.Y') }}
+                    </div>
+                @endif
 
                 <!-- Основной текст статьи -->
                 <article>
@@ -24,24 +26,23 @@
                     </div>
                 </article>
 
-                {{-- === НОВЫЙ БЛОК: КНОПКА-ПРИЗЫВ К ДЕЙСТВИЮ === --}}
+                {{-- Блок с призывом к действию --}}
                 @if ($post->template)
                     <div class="card bg-primary text-white my-4 text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Готовы создать документ?</h5>
-                            <p class="card-text">Эта статья относится к нашему шаблону "{{ $post->template->title }}". Нажмите, чтобы перейти к заполнению.</p>
+                            <h5 class="card-title">{{ __('messages.ready_to_create') }}</h5>
+                            <p class="card-text">{{ __('messages.article_relates_to_template', ['templateName' => $post->template->title]) }}</p>
                             <a href="{{ route('templates.show', ['locale' => app()->getLocale(), 'template' => $post->template->slug]) }}" class="btn btn-light fw-bold px-4">
-                                Перейти к шаблону <i class="bi bi-arrow-right-circle-fill ms-2"></i>
+                                {{ __('messages.go_to_template') }} <i class="bi bi-arrow-right-circle-fill ms-2"></i>
                             </a>
                         </div>
                     </div>
                 @endif
-                {{-- ============================================= --}}
 
                 <hr>
 
                 <div class="text-center mt-4">
-                    <a href="{{ route('posts.index', app()->getLocale()) }}" class="btn btn-secondary">&larr; Вернуться к списку статей</a>
+                    <a href="{{ route('posts.index', app()->getLocale()) }}" class="btn btn-secondary">&larr; {{ __('messages.return_to_list') }}</a>
                 </div>
 
             </div>

@@ -90,6 +90,57 @@
                         </form>
                     </div>
                 </div>
+                {{-- ✅ НАЧАЛО: НОВЫЙ БЛОК ДЛЯ УДАЛЕНИЯ АККАУНТА --}}
+                <div class="card mt-4">
+                    <div class="card-header bg-danger text-white">
+                        {{ __('messages.delete_account') }}
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">{{ __('messages.delete_account_text') }}</p>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmUserDeletionModal">
+                            {{ __('messages.delete_account_button') }}
+                        </button>
+                    </div>
+                </div>
+                {{-- ✅ КОНЕЦ: НОВЫЙ БЛОК ДЛЯ УДАЛЕНИЯ АККАУНТА --}}
+
+            </div>
+        </div>
+    </div>
+
+
+    {{-- ✅ НАЧАЛО: МОДАЛЬНОЕ ОКНО ПОДТВЕРЖДЕНИЯ --}}
+    <div class="modal fade" id="confirmUserDeletionModal" tabindex="-1" aria-labelledby="confirmUserDeletionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="{{ route('profile.destroy', app()->getLocale()) }}">
+                    @csrf
+                    @method('delete')
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmUserDeletionModalLabel">{{ __('messages.confirm_account_deletion') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-danger"><strong>{{ __('messages.warning_permanent_deletion') }}</strong></p>
+                        <p>{{ __('messages.confirm_account_deletion_text') }}</p>
+
+                        <div class="mb-3">
+                            <label for="password-for-deletion" class="form-label">{{ __('messages.password_to_confirm') }}</label>
+                            <input id="password-for-deletion" name="password" type="password" class="form-control @error('password', 'userDeletion') is-invalid @enderror" required>
+                            @error('password', 'userDeletion')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.cancel') }}</button>
+                        <button type="submit" class="btn btn-danger">{{ __('messages.delete_account_button') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>

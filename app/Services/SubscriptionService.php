@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http; // ✅ Импортируем Http
+use Illuminate\Support\Facades\Log;  // ✅ Импортируем Log
 
 class SubscriptionService
 {
@@ -31,15 +33,6 @@ class SubscriptionService
         ],
     ];
 
-    /**
-     * ✅ ИЗМЕНЕННЫЙ МЕТОД
-     * Назначает пользователю новый тарифный план.
-     *
-     * @param User $user
-     * @param string $planName
-     * @param int|null $days
-     * @return void
-     */
     public function assignPlan(User $user, string $planName, ?int $days): void
     {
         if (!isset(self::PLANS[$planName])) {
@@ -48,7 +41,6 @@ class SubscriptionService
 
         $planSettings = self::PLANS[$planName];
 
-        // Если план не 'base' и указаны дни, рассчитываем дату окончания. Иначе - null.
         $expiresAt = ($planName !== 'base' && !is_null($days))
             ? Carbon::now()->addDays($days)
             : null;
@@ -56,18 +48,95 @@ class SubscriptionService
         $user->update([
             'subscription_plan' => $planName,
             'subscription_expires_at' => $expiresAt,
-
             'daily_template_limit' => $planSettings['daily_template_limit'],
             'daily_signature_limit' => $planSettings['daily_signature_limit'],
             'daily_download_limit' => $planSettings['daily_download_limit'],
             'custom_template_limit' => $planSettings['custom_template_limit'],
-
             'templates_left' => $planSettings['daily_template_limit'],
             'signatures_left' => $planSettings['daily_signature_limit'],
             'downloads_left' => $planSettings['daily_download_limit'],
             'custom_templates_left' => $planSettings['custom_template_limit'],
-
             'limits_reset_at' => Carbon::today(),
+        ]);
+    }
+
+    /**
+     * ✅ НОВЫЙ МЕТОД
+     * Отменяет подписку пользователя в Gumroad.
+     *
+     * @param User $user
+     * @return bool Возвращает true в случае успеха, false в случае неудачи.
+     */
+    public function cancel(User $user): bool
+    {
+        // Если у пользователя нет ID подписчика, значит, отменять нечего.
+        if (!$user->gumroad_subscriber_id) {
+            Log::info("Попытка отменить подписку для пользователя {$user->id}, но gumroad_subscriber_id отсутствует. Считаем успехом.");
+            return true;
+        }
+
+        $accessToken = env('GUMROAD_ACCESS_TOKEN');
+        if (!$accessToken) {
+            Log::error('GUMROAD_ACCESS_TOKEN не установлен в .env. Невозможно отменить подписку.');
+            return false;
+        }
+
+        Log::info("Начинаем отмену подписки Gumroad для пользователя {$user->id} с ID подписчика: {$user->gumroad_subscriber_id}");
+
+        try {
+            $response = Http::withToken($accessToken)->delete(
+                "https://api.gumroad.com/v2/subscribers/{$user->gumroad_subscriber_id}"
+            );
+
+            if ($response->successful()) {
+                // Очищаем данные подписки у пользователя
+                $user->gumroad_subscriber_id = null;
+                $user->subscription_plan = 'base';
+                $user->subscription_expires_at = null;
+                $user->save();
+                Log::info("Подписка для пользователя {$user->id} успешно отменена через API Gumroad.");
+                return true;
+            }
+
+            Log::error('Ошибка отмены подписки Gumroad. API вернул ошибку.', [
+                'user_id' => $user->id,
+                'status' => $response->status(),
+                'response' => $response->json()
+            ]);
+            return false;
+
+        } catch (\Exception $e) {
+            Log::error('Исключение при отмене подписки Gumroad.', [
+                'user_id' => $user->id,
+                'exception_message' => $e->getMessage()
+            ]);
+            return false;
+        }
+    }
+
+    public function downgradeToDefaultPlan(User $user): void
+    {
+        Log::info("Понижаем пользователя {$user->id} до базового плана из-за истечения подписки.");
+
+        // Получаем настройки базового плана
+        $planSettings = self::PLANS['base'];
+
+        $user->update([
+            'subscription_plan'       => 'base',
+            'subscription_expires_at' => null,
+            'gumroad_subscriber_id'   => null, // <-- Ключевое исправление!
+
+            // Обновляем все лимиты до базовых
+            'daily_template_limit'    => $planSettings['daily_template_limit'],
+            'daily_signature_limit'   => $planSettings['daily_signature_limit'],
+            'daily_download_limit'    => $planSettings['daily_download_limit'],
+            'custom_template_limit'   => $planSettings['custom_template_limit'],
+
+            // Сбрасываем остатки лимитов
+            'templates_left'          => $planSettings['daily_template_limit'],
+            'signatures_left'         => $planSettings['daily_signature_limit'],
+            'downloads_left'          => $planSettings['daily_download_limit'],
+            'custom_templates_left'   => $planSettings['custom_template_limit'],
         ]);
     }
 }

@@ -26,7 +26,7 @@ class EmailVerificationCodeController extends Controller
     }
 
     /**
-     * Проверить введенный код и создать пользователя.
+     * Проверить введенный код и создать или восстановить пользователя.
      */
     public function verifyCode(Request $request)
     {
@@ -47,17 +47,49 @@ class EmailVerificationCodeController extends Controller
             return back()->withErrors(['code' => __('messages.invalid_code')]);
         }
 
+        $user = null;
+
         try {
-            $user = User::create([
-                'name' => $regData['name'],
-                'email' => $regData['email'],
-                'password' => $regData['password'],
-                'email_verified_at' => Carbon::now(),
-                'subscription_plan' => 'basic', // ✅ ИЗМЕНЕНИЕ: Явно указываем базовый тариф
-            ]);
-            Log::info('User created successfully after verification.', ['user_id' => $user->id, 'email' => $user->email]);
+            // ✅ НАЧАЛО: КЛЮЧЕВОЕ ИЗМЕНЕНИЕ
+            // Проверяем, нужно ли восстановить пользователя
+            if (isset($regData['restore_user_id'])) {
+
+                // Ищем "удаленного" пользователя по ID
+                $user = User::withTrashed()->find($regData['restore_user_id']);
+
+                if ($user) {
+                    // Восстанавливаем пользователя
+                    $user->restore();
+                    // Обновляем его данные (имя и новый пароль)
+                    $user->forceFill([
+                        'name' => $regData['name'],
+                        'password' => $regData['password'],
+                        'email_verified_at' => Carbon::now(), // Можно также обновить дату верификации
+                    ])->save();
+                    Log::info('User restored successfully after verification.', ['user_id' => $user->id, 'email' => $user->email]);
+                } else {
+                    // На всякий случай, если пользователя не удалось найти
+                    throw new \Exception('Soft-deleted user not found for restoration.');
+                }
+
+            } else {
+                // Если это новый пользователь, создаем его, как и раньше
+                $user = User::create([
+                    'name' => $regData['name'],
+                    'email' => $regData['email'],
+                    'password' => $regData['password'],
+                    'email_verified_at' => Carbon::now(),
+                    'subscription_plan' => 'base',
+                ]);
+                Log::info('User created successfully after verification.', ['user_id' => $user->id, 'email' => $user->email]);
+
+                // Событие Registered вызываем только для действительно новых пользователей
+                event(new Registered($user));
+            }
+            // ✅ КОНЕЦ: КЛЮЧЕВОЕ ИЗМЕНЕНИЕ
+
         } catch (\Exception $e) {
-            Log::error('Failed to create user after verification', [
+            Log::error('Failed to create or restore user after verification', [
                 'email' => $regData['email'],
                 'error' => $e->getMessage()
             ]);
@@ -66,7 +98,6 @@ class EmailVerificationCodeController extends Controller
         }
 
         Session::forget('registration_data');
-        event(new Registered($user));
         Auth::login($user);
 
         return redirect()->intended(route('home', ['locale' => app()->getLocale()]));

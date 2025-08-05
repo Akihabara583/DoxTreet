@@ -327,8 +327,8 @@ class UaWorkSeeder extends Seeder
                                             <p><strong>ARBEITGEBER:</strong></p>
                                             <br/>
                                             <p><strong>[[company_name]]</strong></p>
-                                            <p>Адреса: [[company_address]]</p>
-                                            <p>Код ЄДРПОУ: [[company_edrpou]]</p>
+                                            <p>Adresse: [[company_address]]</p>
+                                            <p>EDRPOU-Code: [[company_edrpou]]</p>
                                             <br/>
                                             <p>___________________</p>
                                             <p>([[director_name]])</p>
@@ -337,9 +337,9 @@ class UaWorkSeeder extends Seeder
                                             <p><strong>ARBEITNEHMER:</strong></p>
                                             <br/>
                                             <p><strong>[[employee_name]]</strong></p>
-                                            <p>Адреса: [[employee_address]]</p>
-                                            <p>РНОКПП: [[employee_rnekpp]]</p>
-                                            <p>Паспорт: [[employee_passport]]</p>
+                                            <p>Adresse: [[employee_address]]</p>
+                                            <p>RNEKPP: [[employee_rnekpp]]</p>
+                                            <p>Reisepass: [[employee_passport]]</p>
                                             <br/>
                                             <p>___________________</p>
                                             <p>([[employee_name]])</p>
@@ -1196,8 +1196,8 @@ class UaWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'uk' => [
-                        'title' => 'Приказ о приеме на работу',
-                        'description' => 'Официальный приказ о приеме нового сотрудника на работу.',
+                        'title' => 'Наказ про прийняття на роботу',
+                        'description' => 'Офіційний наказ про прийняття нового співробітника на роботу.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">НАКАЗ</h1><p style="font-size: 14px;">про прийняття на роботу</p><p>№ [[order_number]] від [[current_date]]</p></div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <p>Прийняти на роботу в <strong>[[company_name]]</strong>:</p>
@@ -1285,8 +1285,8 @@ class UaWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'uk' => [
-                        'title' => 'Приказ о переводе на другую должность',
-                        'description' => 'Официальный приказ о переводе сотрудника на другую должность.',
+                        'title' => 'Наказ про переведення на іншу посаду',
+                        'description' => 'Офіційний наказ про переведення співробітника на іншу посаду.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">НАКАЗ</h1><p style="font-size: 14px;">про переведення на іншу посаду</p><p>№ [[order_number]] від [[current_date]]</p></div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <p>Перевести <strong>[[employee_name]]</strong> з посади <strong>[[old_position]]</strong> на посаду <strong>[[new_position]]</strong> в <strong>[[company_name]]</strong> з <strong>[[transfer_date]]</strong>.</p>
@@ -1790,8 +1790,8 @@ class UaWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'uk' => [
-                        'title' => 'Приказ на отпуск',
-                        'description' => 'Официальный приказ о предоставлении отпуска сотруднику.',
+                        'title' => 'Наказ на відпустку',
+                        'description' => 'Офіційний наказ про надання відпустки співробітнику.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">НАКАЗ</h1><p style="font-size: 14px;">про надання відпустки</p><p>№ [[order_number]] від [[current_date]]</p></div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <p>Надати <strong>[[employee_name]]</strong>, [[employee_position]], [[leave_type]] відпустку тривалістю <strong>[[leave_days]]</strong> календарних днів [[work_period_start]]за період роботи з [[work_period_start]] по [[work_period_end]][[/work_period_start]] з <strong>[[leave_start_date]]</strong> по <strong>[[leave_end_date]]</strong>.</p>
@@ -2214,8 +2214,8 @@ class UaWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'uk' => [
-                        'title' => 'Приказ об увольнении',
-                        'description' => 'Официальный приказ о прекращении трудовых отношений с сотрудником.',
+                        'title' => 'Наказ про звільнення',
+                        'description' => 'Офіційний наказ про припинення трудових відносин зі співробітником.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">НАКАЗ</h1><p style="font-size: 14px;">про звільнення</p><p>№ [[order_number]] від [[current_date]]</p></div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <p>Звільнити <strong>[[employee_name]]</strong>, [[employee_position]], з роботи в <strong>[[company_name]]</strong> [[termination_date]].</p>
@@ -2424,7 +2424,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Службова записка',
-                        'description' => 'Внутренний документ для обмена информацией между сотрудниками или отделами.',
+                        'description' => 'Внутрішній документ для обміну інформацією між співробітниками або відділами.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: center;"><strong>[[company_name]]</strong></p>
                                 <p style="text-align: right;">Кому: [[to_position]] [[to_name]]</p>
@@ -2852,7 +2852,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Лист-претензія',
-                        'description' => 'Официальное письмо, содержащее претензии к другой стороне и требования об устранении нарушений.',
+                        'description' => 'Офіційний лист, що містить претензії до іншої сторони та вимоги щодо усунення порушень.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">[[company_name]]</p>
                                 <p style="text-align: right;">[[current_date]]</p>
@@ -2954,7 +2954,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Гарантійний лист',
-                        'description' => 'Официальный документ, подтверждающий выполнение определенных обязательств или оплату.',
+                        'description' => 'Офіційний документ, що підтверджує виконання певних зобов\'язань або оплату.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">ГАРАНТІЙНИЙ ЛИСТ</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif;"><tr><td><p>[[company_name]]</p></td><td style="text-align: right;"><p>[[current_date]] р.</p></td></tr></table><p>Кому: [[recipient_name]]</p><br/>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <p>Шановні партнери,</p>
@@ -3029,7 +3029,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Офіційний запит',
-                        'description' => 'Официальный запрос информации или документов от другой организации или лица.',
+                        'description' => 'Офіційний запит інформації або документів від іншої організації чи особи.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">[[company_name]]</p>
                                 <p style="text-align: right;">[[current_date]]</p>
@@ -3123,7 +3123,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Лист-повідомлення',
-                        'description' => 'Официальное письмо, информирующее другую сторону о каком-либо событии, изменении или решении.',
+                        'description' => 'Офіційний лист, що інформує іншу сторону про якусь подію, зміну або рішення.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">[[company_name]]</p>
                                 <p style="text-align: right;">[[current_date]]</p>
@@ -3212,7 +3212,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Лист-вибачення',
-                        'description' => 'Официальное письмо с извинениями за допущенные ошибки или неудобства.',
+                        'description' => 'Офіційний лист з вибаченнями за допущені помилки або незручності.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">ЛИСТ-ВИБАЧЕННЯ</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif;"><tr><td><p>[[company_name]]</p></td><td style="text-align: right;"><p>[[current_date]] р.</p></td></tr></table><p>Кому: [[recipient_name]]</p><br/>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <h2 style="font-size:14px; font-weight:bold; margin-top:15px; text-align:center;">Тема: [[apology_subject]]</h2>
@@ -3281,7 +3281,7 @@ class UaWorkSeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Подячний лист',
-                        'description' => 'Официальное письмо с выражением благодарности за сотрудничество, помощь или услугу.',
+                        'description' => 'Офіційний лист з висловленням подяки за співпрацю, допомогу чи послугу.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">ПОДЯЧНИЙ ЛИСТ</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif;"><tr><td><p>[[company_name]]</p></td><td style="text-align: right;"><p>[[current_date]] р.</p></td></tr></table><p>Кому: [[recipient_name]]</p><br/>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
                                 <h2 style="font-size:14px; font-weight:bold; margin-top:15px; text-align:center;">Тема: [[thank_you_subject]]</h2>

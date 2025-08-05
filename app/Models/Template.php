@@ -19,6 +19,8 @@ class Template extends Model
         'fields',
     ];
 
+    protected $appends = ['title'];
+
     protected $casts = [
         'is_active' => 'boolean',
         'fields' => 'array',

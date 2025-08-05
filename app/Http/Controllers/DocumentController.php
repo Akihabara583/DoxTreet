@@ -111,7 +111,6 @@ class DocumentController extends Controller
 
         $user = $request->user();
 
-        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
         if (!$user->canPerformAction('download')) {
             $errorMessage = __('messages.limit_exhausted_error', ['url' => route('pricing', app()->getLocale())]);
             return back()->withInput()->with('error_html', $errorMessage);
@@ -134,6 +133,11 @@ class DocumentController extends Controller
         $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
         $fullHtml = $this->replaceConditionalPlaceholders($fullHtml, $validatedData);
         $fullHtml = $this->replaceSimplePlaceholders($fullHtml, $validatedData);
+
+        // --- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ---
+        // Финальная очистка всех оставшихся плейсхолдеров [[...]]
+        $fullHtml = preg_replace('/\[\[.*?\]\]/s', '', $fullHtml);
+
 
         $fileName = Str::slug($template->title) . '-' . time();
 

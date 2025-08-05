@@ -10,8 +10,8 @@ return [
     'navigation' => 'Navigation',
     'go_home' => 'Go to Homepage',
     'fill_form' => 'Fill Out Form',
-    'generate_pdf' => 'Generate PDF',
-    'download_docx' => 'Download .docx',
+    'generate_pdf' => 'Download PDF',
+    'download_docx' => 'Download DOCX',
     'docs_by_country' => 'Documents by Country',
     'template_catalog' => 'Template Catalog',
     'docs_for' => 'Documents for',
@@ -96,6 +96,20 @@ return [
     'quick_template_official_letter' => 'Official Letter',
     'add_new_field_label' => 'Add new field:',
 
+
+
+    'generate_docx' => 'Download DOX',
+
+
+    'delete_account' => 'Delete Account',
+    'delete_account_text' => 'Once your account is deleted, all of its resources and data, including your documents, personal data, and active subscriptions, will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
+    'delete_account_button' => 'Delete Account',
+    'confirm_account_deletion' => 'Confirm Account Deletion',
+    'warning_permanent_deletion' => 'This action is irreversible!',
+    'confirm_account_deletion_text' => 'Are you sure you want to delete your account? To confirm this action, please enter your password.',
+    'password_to_confirm' => 'Please enter your password to confirm',
+    'cancel' => 'Cancel',
+    'account_deleted_successfully' => 'Your account has been successfully deleted.',
 
     // --- Signature Feature ---
     'sign_document' => 'Sign Document',
@@ -300,7 +314,7 @@ return [
     'for_unlimited_access' => 'for unlimited access',
 
     // SEO & Meta
-    'seo_default_description' => 'A convenient service for quickly creating standard documents and applications online from ready-made templates. Save your time!',
+    'seo_default_description' => 'DoxTreet: Hundreds of document templates for business and personal needs, adapted to the laws of Ukraine, Poland, and Germany. From resumes to rental agreements. Sign online and save your time!',
 
     // Errors
     'error_404_title' => 'Page Not Found',
@@ -343,6 +357,13 @@ return [
     'country_ua' => 'Ukraine',
     'country_us' => 'America',
 
+    'title' => 'Blog',
+    'published_on' => 'Published on',
+    'read_more' => 'Read more',
+    'ready_to_create' => 'Ready to create a document?',
+    'article_relates_to_template' => 'This article relates to our template ":templateName". Click to proceed to filling it out.',
+    'go_to_template' => 'Go to template',
+    'return_to_list' => 'Return to articles list',
 
     'back' => 'Back',
 
@@ -382,7 +403,10 @@ return [
 
 
 
-
+    'cookie_title' => 'We care about your privacy',
+    'cookie_text' => 'We use cookies to improve your experience on our site. By clicking “Accept”, you agree to our',
+    'accept' => 'Accept',
+    'decline' => 'Decline',
 
 
 

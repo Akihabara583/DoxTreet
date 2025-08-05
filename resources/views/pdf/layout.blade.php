@@ -2,63 +2,55 @@
 <html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    {{-- ИЗМЕНЕНИЕ 1: Используем название шаблона для заголовка вкладки --}}
+    <title>{{ $template->title ?? 'Документ' }}</title>
     <style>
-        /* Подключаем шрифт, который поддерживает все нужные языки */
         body {
             font-family: 'DejaVu Sans', sans-serif;
             font-size: 12px;
-            line-height: 1.5;
         }
-        .document-header {
-            width: 100%;
-            margin-bottom: 40px;
-        }
-        .header-left {
-            width: 50%;
-            float: left;
-            text-align: left;
-        }
-        .header-right {
-            width: 50%;
-            float: right;
-            text-align: right;
-        }
-        .document-title {
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 50px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-        .content {
-            text-align: justify;
-        }
-        .signature-section {
-            margin-top: 50px;
-            width: 100%;
-        }
-        .signature-date {
-            width: 50%;
-            float: left;
-        }
-        .signature-name {
-            width: 50%;
-            float: right;
-            text-align: right;
-        }
-        .clear {
-            clear: both;
-        }
-        p {
-            margin: 0 0 10px;
-        }
-        strong {
-            font-weight: bold;
+        .logo {
+            max-width: 150px; /* Можете изменить размер */
+            max-height: 50px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-@yield('content')
+
+{{-- ИЗМЕНЕНИЕ 2: Блок для логотипа --}}
+@php
+    // ВАЖНО: Убедитесь, что у вас есть логотип по этому пути: public/images/logo.png
+    // Если путь другой, измените его здесь.
+    $logoPath = public_path('images/logo.png');
+    if (file_exists($logoPath)) {
+        $logoData = base64_encode(file_get_contents($logoPath));
+        $logoSrc = 'data:image/png;base64,' . $logoData;
+    } else {
+        $logoSrc = '';
+    }
+@endphp
+
+@if($logoSrc)
+    <x-application-logo class="me-2" style="width: 64px; height: 64px;" />
+@endif
+
+
+@if(isset($header) && $header)
+    <header>
+        {!! $header !!}
+    </header>
+@endif
+
+<main>
+    {!! $body !!}
+</main>
+
+@if(isset($footer) && $footer)
+    <footer>
+        {!! $footer !!}
+    </footer>
+@endif
+
 </body>
 </html>

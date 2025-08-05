@@ -1135,7 +1135,7 @@ class UaPersonalFamilySeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Записка в школу про відсутність дитини',
-                        'description' => 'Официальная записка от родителей в школу об отсутствии ребенка на занятиях.',
+                        'description' => 'Офіційна записка від батьків до школи про відсутність дитини на заняттях.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">Директору [[school_name]]</p>
                                 <p style="text-align: right;">[[school_address]]</p>
@@ -1260,46 +1260,52 @@ class UaPersonalFamilySeeder extends Seeder
                         'description' => 'Official document confirming the consent of one or both parents for a child to travel outside Ukraine.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">CONSENT STATEMENT</h1><p style="font-size: 14px;">for child travel abroad</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif;"><tr><td><p>City: [[city]]</p></td><td style="text-align: right;"><p>Date: [[current_date]]</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>I, <strong>[[parent_name_full]]</strong>, passport: [[parent_passport]], residing at: [[parent_address]], hereby give my voluntary informed consent for medical intervention on my child:</p>
-                                <p><strong>[[child_name]]</strong>, born on [[child_dob]], birth certificate series [[child_birth_certificate]].</p>
-                                <p>Type of medical intervention: [[medical_procedure_description]].</p>
-                                <p>Medical institution: [[medical_institution_name]]. Doctor: [[doctor_name]].</p>
-                                <p>I have been informed about the purpose, nature, possible risks, and alternatives of the medical intervention.</p>
-                            </div>',
+            <p>I, <strong>[[parent_name_full]]</strong>, passport: [[parent_passport]], residing at: [[parent_address]], hereby give my voluntary informed consent for the travel of my child:</p>
+            <p><strong>[[child_name]]</strong>, born on [[child_dob]], birth certificate series [[child_birth_certificate]].</p>
+            <p>Purpose of travel: [[travel_purpose]].</p>
+            <p>Country of destination: <strong>[[travel_destination]]</strong>.</p>
+            <p>Travel period: from <strong>[[travel_start_date]]</strong> to <strong>[[travel_end_date]]</strong>.</p>
+            [[accompanying_person_name]]<p>Accompanying person: [[accompanying_person_name]], passport: [[accompanying_person_passport]].</p>[[/accompanying_person_name]]
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px;">
-                                <p>Signature: ___________________ ([[parent_name_full]])</p>
-                            </div>'
+            <p>Signature: ___________________ ([[parent_name_full]])</p>
+        </div>'
                     ],
+
                     'pl' => [
                         'title' => 'Zgoda rodziców na wyjazd dziecka za granicę',
                         'description' => 'Oficjalny dokument potwierdzający zgodę jednego lub obojga rodziców na wyjazd dziecka poza granice Ukrainy.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">OŚWIADCZENIE O ZGODZIE</h1><p style="font-size: 14px;">na wyjazd dziecka za granicę</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif;"><tr><td><p>Miejscowość: [[city]]</p></td><td style="text-align: right;"><p>Data: [[current_date]]</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Ja, <strong>[[parent_name_full]]</strong>, paszport: [[parent_passport]], zamieszkały(a) pod adresem: [[parent_address]], niniejszym wyrażam dobrowolną i świadomą zgodę na przeprowadzenie interwencji medycznej u mojego dziecka:</p>
-                                <p><strong>[[child_name]]</strong>, urodzonego [[child_dob]], akt urodzenia seria [[child_birth_certificate]].</p>
-                                <p>Rodzaj interwencji medycznej: [[medical_procedure_description]].</p>
-                                <p>Placówka medyczna: [[medical_institution_name]]. Lekarz: [[doctor_name]].</p>
-                                <p>Zostałem(am) poinformowany(a) o celu, charakterze, możliwych ryzykach i alternatywach interwencji medycznej.</p>
-                            </div>',
+            <p>Ja, <strong>[[parent_name_full]]</strong>, paszport: [[parent_passport]], zamieszkały(a) pod adresem: [[parent_address]], niniejszym wyrażam dobrowolną i świadomą zgodę na wyjazd mojego dziecka:</p>
+            <p><strong>[[child_name]]</strong>, urodzonego [[child_dob]], akt urodzenia seria [[child_birth_certificate]].</p>
+            <p>Cel podróży: [[travel_purpose]].</p>
+            <p>Kraj docelowy: <strong>[[travel_destination]]</strong>.</p>
+            <p>Okres podróży: od <strong>[[travel_start_date]]</strong> do <strong>[[travel_end_date]]</strong>.</p>
+            [[accompanying_person_name]]<p>Osoba towarzysząca: [[accompanying_person_name]], paszport: [[accompanying_person_passport]].</p>[[/accompanying_person_name]]
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px;">
-                                <p>Podpis: ___________________ ([[parent_name_full]])</p>
-                            </div>'
+            <p>Podpis: ___________________ ([[parent_name_full]])</p>
+        </div>'
                     ],
+
                     'de' => [
                         'title' => 'Elterliche Zustimmung zur Ausreise des Kindes ins Ausland',
                         'description' => 'Offizielles Dokument, das die Zustimmung eines oder beider Elternteile zur Ausreise eines Kindes aus der Ukraine bestätigt.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">EINVERSTÄNDNISERKLÄRUNG</h1><p style="font-size: 14px;">zur Ausreise des Kindes ins Ausland</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif;"><tr><td><p>Ort: [[city]]</p></td><td style="text-align: right;"><p>Datum: [[current_date]]</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Ich, <strong>[[parent_name_full]]</strong>, Reisepass: [[parent_passport]], wohnhaft unter der Adresse: [[parent_address]], erteile hiermit meine freiwillige und informierte Zustimmung zur Durchführung medizinischer Maßnahmen an meinem Kind:</p>
-                                <p><strong>[[child_name]]</strong>, geboren am [[child_dob]], Geburtsurkunde Serie [[child_birth_certificate]].</p>
-                                <p>Art des medizinischen Eingriffs: [[medical_procedure_description]].</p>
-                                <p>Medizinische Einrichtung: [[medical_institution_name]]. Arzt: [[doctor_name]].</p>
-                                <p>Ich wurde über den Zweck, die Art, die möglichen Risiken und Alternativen der medizinischen Maßnahme aufgeklärt.</p>
-                            </div>',
+            <p>Ich, <strong>[[parent_name_full]]</strong>, Reisepass: [[parent_passport]], wohnhaft unter der Adresse: [[parent_address]], erteile hiermit meine freiwillige und informierte Zustimmung zur Reise meines Kindes:</p>
+            <p><strong>[[child_name]]</strong>, geboren am [[child_dob]], Geburtsurkunde Serie [[child_birth_certificate]].</p>
+            <p>Reisezweck: [[travel_purpose]].</p>
+            <p>Zielland: <strong>[[travel_destination]]</strong>.</p>
+            <p>Reisezeitraum: vom <strong>[[travel_start_date]]</strong> bis zum <strong>[[travel_end_date]]</strong>.</p>
+            [[accompanying_person_name]]<p>Begleitperson: [[accompanying_person_name]], Reisepass: [[accompanying_person_passport]].</p>[[/accompanying_person_name]]
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 40px; font-size: 12px;">
-                                <p>Unterschrift: ___________________ ([[parent_name_full]])</p>
-                            </div>'
+            <p>Unterschrift: ___________________ ([[parent_name_full]])</p>
+        </div>'
                     ],
+
                 ]
             ],
             // --- 14. Соглашение об уплате алиментов ---
@@ -2513,7 +2519,7 @@ class UaPersonalFamilySeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Претензія на неякісний товар',
-                        'description' => 'Официальная претензия покупателя к продавцу относительно некачественного товара.',
+                        'description' => 'Офіційна претензія покупця до продавця щодо неякісного товару.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">Директору [[seller_name]]</p>
                                 <p style="text-align: right;">[[seller_address]]</p>
@@ -2859,7 +2865,7 @@ class UaPersonalFamilySeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Особистий подячний лист',
-                        'description' => 'Неофициальное письмо с выражением личной благодарности.',
+                        'description' => 'Неофіційний лист з висловленням особистої подяки.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">Від: [[sender_name]]</p>
                                 <p style="text-align: right;">[[sender_address]]</p>
@@ -2966,7 +2972,7 @@ class UaPersonalFamilySeeder extends Seeder
                 'translations' => [
                     'uk' => [
                         'title' => 'Особистий лист з вибаченнями',
-                        'description' => 'Неофициальное письмо с личными извинениями за допущенные ошибки или неудобства.',
+                        'description' => 'Неофіційний лист з особистими вибаченнями за допущені помилки або незручності.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
                                 <p style="text-align: right;">Від: [[sender_name]]</p>
                                 <p style="text-align: right;">[[sender_address]]</p>

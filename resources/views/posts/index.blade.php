@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Блог - ' . config('app.name'))
+@section('title', __('messages.blog') . ' - ' . config('app.name'))
 
 @section('content')
     <div class="container py-5">
@@ -12,18 +12,17 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title h4">
-                                {{-- --- ИСПРАВЛЕНИЕ ЗДЕСЬ --- --}}
-                                {{-- Мы меняем 'post' => $post->slug на 'slug' => $post->slug --}}
                                 <a href="{{ route('posts.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]) }}" class="text-decoration-none text-dark">{{ $post->title }}</a>
                             </h2>
-                            <p class="text-muted">
-                                Опубликовано: {{ $post->published_at->format('d.m.Y') }}
-                            </p>
+                            @if($post->published_at)
+                                <p class="text-muted">
+                                    {{ __('messages.published_on') }}: {{ $post->published_at->format('d.m.Y') }}
+                                </p>
+                            @endif
                             <p class="card-text">
                                 {{ Str::limit(strip_tags($post->body), 200) }}
                             </p>
-                            {{-- И здесь тоже исправляем --}}
-                            <a href="{{ route('posts.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]) }}" class="btn btn-primary">Читать далее &rarr;</a>
+                            <a href="{{ route('posts.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]) }}" class="btn btn-primary">{{ __('messages.read_more') }} &rarr;</a>
                         </div>
                     </div>
                 @empty

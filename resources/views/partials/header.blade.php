@@ -3,7 +3,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
                 <x-application-logo class="me-2" style="width: 32px; height: 32px;" />
-                <span class="fw-bold">{{ config('app.name', 'DoxTreet') }}</span>
+                <span class="fw-bold">{{ config('app.name', 'DoxTreet') }}<sup>&trade;</sup></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

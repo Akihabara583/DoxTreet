@@ -15,7 +15,9 @@ return new class extends Migration
     {
         // Отключаем массовые обновления, чтобы setAttribute вызывался для каждого поля
         // User::withoutEvents(function () { // Раскомментируйте, если есть проблемы с событиями
-        User::chunk(100, function ($users) {
+
+        // ИСПОЛЬЗУЕМ withTrashed(), ЧТОБЫ ИГНОРИРОВАТЬ SoftDeletes, ТАК КАК КОЛОНКА deleted_at ЕЩЕ НЕ СОЗДАНА
+        User::withTrashed()->chunk(100, function ($users) {
             foreach ($users as $user) {
                 // Присваивание уже существующих значений вызовет setAttribute
                 // и зашифрует их, если они не были зашифрованы ранее.

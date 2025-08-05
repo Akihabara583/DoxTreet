@@ -103,6 +103,7 @@ Route::prefix('{locale}')
             Route::resource('categories', Admin\CategoryController::class)->except(['show']);
             Route::resource('templates', Admin\TemplateController::class)->except(['show']);
             Route::resource('posts', Admin\PostController::class)->except(['show']);
+            Route::post('/posts/get-templates-by-category', [\App\Http\Controllers\Admin\PostController::class, 'getTemplatesByCategory'])->name('posts.get_templates_by_category');
             Route::get('users', [Admin\UserController::class, 'index'])->name('users.index');
             Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
             Route::patch('users/{user}/subscription', [Admin\UserController::class, 'updateSubscription'])->name('users.subscription.update');
@@ -112,6 +113,7 @@ Route::prefix('{locale}')
         Route::prefix('profile')->middleware('auth')->name('profile.')->group(function () {
             Route::get('/', [ProfileController::class, 'show'])->name('show');
             Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+            Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
             Route::patch('/update', [ProfileController::class, 'update'])->name('update');
             Route::get('/history', [ProfileController::class, 'history'])->name('history');
             Route::get('/history/reuse/{document}', [ProfileController::class, 'reuse'])->name('history.reuse');

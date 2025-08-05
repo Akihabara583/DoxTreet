@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache; // Импортируем фасад кэша
 use App\Models\Visit;
 use Carbon\Carbon;
+use App\Models\User;
 
 class TrackUserActivity
 {
@@ -18,6 +19,7 @@ class TrackUserActivity
             if (!$user->is_admin) {
                 // Ключ для кэша, уникальный для каждого пользователя
                 $cacheKey = 'user-is-online-' . $user->id;
+                $user->checkAndResetLimits();
 
                 // Помещаем в кэш метку на 2 минуты.
                 // Это сверхбыстрая операция (в Redis/Memcached).

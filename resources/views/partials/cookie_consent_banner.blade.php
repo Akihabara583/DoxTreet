@@ -57,16 +57,16 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8 mb-3 mb-lg-0">
-                    <h4 class="mb-2">Мы заботимся о вашей конфиденциальности</h4>
+                    <h4 class="mb-2">{{ __('messages.cookie_title') }}</h4>
                     <p class="mb-0 text-white-50">
-                        Мы используем файлы cookie для улучшения вашего опыта на нашем сайте. Нажимая «Принять», вы соглашаетесь с нашей
-                        <a href="{{ route('privacy', app()->getLocale()) }}">Политикой конфиденциальности</a>.
+                        {{ __('messages.cookie_text') }}
+                        <a href="{{ route('privacy', app()->getLocale()) }}">{{ __('messages.privacy_policy') }}</a>.
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('cookie.accept') }}" class="btn btn-primary btn-lg px-4 me-md-2" id="cookie-accept-btn">Принять</a>
-                        <a href="{{ route('cookie.decline') }}" class="btn btn-outline-light btn-lg px-4" id="cookie-decline-btn">Отклонить</a>
+                        <a href="{{ route('cookie.accept') }}" class="btn btn-primary btn-lg px-4 me-md-2" id="cookie-accept-btn">{{ __('messages.accept') }}</a>
+                        <a href="{{ route('cookie.decline') }}" class="btn btn-outline-light btn-lg px-4" id="cookie-decline-btn">{{ __('messages.decline') }}</a>
                     </div>
                 </div>
             </div>

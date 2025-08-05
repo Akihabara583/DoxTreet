@@ -2630,7 +2630,7 @@ class PlPersonalFamilySeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Budżet miesięczny ([[budget_type]])',
+                        'title' => 'Budżet miesięczny (osobisty/rodzinny)',
                         'description' => 'Szablon do planowania i monitorowania osobistego lub rodzinnego budżetu miesięcznego.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">BUDŻET MIESIĘCZNY</h1><p style="font-size: 14px;">Miesiąc i rok: <strong>[[month_year]]</strong></p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Typ budżetu: <strong>[[budget_type]]</strong></p></td><td style="text-align: right;"><p>Data sporządzenia: ' . date('d.m.Y') . ' r.</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
@@ -2652,7 +2652,7 @@ class PlPersonalFamilySeeder extends Seeder
                             </div>'
                     ],
                     'en' => [
-                        'title' => 'Monthly Budget ([[budget_type]])',
+                        'title' => 'Monthly Budget (personal/family)',
                         'description' => 'A template for planning and monitoring a personal or family monthly budget.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">MONTHLY BUDGET</h1><p style="font-size: 14px;">Month and Year: <strong>[[month_year]]</strong></p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Budget Type: <strong>[[budget_type]]</strong></p></td><td style="text-align: right;"><p>Date of Preparation: ' . date('F j, Y') . '</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
@@ -2696,7 +2696,7 @@ class PlPersonalFamilySeeder extends Seeder
                             </div>'
                     ],
                     'de' => [
-                        'title' => 'Monatsbudget ([[budget_type]])',
+                        'title' => 'Monatsbudget (persönlich/familie)',
                         'description' => 'Eine Vorlage zur Planung und Überwachung eines persönlichen oder familiären Monatsbudgets.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">MONATSBUDGET</h1><p style="font-size: 14px;">Monat und Jahr: <strong>[[month_year]]</strong></p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Budgettyp: <strong>[[budget_type]]</strong></p></td><td style="text-align: right;"><p>Erstellungsdatum: ' . date('d.m.Y') . '</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">

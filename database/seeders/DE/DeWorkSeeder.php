@@ -1819,28 +1819,29 @@ class DeWorkSeeder extends Seeder
                         'title' => 'Wniosek o urlop wypoczynkowy',
                         'description' => 'Formalny wniosek pracownika o udzielenie płatnego urlopu wypoczynkowego zgodnie z niemieckim prawem pracy.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>Abteilung: [[department]]<br>Z. Hd. Herrn/Frau [[supervisor_full_name]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Antrag auf Jahresurlaub</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>Dział: [[department]]<br>Do rąk Pana/Pani [[supervisor_full_name]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wniosek o urlop wypoczynkowy</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[supervisor_full_name]],</p>
-                                <p>hiermit beantrage ich meinen Jahresurlaub für den Zeitraum vom <strong>[[leave_start_date]]</strong> bis einschließlich <strong>[[leave_end_date]]</strong>.</p>
-                                <p>Dies entspricht [[leave_days]] Arbeitstagen.</p>
-                                <p>Mein Resturlaub aus dem Vorjahr beträgt [[remaining_leave_days]] Tage (falls zutreffend).</p>
-                                <p>Ich bitte Sie höflich um Genehmigung meines Antrags.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[supervisor_full_name]],</p>
+            <p>niniejszym wnioskuję o udzielenie mi urlopu wypoczynkowego w okresie od <strong>[[leave_start_date]]</strong> do <strong>[[leave_end_date]]</strong> włącznie.</p>
+            <p>Łącznie [[leave_days]] dni roboczych.</p>
+            <p>Mój pozostały urlop z poprzedniego roku wynosi [[remaining_leave_days]] dni (jeśli dotyczy).</p>
+            <p>Uprzejmie proszę o pozytywne rozpatrzenie mojego wniosku.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Application for Annual Paid Leave',
                         'description' => 'Formal employee application for annual paid leave in accordance with German labor law.',
@@ -1939,31 +1940,32 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Antrag auf unbezahlten Urlaub',
+                        'title' => 'Wniosek o urlop bezpłatny',
                         'description' => 'Formalny wniosek pracownika o udzielenie urlopu bezpłatnego.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>Abteilung: [[department]]<br>Z. Hd. Herrn/Frau [[supervisor_full_name]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Antrag auf unbezahlten Urlaub</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>Dział: [[department]]<br>Do rąk Pana/Pani [[supervisor_full_name]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wniosek o urlop bezpłatny</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[supervisor_full_name]],</p>
-                                <p>hiermit beantrage ich unbezahlten Urlaub für den Zeitraum vom <strong>[[leave_start_date]]</strong> bis einschließlich <strong>[[leave_end_date]]</strong>.</p>
-                                <p>Die Begründung für meinen Antrag lautet:</p>
-                                <p>[[reason_for_leave]]</p>
-                                <p>Ich bitte Sie höflich um Genehmigung meines Antrags.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[supervisor_full_name]],</p>
+            <p>niniejszym wnioskuję o udzielenie mi urlopu bezpłatnego w okresie od <strong>[[leave_start_date]]</strong> do <strong>[[leave_end_date]]</strong> włącznie.</p>
+            <p>Uzasadnienie mojego wniosku jest następujące:</p>
+            <p>[[reason_for_leave]]</p>
+            <p>Uprzejmie proszę o pozytywne rozpatrzenie mojego wniosku.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Application for Unpaid Leave',
                         'description' => 'Formal employee application for unpaid leave.',
@@ -2064,34 +2066,35 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Antrag auf Bildungsurlaub',
+                        'title' => 'Wniosek o urlop szkoleniowy',
                         'description' => 'Formalny wniosek pracownika o udzielenie urlopu edukacyjnego (Bildungsurlaub) zgodnie z niemieckim prawem.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>Abteilung: [[department]]<br>Z. Hd. Herrn/Frau [[supervisor_full_name]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Antrag auf Bildungsurlaub</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>Dział: [[department]]<br>Do rąk Pana/Pani [[supervisor_full_name]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wniosek o urlop szkoleniowy</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[supervisor_full_name]],</p>
-                                <p>hiermit beantrage ich Bildungsurlaub für den Zeitraum vom <strong>[[leave_start_date]]</strong> bis einschließlich <strong>[[leave_end_date]]</strong>.</p>
-                                <p>Der Bildungsurlaub dient der Teilnahme an folgender Maßnahme:</p>
-                                <p>Name der Institution: [[educational_institution_name]]</p>
-                                <p>Name des Kurses/der Schulung: [[course_name]]</p>
-                                <p>Die Begründung für meinen Antrag lautet:</p>
-                                <p>[[reason_for_leave]]</p>
-                                <p>Ich bitte Sie höflich um Genehmigung meines Antrags.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[supervisor_full_name]],</p>
+            <p>niniejszym wnioskuję o udzielenie mi urlopu szkoleniowego w okresie od <strong>[[leave_start_date]]</strong> do <strong>[[leave_end_date]]</strong> włącznie.</p>
+            <p>Urlop szkoleniowy jest przeznaczony na udział w następującym szkoleniu:</p>
+            <p>Nazwa instytucji: [[educational_institution_name]]</p>
+            <p>Nazwa kursu/szkolenia: [[course_name]]</p>
+            <p>Uzasadnienie mojego wniosku jest następujące:</p>
+            <p>[[reason_for_leave]]</p>
+            <p>Uprzejmie proszę o pozytywne rozpatrzenie mojego wniosku.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Application for Educational Leave',
                         'description' => 'Formal employee application for educational leave (Bildungsurlaub) in accordance with German law.',
@@ -2201,29 +2204,29 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Antrag auf Elternzeit',
+                        'title' => 'Wniosek o urlop wychowawczy',
                         'description' => 'Formalny wniosek pracownika o udzielenie urlopu wychowawczego (Elternzeit) zgodnie z niemieckim prawem.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>Abteilung: [[department]]<br>Z. Hd. Herrn/Frau [[supervisor_full_name]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Antrag auf Elternzeit</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>Dział: [[department]]<br>Do rąk Pana/Pani [[supervisor_full_name]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wniosek o urlop wychowawczy</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[supervisor_full_name]],</p>
-                                <p>hiermit beantrage ich Elternzeit für mein Kind <strong>[[child_full_name]]</strong>, geboren am [[child_dob]], für den Zeitraum vom <strong>[[leave_start_date]]</strong> bis einschließlich <strong>[[leave_end_date]]</strong>.</p>
-                                <p>[[reason_for_leave]]</p>
-                                <p>Ich bitte Sie höflich um Genehmigung meines Antrags.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[supervisor_full_name]],</p>
+            <p>niniejszym wnioskuję o udzielenie mi urlopu wychowawczego na moje dziecko <strong>[[child_full_name]]</strong>, urodzone dnia [[child_dob]], w okresie od <strong>[[leave_start_date]]</strong> do <strong>[[leave_end_date]]</strong> włącznie.</p>
+            <p>[[reason_for_leave]]</p>
+            <p>Uprzejmie proszę o pozytywne rozpatrzenie mojego wniosku.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
                     'en' => [
                         'title' => 'Application for Parental Leave',
@@ -2322,21 +2325,21 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Urlaubsanordnung',
+                        'title' => 'Zarządzenie o urlopie',
                         'description' => 'Oficjalne zarządzenie pracodawcy o udzieleniu urlopu pracownikowi zgodnie z niemieckim prawem pracy.',
-                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">Urlaubsanordnung</h1><p style="font-size: 14px;">Nummer: [[order_number]]</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>[[company_name]]</p></td><td style="text-align: right;"><p>[[city]], ' . date('d.m.Y') . '</p></td></tr></table>',
+                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">ZARZĄDZENIE O URLOPIE</h1><p style="font-size: 14px;">Numer: [[order_number]]</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>[[company_name]]</p></td><td style="text-align: right;"><p>[[city]], dnia ' . date('d.m.Y') . ' r.</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Hiermit wird Herrn/Frau <strong>[[employee_full_name]]</strong> (Personalnummer: [[employee_id]]), tätig als [[employee_position]],</p>
-                                <p>Urlaub der Art: <strong>[[leave_type]]</strong></p>
-                                <p>für den Zeitraum vom <strong>[[leave_start_date]]</strong> bis einschließlich <strong>[[leave_end_date]]</strong> gewährt.</p>
-                                <br/>
-                                <p>Diese Anordnung tritt mit dem Datum der Unterzeichnung in Kraft.</p>
-                            </div>',
+            <p>Niniejszym udziela się Panu/Pani <strong>[[employee_full_name]]</strong> (Numer pracownika: [[employee_id]]), zatrudnionemu/ej na stanowisku [[employee_position]],</p>
+            <p>urlopu rodzaju: <strong>[[leave_type]]</strong></p>
+            <p>na okres od <strong>[[leave_start_date]]</strong> do <strong>[[leave_end_date]]</strong> włącznie.</p>
+            <br/>
+            <p>Niniejsze zarządzenie wchodzi w życie z dniem podpisania.</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px;">
-                                <p style="text-align: center;">___________________<br>[[approver_full_name]]<br>[[approver_position]]</p>
-                                <br>
-                                <p>Zur Kenntnisnahme: [[employee_full_name]]</p>
-                            </div>'
+            <p style="text-align: center;">___________________<br>[[approver_full_name]]<br>[[approver_position]]</p>
+            <br>
+            <p>Do wiadomości: [[employee_full_name]]</p>
+        </div>'
                     ],
                     'en' => [
                         'title' => 'Leave Order',
@@ -2408,31 +2411,32 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Kündigungsschreiben des Arbeitnehmers',
+                        'title' => 'Wypowiedzenie umowy o pracę przez pracownika',
                         'description' => 'Formalne pismo pracownika o rozwiązaniu umowy o pracę z zachowaniem okresu wypowiedzenia, zgodnie z niemieckim prawem pracy.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>[[company_address]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Kündigung meines Arbeitsverhältnisses</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>[[company_address]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wypowiedzenie umowy o pracę</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte Damen und Herren,</p>
-                                <p>hiermit kündige ich mein Arbeitsverhältnis, das ich mit Ihnen am [Datum Beginn Arbeitsverhältnisses] eingegangen bin, fristgerecht zum <strong>[[termination_date]]</strong>.</p>
-                                <p>Die Kündigung erfolgt unter Einhaltung der gesetzlichen/vertraglichen Kündigungsfrist von [[notice_period_info]].</p>
-                                <p>Ich bitte Sie um eine schriftliche Bestätigung des Erhalts dieser Kündigung und des Beendigungsdatums des Arbeitsverhältnisses.</p>
-                                <p>Des Weiteren bitte ich Sie um die Ausstellung eines qualifizierten Arbeitszeugnisses.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowni Państwo,</p>
+            <p>niniejszym wypowiadam moją umowę o pracę, zawartą z Państwem w dniu [Data rozpoczęcia stosunku pracy], z zachowaniem okresu wypowiedzenia, ze skutkiem na dzień <strong>[[termination_date]]</strong>.</p>
+            <p>Wypowiedzenie następuje z zachowaniem ustawowego/umownego okresu wypowiedzenia wynoszącego [[notice_period_info]].</p>
+            <p>Proszę o pisemne potwierdzenie otrzymania niniejszego wypowiedzenia oraz daty zakończenia stosunku pracy.</p>
+            <p>Ponadto proszę o wystawienie kwalifikowanego świadectwa pracy.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Employee Resignation Letter',
                         'description' => 'Formal employee letter terminating the employment contract with due notice, in accordance with German labor law.',
@@ -2530,30 +2534,31 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Antrag auf Aufhebungsvertrag',
+                        'title' => 'Wniosek o rozwiązanie umowy za porozumieniem stron',
                         'description' => 'Formalny wniosek pracownika o rozwiązanie umowy o pracę za porozumieniem stron (Aufhebungsvertrag) zgodnie z niemieckim prawem pracy.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>[[company_address]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Antrag auf Abschluss eines Aufhebungsvertrages</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>[[company_address]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wniosek o zawarcie umowy o rozwiązaniu stosunku pracy</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte Damen und Herren,</p>
-                                <p>hiermit beantrage ich den Abschluss eines Aufhebungsvertrages zur Beendigung meines Arbeitsverhältnisses zum <strong>[[proposed_termination_date]]</strong>.</p>
-                                <p>[[reason]]</p>
-                                <p>Ich bitte Sie höflich um Prüfung meines Antrags und um Kontaktaufnahme zur Besprechung der weiteren Details.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowni Państwo,</p>
+            <p>niniejszym wnoszę o zawarcie umowy o rozwiązaniu stosunku pracy w celu zakończenia mojego zatrudnienia z dniem <strong>[[proposed_termination_date]]</strong>.</p>
+            <p>[[reason]]</p>
+            <p>Uprzejmie proszę o rozpatrzenie mojego wniosku i kontakt w celu omówienia dalszych szczegółów.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Application for Termination by Mutual Agreement',
                         'description' => 'Formal employee application for termination of the employment contract by mutual agreement (Aufhebungsvertrag) in accordance with German labor law.',
@@ -2650,29 +2655,29 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Aufhebungsvertrag',
+                        'title' => 'Umowa o rozwiązaniu umowy o pracę',
                         'description' => 'Umowa o rozwiązaniu stosunku pracy za porozumieniem stron, zawierająca uzgodnione warunki, zgodnie z niemieckim prawem pracy.',
-                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">Aufhebungsvertrag</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Abgeschlossen in [[city]]</p></td><td style="text-align: right;"><p>am [[agreement_date]]</p></td></tr></table>',
+                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">UMOWA O ROZWIĄZANIU UMOWY O PRACĘ</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Zawarta w [[city]]</p></td><td style="text-align: right;"><p>dnia [[agreement_date]]</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>zwischen:</p>
-                                <p><strong>Arbeitgeber:</strong> [[employer_name]], [[employer_address]],</p>
-                                <p>und</p>
-                                <p><strong>Arbeitnehmer:</strong> Herrn/Frau [[employee_full_name]], [[employee_address]], Personalnummer: [[employee_id]].</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 1. Beendigung des Arbeitsverhältnisses</h2>
-                                <p>Das zwischen den Parteien bestehende Arbeitsverhältnis wird im gegenseitigen Einvernehmen zum <strong>[[termination_date]]</strong> beendet.</p>
-                                <p>[[reason_for_termination]]</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 2. Abfindung</h2>
-                                <p>Der Arbeitnehmer erhält eine Abfindung in Höhe von [[severance_pay]] PLN (falls zutreffend).</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 3. Weitere Vereinbarungen</h2>
-                                <p>[[other_terms]]</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 4. Schlussbestimmungen</h2>
-                                <p>Mit der Erfüllung dieses Vertrages sind alle gegenseitigen Ansprüche aus dem Arbeitsverhältnis und dessen Beendigung abgegolten. Dieser Vertrag wurde in zwei Ausfertigungen erstellt.</p>
-                            </div>',
+            <p>pomiędzy:</p>
+            <p><strong>Pracodawcą:</strong> [[employer_name]], [[employer_address]],</p>
+            <p>a</p>
+            <p><strong>Pracownikiem:</strong> Panem/Panią [[employee_full_name]], [[employee_address]], Numer pracownika: [[employee_id]].</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 1. Rozwiązanie stosunku pracy</h2>
+            <p>Istniejący między stronami stosunek pracy zostaje rozwiązany za obopólną zgodą z dniem <strong>[[termination_date]]</strong>.</p>
+            <p>[[reason_for_termination]]</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 2. Odprawa</h2>
+            <p>Pracownik otrzymuje odprawę w wysokości [[severance_pay]] PLN (jeśli dotyczy).</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 3. Dalsze ustalenia</h2>
+            <p>[[other_terms]]</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">§ 4. Postanowienia końcowe</h2>
+            <p>Wraz z wypełnieniem niniejszej umowy wszelkie wzajemne roszczenia wynikające ze stosunku pracy i jego rozwiązania zostają zaspokojone. Niniejsza umowa została sporządzona w dwóch egzemplarzach.</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px;">
-                                <table width="100%" style="text-align: center;"><tr>
-                                <td width="50%"><p>___________________<br>Arbeitgeber</p></td>
-                                <td width="50%"><p>___________________<br>Arbeitnehmer</p></td>
-                                </tr></table></div>'
+            <table width="100%" style="text-align: center;"><tr>
+            <td width="50%"><p>___________________<br>Pracodawca</p></td>
+            <td width="50%"><p>___________________<br>Pracownik</p></td>
+            </tr></table></div>'
                     ],
                     'en' => [
                         'title' => 'Mutual Termination Agreement',
@@ -2769,32 +2774,33 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Kündigungsbescheid des Arbeitgebers',
+                        'title' => 'Wypowiedzenie umowy o pracę przez pracodawcę',
                         'description' => 'Oficjalne pismo pracodawcy o wypowiedzeniu umowy o pracę, zawierające podstawę prawną i uzasadnienie, zgodnie z niemieckim prawem pracy.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[company_name]]<br>[[company_address]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>Herrn/Frau [[employee_full_name]]<br>[[employee_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Kündigung des Arbeitsverhältnisses</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[company_name]]<br>[[company_address]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>Pan/Pani [[employee_full_name]]<br>[[employee_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wypowiedzenie stosunku pracy</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[employee_full_name]],</p>
-                                <p>hiermit kündigen wir das mit Ihnen bestehende Arbeitsverhältnis fristgerecht zum <strong>[[termination_date]]</strong>.</p>
-                                <p>Die Kündigung erfolgt unter Einhaltung der Kündigungsfrist von [[notice_period_info]].</p>
-                                <p>Die Kündigung erfolgt aus folgendem Grund/auf folgender Rechtsgrundlage:</p>
-                                <p>[[reason_for_termination]]</p>
-                                <p>Wir bitten Sie um Bestätigung des Erhalts dieser Kündigung.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[employee_full_name]],</p>
+            <p>niniejszym wypowiadamy obowiązujący z Panem/Panią stosunek pracy z zachowaniem okresu wypowiedzenia, ze skutkiem na dzień <strong>[[termination_date]]</strong>.</p>
+            <p>Wypowiedzenie następuje z zachowaniem okresu wypowiedzenia wynoszącego [[notice_period_info]].</p>
+            <p>Wypowiedzenie następuje z następującego powodu/na następującej podstawie prawnej:</p>
+            <p>[[reason_for_termination]]</p>
+            <p>Prosimy o potwierdzenie otrzymania niniejszego wypowiedzenia.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[company_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[company_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Employer Termination Notice',
                         'description' => 'Official employer letter terminating the employment contract, including legal basis and justification, in accordance with German labor law.',
@@ -2897,28 +2903,29 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Empfehlungsschreiben',
+                        'title' => 'List polecający',
                         'description' => 'Oficjalne pismo zawierające rekomendację dla byłego lub obecnego pracownika, zgodnie z niemiecką praktyką.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[recommender_full_name]]<br>[[recommender_position]]<br>[[company_name]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Empfehlungsschreiben</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[recommender_full_name]]<br>[[recommender_position]]<br>[[company_name]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">List polecający</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte Damen und Herren,</p>
-                                <p>hiermit bestätige ich, dass Herr/Frau <strong>[[employee_full_name]]</strong> in unserem Unternehmen [[company_name]] als [[employee_position]] vom [[employment_start_date]] bis [[employment_end_date]] (falls zutreffend) beschäftigt war/ist.</p>
-                                <p>Während seiner/ihrer Tätigkeit hat Herr/Frau [[employee_full_name]] stets [[achievements_and_qualities]] gezeigt.</p>
-                                <p>Ich kann Herrn/Frau [[employee_full_name]] als engagierten und kompetenten Mitarbeiter [[recommendation_strength]] empfehlen.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowni Państwo,</p>
+            <p>niniejszym potwierdzam, że Pan/Pani <strong>[[employee_full_name]]</strong> był(a)/jest zatrudniony(a) w naszej firmie [[company_name]] na stanowisku [[employee_position]] od [[employment_start_date]] do [[employment_end_date]] (jeśli dotyczy).</p>
+            <p>Podczas swojej pracy Pan/Pani [[employee_full_name]] zawsze wykazywał(a) się [[achievements_and_qualities]].</p>
+            <p>Mogę [[recommendation_strength]] polecić Pana/Panią [[employee_full_name]] jako zaangażowanego i kompetentnego pracownika.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[recommender_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[recommender_full_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Recommendation Letter',
                         'description' => 'Official letter providing a recommendation for a former or current employee, in accordance with German practice.',
@@ -3013,27 +3020,28 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Arbeitszeugnis (Świadectwo pracy)',
+                        'title' => 'Świadectwo pracy',
                         'description' => 'Oficjalne świadectwo pracy, szczegółowo opisujące przebieg zatrudnienia, wykonywane zadania, ocenę pracy i zachowania, zgodnie z niemieckim prawem pracy.',
-                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">Arbeitszeugnis</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>[[company_name]]<br>[[company_address]]</p></td><td style="text-align: right;"><p>[[city]], ' . date('d.m.Y') . '</p></td></tr></table>',
+                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">Świadectwo pracy</h1></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>[[company_name]]<br>[[company_address]]</p></td><td style="text-align: right;"><p>[[city]], dnia ' . date('d.m.Y') . ' r.</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Herr/Frau <strong>[[employee_full_name]]</strong>, geboren am [[employee_dob]], war in unserem Unternehmen vom <strong>[[employment_start_date]]</strong> bis zum <strong>[[employment_end_date]]</strong> als <strong>[[employee_position]]</strong> beschäftigt.</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">1. Aufgabenbereich</h2>
-                                <p>[[duties_description]]</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">2. Leistungsbeurteilung</h2>
-                                <p>[[performance_evaluation]]</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">3. Sozialverhalten</h2>
-                                <p>[[social_behavior_evaluation]]</p>
-                                <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">4. Beendigung des Arbeitsverhältnisses</h2>
-                                <p>Das Arbeitsverhältnis endete zum [[employment_end_date]]. [[reason_for_leaving]]</p>
-                                <p>Wir bedanken uns für die geleistete Arbeit und wünschen Herrn/Frau [[employee_full_name]] für die Zukunft alles Gute.</p>
-                            </div>',
-                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px; text-align: left;">
-                                <p>___________________</p>
-                                <p>[[issuer_full_name]]</p>
-                                <p>[[issuer_position]]</p>
-                            </div>'
+            <p>Pan/Pani <strong>[[employee_full_name]]</strong>, urodzony/a dnia [[employee_dob]], był(a) zatrudniony(a) w naszej firmie od <strong>[[employment_start_date]]</strong> do <strong>[[employment_end_date]]</strong> na stanowisku <strong>[[employee_position]]</strong>.</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">1. Zakres obowiązków</h2>
+            <p>[[duties_description]]</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">2. Ocena wyników</h2>
+            <p>[[performance_evaluation]]</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">3. Zachowanie społeczne</h2>
+            <p>[[social_behavior_evaluation]]</p>
+            <h2 style="font-size:14px; font-weight:bold; margin-top:15px;">4. Zakończenie stosunku pracy</h2>
+            <p>Stosunek pracy zakończył się dnia [[employment_end_date]]. [[reason_for_leaving]]</p>
+            <p>Dziękujemy Panu/Pani [[employee_full_name]] za wykonaną pracę i życzymy wszystkiego najlepszego na przyszłość.</p>
+        </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 50px; text-align: left;">
+            <p>___________________</p>
+            <p>[[issuer_full_name]]</p>
+            <p>[[issuer_position]]</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Employment Reference (Arbeitszeugnis)',
                         'description' => 'Official employment reference, detailing the course of employment, duties performed, work and behavior evaluation, in accordance with German labor law.',
@@ -3118,25 +3126,25 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Interne Notiz (Służbowa notatka)',
+                        'title' => 'Notatka służbowa',
                         'description' => 'Wewnętrzna notatka służbowa do komunikacji w firmie.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>An:</strong> [[recipient_full_name]] (Abteilung: [[recipient_department]])</p>
-                                <p><strong>Von:</strong> [[sender_full_name]] (Abteilung: [[sender_department]])</p>
-                                <p><strong>Datum:</strong> [[memo_date]]</p>
-                                <p><strong>Betreff:</strong> [[subject]]</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Interne Notiz</h1>
-                            </div>',
+            <p><strong>Do:</strong> [[recipient_full_name]] (Dział: [[recipient_department]])</p>
+            <p><strong>Od:</strong> [[sender_full_name]] (Dział: [[sender_department]])</p>
+            <p><strong>Data:</strong> [[memo_date]]</p>
+            <p><strong>Temat:</strong> [[subject]]</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Notatka wewnętrzna</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>[[memo_content]]</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>[[memo_content]]</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[sender_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[sender_full_name]])</p>
+        </div>'
                     ],
                     'en' => [
                         'title' => 'Internal Memo/Official Note',
@@ -3221,29 +3229,29 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Stellungnahme/Erklärung (Wyjaśnienie)',
+                        'title' => 'Oświadczenie/Wyjaśnienie',
                         'description' => 'Oficjalne pismo pracownika wyjaśniające okoliczności danego zdarzenia lub sytuacji w miejscu pracy.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Personalnummer: [[employee_id]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>Abteilung: [[department]]<br>Z. Hd. Herrn/Frau [[supervisor_full_name]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Stellungnahme / Erklärung</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]<br>Numer pracownika: [[employee_id]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>Dział: [[department]]<br>Do rąk Pana/Pani [[supervisor_full_name]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Oświadczenie / Wyjaśnienie</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[supervisor_full_name]],</p>
-                                <p>hiermit nehme ich Stellung zu dem Vorfall/der Situation vom <strong>[[incident_date]]</strong>.</p>
-                                <p>[[incident_description]]</p>
-                                <p>Ich bitte um Ihr Verständnis.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[supervisor_full_name]],</p>
+            <p>niniejszym składam wyjaśnienia w sprawie incydentu/sytuacji z dnia <strong>[[incident_date]]</strong>.</p>
+            <p>[[incident_description]]</p>
+            <p>Proszę o wyrozumiałość.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[applicant_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[applicant_full_name]])</p>
+        </div>'
                     ],
                     'en' => [
                         'title' => 'Explanation/Statement',
@@ -3340,66 +3348,67 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Arbeitszeiterfassung (Karta ewidencji czasu pracy)',
+                        'title' => 'Ewidencja czasu pracy',
                         'description' => 'Dokument do rejestrowania czasu pracy pracownika w Niemczech.',
-                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">Arbeitszeiterfassung</h1><p style="font-size: 14px;">[[company_name]]</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Berichtszeitraum: <strong>[[reporting_period]]</strong></p></td><td style="text-align: right;"><p>Datum der Erstellung: ' . date('d.m.Y') . '</p></td></tr></table>',
+                        'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px; font-weight: bold;">EWIDENCJA CZASU PRACY</h1><p style="font-size: 14px;">[[company_name]]</p></div><table width="100%" style="font-family: DejaVu Sans, sans-serif; font-size:12px;"><tr><td><p>Okres sprawozdawczy: <strong>[[reporting_period]]</strong></p></td><td style="text-align: right;"><p>Data sporządzenia: ' . date('d.m.Y') . '</p></td></tr></table>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
-                                <p><strong>Mitarbeiter:</strong> [[employee_full_name]] (Personalnummer: [[employee_id]])</p>
-                                <p><strong>Position:</strong> [[employee_position]]</p>
-                                <br/>
-                                <table width="100%" border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse;">
-                                    <thead>
-                                        <tr>
-                                            <th>Datum</th>
-                                            <th>Arbeitsbeginn</th>
-                                            <th>Arbeitsende</th>
-                                            <th>Pausen</th>
-                                            <th>Gesamtstunden</th>
-                                            <th>Unterschrift</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>01.XX.XXXX</td>
-                                            <td>08:00</td>
-                                            <td>17:00</td>
-                                            <td>1:00</td>
-                                            <td>8</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>...</td>
-                                            <td>...</td>
-                                            <td>...</td>
-                                            <td>...</td>
-                                            <td>...</td>
-                                            <td>...</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" style="text-align: right;"><strong>Gesamtarbeitsstunden:</strong></td>
-                                            <td><strong>[[total_working_hours]]</strong></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" style="text-align: right;">Überstunden:</td>
-                                            <td>[[overtime_hours]]</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" style="text-align: right;">Abwesenheitstage:</td>
-                                            <td>[[absence_days]]</td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br/>
-                            </div>',
+            <p><strong>Pracownik:</strong> [[employee_full_name]] (Numer pracownika: [[employee_id]])</p>
+            <p><strong>Stanowisko:</strong> [[employee_position]]</p>
+            <br/>
+            <table width="100%" border="1" cellspacing="0" cellpadding="5" style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Początek pracy</th>
+                        <th>Koniec pracy</th>
+                        <th>Przerwy</th>
+                        <th>Łącznie godzin</th>
+                        <th>Podpis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01.XX.XXXX</td>
+                        <td>08:00</td>
+                        <td>17:00</td>
+                        <td>1:00</td>
+                        <td>8</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: right;"><strong>Łączna liczba godzin pracy:</strong></td>
+                        <td><strong>[[total_working_hours]]</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: right;">Nadgodziny:</td>
+                        <td>[[overtime_hours]]</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: right;">Dni nieobecności:</td>
+                        <td>[[absence_days]]</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px;">
-                                <table width="100%" style="text-align: center;"><tr>
-                                <td width="50%"><p>___________________<br>Mitarbeiter</p></td>
-                                <td width="50%"><p>___________________<br>[[approver_full_name]]<br>[[approver_position]]</p></td>
-                                </tr></table></div>'
+            <table width="100%" style="text-align: center;"><tr>
+            <td width="50%"><p>___________________<br>Pracownik</p></td>
+            <td width="50%"><p>___________________<br>[[approver_full_name]]<br>[[approver_position]]</p></td>
+            </tr></table></div>'
                     ],
+
                     'en' => [
                         'title' => 'Timesheet (Arbeitszeiterfassung)',
                         'description' => 'Document for recording employee working hours in Germany.',
@@ -3609,33 +3618,33 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Dienstreiseantrag / Dienstreisegenehmigung',
+                        'title' => 'Wniosek o delegację / Zatwierdzenie delegacji',
                         'description' => 'Formalny wniosek o podróż służbową i jej zatwierdzenie, zgodnie z niemiecką praktyką.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[employee_full_name]]<br>Personalnummer: [[employee_id]]<br>Abteilung: [[department]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[company_name]]<br>Z. Hd. Herrn/Frau [[approver_full_name]]<br>[[approver_position]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Dienstreiseantrag / Dienstreisegenehmigung</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[employee_full_name]]<br>Numer pracownika: [[employee_id]]<br>Dział: [[department]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[company_name]]<br>Do rąk Pana/Pani [[approver_full_name]]<br>[[approver_position]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Wniosek o delegację / Zatwierdzenie delegacji</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[approver_full_name]],</p>
-                                <p>hiermit beantrage ich eine Dienstreise für den Zeitraum vom <strong>[[trip_start_date]]</strong> bis einschließlich <strong>[[trip_end_date]]</strong>.</p>
-                                <p><strong>Reiseziel:</strong> [[destination]]</p>
-                                <p><strong>Zweck der Dienstreise:</strong> [[purpose_of_trip]]</p>
-                                <p><strong>Transportmittel:</strong> [[transport_method]]</p>
-                                <p><strong>Unterkunftsdetails:</strong> [[accommodation_details]]</p>
-                                <p><strong>Erwartete Kosten:</strong> [[expected_costs]]</p>
-                                <p>Ich bitte Sie höflich um Genehmigung meines Antrags.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[approver_full_name]],</p>
+            <p>niniejszym wnioskuję o delegację służbową w okresie od <strong>[[trip_start_date]]</strong> do <strong>[[trip_end_date]]</strong> włącznie.</p>
+            <p><strong>Miejsce docelowe:</strong> [[destination]]</p>
+            <p><strong>Cel delegacji:</strong> [[purpose_of_trip]]</p>
+            <p><strong>Środek transportu:</strong> [[transport_method]]</p>
+            <p><strong>Szczegóły zakwaterowania:</strong> [[accommodation_details]]</p>
+            <p><strong>Przewidywane koszty:</strong> [[expected_costs]]</p>
+            <p>Uprzejmie proszę o pozytywne rozpatrzenie mojego wniosku.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[employee_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[employee_full_name]])</p>
+        </div>'
                     ],
                     'en' => [
                         'title' => 'Business Trip Request / Approval',
@@ -3744,32 +3753,33 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Angebot (Oferta handlowa)',
+                        'title' => 'Oferta handlowa',
                         'description' => 'Dokument przedstawiający propozycję sprzedaży produktów lub usług potencjalnemu klientowi w Niemczech.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[company_name]]<br>[[company_address]]<br>[[company_contact]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[recipient_name]]<br>[[recipient_address]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Angebot</h1>
-                                <p style="font-size: 14px; text-align: center;"><strong>Betreff:</strong> [[offer_subject]]</p>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[company_name]]<br>[[company_address]]<br>[[company_contact]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[recipient_name]]<br>[[recipient_address]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">Oferta handlowa</h1>
+            <p style="font-size: 14px; text-align: center;"><strong>Temat:</strong> [[offer_subject]]</p>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[recipient_name]],</p>
-                                <p>vielen Dank für Ihr Interesse an unseren Produkten/Dienstleistungen. Gerne unterbreiten wir Ihnen folgendes Angebot:</p>
-                                <p>[[offer_details]]</p>
-                                <p>Dieses Angebot ist gültig bis zum <strong>[[validity_date]]</strong>.</p>
-                                <p>Für Rückfragen stehen wir Ihnen jederzeit gerne zur Verfügung.</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[recipient_name]],</p>
+            <p>dziękujemy za zainteresowanie naszymi produktami/usługami. Z przyjemnością przedstawiamy następującą ofertę:</p>
+            <p>[[offer_details]]</p>
+            <p>Niniejsza oferta jest ważna do <strong>[[validity_date]]</strong>.</p>
+            <p>W razie pytań pozostajemy do Państwa dyspozycji.</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[company_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[company_name]])</p>
+        </div>'
                     ],
+
                     'en' => [
                         'title' => 'Commercial Offer',
                         'description' => 'A document presenting a proposal to sell products or services to a potential client in Germany.',
@@ -3871,30 +3881,30 @@ class DeWorkSeeder extends Seeder
                 ]',
                 'translations' => [
                     'pl' => [
-                        'title' => 'Mahnung / Reklamationsschreiben',
+                        'title' => 'Wezwanie do zapłaty / Pismo reklamacyjne',
                         'description' => 'Formalne pismo z przypomnieniem o zaległej płatności lub reklamacją produktu/usługi w Niemczech.',
                         'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: left; font-size: 12px; line-height: 1.5;">
-                                <p><strong>Absender:</strong><br>[[sender_full_name]]<br>[[sender_address]]</p>
-                                <br>
-                                <p><strong>Empfänger:</strong><br>[[recipient_name]]<br>[[recipient_address]]</p>
-                                <br>
-                                <p style="text-align: right;">[[city]], ' . date('d.m.Y') . '</p>
-                                <br>
-                                <h1 style="font-size: 18px; font-weight: bold; text-align: center;">[[subject]]</h1>
-                            </div>',
+            <p><strong>Nadawca:</strong><br>[[sender_full_name]]<br>[[sender_address]]</p>
+            <br>
+            <p><strong>Odbiorca:</strong><br>[[recipient_name]]<br>[[recipient_address]]</p>
+            <br>
+            <p style="text-align: right;">[[city]], dnia ' . date('d.m.Y') . ' r.</p>
+            <br>
+            <h1 style="font-size: 18px; font-weight: bold; text-align: center;">[[subject]]</h1>
+        </div>',
                         'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; text-align: justify;">
-                                <p>Sehr geehrte/r Herr/Frau [[recipient_name]],</p>
-                                <p>hiermit möchten wir Sie auf folgende Angelegenheit aufmerksam machen:</p>
-                                <p>[[details]]</p>
-                                <p>Wir bitten Sie um Stellungnahme/Begleichung des Betrages bis zum <strong>[[deadline]]</strong> (falls zutreffend).</p>
-                                <p>Anbei finden Sie: [[attachments]].</p>
-                                <br/>
-                                <p>Mit freundlichen Grüßen,</p>
-                            </div>',
+            <p>Szanowny Panie/Szanowna Pani [[recipient_name]],</p>
+            <p>niniejszym chcielibyśmy zwrócić Państwa uwagę na następującą sprawę:</p>
+            <p>[[details]]</p>
+            <p>Prosimy o ustosunkowanie się do sprawy/uregulowanie płatności do dnia <strong>[[deadline]]</strong> (jeśli dotyczy).</p>
+            <p>W załączeniu: [[attachments]].</p>
+            <br/>
+            <p>Z poważaniem,</p>
+        </div>',
                         'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; margin-top: 40px; text-align: left;">
-                                <p>___________________</p>
-                                <p>([[sender_full_name]])</p>
-                            </div>'
+            <p>___________________</p>
+            <p>([[sender_full_name]])</p>
+        </div>'
                     ],
                     'en' => [
                         'title' => 'Reminder / Complaint Letter',

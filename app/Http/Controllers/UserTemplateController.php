@@ -4,6 +4,9 @@
 
 namespace App\Http\Controllers;
 
+// ИЗМЕНЕНИЕ №1: Добавляем необходимый трейт для авторизации
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 use App\Models\Category;
 use App\Models\UserTemplate;
 use Illuminate\Http\Request;
@@ -15,6 +18,9 @@ use App\Models\GeneratedDocument;
 
 class UserTemplateController extends Controller
 {
+    // ИЗМЕНЕНИЕ №2: Подключаем трейт в класс
+    use AuthorizesRequests;
+
     public function index()
     {
         $userTemplates = Auth::user()->userTemplates()->with('category')->latest()->paginate(10);
@@ -43,7 +49,6 @@ class UserTemplateController extends Controller
     {
         $user = $request->user();
 
-        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
         if (!$user->canPerformAction('custom_template')) {
             $errorMessage = __('messages.limit_exhausted_custom_template_error', ['url' => route('pricing', app()->getLocale())]);
             return back()->withInput()->with('error_html', $errorMessage);
@@ -69,21 +74,16 @@ class UserTemplateController extends Controller
 
     public function show(string $locale, UserTemplate $userTemplate)
     {
-        if ($userTemplate->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $this->authorize('view', $userTemplate);
         return view('my-templates.show', ['template' => $userTemplate]);
     }
 
     public function generateDocument(Request $request, string $locale, UserTemplate $userTemplate, WordExportService $wordExportService)
     {
-        if ($userTemplate->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $this->authorize('view', $userTemplate);
 
         $user = $request->user();
 
-        // ✅ ИЗМЕНЕННАЯ ЛОГИКА: Ссылка в ошибке ведет на страницу тарифов
         if (!$user->canPerformAction('download')) {
             $errorMessage = __('messages.limit_exhausted_error', ['url' => route('pricing', app()->getLocale())]);
             return back()->withInput()->with('error_html', $errorMessage);
@@ -132,9 +132,7 @@ class UserTemplateController extends Controller
 
     public function edit(string $locale, UserTemplate $userTemplate)
     {
-        if ($userTemplate->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $this->authorize('update', $userTemplate);
 
         $allCategories = Category::where('is_active', true)->get();
         $categoriesWithTranslations = $allCategories->map(function ($category) {
@@ -152,9 +150,7 @@ class UserTemplateController extends Controller
 
     public function update(Request $request, string $locale, UserTemplate $userTemplate)
     {
-        if ($userTemplate->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $this->authorize('update', $userTemplate);
 
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
@@ -173,9 +169,7 @@ class UserTemplateController extends Controller
 
     public function destroy(string $locale, UserTemplate $userTemplate)
     {
-        if ($userTemplate->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $this->authorize('delete', $userTemplate);
 
         $userTemplate->delete();
 

@@ -72,13 +72,20 @@
             background-color: var(--bs-dark);
             color: #adb5bd;
         }
+        .footer-link {
+            transition: color 0.2s ease-in-out;
+        }
+
+        .footer-link:hover {
+            color: #ffffff !important; /* !important нужен, чтобы перебить стиль .text-white-50 */
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
 @include('partials.header')
 <x-alert />
-<main class="flex-shrink-0">
+<main class="flex-grow-1">
     @yield('content')
 </main>
 

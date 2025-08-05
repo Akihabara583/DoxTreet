@@ -1,9 +1,11 @@
 <?php
 
-// Файл: app/Http/Controllers/ProfileController.php (ФИНАЛЬНАЯ БОЕВАЯ ВЕРСИЯ)
+// Файл: app/Http/Controllers/ProfileController.php
 
 namespace App\Http\Controllers;
 
+// ИЗМЕНЕНИЕ №1: Добавляем трейт для авторизации
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\GeneratedDocument;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
@@ -17,9 +19,14 @@ use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
+    // ИЗМЕНЕНИЕ №2: Подключаем трейт в класс
+    use AuthorizesRequests;
+
     public function show(): View
     {
         return view('profile.show');
@@ -66,29 +73,25 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function reuse(Request $request, string $locale, string $document): RedirectResponse
+    // ИЗМЕНЕНИЕ №3: Используем Route Model Binding и Policy
+    public function reuse(Request $request, string $locale, GeneratedDocument $document): RedirectResponse
     {
-        $user = $request->user();
-        $documentModel = GeneratedDocument::with(['template', 'userTemplate'])->findOrFail($document);
+        $this->authorize('view', $document);
 
-        if ($documentModel->user_id !== $user->id) {
-            abort(403, 'Unauthorized action.');
-        }
-
-        if ($documentModel->template) {
+        if ($document->template) {
             return redirect()->route('documents.show', [
                 'locale' => $locale,
-                'countryCode' => $documentModel->template->country_code,
-                'templateSlug' => $documentModel->template->slug,
-                'data' => $documentModel->data
+                'countryCode' => $document->template->country_code,
+                'templateSlug' => $document->template->slug,
+                'data' => $document->data
             ]);
         }
 
-        if ($documentModel->userTemplate) {
+        if ($document->userTemplate) {
             return redirect()->route('profile.my-templates.show', [
                 'locale' => $locale,
-                'userTemplate' => $documentModel->userTemplate->id,
-                'data' => $documentModel->data
+                'userTemplate' => $document->userTemplate->id,
+                'data' => $document->data
             ]);
         }
 
@@ -151,22 +154,23 @@ class ProfileController extends Controller
         return view('profile.signed_history', ['documents' => $signedDocuments]);
     }
 
-    public function downloadSignedDocument(Request $request, string $locale, string $document)
+    // ИЗМЕНЕНИЕ №4: Используем Route Model Binding и Policy
+    public function downloadSignedDocument(Request $request, string $locale, SignedDocument $document)
     {
+        $this->authorize('view', $document);
+
         $user = $request->user();
         if (!$user->canPerformAction('download')) {
             return back()->with('error', 'Ваш дневной лимит на скачивание документов исчерпан.');
         }
-        $documentModel = SignedDocument::findOrFail($document);
-        if ($user->id !== $documentModel->user_id) {
-            abort(403, 'This action is unauthorized.');
-        }
-        $filePath = storage_path('app/public/' . $documentModel->signed_file_path);
+
+        $filePath = storage_path('app/public/' . $document->signed_file_path);
         if (!file_exists($filePath)) {
             abort(404, 'Файл не найден.');
         }
+
         $user->decrementLimit('download');
-        return response()->download($filePath, $documentModel->original_filename);
+        return response()->download($filePath, $document->original_filename);
     }
 
     public function deleteSelectedSignedDocuments(Request $request): RedirectResponse
@@ -198,9 +202,6 @@ class ProfileController extends Controller
         return view('profile.subscription', ['user' => $user]);
     }
 
-    /**
-     * Отменяет автоматическое продление подписки в Gumroad.
-     */
     public function cancelSubscription(Request $request): RedirectResponse
     {
         $user = $request->user();
@@ -216,8 +217,6 @@ class ProfileController extends Controller
         }
 
         try {
-            // ✅ ИЗМЕНЕНИЕ: Убран блок ->when(...) для отключения проверки SSL.
-            // Этот код является чистой и безопасной версией для боевого сервера.
             $response = Http::withToken($accessToken)->delete(
                 "https://api.gumroad.com/v2/subscribers/{$user->gumroad_subscriber_id}"
             );
@@ -242,5 +241,24 @@ class ProfileController extends Controller
             ]);
             return back()->with('error', __('messages.sub_cancel_fail_api_error'));
         }
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Добавляем сообщение в сессию для отображения после редиректа
+        return Redirect::to('/' . app()->getLocale())->with('status', 'account-deleted');
     }
 }

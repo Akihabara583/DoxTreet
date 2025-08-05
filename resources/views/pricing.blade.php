@@ -58,7 +58,7 @@
 
                         {{-- ✅ УПРОЩЕННАЯ ЛОГИКА --}}
                         @auth
-                            @if(auth()->user()->subscription_plan == 'basic')
+                            @if(empty(auth()->user()->subscription_plan) || auth()->user()->subscription_plan == 'base')
                                 <div class="card text-white bg-primary mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ __('messages.limit_reset_title') }}</h5>

@@ -17,7 +17,8 @@ return new class extends Migration
         // Это позволяет нам работать с сырыми данными напрямую в БД,
         // чтобы мутаторы не зашифровали email обратно сразу после дешифрования.
         User::withoutEvents(function () {
-            User::chunk(100, function ($users) {
+            // ИСПОЛЬЗУЕМ withTrashed(), ЧТОБЫ ИГНОРИРОВАТЬ SoftDeletes
+            User::withTrashed()->chunk(100, function ($users) {
                 foreach ($users as $user) {
                     // Проверяем, зашифрован ли email (начинается ли с 'eyJpdiI6')
                     if (str_starts_with($user->getRawOriginal('email'), 'eyJpdiI6')) {

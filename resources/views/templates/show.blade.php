@@ -1,17 +1,16 @@
-{{-- Это финальный и правильный код для resources/views/templates/generate.blade.php --}}
 @extends('layouts.app')
 
 @section('title', $template->title . ' - ' . config('app.name'))
 @section('description', $template->description)
 
-{{-- ... секция @hreflangs ... --}}
+{{-- ... (здесь может быть ваша секция @hreflangs, если она есть) ... --}}
 
 @section('content')
-    <div class="container">
+    <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-8">
 
-                {{-- ... секция хлебных крошек и заголовка ... --}}
+                {{-- ... (здесь может быть ваша секция хлебных крошек, если она есть) ... --}}
 
                 <div class="card shadow-sm">
                     <div class="card-header bg-dark text-white">
@@ -20,19 +19,17 @@
                     <div class="card-body p-4">
                         <p class="card-text text-muted mb-4">{{ $template->description }}</p>
 
-                        {{-- ... секция уведомлений для гостей ... --}}
+                        {{-- ... (здесь может быть ваша секция для гостей, если она есть) ... --}}
 
+                        {{-- ✅ ИСПРАВЛЕНИЕ 1: Форма отправляется на ЕДИНЫЙ правильный маршрут --}}
                         <form action="{{ route('templates.generate', ['locale' => app()->getLocale(), 'template' => $template->slug]) }}" method="POST">
                             @csrf
 
                             @php
-                                // Надежно получаем JSON из базы
                                 $fieldsJson = $template->getAttributes()['fields'] ?? '[]';
                                 $fields = json_decode($fieldsJson, true);
                             @endphp
 
-                            {{-- ГЛАВНАЯ ЛОГИКА: --}}
-                            {{-- 1. Если JSON с полями существует в базе, строим форму по нему --}}
                             @if(is_array($fields) && !empty($fields))
                                 @foreach($fields as $field)
                                     <div class="mb-3">
@@ -48,19 +45,18 @@
                                     </div>
                                 @endforeach
                             @else
-                                {{-- 2. Если JSON в базе пустой, показываем это сообщение --}}
                                 <div class="alert alert-warning">
                                     Для этого шаблона не настроены поля формы. Пожалуйста, добавьте их в админ-панели.
                                 </div>
                             @endif
 
-                            {{-- Кнопки отправки --}}
+                            {{-- ✅ ИСПРАВЛЕНИЕ 2: Убрали `formaction` и добавили `name` --}}
                             <div class="d-grid gap-2 mt-4">
-                                <button type="submit" formaction="{{ route('templates.generate', ['locale' => app()->getLocale(), 'template' => $template->slug]) }}" class="btn btn-primary btn-lg">
+                                <button type="submit" name="generate_pdf" value="1" class="btn btn-primary btn-lg">
                                     <i class="bi bi-file-earmark-pdf-fill"></i> {{ __('messages.generate_pdf') }}
                                 </button>
-                                <button type="submit" formaction="{{ route('templates.generate.docx', ['locale' => app()->getLocale(), 'template' => $template->slug]) }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-file-earmark-word-fill"></i> {{ __('messages.download_docx') }}
+                                <button type="submit" name="generate_docx" value="1" class="btn btn-outline-secondary">
+                                    <i class="bi bi-file-earmark-word-fill"></i> {{ __('messages.generate_docx') }}
                                 </button>
                             </div>
                         </form>

@@ -10,13 +10,22 @@ return [
     'navigation' => 'Navigation',
     'go_home' => 'Zur Startseite',
     'fill_form' => 'Formular ausfüllen',
-    'generate_pdf' => 'PDF erstellen',
-    'download_docx' => '.docx herunterladen',
+    'generate_pdf' => 'PDF herunterladen',
+    'download_docx' => 'DOCX herunterladen',
+    'generate_docx' => 'DOCX herunterladen',
     'docs_by_country' => 'Dokumente nach Land',
     'template_catalog' => 'Vorlagenkatalog',
     'docs_for' => 'Dokumente für',
     'fill_out' => 'Ausfüllen',
     'no_templates_for_country' => 'Für dieses Land sind noch keine Vorlagen verfügbar.',
+
+    'title' => 'Blog',
+    'published_on' => 'Veröffentlicht am',
+    'read_more' => 'Weiterlesen',
+    'ready_to_create' => 'Bereit, ein Dokument zu erstellen?',
+    'article_relates_to_template' => 'Dieser Artikel bezieht sich auf unsere Vorlage ":templateName". Klicken Sie hier, um zum Ausfüllen zu gelangen.',
+    'go_to_template' => 'Zur Vorlage gehen',
+    'return_to_list' => 'Zurück zur Artikelliste',
 
     // Search & Popular
     'search_placeholder' => 'Suchen Sie ein Dokument, z.B. "Beschwerde gegen einen Nachbarn"',
@@ -58,7 +67,10 @@ return [
 
 
 
-
+    'cookie_title' => 'Wir kümmern uns um Ihre Privatsphäre',
+    'cookie_text' => 'Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Indem Sie auf „Akzeptieren“ klicken, stimmen Sie unserer',
+    'accept' => 'Akzeptieren',
+    'decline' => 'Ablehnen',
 
 
 
@@ -84,6 +96,17 @@ return [
 
     'email' => 'E-Mail-Adresse',
     'password' => 'Passwort',
+
+
+    'delete_account' => 'Konto löschen',
+    'delete_account_text' => 'Sobald Ihr Konto gelöscht ist, werden alle zugehörigen Ressourcen und Daten, einschließlich Ihrer Dokumente, persönlichen Daten und aktiven Abonnements, dauerhaft gelöscht. Bevor Sie Ihr Konto löschen, laden Sie bitte alle Daten oder Informationen herunter, die Sie behalten möchten.',
+    'delete_account_button' => 'Konto löschen',
+    'confirm_account_deletion' => 'Kontolöschung bestätigen',
+    'warning_permanent_deletion' => 'Diese Aktion ist unumkehrbar!',
+    'confirm_account_deletion_text' => 'Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Um diese Aktion zu bestätigen, geben Sie bitte Ihr Passwort ein.',
+    'password_to_confirm' => 'Bitte geben Sie zur Bestätigung Ihr Passwort ein',
+    'cancel' => 'Abbrechen',
+    'account_deleted_successfully' => 'Ihr Konto wurde erfolgreich gelöscht.',
 
 
     // Anmeldeseite
@@ -309,7 +332,7 @@ return [
 
 
     // SEO & Meta
-    'seo_default_description' => 'Ein praktischer Service zur schnellen Erstellung von Standarddokumenten und Anträgen online aus vorgefertigten Vorlagen. Sparen Sie Ihre Zeit!',
+    'seo_default_description' => 'DoxTreet: Hunderte von Dokumentvorlagen für geschäftliche und private Zwecke, angepasst an die Gesetzgebung der Ukraine, Polens und Deutschlands. Vom Lebenslauf bis zum Mietvertrag. Online unterschreiben und Zeit sparen!',
 
     // Errors
     'error_404_title' => 'Seite nicht gefunden',

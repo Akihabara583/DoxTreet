@@ -14,17 +14,16 @@ use Illuminate\Support\Str;
 
 class TemplateController extends Controller
 {
+    // --- Метод index остается без изменений ---
     public function index(Request $request)
     {
         $locale = app()->getLocale();
         $searchQuery = $request->query('q');
 
-        // --- ИСПРАВЛЕНИЕ: Инициализируем все переменные здесь, чтобы избежать ошибки ---
         $searchResults = null;
         $popularTemplates = collect();
         $countries = [];
         $dataByCountry = [];
-        // --------------------------------------------------------------------------
 
         $countryNames = [
             'UA' => ['uk' => 'Україна', 'en' => 'Ukraine', 'pl' => 'Ukraina', 'de' => 'Ukraine'],
@@ -33,7 +32,6 @@ class TemplateController extends Controller
         ];
 
         if ($searchQuery) {
-            // Логика поиска
             $searchResults = Template::where('is_active', true)
                 ->whereHas('translations', function ($query) use ($searchQuery) {
                     $query->where('title', 'LIKE', "%$searchQuery%")
@@ -42,16 +40,13 @@ class TemplateController extends Controller
                 ->with('translation')
                 ->get();
 
-            // --- ИСПРАВЛЕНИЕ: Добавляем название страны к результатам поиска ---
             if ($searchResults) {
                 $searchResults->each(function ($template) use ($countryNames, $locale) {
                     $template->countryName = $countryNames[$template->country_code][$locale] ?? $template->country_code;
                 });
             }
-            // ----------------------------------------------------------------
 
         } else {
-            // Логика для главной страницы (когда нет поиска)
             $popularTemplateIds = GeneratedDocument::query()->whereNotNull('template_id')->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
             $popularTemplates = Template::with('translation')->whereIn('id', $popularTemplateIds)->get();
 
@@ -84,13 +79,13 @@ class TemplateController extends Controller
             }
         }
 
-        // Теперь все переменные гарантированно существуют, и `compact()` сработает без ошибок
         return view('home', compact(
             'searchQuery', 'searchResults', 'popularTemplates', 'countries',
             'dataByCountry', 'countryNames', 'locale'
         ));
     }
 
+    // --- Метод show остается без изменений ---
     public function show(Request $request, string $locale, Template $template)
     {
         if (!$template->is_active) {
@@ -138,12 +133,6 @@ class TemplateController extends Controller
     {
         $validatedData = $this->validateFormData($request, $template);
         $processedData = $this->processTemplateData($template, $validatedData);
-        $html = $template->header_html . $template->body_html . $template->footer_html;
-
-        foreach ($processedData as $key => $value) {
-            $html = str_replace("{{{$key}}}", $value, $html);
-        }
-        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
 
         GeneratedDocument::create([
             'user_id' => Auth::id(),
@@ -152,17 +141,51 @@ class TemplateController extends Controller
             'data' => $validatedData,
         ]);
 
-        if ($request->has('generate_pdf')) {
-            $pdf = Pdf::loadHTML($html)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
-            $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
-            return $pdf->download($fileName);
+        $header = $this->replacePlaceholders($template->header_html, $processedData);
+        $body = $this->replacePlaceholders($template->body_html, $processedData);
+        $footer = $this->replacePlaceholders($template->footer_html, $processedData);
 
-        } elseif ($request->has('generate_docx')) {
+        if ($request->has('generate_docx')) {
+            $fullHtml = $header . $body . $footer;
             $fileName = Str::slug($template->title) . '.docx';
-            return $wordExportService->generateFromHtml($html, $fileName);
+            return $wordExportService->generateFromHtml($fullHtml, $fileName);
         }
 
-        return back()->with('error', 'Произошла ошибка при генерации документа.');
+        $fullHtmlForPdf = view('pdf.layout', compact('header', 'body', 'footer', 'template'))->render();
+        $pdf = Pdf::loadHTML($fullHtmlForPdf)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
+        $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
+        return $pdf->download($fileName);
+    }
+
+    private function replacePlaceholders(?string $html, array $data): string
+    {
+        if (empty($html)) {
+            return '';
+        }
+
+        $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
+
+        // Заменяем данные из формы
+        foreach ($data as $key => $value) {
+            // Сначала обрабатываем условные блоки [[key]]...[[/key]]
+            $pattern = "/\[\[" . preg_quote($key, '/') . "\]\](.*?)\[\[\/" . preg_quote($key, '/') . "\]\]/s";
+            if (!empty($value)) {
+                // Если данные есть, убираем теги, оставляем содержимое
+                $html = preg_replace($pattern, '$1', $html);
+            } else {
+                // Если данных нет, удаляем весь блок
+                $html = preg_replace($pattern, '', $html);
+            }
+            // Затем заменяем простые плейсхолдеры [[key]]
+            $html = str_replace("[[{$key}]]", $value, $html);
+        }
+
+        // --- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ---
+        // Удаляем ВСЕ оставшиеся плейсхолдеры любого вида, для которых не было данных.
+        // Это включает в себя [[/some_key]] или [[unfilled_key]]
+        $html = preg_replace('/\[\[.*?\]\]/s', '', $html);
+
+        return $html;
     }
 
     private function validateFormData(Request $request, Template $template): array
@@ -192,13 +215,17 @@ class TemplateController extends Controller
         $templateFields = is_array($template->fields) ? $template->fields : json_decode($template->fields, true) ?? [];
         $textareaFields = [];
         foreach ($templateFields as $field) {
-            if ($field['type'] === 'textarea') {
+            if (($field['type'] ?? 'text') === 'textarea') {
                 $textareaFields[] = $field['name'];
             }
         }
 
         $processedData = [];
         foreach ($validatedData as $key => $value) {
+            if (is_null($value)) {
+                $processedData[$key] = '';
+                continue;
+            }
             if (in_array($key, $textareaFields)) {
                 $processedData[$key] = nl2br(e($value));
             } else {

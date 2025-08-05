@@ -10,16 +10,28 @@ return [
     'navigation' => 'Nawigacja',
     'go_home' => 'Przejdź na stronę główną',
     'fill_form' => 'Wypełnij formularz',
-    'generate_pdf' => 'Wygeneruj PDF',
-    'download_docx' => 'Pobierz .docx',
+    'generate_pdf' => 'Pobierz PDF',
+    'download_docx' => 'Pobierz DOCX',
+    'generate_docx' => 'Pobierz DOCX',
     'docs_by_country' => 'Dokumenty według kraju',
     'template_catalog' => 'Katalog szablonów',
     'docs_for' => 'Dokumenty dla',
     'fill_out' => 'Wypełnij',
     'no_templates_for_country' => 'Brak dostępnych szablonów dla tego kraju.',
 
+    'cookie_title' => 'Dbamy o Twoją prywatność',
+    'cookie_text' => 'Używamy plików cookie, aby poprawić Twoje wrażenia z korzystania z naszej witryny. Klikając „Akceptuj”, zgadzasz się na naszą',
+    'accept' => 'Akceptuj',
+    'decline' => 'Odrzuć',
 
 
+    'title' => 'Blog',
+    'published_on' => 'Opublikowano',
+    'read_more' => 'Czytaj dalej',
+    'ready_to_create' => 'Gotowy do stworzenia dokumentu?',
+    'article_relates_to_template' => 'Ten artykuł dotyczy naszego szablonu ":templateName". Kliknij, aby przejść do wypełniania.',
+    'go_to_template' => 'Przejdź do szablonu',
+    'return_to_list' => 'Wróć do listy artykułów',
 
     // --- Daily Limit Reset ---
     'limit_reset_title' => 'Osiągnięto dzienny limit?',
@@ -87,7 +99,15 @@ return [
     'delete_button' => 'Usuń',
     'delete_confirm_message' => 'Czy na pewno chcesz usunąć ten szablon? Tej akcji nie można cofnąć.',
 
-
+    'delete_account' => 'Usuń konto',
+    'delete_account_text' => 'Po usunięciu konta wszystkie jego zasoby i dane, w tym dokumenty, dane osobowe i aktywne subskrypcje, zostaną trwale usunięte. Przed usunięciem konta pobierz wszelkie dane lub informacje, które chcesz zachować.',
+    'delete_account_button' => 'Usuń konto',
+    'confirm_account_deletion' => 'Potwierdź usunięcie konta',
+    'warning_permanent_deletion' => 'Ta operacja jest nieodwracalna!',
+    'confirm_account_deletion_text' => 'Czy na pewno chcesz usunąć swoje konto? Aby potwierdzić tę operację, wprowadź swoje hasło.',
+    'password_to_confirm' => 'Proszę wprowadzić hasło, aby potwierdzić',
+    'cancel' => 'Anuluj',
+    'account_deleted_successfully' => 'Twoje konto zostało pomyślnie usunięte.',
 
 
 
@@ -304,7 +324,7 @@ return [
     'for_unlimited_access' => 'dla nieograniczonego dostępu',
 
     // SEO & Meta
-    'seo_default_description' => 'Wygodna usługa do szybkiego tworzenia standardowych dokumentów i wniosków online z gotowych szablonów. Oszczędzaj swój czas!',
+    'seo_default_description' => 'DoxTreet: Setki szablonów dokumentów dla potrzeb biznesowych i osobistych, dostosowanych do przepisów prawnych Ukrainy, Polski i Niemiec. Od CV po umowy najmu. Podpisuj online i oszczędzaj swój czas!',
 
     // Errors
     'error_404_title' => 'Nie znaleziono strony',

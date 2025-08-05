@@ -4,70 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Str;
+use Spatie\Translatable\HasTranslations; // 1. Подключаем трейт
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations; // 2. Используем трейт
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    // 3. Указываем, какие поля являются переводимыми
+    public $translatable = [
+        'title',
+        'body',
+        'meta_title',
+        'meta_description'
+    ];
+
     protected $fillable = [
         'title',
         'slug',
         'body',
-        'image',
-        'is_published',
-        'published_at',
         'meta_title',
         'meta_description',
-        'template_id', // <-- ДОБАВЛЕНО: новое поле для связи с шаблоном
+        'is_published',
+        'published_at',
+        'template_id',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
 
-    /**
-     * Boot the model.
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($post) {
-            if (empty($post->slug)) {
-                $post->slug = Str::slug($post->title);
-            }
-        });
-    }
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
-    /**
-     * --- ДОБАВЛЕНО: НОВЫЙ МЕТОД СВЯЗИ ---
-     * Get the template that is associated with the post.
-     */
-    public function template(): BelongsTo
+    public function template()
     {
         return $this->belongsTo(Template::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
