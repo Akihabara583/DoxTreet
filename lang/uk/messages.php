@@ -245,7 +245,6 @@ return [
     'free_plan' => 'Безкоштовний',
     'pro_plan' => 'Pro',
     'per_month' => '/міс',
-    'start_free' => 'Почати безкоштовно',
     'choose_pro' => 'Обрати Pro',
     'feature_daily_limit' => '1 документ на день',
     'feature_all_templates' => 'Доступ до всіх шаблонів',
@@ -255,12 +254,45 @@ return [
     'feature_priority_support' => 'Пріоритетна підтримка',
 
 
-    // --- Daily Limit Reset ---
+
+
+
+
+
+
+
+
+    // --- Pricing Page - Updated Features ---
+    'pricing_seo_description' => 'Оберіть ідеальний тарифний план DoxTreet. Від безкоштовного доступу до Pro-функцій з пакетами документів та власними шаблонами.',
+    'your_current_plan' => 'Ваш поточний план',
+    'start_free' => 'Почати безкоштовно',
+    'choose_plan' => 'Обрати план',
     'limit_reset_title' => 'Закінчився денний ліміт?',
-    'limit_reset_text' => 'Поновіть свої денні ліміти для Базового тарифу та продовжуйте роботу, не чекаючи завтрашнього дня.',
+    'limit_reset_text' => 'Поновіть свої денні ліміти та продовжуйте роботу, не чекаючи завтрашнього дня.',
     'limit_reset_button' => 'Поновити ліміти за :price',
 
 
+    'plan_base_title' => 'Базовий',
+    'plan_base_feature1' => ':count завантаження на день',
+    'plan_base_feature2' => ':count підписання на день',
+    'plan_base_feature_no_branding_disabled' => 'Документи без брендингу DoxTreet',
+    'plan_base_feature4' => 'Історія документів',
+
+    'plan_standard_title' => 'Стандарт',
+    'plan_standard_feature1' => ':count завантажень на день',
+    'plan_standard_feature2' => ':count підписань на день',
+    'plan_standard_feature3' => 'Документи без брендингу DoxTreet',
+    'plan_standard_feature4' => 'Повна історія документів',
+
+    'plan_pro_title' => 'Pro',
+    'plan_pro_feature1' => ':count завантажень на день',
+    'plan_pro_feature2' => ':count підписань на день',
+    'plan_pro_feature3' => 'Готові Пакети Документів',
+    'plan_pro_feature5' => 'Документи без брендингу DoxTreet',
+    'plan_pro_feature4' => 'Створення власних шаблонів',
+
+
+    // ...
 
     // --- Subscription Page ---
     'daily_limits_usage_title'      => 'Використання денних лімітів',
@@ -268,9 +300,6 @@ return [
     'limit_signatures_used'         => 'Використано підписів',
     'limit_custom_templates_used'   => 'Створено своїх шаблонів',
     'current_plan_details' => 'Деталі поточного плану',
-    'plan_base_title' => 'Базовий (безкоштовний) план',
-    'plan_standard_title' => 'План "Стандарт"',
-    'plan_pro_title' => 'План "Про"',
     'subscription_valid_until' => 'Підписка дійсна до',
     'indefinite_subscription' => 'Безстроковий (безкоштовний) план',
     'change_plan' => 'Переглянути план',
@@ -290,7 +319,25 @@ return [
     'sub_cancel_fail_api_error' => 'Не вдалося скасувати підписку. Будь ласка, зв\'яжіться з підтримкою.',
 
 
+    'popular_bundles_title' => 'Популярні пакети документів',
+    'view_all_bundles' => 'Дивитися всі пакети документів',
+    'bundles_page_title' => 'Готові пакети документів',
+    'bundles_page_subtitle' => 'Економте час із готовими наборами документів для найпопулярніших життєвих та бізнес-ситуацій.',
+    'bundles_for_country' => 'Пакети документів для :country',
+    'bundle_includes' => 'Склад пакету:',
+    'fill_bundle' => 'Заповнити пакет',
+    'available_in_pro' => 'Доступно в Pro',
+    'no_bundles_available' => 'Поки що немає доступних пакетів документів.',
 
+    // --- Мастер пакетов (Wizard) ---
+    'wizard_step' => 'Крок :current з :total',
+    'skip_document' => 'Пропустити цей документ',
+    'document_skipped_notice' => 'Цей документ буде пропущено під час генерації пакету.',
+    'wizard_back' => 'Назад',
+    'wizard_next' => 'Вперед',
+    'wizard_generate' => 'Згенерувати та завантажити пакет',
+    'wizard_generating' => 'Генерація...',
+    'validation_error_notice' => 'Будь ласка, перевірте всі кроки на наявність помилок.',
 
 
 
@@ -298,16 +345,7 @@ return [
     'limit_exhausted_error' => 'Ваш денний ліміт на завантаження документів вичерпано. Будь ласка, <a href=":url" class="alert-link">оновіть свій тарифний план</a>, щоб продовжити.',
     'limit_exhausted_signature_error' => 'Ваш денний ліміт на підписання документів вичерпано. Будь ласка, <a href=":url" class="alert-link">оновіть свій тарифний план</a>.',
     'limit_exhausted_custom_template_error' => 'Ваш ліміт на створення власних шаблонів вичерпано. Будь ласка, <a href=":url" class="alert-link">оновіть свій тарифний план</a>.',
-    'your_current_plan' => 'Ваш поточний план',
-    'choose_plan' => 'Обрати план',
-    'plan_base_feature1' => ':count завантаження документів на день',
-    'plan_base_feature2' => ':count підписання документів на день',
-    'plan_standard_feature1' => ':count завантажень документів на день',
-    'plan_standard_feature2' => ':count підписань документів на день',
-    'plan_standard_feature3' => 'Історія документів',
-    'plan_pro_feature1' => ':count завантажень документів на день',
-    'plan_pro_feature2' => ':count підписань документів на день',
-    'plan_pro_feature3' => ':count створень власних шаблонів на день',
+
 
 
     // Rate Limiter

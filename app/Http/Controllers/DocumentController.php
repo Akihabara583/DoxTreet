@@ -118,10 +118,7 @@ class DocumentController extends Controller
 
         $validatedData = $this->validateFormData($request, $template);
 
-        $documentCount = GeneratedDocument::where('user_id', $user->id)->count();
-        if ($documentCount >= 20) {
-            GeneratedDocument::where('user_id', $user->id)->oldest()->first()?->delete();
-        }
+        // ... (логика сохранения истории) ...
         GeneratedDocument::create([
             'user_id' => $user->id,
             'template_id' => $template->id,
@@ -133,16 +130,15 @@ class DocumentController extends Controller
         $fullHtml = ($template->header_html ?? '') . ($template->body_html ?? '') . ($template->footer_html ?? '');
         $fullHtml = $this->replaceConditionalPlaceholders($fullHtml, $validatedData);
         $fullHtml = $this->replaceSimplePlaceholders($fullHtml, $validatedData);
-
-        // --- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ---
-        // Финальная очистка всех оставшихся плейсхолдеров [[...]]
         $fullHtml = preg_replace('/\[\[.*?\]\]/s', '', $fullHtml);
 
+        // ✅ ВЫЗЫВАЕМ НОВЫЙ МЕТОД ДЛЯ ДОБАВЛЕНИЯ ПОДПИСИ
+        $fullHtml = $this->addSignatureIfFreeUser($fullHtml);
 
         $fileName = Str::slug($template->title) . '-' . time();
 
         if ($request->has('generate_pdf')) {
-            $pdf = Pdf::loadHTML($fullHtml);
+            $pdf = Pdf::loadHTML($fullHtml)->setOptions(['defaultFont' => 'DejaVu Sans']);;
             return $pdf->download($fileName . '.pdf');
         }
 
@@ -152,6 +148,33 @@ class DocumentController extends Controller
         }
 
         return redirect()->back()->with('error', 'Не удалось определить тип файла для генерации.');
+    }
+
+    // ✅ НОВЫЙ ПРИВАТНЫЙ МЕТОД ДЛЯ ДОБАВЛЕНИЯ ПОДПИСИ
+    private function addSignatureIfFreeUser(string $html): string
+    {
+        $user = Auth::user();
+        // Проверяем, что пользователь авторизован и у него НЕТ Pro-доступа (т.е. он на базовом плане)
+        if ($user && $user->isOnFreePlan()) {
+            $footerCss = "
+                <style>
+                    @page { margin: 1in; }
+                    .dox-footer {
+                        position: fixed;
+                        bottom: -45px;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                        font-size: 9px;
+                        color: #aaa;
+                        font-family: DejaVu Sans, sans-serif;
+                    }
+                </style>
+            ";
+            $footerHtml = '<div class="dox-footer">Generated with DoxTreet</div>';
+            return $footerCss . $html . $footerHtml;
+        }
+        return $html;
     }
 
     private function replaceSimplePlaceholders(string $html, array $data): string

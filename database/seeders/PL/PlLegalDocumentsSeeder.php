@@ -17,7 +17,531 @@ class PlLegalDocumentsSeeder extends Seeder
         }
         // Define the data for new document templates under the 'legal-documents-pl' category.
         $templatesData = [
-            // --- Исковое заявление о взыскании долга по расписке / Statement of Claim for Debt Collection by Receipt ---
+
+            // --- Załącznik nr 1 do wniosku o udzielenie zezwolenia na pobyt czasowy i pracę ---
+            [
+                'slug' => 'attachment-1-karta-pobytu-work-pl',
+                'fields' => '[
+                    {"name":"employer_name","type":"text","required":true,"labels":{"pl":"Pełna nazwa pracodawcy","uk":"Повна назва роботодавця","en":"Employer\'s Full Name","de":"Vollständiger Name des Arbeitgebers"}},
+                    {"name":"employer_address","type":"text","required":true,"labels":{"pl":"Adres siedziby pracodawcy","uk":"Адреса офісу роботодавця","en":"Employer\'s Address","de":"Adresse des Arbeitgebers"}},
+                    {"name":"employer_nip","type":"text","required":true,"labels":{"pl":"NIP pracodawcy","uk":"NIP роботодавця","en":"Employer\'s NIP","de":"NIP des Arbeitgebers"}},
+                    {"name":"employer_regon","type":"text","required":true,"labels":{"pl":"REGON pracodawcy","uk":"REGON роботодавця","en":"Employer\'s REGON","de":"REGON des Arbeitgebers"}},
+                    {"name":"foreigner_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko cudzoziemca","uk":"Ім\'я та прізвище іноземця","en":"Foreigner\'s Full Name","de":"Vollständiger Name des Ausländers"}},
+                    {"name":"job_position","type":"text","required":true,"labels":{"pl":"Stanowisko pracy","uk":"Посада","en":"Job Position","de":"Stellenbezeichnung"}},
+                    {"name":"work_place","type":"text","required":true,"labels":{"pl":"Miejsce wykonywania pracy","uk":"Місце виконання роботи","en":"Place of Work","de":"Arbeitsort"}},
+                    {"name":"salary_brutto","type":"number","required":true,"labels":{"pl":"Wynagrodzenie miesięczne brutto (PLN)","uk":"Місячна зарплата брутто (PLN)","en":"Gross Monthly Salary (PLN)","de":"Monatliches Bruttogehalt (PLN)"}},
+                    {"name":"work_hours","type":"text","required":true,"labels":{"pl":"Wymiar czasu pracy (np. pełny etat)","uk":"Робочий час (напр., повна ставка)","en":"Working Hours (e.g., full-time)","de":"Arbeitszeit (z.B. Vollzeit)"}},
+                    {"name":"contract_type","type":"text","required":true,"labels":{"pl":"Rodzaj umowy (np. umowa o pracę)","uk":"Тип договору (напр., трудовий договір)","en":"Type of Contract (e.g., employment contract)","de":"Vertragsart (z.B. Arbeitsvertrag)"}}
+                ]',
+                'translations' => [
+                    'pl' => [
+                        'title' => 'Załącznik nr 1 - Informacja starosty',
+                        'description' => 'Kluczowy dokument wypełniany przez pracodawcę, zawierający warunki zatrudnienia cudzoziemca. Niezbędny do wniosku o kartę pobytu i pracę.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+                            <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ZAŁĄCZNIK NR 1</h1>
+                            <h2 style="text-align: center; font-size: 14px; margin-top: 0;">DO WNIOSKU O UDZIELENIE ZEZWOLENIA NA POBYT CZASOWY I PRACĘ</h2>
+                            <br>
+                            <p><strong>I. DANE PODMIOTU POWIERZAJĄCEGO WYKONYWANIE PRACY (PRACODAWCY)</strong></p>
+                            <p>1. Pełna nazwa/Imię i nazwisko: <strong>[[employer_name]]</strong></p>
+                            <p>2. Adres siedziby: <strong>[[employer_address]]</strong></p>
+                            <p>3. NIP: <strong>[[employer_nip]]</strong></p>
+                            <p>4. REGON: <strong>[[employer_regon]]</strong></p>
+                            <br>
+                            <p><strong>II. DANE DOTYCZĄCE WYKONYWANIA PRACY PRZEZ CUDZOZIEMCA</strong></p>
+                            <p>1. Imię i nazwisko cudzoziemca: <strong>[[foreigner_full_name]]</strong></p>
+                            <p>2. Stanowisko lub rodzaj pracy: <strong>[[job_position]]</strong></p>
+                            <p>3. Miejsce wykonywania pracy: <strong>[[work_place]]</strong></p>
+                            <p>4. Podstawa prawna wykonywania pracy: <strong>[[contract_type]]</strong></p>
+                            <p>5. Wymiar czasu pracy: <strong>[[work_hours]]</strong></p>
+                            <p>6. Proponowane wynagrodzenie miesięczne brutto: <strong>[[salary_brutto]] PLN</strong></p>
+                            </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px; text-align: right;">
+                            <p>............................................................</p>
+                            <p style="font-size: 10px;"><em>(Data, podpis i pieczęć pracodawcy lub osoby upoważnionej)</em></p>
+                        </div>'
+                    ],
+                    'uk' => [
+                        'title' => 'Додаток № 1 - Інформація старости',
+                        'description' => 'Ключовий документ, що заповнюється роботодавцем та містить умови працевлаштування іноземця. Необхідний для заяви на карту побиту та праці.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+                            <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ДОДАТОК № 1</h1>
+                            <h2 style="text-align: center; font-size: 14px; margin-top: 0;">ДО ЗАЯВИ ПРО НАДАННЯ ДОЗВОЛУ НА ТИМЧАСОВЕ ПРОЖИВАННЯ ТА РОБОТУ</h2>
+                            <br>
+                            <p><strong>I. ДАНІ СУБ\'ЄКТА, ЩО ДОРУЧАЄ ВИКОНАННЯ РОБОТИ (РОБОТОДАВЦЯ)</strong></p>
+                            <p>1. Повна назва/Ім\'я та прізвище: <strong>[[employer_name]]</strong></p>
+                            <p>2. Адреса: <strong>[[employer_address]]</strong></p>
+                            <p>3. NIP: <strong>[[employer_nip]]</strong></p>
+                            <p>4. REGON: <strong>[[employer_regon]]</strong></p>
+                            <br>
+                            <p><strong>II. ДАНІ ЩОДО ВИКОНАННЯ РОБОТИ ІНОЗЕМЦЕМ</strong></p>
+                            <p>1. Ім\'я та прізвище іноземця: <strong>[[foreigner_full_name]]</strong></p>
+                            <p>2. Посада або вид роботи: <strong>[[job_position]]</strong></p>
+                            <p>3. Місце виконання роботи: <strong>[[work_place]]</strong></p>
+                            <p>4. Правова підстава для виконання роботи: <strong>[[contract_type]]</strong></p>
+                            <p>5. Робочий час: <strong>[[work_hours]]</strong></p>
+                            <p>6. Запропонована місячна заробітна плата брутто: <strong>[[salary_brutto]] PLN</strong></p>
+                            </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px; text-align: right;">
+                            <p>............................................................</p>
+                            <p style="font-size: 10px;"><em>(Дата, підпис та печатка роботодавця або уповноваженої особи)</em></p>
+                        </div>'
+                    ],
+                    'en' => [
+                        'title' => 'Attachment No. 1 - Staroste\'s Information',
+                        'description' => 'A key document filled out by the employer, containing the foreigner\'s employment conditions. Essential for the residence and work permit application.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+        <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ATTACHMENT NO. 1</h1>
+        <h2 style="text-align: center; font-size: 14px; margin-top: 0;">TO THE APPLICATION FOR A TEMPORARY RESIDENCE AND WORK PERMIT</h2>
+        <br>
+        <p><strong>I. DATA OF THE ENTITY ENTRUSTING WORK (EMPLOYER)</strong></p>
+        <p>1. Full Name: <strong>[[employer_name]]</strong></p>
+        <p>2. Registered Office Address: <strong>[[employer_address]]</strong></p>
+        <p>3. NIP (Tax Identification Number): <strong>[[employer_nip]]</strong></p>
+        <p>4. REGON (Statistical Number): <strong>[[employer_regon]]</strong></p>
+        <br>
+        <p><strong>II. DATA CONCERNING THE WORK PERFORMED BY THE FOREIGNER</strong></p>
+        <p>1. Full name of the foreigner: <strong>[[foreigner_full_name]]</strong></p>
+        <p>2. Position or type of work: <strong>[[job_position]]</strong></p>
+        <p>3. Place of work: <strong>[[work_place]]</strong></p>
+        <p>4. Legal basis for work performance: <strong>[[contract_type]]</strong></p>
+        <p>5. Working hours: <strong>[[work_hours]]</strong></p>
+        <p>6. Proposed gross monthly salary: <strong>[[salary_brutto]] PLN</strong></p>
+        </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px; text-align: right;">
+        <p>............................................................</p>
+        <p style="font-size: 10px;"><em>(Date, signature and stamp of the employer or authorized person)</em></p>
+    </div>'
+                    ],
+                    'de' => [
+                        'title' => 'Anlage Nr. 1 - Information des Landrats',
+                        'description' => 'Ein Schlüsseldokument, das vom Arbeitgeber ausgefüllt wird und die Beschäftigungsbedingungen des Ausländers enthält. Unverzichtbar für den Antrag auf eine Aufenthalts- und Arbeitserlaubnis.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+        <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ANLAGE NR. 1</h1>
+        <h2 style="text-align: center; font-size: 14px; margin-top: 0;">ZUM ANTRAG AUF ERTEILUNG EINER BEFRISTETEN AUFENTHALTS- UND ARBEITSERLAUBNIS</h2>
+        <br>
+        <p><strong>I. ANGABEN DES ARBEITGEBERS</strong></p>
+        <p>1. Vollständiger Name: <strong>[[employer_name]]</strong></p>
+        <p>2. Adresse des Firmensitzes: <strong>[[employer_address]]</strong></p>
+        <p>3. NIP (Steuer-ID): <strong>[[employer_nip]]</strong></p>
+        <p>4. REGON (Statistische Nummer): <strong>[[employer_regon]]</strong></p>
+        <br>
+        <p><strong>II. ANGABEN ZUR ARBEITSAUSÜBUNG DURCH DEN AUSLÄNDER</strong></p>
+        <p>1. Vollständiger Name des Ausländers: <strong>[[foreigner_full_name]]</strong></p>
+        <p>2. Position oder Art der Arbeit: <strong>[[job_position]]</strong></p>
+        <p>3. Arbeitsort: <strong>[[work_place]]</strong></p>
+        <p>4. Rechtsgrundlage der Arbeitsausübung: <strong>[[contract_type]]</strong></p>
+        <p>5. Arbeitszeit: <strong>[[work_hours]]</strong></p>
+        <p>6. Vorgeschlagenes monatliches Bruttogehalt: <strong>[[salary_brutto]] PLN</strong></p>
+        </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px; text-align: right;">
+        <p>............................................................</p>
+        <p style="font-size: 10px;"><em>(Datum, Unterschrift und Stempel des Arbeitgebers oder einer bevollmächtigten Person)</em></p>
+    </div>'
+                    ],
+                ]
+            ],
+            // --- Umowa najmu mieszkania ---
+            [
+                'slug' => 'residential-lease-agreement-pl',
+                'fields' => '[
+                    {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто"}},
+                    {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","uk":"Дата укладення"}},
+                    {"name":"landlord_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko Wynajmującego","uk":"ПІБ Орендодавця"}},
+                    {"name":"landlord_address","type":"text","required":true,"labels":{"pl":"Adres Wynajmującego","uk":"Адреса Орендодавця"}},
+                    {"name":"landlord_id_number","type":"text","required":true,"labels":{"pl":"Seria i nr dowodu/paszportu Wynajmującego","uk":"Серія та номер паспорта Орендодавця"}},
+                    {"name":"tenant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko Najemcy","uk":"ПІБ Орендаря"}},
+                    {"name":"tenant_id_number","type":"text","required":true,"labels":{"pl":"Seria i nr paszportu/karty pobytu Najemcy","uk":"Серія та номер паспорта/карти побиту Орендаря"}},
+                    {"name":"property_address","type":"text","required":true,"labels":{"pl":"Adres wynajmowanego lokalu","uk":"Адреса орендованого житла"}},
+                    {"name":"lease_start_date","type":"date","required":true,"labels":{"pl":"Data rozpoczęcia najmu","uk":"Дата початку оренди"}},
+                    {"name":"lease_end_date","type":"date","required":true,"labels":{"pl":"Data zakończenia najmu","uk":"Дата закінчення оренди"}},
+                    {"name":"rent_amount","type":"number","required":true,"labels":{"pl":"Czynsz miesięczny (PLN)","uk":"Орендна плата (PLN)"}},
+                    {"name":"payment_day","type":"number","required":true,"labels":{"pl":"Dzień płatności czynszu","uk":"День оплати"}}
+                ]',
+                'translations' => [
+                    'pl' => [
+                        'title' => 'Umowa najmu mieszkania',
+                        'description' => 'Standardowa umowa najmu lokalu mieszkalnego, wymagana do potwierdzenia miejsca zamieszkania.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
+                            <h1 style="text-align: center; font-size: 16px;">UMOWA NAJMU LOKALU MIESZKALNEGO</h1>
+                            <p>Zawarta w dniu [[agreement_date]] w [[city]] pomiędzy:</p>
+                            <p><strong>Wynajmującym:</strong> [[landlord_full_name]], zam. [[landlord_address]], legitymującym się dokumentem [[landlord_id_number]],</p>
+                            <p>a</p>
+                            <p><strong>Najemcą:</strong> [[tenant_full_name]], legitymującym się dokumentem [[tenant_id_number]].</p>
+                            <h2 style="font-size: 14px;">§ 1. Przedmiot umowy</h2>
+                            <p>1. Wynajmujący oświadcza, że jest właścicielem lokalu mieszkalnego położonego w [[property_address]].</p>
+                            <p>2. Wynajmujący oddaje Najemcy do używania ww. lokal na cele mieszkaniowe.</p>
+                            <h2 style="font-size: 14px;">§ 2. Okres najmu</h2>
+                            <p>Umowa zostaje zawarta na czas określony od [[lease_start_date]] do [[lease_end_date]].</p>
+                            <h2 style="font-size: 14px;">§ 3. Czynsz i opłaty</h2>
+                            <p>1. Strony ustalają miesięczny czynsz najmu w wysokości <strong>[[rent_amount]] PLN</strong>.</p>
+                            <p>2. Czynsz płatny będzie z góry do [[payment_day]]. dnia każdego miesiąca.</p>
+                            </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px;">
+                            <table width="100%">
+                                <tr>
+                                    <td style="text-align: center;">_________________________<br><em>(Podpis Wynajmującego)</em></td>
+                                    <td style="text-align: center;">_________________________<br><em>(Podpis Najemcy)</em></td>
+                                </tr>
+                            </table>
+                        </div>'
+                    ],
+                    'uk' => [
+                        'title' => 'Договір оренди житла',
+                        'description' => 'Стандартний договір оренди житлового приміщення, необхідний для підтвердження місця проживання.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
+                            <h1 style="text-align: center; font-size: 16px;">ДОГОВІР ОРЕНДИ ЖИТЛОВОГО ПРИМІЩЕННЯ</h1>
+                            <p>Укладений [[agreement_date]] у м. [[city]] між:</p>
+                            <p><strong>Орендодавцем:</strong> [[landlord_full_name]], що проживає за адресою [[landlord_address]], документ [[landlord_id_number]],</p>
+                            <p>та</p>
+                            <p><strong>Орендарем:</strong> [[tenant_full_name]], документ [[tenant_id_number]].</p>
+                            <h2 style="font-size: 14px;">§ 1. Предмет договору</h2>
+                            <p>1. Орендодавець заявляє, що є власником житлового приміщення, розташованого за адресою [[property_address]].</p>
+                            <p>2. Орендодавець передає Орендарю у користування зазначене приміщення для проживання.</p>
+                            <h2 style="font-size: 14px;">§ 2. Термін оренди</h2>
+                            <p>Договір укладено на визначений термін з [[lease_start_date]] до [[lease_end_date]].</p>
+                            <h2 style="font-size: 14px;">§ 3. Орендна плата</h2>
+                            <p>1. Сторони встановлюють щомісячну орендну плату в розмірі <strong>[[rent_amount]] PLN</strong>.</p>
+                            <p>2. Орендна плата сплачується авансом до [[payment_day]] числа кожного місяця.</p>
+                            </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px;">
+                            <table width="100%">
+                                <tr>
+                                    <td style="text-align: center;">_________________________<br><em>(Підпис Орендодавця)</em></td>
+                                    <td style="text-align: center;">_________________________<br><em>(Підпис Орендаря)</em></td>
+                                </tr>
+                            </table>
+                        </div>'
+                    ],
+                    'en' => [
+                        'title' => 'Residential Lease Agreement',
+                        'description' => 'A standard residential lease agreement required to confirm the place of residence.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
+        <h1 style="text-align: center; font-size: 16px;">RESIDENTIAL LEASE AGREEMENT</h1>
+        <p>Concluded on [[agreement_date]] in [[city]] between:</p>
+        <p><strong>The Landlord:</strong> [[landlord_full_name]], residing at [[landlord_address]], ID document No. [[landlord_id_number]],</p>
+        <p>and</p>
+        <p><strong>The Tenant:</strong> [[tenant_full_name]], ID document No. [[tenant_id_number]].</p>
+        <h2 style="font-size: 14px;">§ 1. Subject of the Agreement</h2>
+        <p>1. The Landlord declares to be the owner of the residential property located at [[property_address]].</p>
+        <p>2. The Landlord leases the aforementioned property to the Tenant for residential purposes.</p>
+        <h2 style="font-size: 14px;">§ 2. Lease Term</h2>
+        <p>This agreement is concluded for a fixed term from [[lease_start_date]] to [[lease_end_date]].</p>
+        <h2 style="font-size: 14px;">§ 3. Rent and Fees</h2>
+        <p>1. The parties agree on a monthly rent of <strong>[[rent_amount]] PLN</strong>.</p>
+        <p>2. The rent shall be paid in advance by the [[payment_day]]th day of each month.</p>
+        </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px;">
+        <table width="100%">
+            <tr>
+                <td style="text-align: center;">_________________________<br><em>(Landlord\'s Signature)</em></td>
+                <td style="text-align: center;">_________________________<br><em>(Tenant\'s Signature)</em></td>
+            </tr>
+        </table>
+    </div>'
+                    ],
+                    'de' => [
+                        'title' => 'Wohnungsmietvertrag',
+                        'description' => 'Ein Standard-Wohnungsmietvertrag, der zur Bestätigung des Wohnsitzes erforderlich ist.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5;">
+        <h1 style="text-align: center; font-size: 16px;">WOHNUNGSMIETVERTRAG</h1>
+        <p>Abgeschlossen am [[agreement_date]] in [[city]] zwischen:</p>
+        <p><strong>dem Vermieter:</strong> [[landlord_full_name]], wohnhaft in [[landlord_address]], Ausweis-Nr. [[landlord_id_number]],</p>
+        <p>und</p>
+        <p><strong>dem Mieter:</strong> [[tenant_full_name]], Ausweis-Nr. [[tenant_id_number]].</p>
+        <h2 style="font-size: 14px;">§ 1. Vertragsgegenstand</h2>
+        <p>1. Der Vermieter erklärt, Eigentümer der Wohnung in [[property_address]] zu sein.</p>
+        <p>2. Der Vermieter überlässt dem Mieter die vorgenannte Wohnung zu Wohnzwecken.</p>
+        <h2 style="font-size: 14px;">§ 2. Mietdauer</h2>
+        <p>Der Vertrag wird für eine befristete Zeit vom [[lease_start_date]] bis zum [[lease_end_date]] geschlossen.</p>
+        <h2 style="font-size: 14px;">§ 3. Miete und Gebühren</h2>
+        <p>1. Die Parteien vereinbaren eine monatliche Miete in Höhe von <strong>[[rent_amount]] PLN</strong>.</p>
+        <p>2. Die Miete ist im Voraus bis zum [[payment_day]]. eines jeden Monats zu zahlen.</p>
+        </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6; margin-top: 50px;">
+        <table width="100%">
+            <tr>
+                <td style="text-align: center;">_________________________<br><em>(Unterschrift des Vermieters)</em></td>
+                <td style="text-align: center;">_________________________<br><em>(Unterschrift des Mieters)</em></td>
+            </tr>
+        </table>
+    </div>'
+                    ],
+                ]
+            ],
+            // --- НОВЫЙ ШАБЛОН: Декларация о предоставлении жилья ---
+            [
+                'slug' => 'declaration-accommodation-pl',
+                'fields' => '[
+        {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто","en":"City","de":"Ort"}},
+        {"name":"declaration_date","type":"date","required":true,"labels":{"pl":"Data","uk":"Дата","en":"Date","de":"Datum"}},
+        {"name":"owner_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko właściciela lokalu","uk":"ПІБ власника житла","en":"Property Owner\'s Full Name","de":"Vollständiger Name des Eigentümers"}},
+        {"name":"owner_id_number","type":"text","required":true,"labels":{"pl":"Seria i nr dowodu osobistego właściciela","uk":"Серія та номер паспорта власника","en":"Owner\'s ID Card Number","de":"Personalausweisnummer des Eigentümers"}},
+        {"name":"property_address","type":"text","required":true,"labels":{"pl":"Adres lokalu","uk":"Адреса житла","en":"Property Address","de":"Adresse der Immobilie"}},
+        {"name":"foreigner_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko cudzoziemca","uk":"ПІБ іноземця","en":"Foreigner\'s Full Name","de":"Vollständiger Name des Ausländers"}}
+    ]',
+                'translations' => [
+                    'pl' => [
+                        'title' => 'Oświadczenie o zapewnieniu miejsca zamieszkania',
+                        'description' => 'Dokument, w którym właściciel nieruchomości oświadcza, że zapewnia cudzoziemcowi miejsce zamieszkania pod wskazanym adresem.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], [[declaration_date]] r.</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">OŚWIADCZENIE</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">o zapewnieniu miejsca zamieszkania</h2>
+                <br><br>
+                <p style="text-align: justify;">Ja, niżej podpisany/a <strong>[[owner_full_name]]</strong>, legitymujący/a się dowodem osobistym o numerze [[owner_id_number]], oświadczam, że jestem właścicielem/ką lokalu mieszkalnego położonego pod adresem: <strong>[[property_address]]</strong>.</p>
+                <p style="text-align: justify;">Niniejszym oświadczam, że zapewniam miejsce zamieszkania Panu/Pani <strong>[[foreigner_full_name]]</strong> w wyżej wymienionym lokalu na czas jego/jej pobytu w Polsce.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Czytelny podpis właściciela lokalu)</em></p>
+            </div>'
+                    ],
+                    'uk' => [
+                        'title' => 'Декларація про забезпечення місцем проживання',
+                        'description' => 'Документ, у якому власник нерухомості заявляє, що забезпечує іноземця місцем проживання за вказаною адресою.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], [[declaration_date]] р.</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ДЕКЛАРАЦІЯ</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">про забезпечення місцем проживання</h2>
+                <br><br>
+                <p style="text-align: justify;">Я, що нижче підписався/лася <strong>[[owner_full_name]]</strong>, документ, що посвідчує особу, № [[owner_id_number]], заявляю, що є власником/цею житлового приміщення, розташованого за адресою: <strong>[[property_address]]</strong>.</p>
+                <p style="text-align: justify;">Цим заявляю, що забезпечую місце проживання Пану/Пані <strong>[[foreigner_full_name]]</strong> у вищезгаданому приміщенні на час його/її перебування в Польщі.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Розбірливий підпис власника житла)</em></p>
+            </div>'
+                    ],
+                    'en' => [
+                        'title' => 'Declaration on Providing Accommodation',
+                        'description' => 'A document in which the property owner declares that they are providing the foreigner with a place of residence at the specified address.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], [[declaration_date]]</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">DECLARATION</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">on Providing a Place of Residence</h2>
+                <br><br>
+                <p style="text-align: justify;">I, the undersigned, <strong>[[owner_full_name]]</strong>, holding ID card number [[owner_id_number]], declare that I am the owner of the residential property located at: <strong>[[property_address]]</strong>.</p>
+                <p style="text-align: justify;">I hereby declare that I provide a place of residence for Mr./Ms. <strong>[[foreigner_full_name]]</strong> in the aforementioned property for the duration of his/her stay in Poland.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Legible signature of the property owner)</em></p>
+            </div>'
+                    ],
+                    'de' => [
+                        'title' => 'Erklärung über die Bereitstellung einer Unterkunft',
+                        'description' => 'Ein Dokument, in dem der Eigentümer der Immobilie erklärt, dass er dem Ausländer eine Unterkunft unter der angegebenen Adresse zur Verfügung stellt.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], den [[declaration_date]]</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ERKLÄRUNG</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">über die Bereitstellung einer Unterkunft</h2>
+                <br><br>
+                <p style="text-align: justify;">Ich, der/die Unterzeichnete, <strong>[[owner_full_name]]</strong>, Inhaber/in des Personalausweises Nr. [[owner_id_number]], erkläre hiermit, dass ich Eigentümer/in der Wohnimmobilie unter der folgenden Adresse bin: <strong>[[property_address]]</strong>.</p>
+                <p style="text-align: justify;">Hiermit erkläre ich, dass ich Herrn/Frau <strong>[[foreigner_full_name]]</strong> eine Unterkunft in der oben genannten Immobilie für die Dauer seines/ihres Aufenthalts in Polen zur Verfügung stelle.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Leserliche Unterschrift des Eigentümers)</em></p>
+            </div>'
+                    ]
+                ]
+            ],
+
+            // --- НОВЫЙ ШАБЛОН: Доверенность на получение карты побыту ---
+            [
+                'slug' => 'poa-collect-residence-card-pl',
+                'fields' => '[
+        {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто","en":"City","de":"Ort"}},
+        {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data","uk":"Дата","en":"Date","de":"Datum"}},
+        {"name":"principal_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko mocodawcy (wnioskodawcy)","uk":"ПІБ довірителя (заявника)","en":"Principal\'s Full Name (applicant)","de":"Vollständiger Name des Vollmachtgebers (Antragsteller)"}},
+        {"name":"principal_passport_number","type":"text","required":true,"labels":{"pl":"Seria i numer paszportu mocodawcy","uk":"Серія та номер паспорта довірителя","en":"Principal\'s Passport Series and Number","de":"Seriennummer des Reisepasses des Vollmachtgebers"}},
+        {"name":"agent_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pełnomocnika","uk":"ПІБ повіреного","en":"Agent\'s Full Name","de":"Vollständiger Name des Bevollmächtigten"}},
+        {"name":"agent_id_number","type":"text","required":true,"labels":{"pl":"Seria i numer dowodu osobistego/paszportu pełnomocnika","uk":"Серія та номер паспорта повіреного","en":"Agent\'s ID Card/Passport Series and Number","de":"Serien- und Ausweisnummer des Bevollmächtigten"}},
+        {"name":"voivodeship_office_name","type":"text","required":true,"labels":{"pl":"Nazwa Urzędu Wojewódzkiego","uk":"Назва Воєводського Управління","en":"Name of the Voivodeship Office","de":"Name des Woiwodschaftsamtes"}}
+    ]',
+                'translations' => [
+                    'pl' => [
+                        'title' => 'Upoważnienie do odbioru karty pobytu',
+                        'description' => 'Pełnomocnictwo szczególne upoważniające wskazaną osobę do odbioru decyzji oraz karty pobytu w imieniu wnioskodawcy.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], [[poa_date]] r.</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">UPOWAŻNIENIE</h1>
+                <br><br>
+                <p style="text-align: justify;">Ja, niżej podpisany/a <strong>[[principal_full_name]]</strong>, legitymujący/a się paszportem o serii i numerze [[principal_passport_number]], niniejszym upoważniam Pana/Panią <strong>[[agent_full_name]]</strong>, legitymującego/ą się dowodem osobistym/paszportem o serii i numerze [[agent_id_number]], do odbioru w moim imieniu karty pobytu oraz wszelkich dokumentów związanych z moim postępowaniem administracyjnym w <strong>[[voivodeship_office_name]]</strong>.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Czytelny podpis mocodawcy)</em></p>
+            </div>'
+                    ],
+                    'uk' => [
+                        'title' => 'Довіреність на отримання карти побиту',
+                        'description' => 'Спеціальна довіреність, що уповноважує вказану особу на отримання рішення та карти побиту від імені заявника.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], [[poa_date]] р.</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">ДОВІРЕНІСТЬ</h1>
+                <br><br>
+                <p style="text-align: justify;">Я, що нижче підписався/лася <strong>[[principal_full_name]]</strong>, паспорт серії та номеру [[principal_passport_number]], цим уповноважую Пана/Пані <strong>[[agent_full_name]]</strong>, документ, що посвідчує особу, серії та номеру [[agent_id_number]], на отримання від мого імені карти побиту та будь-яких документів, пов\'язаних з моїм адміністративним провадженням у <strong>[[voivodeship_office_name]]</strong>.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Розбірливий підпис довірителя)</em></p>
+            </div>'
+                    ],
+                    'en' => [
+                        'title' => 'Authorization to Collect Residence Card',
+                        'description' => 'A special power of attorney authorizing the designated person to collect the decision and residence card on behalf of the applicant.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], [[poa_date]]</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">AUTHORIZATION</h1>
+                <br><br>
+                <p style="text-align: justify;">I, the undersigned, <strong>[[principal_full_name]]</strong>, holding passport series and number [[principal_passport_number]], hereby authorize Mr./Ms. <strong>[[agent_full_name]]</strong>, holding ID card/passport series and number [[agent_id_number]], to collect on my behalf the residence card and any documents related to my administrative proceedings at the <strong>[[voivodeship_office_name]]</strong>.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Legible signature of the principal)</em></p>
+            </div>'
+                    ],
+                    'de' => [
+                        'title' => 'Vollmacht zur Abholung der Aufenthaltskarte',
+                        'description' => 'Eine spezielle Vollmacht, die eine benannte Person ermächtigt, die Entscheidung und die Aufenthaltskarte im Namen des Antragstellers abzuholen.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.8;">
+                <p style="text-align: right;">[[city]], den [[poa_date]]</p>
+                <br><br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">VOLLMACHT</h1>
+                <br><br>
+                <p style="text-align: justify;">Ich, der/die Unterzeichnete, <strong>[[principal_full_name]]</strong>, Inhaber/in des Reisepasses mit der Serie und Nummer [[principal_passport_number]], ermächtige hiermit Herrn/Frau <strong>[[agent_full_name]]</strong>, Inhaber/in des Personalausweises/Reisepasses mit der Serie und Nummer [[agent_id_number]], in meinem Namen die Aufenthaltskarte und alle Dokumente im Zusammenhang mit meinem Verwaltungsverfahren im <strong>[[voivodeship_office_name]]</strong> abzuholen.</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 80px; font-size: 12px; text-align: right;">
+                <p>______________________________________</p>
+                <p style="margin-right: 50px;"><em>(Leserliche Unterschrift des Vollmachtgebers)</em></p>
+            </div>'
+                    ]
+                ]
+            ],
+
+            // --- НОВЫЙ ШАБЛОН: Заявление об ускорении ---
+            [
+                'slug' => 'request-expedite-decision-karta-pobytu-pl',
+                'fields' => '[
+        {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто","en":"City","de":"Ort"}},
+        {"name":"request_date","type":"date","required":true,"labels":{"pl":"Data","uk":"Дата","en":"Date","de":"Datum"}},
+        {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","uk":"ПІБ заявника","en":"Applicant\'s Full Name","de":"Vollständiger Name des Antragstellers"}},
+        {"name":"applicant_address","type":"text","required":true,"labels":{"pl":"Adres wnioskodawcy","uk":"Адреса заявника","en":"Applicant\'s Address","de":"Adresse des Antragstellers"}},
+        {"name":"case_number","type":"text","required":true,"labels":{"pl":"Numer sprawy","uk":"Номер справи","en":"Case Number","de":"Aktenzeichen"}},
+        {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","uk":"Дата подачі заяви","en":"Application Submission Date","de":"Antragsdatum"}},
+        {"name":"voivode_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko Wojewody","uk":"Ім\'я та прізвище Воєводи","en":"Voivode\'s Full Name","de":"Vollständiger Name des Woiwoden"}},
+        {"name":"voivodeship_office_department","type":"text","required":true,"labels":{"pl":"Wydział ds. Cudzoziemców Urzędu Wojewódzkiego","uk":"Відділ у справах іноземців Воєводського Управління","en":"Department for Foreigners of the Voivodeship Office","de":"Abteilung für Ausländer des Woiwodschaftsamtes"}},
+        {"name":"reason","type":"textarea","required":true,"labels":{"pl":"Uzasadnienie (np. potrzeba podróży, kończąca się wiza)","uk":"Обґрунтування (напр., необхідність поїздки, закінчення візи)","en":"Justification (e.g., need to travel, expiring visa)","de":"Begründung (z.B. Reisebedarf, ablaufendes Visum)"}}
+    ]',
+                'translations' => [
+                    'pl' => [
+                        'title' => 'Wniosek o przyspieszenie wydania decyzji (Ponaglenie)',
+                        'description' => 'Pismo do urzędu z prośbą o przyspieszenie postępowania i wydanie decyzji w sprawie o udzielenie zezwolenia na pobyt.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+                <table width="100%"><tr><td width="60%"><p><strong>Wnioskodawca:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]</p></td><td width="40%" style="text-align: right; vertical-align:top;"><p>[[city]], [[request_date]] r.</p></td></tr></table>
+                <br><br>
+                <p><strong>Sz. P. [[voivode_name]]</strong><br><strong>Wojewoda</strong><br><strong>[[voivodeship_office_department]]</strong></p>
+                <br>
+                <p><strong>Dotyczy sprawy nr: [[case_number]]</strong></p>
+                <br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">PONAGLENIE</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">Wniosek o podjęcie działań i przyspieszenie wydania decyzji</h2>
+                <br>
+                <p>Wnoszę o podjęcie przez organ wszelkich niezbędnych działań w celu niezwłocznego zakończenia postępowania w sprawie o udzielenie mi zezwolenia na pobyt czasowy, wniosek z dnia [[application_date]].</p>
+                <h3 style="font-size: 13px; font-weight: bold;">UZASADNIENIE</h3>
+                <p style="text-align: justify;">[[reason]]</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px; text-align: right;">
+                <p>Z poważaniem,</p>
+                <br><br>
+                <p>_________________________</p>
+                <p><em>([[applicant_full_name]])</em></p>
+            </div>'
+                    ],
+                    'uk' => [
+                        'title' => 'Заява про прискорення видачі рішення (Клопотання)',
+                        'description' => 'Лист до управління з проханням прискорити розгляд справи та видати рішення у справі про надання дозволу на проживання.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+                <table width="100%"><tr><td width="60%"><p><strong>Заявник:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]</p></td><td width="40%" style="text-align: right; vertical-align:top;"><p>[[city]], [[request_date]] р.</p></td></tr></table>
+                <br><br>
+                <p><strong>Шановний Пан/Пані [[voivode_name]]</strong><br><strong>Воєвода</strong><br><strong>[[voivodeship_office_department]]</strong></p>
+                <br>
+                <p><strong>Стосується справи №: [[case_number]]</strong></p>
+                <br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">КЛОПОТАННЯ</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">Прохання вжити заходів та прискорити видачу рішення</h2>
+                <br>
+                <p>Прошу орган вжити всіх необхідних заходів для негайного завершення провадження у справі про надання мені дозволу на тимчасове проживання, заява від [[application_date]].</p>
+                <h3 style="font-size: 13px; font-weight: bold;">ОБҐРУНТУВАННЯ</h3>
+                <p style="text-align: justify;">[[reason]]</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px; text-align: right;">
+                <p>З повагою,</p>
+                <br><br>
+                <p>_________________________</p>
+                <p><em>([[applicant_full_name]])</em></p>
+            </div>'
+                    ],
+                    'en' => [
+                        'title' => 'Request to Expedite Decision (Reminder)',
+                        'description' => 'A letter to the office requesting to expedite the proceedings and issue a decision in the residence permit case.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+                <table width="100%"><tr><td width="60%"><p><strong>Applicant:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]</p></td><td width="40%" style="text-align: right; vertical-align:top;"><p>[[city]], [[request_date]]</p></td></tr></table>
+                <br><br>
+                <p><strong>Mr./Ms. [[voivode_name]]</strong><br><strong>Voivode</strong><br><strong>[[voivodeship_office_department]]</strong></p>
+                <br>
+                <p><strong>Regarding case no.: [[case_number]]</strong></p>
+                <br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">REMINDER</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">Request to take action and expedite the issuance of a decision</h2>
+                <br>
+                <p>I request the authority to take all necessary actions to promptly conclude the proceedings regarding my application for a temporary residence permit, submitted on [[application_date]].</p>
+                <h3 style="font-size: 13px; font-weight: bold;">JUSTIFICATION</h3>
+                <p style="text-align: justify;">[[reason]]</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px; text-align: right;">
+                <p>Sincerely,</p>
+                <br><br>
+                <p>_________________________</p>
+                <p><em>([[applicant_full_name]])</em></p>
+            </div>'
+                    ],
+                    'de' => [
+                        'title' => 'Antrag auf Beschleunigung der Entscheidung (Untätigkeitsbeschwerde)',
+                        'description' => 'Ein Schreiben an die Behörde mit der Bitte, das Verfahren zu beschleunigen und eine Entscheidung im Aufenthaltsgenehmigungsverfahren zu erteilen.',
+                        'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.6;">
+                <table width="100%"><tr><td width="60%"><p><strong>Antragsteller:</strong><br>[[applicant_full_name]]<br>[[applicant_address]]</p></td><td width="40%" style="text-align: right; vertical-align:top;"><p>[[city]], den [[request_date]]</p></td></tr></table>
+                <br><br>
+                <p><strong>An den Herrn/Frau [[voivode_name]]</strong><br><strong>Woiwode</strong><br><strong>[[voivodeship_office_department]]</strong></p>
+                <br>
+                <p><strong>Betreff: Aktenzeichen [[case_number]]</strong></p>
+                <br>
+                <h1 style="text-align: center; font-size: 16px; font-weight: bold;">UNTÄTIGKEITSBESCHWERDE</h1>
+                <h2 style="text-align: center; font-size: 14px; margin-top: 0;">Antrag auf Maßnahmen zur Beschleunigung der Entscheidung</h2>
+                <br>
+                <p>Ich beantrage, dass die Behörde alle erforderlichen Maßnahmen ergreift, um das Verfahren zur Erteilung einer befristeten Aufenthaltserlaubnis, Antrag vom [[application_date]], unverzüglich abzuschließen.</p>
+                <h3 style="font-size: 13px; font-weight: bold;">BEGRÜNDUNG</h3>
+                <p style="text-align: justify;">[[reason]]</p>
+                </div>',
+                        'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 50px; font-size: 12px; text-align: right;">
+                <p>Mit freundlichen Grüßen,</p>
+                <br><br>
+                <p>_________________________</p>
+                <p><em>([[applicant_full_name]])</em></p>
+            </div>'
+                    ]
+                ]
+            ],
+
+        // --- Исковое заявление о взыскании долга по расписке / Statement of Claim for Debt Collection by Receipt ---
             [
                 'slug' => 'statement-claim-debt-receipt-pl',
                 'fields' => '[

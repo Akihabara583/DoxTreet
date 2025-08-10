@@ -15,24 +15,20 @@
                             <p class="text-muted mb-4">{{ $templateModel->description }}</p>
                         @endif
 
-                        <form action="{{ route('documents.generate', ['locale' => $currentLocale, 'countryCode' => $templateModel->country_code, 'templateSlug' => $templateModel->slug]) }}" method="POST">
+                        {{-- ✅ ИЗМЕНЕНИЕ 1: Добавлен id="document-form" --}}
+                        <form id="document-form" action="{{ route('documents.generate', ['locale' => $currentLocale, 'countryCode' => $templateModel->country_code, 'templateSlug' => $templateModel->slug]) }}" method="POST">
                             @csrf
 
                             @php
                                 $fields = $templateModel->fields ?? [];
                             @endphp
 
-                            @if(is_array($fields))
+                            @if(is_array($fields) && !empty($fields))
                                 @foreach($fields as $field)
                                     @php
                                         $label = $field['labels'][$currentLocale] ?? $field['name'];
                                         $isRequired = $field['required'] ?? false;
                                         $fieldName = $field['name'];
-
-                                        // Логика автозаполнения:
-                                        // 1. Сначала берем старое значение (если была ошибка валидации).
-                                        // 2. Если его нет, берем данные для предзаполнения из профиля ($prefillData).
-                                        // 3. Если и их нет, используем пустую строку.
                                         $fieldValue = old($fieldName, $prefillData[$fieldName] ?? '');
                                     @endphp
 
@@ -64,25 +60,70 @@
                                         @enderror
                                     </div>
                                 @endforeach
+                            @else
+                                <div class="alert alert-warning">
+                                    Для этого шаблона не настроены поля формы.
+                                </div>
                             @endif
 
                             <hr class="my-4">
 
                             <div class="d-grid gap-2">
-                                {{-- Используем те же кнопки, что и в вашем красивом шаблоне --}}
-                                <button type="submit" name="generate_pdf" class="btn btn-primary btn-lg">
+                                <button type="submit" name="generate_pdf" value="1" class="btn btn-primary btn-lg">
                                     <i class="bi bi-file-earmark-pdf-fill me-2"></i> {{ __('messages.generate_pdf') }}
                                 </button>
-                                <button type="submit" name="generate_docx" class="btn btn-outline-secondary">
+                                <button type="submit" name="generate_docx" value="1" class="btn btn-outline-secondary">
                                     <i class="bi bi-file-earmark-word-fill me-2"></i> {{ __('messages.download_docx') }}
                                 </button>
                             </div>
 
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+{{-- ✅ ИЗМЕНЕНИЕ 2: Добавлен скрипт сохранения данных --}}
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('document-form');
+            if (!form) return;
+
+            const formFields = form.querySelectorAll('input[name]:not([type="hidden"]), textarea[name]');
+            const storageKey = 'form_data_{{ $templateModel->slug }}';
+
+            const saveFormData = () => {
+                const data = {};
+                formFields.forEach(field => {
+                    data[field.name] = field.value;
+                });
+                sessionStorage.setItem(storageKey, JSON.stringify(data));
+            };
+
+            const loadFormData = () => {
+                const savedData = sessionStorage.getItem(storageKey);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    formFields.forEach(field => {
+                        if (data[field.name]) {
+                            field.value = data[field.name];
+                        }
+                    });
+                }
+            };
+
+            const clearFormData = () => {
+                sessionStorage.removeItem(storageKey);
+            };
+
+            loadFormData();
+            form.addEventListener('input', saveFormData);
+            form.addEventListener('submit', () => {
+                setTimeout(clearFormData, 500);
+            });
+        });
+    </script>
+@endpush

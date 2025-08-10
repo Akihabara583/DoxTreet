@@ -239,6 +239,18 @@ class User extends Authenticatable implements MustVerifyEmail
         ]);
     }
 
+    public function hasProAccess(): bool
+    {
+        // Если у вас более сложная логика (например, проверка даты), измените ее здесь.
+        return $this->subscription_plan === 'pro';
+    }
+
+    public function isOnFreePlan(): bool
+    {
+        // Проверяем, что у пользователя либо нет плана, либо его план называется 'base'
+        return is_null($this->subscription_plan) || $this->subscription_plan === 'base';
+    }
+
     // --- СВЯЗИ МОДЕЛИ ---
 
     public function userTemplates()

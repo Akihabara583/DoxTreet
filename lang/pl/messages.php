@@ -290,7 +290,26 @@ return [
 
 
 
+    // --- Pakiety Dokumentów ---
+    'popular_bundles_title' => 'Popularne pakiety dokumentów',
+    'view_all_bundles' => 'Zobacz wszystkie pakiety dokumentów',
+    'bundles_page_title' => 'Gotowe pakiety dokumentów',
+    'bundles_page_subtitle' => 'Oszczędzaj czas dzięki gotowym zestawom dokumentów na najczęstsze sytuacje życiowe i biznesowe.',
+    'bundles_for_country' => 'Pakiety dokumentów dla :country',
+    'bundle_includes' => 'Pakiet zawiera:',
+    'fill_bundle' => 'Wypełnij pakiet',
+    'available_in_pro' => 'Dostępne w Pro',
+    'no_bundles_available' => 'Brak dostępnych pakietów dokumentów.',
 
+    // --- Kreator Pakietów ---
+    'wizard_step' => 'Krok :current z :total',
+    'skip_document' => 'Pomiń ten dokument',
+    'document_skipped_notice' => 'Ten dokument zostanie pominięty podczas generowania pakietu.',
+    'wizard_back' => 'Wstecz',
+    'wizard_next' => 'Dalej',
+    'wizard_generate' => 'Generuj i pobierz pakiet',
+    'wizard_generating' => 'Generowanie...',
+    'validation_error_notice' => 'Proszę sprawdzić wszystkie kroki pod kątem błędów.',
 
 
 

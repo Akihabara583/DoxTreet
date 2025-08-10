@@ -306,6 +306,33 @@ return [
     'cancel_auto_renewal_button' => 'Automatische Verlängerung kündigen',
     'auto_renewal_cancelled_info' => 'Die automatische Verlängerung für dieses Abonnement wurde bereits gekündigt. Sie können es bis zum :date nutzen.',
 
+
+
+
+
+    // --- Dokumentenpakete ---
+    'popular_bundles_title' => 'Beliebte Dokumentenpakete',
+    'view_all_bundles' => 'Alle Dokumentenpakete anzeigen',
+    'bundles_page_title' => 'Fertige Dokumentenpakete',
+    'bundles_page_subtitle' => 'Sparen Sie Zeit mit vorgefertigten Dokumentensätzen für die häufigsten Lebens- und Geschäftssituationen.',
+    'bundles_for_country' => 'Dokumentenpakete für :country',
+    'bundle_includes' => 'Paket enthält:',
+    'fill_bundle' => 'Paket ausfüllen',
+    'available_in_pro' => 'Verfügbar in Pro',
+    'no_bundles_available' => 'Noch keine Dokumentenpakete verfügbar.',
+
+    // --- Paket-Assistent ---
+    'wizard_step' => 'Schritt :current von :total',
+    'skip_document' => 'Dieses Dokument überspringen',
+    'document_skipped_notice' => 'Dieses Dokument wird bei der Paketerstellung übersprungen.',
+    'wizard_back' => 'Zurück',
+    'wizard_next' => 'Weiter',
+    'wizard_generate' => 'Paket generieren und herunterladen',
+    'wizard_generating' => 'Wird generiert...',
+    'validation_error_notice' => 'Bitte überprüfen Sie alle Schritte auf Fehler.',
+
+
+
     // --- Subscription Cancellation Flash Messages ---
     'sub_cancel_fail_not_found' => 'Es konnte kein aktives Abonnement zum Kündigen gefunden werden.',
     'sub_cancel_fail_server_error' => 'Ein Serverfehler ist aufgetreten. Bitte kontaktieren Sie den Support.',

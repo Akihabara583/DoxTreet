@@ -296,6 +296,29 @@ return [
     'feature_3_title' => '3. Download the PDF',
     'feature_3_text' => 'Get a print-ready PDF file. Save your document history in your personal account.',
 
+
+
+
+    'popular_bundles_title' => 'Popular Document Bundles',
+    'view_all_bundles' => 'View All Document Bundles',
+    'bundles_page_title' => 'Ready-Made Document Bundles',
+    'bundles_page_subtitle' => 'Save time with pre-packaged document sets for the most common life and business situations.',
+    'bundles_for_country' => 'Document Bundles for :country',
+    'bundle_includes' => 'Bundle includes:',
+    'fill_bundle' => 'Fill out bundle',
+    'available_in_pro' => 'Available in Pro',
+    'no_bundles_available' => 'No document bundles are available yet.',
+
+    // --- Bundle Wizard ---
+    'wizard_step' => 'Step :current of :total',
+    'skip_document' => 'Skip this document',
+    'document_skipped_notice' => 'This document will be skipped during bundle generation.',
+    'wizard_back' => 'Back',
+    'wizard_next' => 'Next',
+    'wizard_generate' => 'Generate and Download Bundle',
+    'wizard_generating' => 'Generating...',
+    'validation_error_notice' => 'Please check all steps for errors.',
+
     // Pricing Page
 
     'free_plan' => 'Free',

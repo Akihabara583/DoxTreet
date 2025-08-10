@@ -73,5 +73,8 @@ class Template extends Model
         return $this->translation->footer_html ?? '';
     }
 
-
+    public function bundles()
+    {
+        return $this->belongsToMany(DocumentBundle::class, 'bundle_template');
+    }
 }

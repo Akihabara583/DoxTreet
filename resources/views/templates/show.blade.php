@@ -3,14 +3,10 @@
 @section('title', $template->title . ' - ' . config('app.name'))
 @section('description', $template->description)
 
-{{-- ... (здесь может быть ваша секция @hreflangs, если она есть) ... --}}
-
 @section('content')
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-8">
-
-                {{-- ... (здесь может быть ваша секция хлебных крошек, если она есть) ... --}}
 
                 <div class="card shadow-sm">
                     <div class="card-header bg-dark text-white">
@@ -19,10 +15,8 @@
                     <div class="card-body p-4">
                         <p class="card-text text-muted mb-4">{{ $template->description }}</p>
 
-                        {{-- ... (здесь может быть ваша секция для гостей, если она есть) ... --}}
-
-                        {{-- ✅ ИСПРАВЛЕНИЕ 1: Форма отправляется на ЕДИНЫЙ правильный маршрут --}}
-                        <form action="{{ route('templates.generate', ['locale' => app()->getLocale(), 'template' => $template->slug]) }}" method="POST">
+                        {{-- ✅ ИЗМЕНЕНИЕ 1: Добавлен id="document-form" --}}
+                        <form id="document-form" action="{{ route('templates.generate', ['locale' => app()->getLocale(), 'template' => $template->slug]) }}" method="POST">
                             @csrf
 
                             @php
@@ -46,11 +40,10 @@
                                 @endforeach
                             @else
                                 <div class="alert alert-warning">
-                                    Для этого шаблона не настроены поля формы. Пожалуйста, добавьте их в админ-панели.
+                                    Для этого шаблона не настроены поля формы.
                                 </div>
                             @endif
 
-                            {{-- ✅ ИСПРАВЛЕНИЕ 2: Убрали `formaction` и добавили `name` --}}
                             <div class="d-grid gap-2 mt-4">
                                 <button type="submit" name="generate_pdf" value="1" class="btn btn-primary btn-lg">
                                     <i class="bi bi-file-earmark-pdf-fill"></i> {{ __('messages.generate_pdf') }}
@@ -66,3 +59,46 @@
         </div>
     </div>
 @endsection
+
+{{-- ✅ ИЗМЕНЕНИЕ 2: Добавлен скрипт сохранения данных --}}
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('document-form');
+            if (!form) return;
+
+            const formFields = form.querySelectorAll('input[name]:not([type="hidden"]), textarea[name]');
+            const storageKey = 'form_data_{{ $template->slug }}';
+
+            const saveFormData = () => {
+                const data = {};
+                formFields.forEach(field => {
+                    data[field.name] = field.value;
+                });
+                sessionStorage.setItem(storageKey, JSON.stringify(data));
+            };
+
+            const loadFormData = () => {
+                const savedData = sessionStorage.getItem(storageKey);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    formFields.forEach(field => {
+                        if (data[field.name]) {
+                            field.value = data[field.name];
+                        }
+                    });
+                }
+            };
+
+            const clearFormData = () => {
+                sessionStorage.removeItem(storageKey);
+            };
+
+            loadFormData();
+            form.addEventListener('input', saveFormData);
+            form.addEventListener('submit', () => {
+                setTimeout(clearFormData, 500);
+            });
+        });
+    </script>
+@endpush

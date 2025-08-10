@@ -18,6 +18,8 @@ use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Auth\EmailVerificationCodeController;
+use App\Http\Controllers\DocumentBundleController;
+use App\Http\Controllers\Admin\DocumentBundleController as AdminDocumentBundleController;
 
 
 
@@ -93,6 +95,11 @@ Route::prefix('{locale}')
         Route::get('/documents', [DocumentListController::class, 'index'])->name('documents.index');
         Route::get('/documents/country/{countryCode}', [DocumentListController::class, 'showByCountry'])->name('documents.by_country');
 
+        Route::get('/bundles', [DocumentBundleController::class, 'index'])->name('bundles.index');
+        Route::get('/bundles/{bundle:slug}', [DocumentBundleController::class, 'show'])
+            ->name('bundles.show')
+            ->middleware('auth');
+
         Route::get('/templates/{template}', [TemplateController::class, 'show'])->name('templates.show')->middleware('auth');
         Route::post('/templates/{template}/generate', [TemplateController::class, 'generateDocument'])->name('templates.generate')->middleware('auth');
         Route::get('/documents/{countryCode}/{templateSlug}', [DocumentController::class, 'show'])->name('documents.show')->middleware('auth');
@@ -108,6 +115,11 @@ Route::prefix('{locale}')
             Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
             Route::patch('users/{user}/subscription', [Admin\UserController::class, 'updateSubscription'])->name('users.subscription.update');
             Route::delete('users/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+            // Явное объявление роутов для пакетов документов (вместо Route::resource)
+            // Явное объявление роутов для пакетов документов
+            // routes/web.php (внутри Route::prefix('admin')...)
+
+            Route::resource('bundles', Admin\DocumentBundleController::class)->except(['show']);
         });
 
         Route::prefix('profile')->middleware('auth')->name('profile.')->group(function () {
@@ -140,6 +152,8 @@ Route::prefix('{locale}')
                 Route::delete('/{userTemplate}', [UserTemplateController::class, 'destroy'])->name('destroy');
             });
         });
+
+
 
         // Статические страницы теперь тоже внутри группы, чтобы иметь языковой префикс
         Route::get('/terms', [StaticPageController::class, 'show'])->name('terms');

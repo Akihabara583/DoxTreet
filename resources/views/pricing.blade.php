@@ -21,12 +21,9 @@
         .pricing-card .card-header {
             background-color: transparent;
         }
-        .list-group-item i {
-            color: var(--bs-primary);
-        }
-        .list-group-item.disabled i {
-            color: #6c757d;
-        }
+        .feature-icon-plus { color: var(--bs-primary); }
+        .feature-icon-minus { color: #6c757d; } /* Серый цвет для неактивной фичи */
+        .text-muted-feature { color: #6c757d; }
     </style>
 @endpush
 
@@ -50,13 +47,14 @@
                             <span class="display-4 fw-bold">$0</span>
                             <span class="text-muted">/ {{ __('messages.per_month') }}</span>
                         </div>
-                        <ul class="list-group list-group-flush mb-4 text-start">
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_base_feature1', ['count' => config('subscriptions.plans.base.daily_download_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_base_feature2', ['count' => config('subscriptions.plans.base.daily_signature_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_standard_feature3') }}</li>
+                        <ul class="list-group list-group-flush mb-4 text-start flex-grow-1">
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_base_feature1', ['count' => config('subscriptions.plans.base.daily_download_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_base_feature2', ['count' => config('subscriptions.plans.base.daily_signature_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_base_feature4') !!}</li>
+                            {{-- ✅ ИЗМЕНЕНИЕ ЛОГИКИ ОТОБРАЖЕНИЯ --}}
+                            <li class="list-group-item border-0 text-muted-feature"><i class="bi bi-x-circle-fill me-2 feature-icon-minus"></i>{!! __('messages.plan_base_feature_no_branding_disabled') !!}</li>
                         </ul>
 
-                        {{-- ✅ УПРОЩЕННАЯ ЛОГИКА --}}
                         @auth
                             @if(empty(auth()->user()->subscription_plan) || auth()->user()->subscription_plan == 'base')
                                 <div class="card text-white bg-primary mb-3">
@@ -73,11 +71,9 @@
                             @auth
                                 @if($currentPlan == 'base')
                                     <button class="btn btn-outline-secondary w-100 btn-lg" disabled>{{ __('messages.your_current_plan') }}</button>
-                                @else
-                                    {{-- Здесь может быть кнопка для даунгрейда в будущем --}}
                                 @endif
                             @else
-                                <a href="{{ route('register') }}" class="btn btn-outline-primary w-100 btn-lg">{{ __('messages.start_free') }}</a>
+                                <a href="{{ route('register', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-primary w-100 btn-lg">{{ __('messages.start_free') }}</a>
                             @endguest
                         </div>
                     </div>
@@ -95,10 +91,11 @@
                             <span class="display-4 fw-bold">$9.99</span>
                             <span class="text-muted">/ {{ __('messages.per_month') }}</span>
                         </div>
-                        <ul class="list-group list-group-flush mb-4 text-start">
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_standard_feature1', ['count' => config('subscriptions.plans.standard.daily_download_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_standard_feature2', ['count' => config('subscriptions.plans.standard.daily_signature_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_standard_feature3') }}</li>
+                        <ul class="list-group list-group-flush mb-4 text-start flex-grow-1">
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_standard_feature1', ['count' => config('subscriptions.plans.standard.daily_download_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_standard_feature2', ['count' => config('subscriptions.plans.standard.daily_signature_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_standard_feature3') !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_standard_feature4') !!}</li>
                         </ul>
                         <div class="mt-auto">
                             @auth
@@ -126,11 +123,12 @@
                             <span class="display-4 fw-bold">$18.99</span>
                             <span class="text-muted">/ {{ __('messages.per_month') }}</span>
                         </div>
-                        <ul class="list-group list-group-flush mb-4 text-start">
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_pro_feature1', ['count' => config('subscriptions.plans.pro.daily_download_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_pro_feature2', ['count' => config('subscriptions.plans.pro.daily_signature_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_pro_feature3', ['count' => config('subscriptions.plans.pro.custom_template_limit')]) }}</li>
-                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2"></i>{{ __('messages.plan_standard_feature3') }}</li>
+                        <ul class="list-group list-group-flush mb-4 text-start flex-grow-1">
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_pro_feature1', ['count' => config('subscriptions.plans.pro.daily_download_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_pro_feature2', ['count' => config('subscriptions.plans.pro.daily_signature_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_pro_feature3') !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_pro_feature4', ['count' => config('subscriptions.plans.pro.custom_template_limit')]) !!}</li>
+                            <li class="list-group-item border-0"><i class="bi bi-check-circle-fill me-2 feature-icon-plus"></i>{!! __('messages.plan_pro_feature5') !!}</li>
                         </ul>
                         <div class="mt-auto">
                             @auth

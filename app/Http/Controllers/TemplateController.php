@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+// ✅ Добавляем модель DocumentBundle
+use App\Models\DocumentBundle;
 use App\Models\Category;
 use App\Models\Template;
 use App\Models\GeneratedDocument;
@@ -14,7 +16,6 @@ use Illuminate\Support\Str;
 
 class TemplateController extends Controller
 {
-    // --- Метод index остается без изменений ---
     public function index(Request $request)
     {
         $locale = app()->getLocale();
@@ -24,6 +25,7 @@ class TemplateController extends Controller
         $popularTemplates = collect();
         $countries = [];
         $dataByCountry = [];
+        $bundlesByCountry = []; // ✅ Инициализируем массив для пакетов
 
         $countryNames = [
             'UA' => ['uk' => 'Україна', 'en' => 'Ukraine', 'pl' => 'Ukraina', 'de' => 'Ukraine'],
@@ -47,9 +49,24 @@ class TemplateController extends Controller
             }
 
         } else {
+            // ✅ НАЧАЛО: Логика для загрузки пакетов документов
+            // Получаем активные пакеты вместе с их шаблонами и переводом названий этих шаблонов
+            $documentBundles = DocumentBundle::where('is_active', true)
+                ->with(['templates' => function ($query) {
+                    // Загружаем только активные шаблоны внутри пакета
+                    $query->where('is_active', true)->with('translation');
+                }])
+                ->get();
+
+            // Группируем пакеты по коду страны для удобного отображения во вкладках
+            $bundlesByCountry = $documentBundles->groupBy('country_code');
+            // ✅ КОНЕЦ: Логика для загрузки пакетов документов
+
+            // Ваша существующая логика для популярных шаблонов
             $popularTemplateIds = GeneratedDocument::query()->whereNotNull('template_id')->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
             $popularTemplates = Template::with('translation')->whereIn('id', $popularTemplateIds)->get();
 
+            // Ваша существующая логика для категорий
             $allCategories = Category::query()
                 ->whereHas('templates', fn($q) => $q->where('is_active', true))
                 ->with(['templates' => function ($query) {
@@ -73,15 +90,17 @@ class TemplateController extends Controller
             });
 
             foreach ($countryNames as $code => $translations) {
-                if (isset($dataByCountry[$code])) {
+                // Добавляем страну в список, если для нее есть либо категории, либо пакеты
+                if (isset($dataByCountry[$code]) || isset($bundlesByCountry[$code])) {
                     $countries[] = (object)['code' => $code, 'name' => $translations[$locale] ?? $translations['en']];
                 }
             }
         }
 
+        // ✅ Добавляем $bundlesByCountry в данные для представления
         return view('home', compact(
             'searchQuery', 'searchResults', 'popularTemplates', 'countries',
-            'dataByCountry', 'countryNames', 'locale'
+            'dataByCountry', 'countryNames', 'locale', 'bundlesByCountry'
         ));
     }
 
@@ -129,6 +148,7 @@ class TemplateController extends Controller
         return view('templates.show', compact('template', 'prefillData'));
     }
 
+    // --- Метод generateDocument и остальные приватные методы остаются без изменений ---
     public function generateDocument(Request $request, string $locale, Template $template, WordExportService $wordExportService)
     {
         $validatedData = $this->validateFormData($request, $template);
@@ -144,17 +164,49 @@ class TemplateController extends Controller
         $header = $this->replacePlaceholders($template->header_html, $processedData);
         $body = $this->replacePlaceholders($template->body_html, $processedData);
         $footer = $this->replacePlaceholders($template->footer_html, $processedData);
+        $fullHtml = $header . $body . $footer;
+
+        // ✅ ВЫЗЫВАЕМ НОВЫЙ МЕТОД ДЛЯ ДОБАВЛЕНИЯ ПОДПИСИ
+        $fullHtmlWithSignature = $this->addSignatureIfFreeUser($fullHtml);
 
         if ($request->has('generate_docx')) {
-            $fullHtml = $header . $body . $footer;
             $fileName = Str::slug($template->title) . '.docx';
-            return $wordExportService->generateFromHtml($fullHtml, $fileName);
+            return $wordExportService->generateFromHtml($fullHtmlWithSignature, $fileName);
         }
 
+        // Для PDF используем немного другую логику, чтобы не сломать существующий `pdf.layout`
         $fullHtmlForPdf = view('pdf.layout', compact('header', 'body', 'footer', 'template'))->render();
-        $pdf = Pdf::loadHTML($fullHtmlForPdf)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
+        $fullHtmlForPdfWithSignature = $this->addSignatureIfFreeUser($fullHtmlForPdf);
+
+        $pdf = Pdf::loadHTML($fullHtmlForPdfWithSignature)->setOptions(['isHtml5ParserEnabled' => true, 'defaultFont' => 'DejaVu Sans']);
         $fileName = Str::slug($template->title) . '-' . time() . '.pdf';
         return $pdf->download($fileName);
+    }
+
+    // ✅ НОВЫЙ ПРИВАТНЫЙ МЕТОД ДЛЯ ДОБАВЛЕНИЯ ПОДПИСИ
+    private function addSignatureIfFreeUser(string $html): string
+    {
+        $user = Auth::user();
+        if ($user && $user->isOnFreePlan()){
+            $footerCss = "
+                <style>
+                    @page { margin: 1in; }
+                    .dox-footer {
+                        position: fixed;
+                        bottom: -45px;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                        font-size: 9px;
+                        color: #aaa;
+                        font-family: DejaVu Sans, sans-serif;
+                    }
+                </style>
+            ";
+            $footerHtml = '<div class="dox-footer">Generated with DoxTreet</div>';
+            return $footerCss . $html . $footerHtml;
+        }
+        return $html;
     }
 
     private function replacePlaceholders(?string $html, array $data): string
@@ -165,24 +217,16 @@ class TemplateController extends Controller
 
         $html = str_replace('[[current_date]]', now()->format('d.m.Y'), $html);
 
-        // Заменяем данные из формы
         foreach ($data as $key => $value) {
-            // Сначала обрабатываем условные блоки [[key]]...[[/key]]
             $pattern = "/\[\[" . preg_quote($key, '/') . "\]\](.*?)\[\[\/" . preg_quote($key, '/') . "\]\]/s";
             if (!empty($value)) {
-                // Если данные есть, убираем теги, оставляем содержимое
                 $html = preg_replace($pattern, '$1', $html);
             } else {
-                // Если данных нет, удаляем весь блок
                 $html = preg_replace($pattern, '', $html);
             }
-            // Затем заменяем простые плейсхолдеры [[key]]
             $html = str_replace("[[{$key}]]", $value, $html);
         }
 
-        // --- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ---
-        // Удаляем ВСЕ оставшиеся плейсхолдеры любого вида, для которых не было данных.
-        // Это включает в себя [[/some_key]] или [[unfilled_key]]
         $html = preg_replace('/\[\[.*?\]\]/s', '', $html);
 
         return $html;
