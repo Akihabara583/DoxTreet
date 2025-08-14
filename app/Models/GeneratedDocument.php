@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth; // ✅ Добавлен use Auth
 
+// ✅ ИСПРАВЛЕНИЕ: Добавлены PHPDoc для связей
+/**
+ * @property-read Template|null $template
+ * @property-read UserTemplate|null $userTemplate
+ */
+
 class GeneratedDocument extends Model
 {
     use HasFactory;

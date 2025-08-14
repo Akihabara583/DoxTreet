@@ -158,6 +158,13 @@ return [
     'password' => 'Password',
     'user_name' => 'Name',
 
+    // ...
+
+    'available_in_standard_or_pro' => 'Available for Standard & Pro',
+    'plan_all' => 'All', // ✅ НОВЫЙ
+    'plan_standard' => 'Standard and PRO', // ✅ НОВЫЙ
+    'plan_pro' => 'PRO', // ✅ НОВЫЙ
+    // ...
 
     'verification_sent' => 'A verification code has been sent to your email.',
     'registration_error' => 'Registration error. Please try again.',

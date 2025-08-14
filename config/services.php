@@ -25,6 +25,11 @@ return [
     ],
 
 
+    'fondy' => [
+        'merchant_id' => env('FONDY_MERCHANT_ID'),
+        'secret_key' => env('FONDY_SECRET_KEY'),
+    ],
+
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
@@ -60,4 +65,10 @@ return [
         ],
     ],
 
+    'gumroad' => [
+        'access_token'      => env('GUMROAD_ACCESS_TOKEN'),
+        'standard_plan_id'  => env('GUMROAD_STANDARD_PLAN_ID'),
+        'pro_plan_id'       => env('GUMROAD_PRO_PLAN_ID'),
+        'limit_reset_id'    => env('GUMROAD_LIMIT_RESET_ID'),
+    ],
 ];

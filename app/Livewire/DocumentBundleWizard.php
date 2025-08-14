@@ -25,8 +25,10 @@ class DocumentBundleWizard extends Component
 
     public function mount(DocumentBundle $bundle)
     {
-        if (!auth()->check() || !auth()->user()->hasProAccess()) {
-            abort(403, 'This feature is available for Pro subscribers only.');
+
+
+        if (!auth()->check() || !auth()->user()->canAccessBundle($bundle)) {
+            abort(403, 'You do not have permission to access this document bundle.');
         }
 
         $this->bundle = $bundle;

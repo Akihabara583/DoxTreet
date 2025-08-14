@@ -186,7 +186,13 @@ return [
     'add_new_field_label' => 'Dodaj nowe pole:',
 
 
+// ...
 
+    'available_in_standard_or_pro' => 'Dostępne dla Standard i Pro', // ✅ NOWY
+    'plan_all' => 'Wszyscy', // ✅ NOWY
+    'plan_standard' => 'Standard i PRO', // ✅ NOWY
+    'plan_pro' => 'PRO', // ✅ NOWY
+    // ...
 
 
     // --- Funkcja Podpisu ---

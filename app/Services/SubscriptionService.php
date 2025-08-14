@@ -4,8 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Http; // ✅ Импортируем Http
-use Illuminate\Support\Facades\Log;  // ✅ Импортируем Log
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionService
 {
@@ -60,24 +60,17 @@ class SubscriptionService
         ]);
     }
 
-    /**
-     * ✅ НОВЫЙ МЕТОД
-     * Отменяет подписку пользователя в Gumroad.
-     *
-     * @param User $user
-     * @return bool Возвращает true в случае успеха, false в случае неудачи.
-     */
     public function cancel(User $user): bool
     {
-        // Если у пользователя нет ID подписчика, значит, отменять нечего.
         if (!$user->gumroad_subscriber_id) {
             Log::info("Попытка отменить подписку для пользователя {$user->id}, но gumroad_subscriber_id отсутствует. Считаем успехом.");
             return true;
         }
 
-        $accessToken = env('GUMROAD_ACCESS_TOKEN');
+        // ✅ ИСПРАВЛЕНИЕ: Используем config() вместо env()
+        $accessToken = config('services.gumroad.access_token');
         if (!$accessToken) {
-            Log::error('GUMROAD_ACCESS_TOKEN не установлен в .env. Невозможно отменить подписку.');
+            Log::error('GUMROAD_ACCESS_TOKEN не установлен в config/services.php. Невозможно отменить подписку.');
             return false;
         }
 
@@ -89,7 +82,6 @@ class SubscriptionService
             );
 
             if ($response->successful()) {
-                // Очищаем данные подписки у пользователя
                 $user->gumroad_subscriber_id = null;
                 $user->subscription_plan = 'base';
                 $user->subscription_expires_at = null;
@@ -118,21 +110,18 @@ class SubscriptionService
     {
         Log::info("Понижаем пользователя {$user->id} до базового плана из-за истечения подписки.");
 
-        // Получаем настройки базового плана
         $planSettings = self::PLANS['base'];
 
         $user->update([
             'subscription_plan'       => 'base',
             'subscription_expires_at' => null,
-            'gumroad_subscriber_id'   => null, // <-- Ключевое исправление!
+            'gumroad_subscriber_id'   => null,
 
-            // Обновляем все лимиты до базовых
             'daily_template_limit'    => $planSettings['daily_template_limit'],
             'daily_signature_limit'   => $planSettings['daily_signature_limit'],
             'daily_download_limit'    => $planSettings['daily_download_limit'],
             'custom_template_limit'   => $planSettings['custom_template_limit'],
 
-            // Сбрасываем остатки лимитов
             'templates_left'          => $planSettings['daily_template_limit'],
             'signatures_left'         => $planSettings['daily_signature_limit'],
             'downloads_left'          => $planSettings['daily_download_limit'],

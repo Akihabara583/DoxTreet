@@ -2,20 +2,153 @@
 
 @section('title', $templateModel->title . ' - ' . config('app.name'))
 
+@push('styles')
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --blue: #06b6d4;
+            --blue-dark: #0891b2;
+
+            --bg-primary: #ffffff;
+            --bg-secondary: #faf7ff;
+            --bg-tertiary: #f3f0ff;
+            --text-primary: #1e1b31;
+            --text-secondary: #4c495d;
+            --text-muted: #6b7280;
+            --border: #e5e1f5;
+            --shadow-sm: 0 1px 2px 0 rgb(139 92 246 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(139 92 246 / 0.1), 0 2px 4px -2px rgb(139 92 246 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(139 92 246 / 0.15), 0 4px 6px -4px rgb(139 92 246 / 0.05);
+            --shadow-xl: 0 20px 25px -5px rgb(139 92 246 / 0.2), 0 8px 10px -6px rgb(139 92 246 / 0.1);
+
+            --gradient-brand: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+        }
+
+        [data-bs-theme="dark"] {
+            --bg-primary: #0f0a1a;
+            --bg-secondary: #1a1625;
+            --bg-tertiary: #252031;
+            --text-primary: #f1f0ff;
+            --text-secondary: #c9c6e0;
+            --text-muted: #9490a8;
+            --border: #2d2438;
+        }
+
+        .modern-section {
+            padding: 4rem 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .form-container {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .form-description {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .modern-form-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .modern-form-control {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        .modern-form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            background-color: var(--bg-primary);
+        }
+
+        .modern-form-control.is-invalid {
+            border-color: var(--danger);
+        }
+
+        .invalid-feedback {
+            color: var(--danger);
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+
+        .btn-modern {
+            border-radius: 16px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .btn-primary-modern {
+            background: var(--gradient-brand);
+            color: white;
+        }
+
+        .btn-primary-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        .btn-outline-modern {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline-modern:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+    </style>
+@endpush
+
 @section('content')
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-light py-3">
-                        <h1 class="h4 mb-0">{{ $templateModel->title }}</h1>
-                    </div>
-                    <div class="card-body p-4">
+    <div class="modern-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-container">
+                        <h1 class="form-title">{{ $templateModel->title }}</h1>
                         @if($templateModel->description)
-                            <p class="text-muted mb-4">{{ $templateModel->description }}</p>
+                            <p class="form-description">{{ $templateModel->description }}</p>
                         @endif
 
-                        {{-- ✅ ИЗМЕНЕНИЕ 1: Добавлен id="document-form" --}}
                         <form id="document-form" action="{{ route('documents.generate', ['locale' => $currentLocale, 'countryCode' => $templateModel->country_code, 'templateSlug' => $templateModel->slug]) }}" method="POST">
                             @csrf
 
@@ -32,11 +165,11 @@
                                         $fieldValue = old($fieldName, $prefillData[$fieldName] ?? '');
                                     @endphp
 
-                                    <div class="mb-3">
-                                        <label for="{{ $fieldName }}" class="form-label">
+                                    <div class="mb-4">
+                                        <label for="{{ $fieldName }}" class="form-label modern-form-label">
                                             {{ $label }}
                                             @if($isRequired)
-                                                <span class="text-danger">*</span>
+                                                <span style="color: var(--danger);">*</span>
                                             @endif
                                         </label>
 
@@ -44,35 +177,35 @@
                                             <textarea id="{{ $fieldName }}"
                                                       name="{{ $fieldName }}"
                                                       rows="4"
-                                                      class="form-control @error($fieldName) is-invalid @enderror"
+                                                      class="form-control modern-form-control @error($fieldName) is-invalid @enderror"
                                                       @if($isRequired) required @endif>{{ $fieldValue }}</textarea>
                                         @else
                                             <input type="{{ $field['type'] ?? 'text' }}"
                                                    id="{{ $fieldName }}"
                                                    name="{{ $fieldName }}"
-                                                   class="form-control @error($fieldName) is-invalid @enderror"
+                                                   class="form-control modern-form-control @error($fieldName) is-invalid @enderror"
                                                    value="{{ $fieldValue }}"
                                                    @if($isRequired) required @endif>
                                         @endif
 
                                         @error($fieldName)
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 @endforeach
                             @else
-                                <div class="alert alert-warning">
+                                <div class="alert alert-warning" style="background-color: var(--bg-tertiary); border-color: var(--warning); color: var(--text-primary);">
                                     Для этого шаблона не настроены поля формы.
                                 </div>
                             @endif
 
-                            <hr class="my-4">
+                            <hr class="my-4" style="border-color: var(--border);">
 
-                            <div class="d-grid gap-2">
-                                <button type="submit" name="generate_pdf" value="1" class="btn btn-primary btn-lg">
+                            <div class="d-grid gap-3">
+                                <button type="submit" name="generate_pdf" value="1" class="btn btn-primary-modern btn-modern">
                                     <i class="bi bi-file-earmark-pdf-fill me-2"></i> {{ __('messages.generate_pdf') }}
                                 </button>
-                                <button type="submit" name="generate_docx" value="1" class="btn btn-outline-secondary">
+                                <button type="submit" name="generate_docx" value="1" class="btn btn-outline-modern btn-modern">
                                     <i class="bi bi-file-earmark-word-fill me-2"></i> {{ __('messages.download_docx') }}
                                 </button>
                             </div>
@@ -85,9 +218,10 @@
     </div>
 @endsection
 
-{{-- ✅ ИЗМЕНЕНИЕ 2: Добавлен скрипт сохранения данных --}}
 @push('scripts')
     <script>
+        // This script saves form data to session storage to prevent data loss on page refresh.
+        // It's preserved from the original file and requires no style changes.
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('document-form');
             if (!form) return;
@@ -108,7 +242,8 @@
                 if (savedData) {
                     const data = JSON.parse(savedData);
                     formFields.forEach(field => {
-                        if (data[field.name]) {
+                        // Only fill if the field is empty to respect pre-filled data from the server
+                        if (!field.value && data[field.name]) {
                             field.value = data[field.name];
                         }
                     });
@@ -122,6 +257,7 @@
             loadFormData();
             form.addEventListener('input', saveFormData);
             form.addEventListener('submit', () => {
+                // Clear data after a short delay to ensure it's submitted
                 setTimeout(clearFormData, 500);
             });
         });

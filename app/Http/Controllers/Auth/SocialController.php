@@ -11,13 +11,16 @@ use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+// ✅ ИСПРАВЛЕНИЕ 1: Добавляем импорт ответа Symfony
+use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirectResponse;
 
 class SocialController extends Controller
 {
     /**
      * Redirect the user to the Provider authentication page.
      */
-    public function redirect(string $provider): RedirectResponse
+    // ✅ ИСПРАВЛЕНИЕ 2: Меняем тип возвращаемого значения
+    public function redirect(string $provider): SymfonyRedirectResponse
     {
         if (!in_array($provider, ['google', 'facebook'])) {
             abort(404);
@@ -37,7 +40,6 @@ class SocialController extends Controller
         try {
             $socialUser = Socialite::driver($provider)->user();
 
-            // Находим пользователя или создаем нового
             $user = User::firstOrCreate(
                 ['email' => $socialUser->getEmail()],
                 [
@@ -45,8 +47,8 @@ class SocialController extends Controller
                     'provider_name' => $provider,
                     'provider_id' => $socialUser->getId(),
                     'password' => Hash::make(Str::random(24)),
-                    'subscription_plan' => 'basic', // ✅ ИЗМЕНЕНИЕ: Явно указываем базовый тариф
-                    'email_verified_at' => now(), // ✅ Сразу считаем почту подтвержденной
+                    'subscription_plan' => 'base',
+                    'email_verified_at' => now(),
                 ]
             );
 

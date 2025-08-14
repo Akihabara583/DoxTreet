@@ -255,7 +255,13 @@ return [
 
 
 
+// ...
 
+    'available_in_standard_or_pro' => 'Доступно для Standard та Pro', // ✅ НОВИЙ
+    'plan_all' => 'Для всіх', // ✅ НОВИЙ
+    'plan_standard' => 'Стандарт та ПРО', // ✅ НОВИЙ
+    'plan_pro' => 'ПРО', // ✅ НОВИЙ
+    // ...
 
 
 

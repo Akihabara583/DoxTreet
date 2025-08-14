@@ -28,6 +28,7 @@
                                 <th>ID</th>
                                 <th>Название (EN)</th>
                                 <th>Страна</th>
+                                <th>Уровень доступа</th>
                                 <th>Шаблонов</th>
                                 <th>Действия</th>
                             </tr>
@@ -40,6 +41,15 @@
                                     <td>
                                         <span class="badge bg-secondary">{{ $bundle->country_code }}</span>
                                     </td>
+                                    <td> {{-- ✅ НАЧАЛО БЛОКА --}}
+                                        @if($bundle->access_level == 'pro')
+                                            <span class="badge bg-success">PRO</span>
+                                        @elseif($bundle->access_level == 'standard')
+                                            <span class="badge bg-warning text-dark">Standard</span>
+                                        @else
+                                            <span class="badge bg-info text-dark">Все</span>
+                                        @endif
+                                    </td> {{-- ✅ КОНЕЦ БЛОКА --}}
                                     <td>{{ $bundle->templates_count }}</td>
                                     <td>
                                         {{-- ✅ ИЗМЕНЕНИЕ: Передаем ID пакета --}}
@@ -58,7 +68,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Пока нет ни одного пакета.</td>
+                                    <td colspan="6" class="text-center">Пока нет ни одного пакета.</td>
                                 </tr>
                             @endforelse
                             </tbody>

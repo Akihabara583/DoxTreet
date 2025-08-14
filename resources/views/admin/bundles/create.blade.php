@@ -48,6 +48,17 @@
                         </select>
                     </div>
 
+
+                    <div class="mb-3">
+                        <label for="access_level" class="form-label">Уровень доступа</label>
+                        <select class="form-select" id="access_level" name="access_level" required>
+                            <option value="pro" @if(old('access_level', $bundle->access_level ?? 'pro') == 'pro') selected @endif>Только для PRO</option>
+                            <option value="standard" @if(old('access_level', $bundle->access_level ?? '') == 'standard') selected @endif>Для Standard и PRO</option>
+                            <option value="all" @if(old('access_level', $bundle->access_level ?? '') == 'all') selected @endif>Для всех пользователей</option>
+                        </select>
+                    </div>
+
+
                     <div class="mb-3">
                         <label class="form-label">Шаблоны в пакете</label>
                         <p class="small text-muted">Выберите шаблоны и перетащите их, чтобы задать порядок шагов.</p>

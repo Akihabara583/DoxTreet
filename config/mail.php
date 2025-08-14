@@ -50,7 +50,16 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
-
+        'brevo_smtp' => [
+            'transport' => 'smtp',
+            'host' => env('BREVO_HOST', 'smtp-relay.brevo.com'),
+            'port' => env('BREVO_PORT', 587),
+            'encryption' => env('BREVO_ENCRYPTION', 'tls'),
+            'username' => env('BREVO_USERNAME'),
+            'password' => env('BREVO_PASSWORD'),
+            'timeout' => null,
+            'auth_mode' => 'login', // Добавили явный режим аутентификации
+        ],
 
         'ses' => [
             'transport' => 'ses',

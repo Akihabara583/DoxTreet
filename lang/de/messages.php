@@ -308,7 +308,13 @@ return [
 
 
 
+// ...
 
+    'available_in_standard_or_pro' => 'Verfügbar für Standard & Pro', // ✅ NEU
+    'plan_all' => 'Alle', // ✅ NEU
+    'plan_standard' => 'Standard und PRO', // ✅ NEU
+    'plan_pro' => 'PRO', // ✅ NEU
+    // ...
 
     // --- Dokumentenpakete ---
     'popular_bundles_title' => 'Beliebte Dokumentenpakete',

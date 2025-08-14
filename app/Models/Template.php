@@ -5,6 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Collection;
+
+// ✅ ИСПРАВЛЕНИЕ: Добавлены PHPDoc для свойств и связей
+/**
+ * @property-read string $title
+ * @property-read string $description
+ * @property-read string $header_html
+ * @property-read string $body_html
+ * @property-read string $footer_html
+ * @property-read Category|null $category
+ * @property-read Collection|TemplateTranslation[] $translations
+ * @property-read TemplateTranslation|null $translation
+ */
 
 class Template extends Model
 {

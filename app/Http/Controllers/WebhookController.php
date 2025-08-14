@@ -1,6 +1,6 @@
 <?php
 
-// Файл: app/Http/Controllers/WebhookController.php (ПОЛНАЯ ВЕРСИЯ)
+// Файл: app/Http/Controllers/WebhookController.php
 
 namespace App\Http\Controllers;
 
@@ -30,7 +30,7 @@ class WebhookController extends Controller
 
             $productId = $request->input('product_id');
             $email = $request->input('email');
-            $subscriberId = $request->input('subscriber_id'); // Может быть null для разовых покупок
+            $subscriberId = $request->input('subscriber_id');
 
             $user = User::where('email', $email)->first();
             if (!$user) {
@@ -38,24 +38,22 @@ class WebhookController extends Controller
                 return response()->json(['status' => 'ok', 'message' => 'User not found, but acknowledged.']);
             }
 
-            $standardPlanId = env('GUMROAD_STANDARD_PLAN_ID');
-            $proPlanId = env('GUMROAD_PRO_PLAN_ID');
-            $limitResetId = env('GUMROAD_LIMIT_RESET_ID'); // ID для сброса лимитов
+            // ✅ ИСПРАВЛЕНИЕ: Используем config() вместо env()
+            $standardPlanId = config('services.gumroad.standard_plan_id');
+            $proPlanId = config('services.gumroad.pro_plan_id');
+            $limitResetId = config('services.gumroad.limit_reset_id');
 
             if ($productId === $standardPlanId) {
-                // Это покупка подписки "Standard"
                 $user->gumroad_subscriber_id = $subscriberId;
                 $subscriptionService->assignPlan($user, 'standard', 30);
                 Log::info("Subscription 'standard' assigned to user {$email}.");
 
             } elseif ($productId === $proPlanId) {
-                // Это покупка подписки "Pro"
                 $user->gumroad_subscriber_id = $subscriberId;
                 $subscriptionService->assignPlan($user, 'pro', 30);
                 Log::info("Subscription 'pro' assigned to user {$email}.");
 
             } elseif ($productId === $limitResetId) {
-                // Это разовая покупка сброса лимитов
                 if ($user->subscription_plan === 'base' || $user->subscription_plan === null) {
                     $user->resetDailyLimits();
                     Log::info("Daily limits have been reset for user {$email}.");
@@ -64,7 +62,6 @@ class WebhookController extends Controller
                 }
 
             } else {
-                // Неизвестный продукт
                 Log::warning("Gumroad Webhook: Unknown product ID '{$productId}' for user {$email}.");
             }
 

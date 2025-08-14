@@ -609,6 +609,52 @@
             background-size: 400% 400%;
             animation: gradientShift 8s ease infinite;
         }
+        /* Базовые стили для значка доступа */
+        .access-badge {
+            display: inline-block;
+            padding: 0.3em 0.8em;
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 50px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* ✅ НОВЫЕ СТИЛИ ГРАДИЕНТОВ ДЛЯ ЗНАЧКОВ */
+
+        /* ALL: синеватый с каплей фиолетового */
+        .access-badge.all {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        }
+
+        /* STANDARD: больше фиолетового с примесью синего */
+        .access-badge.standard {
+            background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 100%);
+        }
+
+        /* PRO: как и был */
+        .access-badge.pro {
+            background: linear-gradient(135deg, #d25ffb 0%, #fd836d 100%) !important;
+        }
+
+        /* ✅ НОВЫЕ СТИЛИ ГРАДИЕНТОВ ДЛЯ КНОПОК */
+
+        /* Кнопка для PRO (как и была btn-pro) */
+        .btn-pro-locked {
+
+            background: linear-gradient(135deg, #d25ffb 0%, #fd836d 100%) !important;
+        }
+
+        /* Кнопка для Standard */
+        .btn-standard-locked {
+            background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 100%);
+        }
     </style>
 @endpush
 
@@ -694,39 +740,54 @@
                             <div class="col">
                                 <div class="bundle-card h-100">
                                     <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <span class="badge-modern">
-                                            {{ $countryNames[$bundle->country_code][$locale] ?? $bundle->country_code }}
-                                        </span>
-                                        <span class="badge bg-success rounded-pill">TOP</span>
+                                <span class="badge-modern">
+                                    {{ $countryNames[$bundle->country_code][$locale] ?? $bundle->country_code }}
+                                </span>
+
+                                        {{-- ✅ НАЧАЛО: Логика для отображения значков с новыми стилями и переводами --}}
+                                        @if($bundle->access_level == 'pro')
+                                            <span class="access-badge pro">{{ __('messages.plan_pro') }}</span>
+                                        @elseif($bundle->access_level == 'standard')
+                                            <span class="access-badge standard">{{ __('messages.plan_standard') }}</span>
+                                        @else
+                                            <span class="access-badge all">{{ __('messages.plan_all') }}</span>
+                                        @endif
+                                        {{-- ✅ КОНЕЦ: Логика для значков --}}
                                     </div>
 
                                     <h4 class="fw-bold mb-3">{{ $bundle->title }}</h4>
 
-                                    @if(Auth::check() && Auth::user()->hasProAccess())
-                                        <div class="flex-grow-1">
-                                            <p class="mb-2 small"><strong>{{ __('messages.bundle_includes') }}</strong></p>
-                                            <ul class="list-unstyled">
-                                                @foreach ($bundle->templates->take(5) as $templateInBundle)
-                                                    <li class="mb-1 small"><i class="bi bi-check-lg text-success"></i> {{ $templateInBundle->title }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                                    @php
+                                        $hasAccess = Auth::check() && Auth::user()->canAccessBundle($bundle);
+                                    @endphp
+
+                                    <div class="flex-grow-1 @if(!$hasAccess) blurred-content @endif">
+                                        <p class="mb-2 small"><strong>{{ __('messages.bundle_includes') }}</strong></p>
+                                        <ul class="list-unstyled">
+                                            @foreach ($bundle->templates->take(5) as $templateInBundle)
+                                                <li class="mb-1 small"><i class="bi bi-check-lg text-success"></i> {{ $templateInBundle->title }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+
+                                    @if($hasAccess)
                                         <a href="{{ route('bundles.show', ['locale' => $locale, 'bundle' => $bundle->slug]) }}" class="btn btn-primary-modern btn-modern w-100 mt-auto">
                                             <i class="bi bi-magic"></i> {{ __('messages.fill_bundle') }}
                                         </a>
                                     @else
-                                        <div class="flex-grow-1 blurred-content">
-                                            <p class="mb-2 small"><strong>{{ __('messages.bundle_includes') }}</strong></p>
-                                            <ul class="list-unstyled">
-                                                @foreach ($bundle->templates->take(5) as $templateInBundle)
-                                                    <li class="mb-1 small"><i class="bi bi-check-lg text-success"></i> {{ $templateInBundle->title }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <a href="{{ route('pricing', $locale) }}" class="btn btn-pro btn-modern w-100 mt-auto">
-                                            <i class="bi bi-gem"></i> {{ __('messages.available_in_pro') }}
-                                        </a>
+                                        {{-- ✅ НАЧАЛО: Логика для отображения правильной кнопки для заблокированного контента --}}
+                                        @if($bundle->access_level == 'standard')
+                                            <a href="{{ route('pricing', $locale) }}" class="btn btn-standard-locked btn-modern w-100 mt-auto">
+                                                <i class="bi bi-gem"></i> {{ __('messages.available_in_standard_or_pro') }}
+                                            </a>
+                                        @else
+                                            <a href="{{ route('pricing', $locale) }}" class="btn btn-pro-locked btn-modern w-100 mt-auto">
+                                                <i class="bi bi-gem"></i> {{ __('messages.available_in_pro') }}
+                                            </a>
+                                        @endif
+                                        {{-- ✅ КОНЕЦ: Логика для кнопок --}}
                                     @endif
+
                                 </div>
                             </div>
                         @endforeach

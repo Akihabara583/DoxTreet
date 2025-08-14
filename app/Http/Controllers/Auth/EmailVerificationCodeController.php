@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeEmail;
+use App\Mail\FollowUpEmail;
 
 class EmailVerificationCodeController extends Controller
 {
@@ -95,6 +98,18 @@ class EmailVerificationCodeController extends Controller
             ]);
             Session::forget('registration_data');
             return redirect()->route('register', ['locale' => app()->getLocale()])->with('error', __('messages.account_creation_error'));
+        }
+        try {
+            // Отправляем Письмо №1 (Добро пожаловать) через Brevo
+            Mail::mailer('brevo_smtp')->to($user->email)->send(new WelcomeEmail($user));
+
+            // Ставим в очередь Письмо №2 (Как дела?) через Brevo с задержкой 3 месяца
+            Mail::mailer('brevo_smtp')->to($user->email)->queue(
+                (new FollowUpEmail($user))->delay(now()->addMonths(3))
+            );
+            Log::info('Marketing emails sent/queued for user.', ['user_id' => $user->id]);
+        } catch (\Exception $e) {
+            Log::error('Failed to send marketing emails to new user', ['user_id' => $user->id, 'error' => $e->getMessage()]);
         }
 
         Session::forget('registration_data');

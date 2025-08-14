@@ -40,6 +40,7 @@ class DocumentBundleController extends Controller
             'title' => $validated['title'],
             'description' => $validated['description'] ?? null,
             'country_code' => $validated['country_code'],
+            'access_level' => $validated['access_level'],
             'slug' => $slug,
         ]);
 
@@ -68,6 +69,7 @@ class DocumentBundleController extends Controller
             'title' => $validated['title'],
             'description' => $validated['description'] ?? null,
             'country_code' => $validated['country_code'],
+            'access_level' => $validated['access_level'],
         ]);
 
         $this->syncTemplates($bundle, $validated);
@@ -84,7 +86,7 @@ class DocumentBundleController extends Controller
         return redirect()->route('admin.bundles.index', ['locale' => app()->getLocale()])->with('success', 'Пакет успешно удален.');
     }
 
-    protected function validateBundle(Request $request)
+    protected function validateBundle(Request $request, DocumentBundle $bundle = null)
     {
         $rules = [
             'title' => 'required|array',
@@ -94,6 +96,7 @@ class DocumentBundleController extends Controller
             'templates.*' => 'exists:templates,id',
             'is_optional' => 'nullable|array',
             'is_optional.*' => 'in:1',
+            'access_level' => 'required|string|in:all,standard,pro',
         ];
         foreach ($this->supportedLocales as $locale) {
             $rules['title.' . $locale] = ($locale == 'en' ? 'required' : 'nullable') . '|string|max:255';
@@ -101,7 +104,6 @@ class DocumentBundleController extends Controller
         }
         return $request->validate($rules);
     }
-
     protected function syncTemplates(DocumentBundle $bundle, array $validatedData)
     {
         $syncData = [];

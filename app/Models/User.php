@@ -12,7 +12,23 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;// Импортируем фаса
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
+use App\Models\DocumentBundle;
+use Illuminate\Database\Eloquent\Collection;
 
+// ✅ ИСПРАВЛЕНИЕ: Добавлены PHPDoc для свойств и связей
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property bool $is_admin
+ * @property string|null $subscription_plan
+ * @property Carbon|null $subscription_expires_at
+ * @property Carbon|null $limits_reset_at
+ * @property-read UserDetail|null $details
+ * @property-read Collection|UserTemplate[] $userTemplates
+ * @property-read Collection|GeneratedDocument[] $generatedDocuments
+ * @property-read Collection|SignedDocument[] $signedDocuments
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
@@ -305,5 +321,33 @@ class User extends Authenticatable implements MustVerifyEmail
 
         // ИЛИ, если вы знаете ID этого пользователя (например, если он 8):
          return $this->id === 1;
+    }
+
+    public function canAccessBundle(DocumentBundle $bundle): bool
+    {
+        // Администратор имеет доступ ко всему
+        if ($this->attributes['is_admin']) {
+            return true;
+        }
+
+        $userPlan = $this->subscription_plan ?? 'base';
+
+        switch ($bundle->access_level) {
+            case 'all':
+                // Доступно для всех
+                return true;
+
+            case 'standard':
+                // Доступно для 'standard' и 'pro'
+                return in_array($userPlan, ['standard', 'pro']);
+
+            case 'pro':
+                // Доступно только для 'pro'
+                return $userPlan === 'pro';
+
+            default:
+                // По умолчанию доступ запрещен
+                return false;
+        }
     }
 }

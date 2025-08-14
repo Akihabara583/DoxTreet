@@ -4,7 +4,6 @@
 
 namespace App\Http\Controllers;
 
-// ИЗМЕНЕНИЕ №1: Добавляем трейт для авторизации
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\GeneratedDocument;
 use App\Models\UserDetail;
@@ -24,7 +23,6 @@ use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
-    // ИЗМЕНЕНИЕ №2: Подключаем трейт в класс
     use AuthorizesRequests;
 
     public function show(): View
@@ -73,7 +71,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    // ИЗМЕНЕНИЕ №3: Используем Route Model Binding и Policy
     public function reuse(Request $request, string $locale, GeneratedDocument $document): RedirectResponse
     {
         $this->authorize('view', $document);
@@ -154,7 +151,6 @@ class ProfileController extends Controller
         return view('profile.signed_history', ['documents' => $signedDocuments]);
     }
 
-    // ИЗМЕНЕНИЕ №4: Используем Route Model Binding и Policy
     public function downloadSignedDocument(Request $request, string $locale, SignedDocument $document)
     {
         $this->authorize('view', $document);
@@ -210,9 +206,10 @@ class ProfileController extends Controller
             return back()->with('error', __('messages.sub_cancel_fail_not_found'));
         }
 
-        $accessToken = env('GUMROAD_ACCESS_TOKEN');
+        // ✅ ИСПРАВЛЕНИЕ: Используем config() вместо env()
+        $accessToken = config('services.gumroad.access_token');
         if (!$accessToken) {
-            Log::error('GUMROAD_ACCESS_TOKEN не установлен в .env');
+            Log::error('GUMROAD_ACCESS_TOKEN не установлен в config/services.php');
             return back()->with('error', __('messages.sub_cancel_fail_server_error'));
         }
 
@@ -258,7 +255,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // Добавляем сообщение в сессию для отображения после редиректа
         return Redirect::to('/' . app()->getLocale())->with('status', 'account-deleted');
     }
 }
