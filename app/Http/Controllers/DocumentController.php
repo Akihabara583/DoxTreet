@@ -25,6 +25,21 @@ class DocumentController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
+        // --- НАЧАЛО ПРОВЕРКИ ДОСТУПА ---
+        $user = Auth::user();
+
+        // Если пользователь не авторизован, а шаблон не бесплатный
+        if (!$user && $template->access_level !== 'free') {
+            // Перенаправляем на страницу с ценами или на страницу входа
+            return redirect()->route('pricing', app()->getLocale())->with('error', __('messages.template_requires_subscription'));
+        }
+
+        // Если пользователь авторизован, но его подписка не позволяет доступ
+        if ($user && !$user->canAccessTemplate($template)) {
+            abort(403, 'Your subscription plan does not allow access to this template.');
+        }
+        // --- КОНЕЦ ПРОВЕРКИ ДОСТУПА ---
+
         if ($request->has('data') && is_array($request->input('data'))) {
             $prefillData = $request->input('data');
         } else {
@@ -111,6 +126,12 @@ class DocumentController extends Controller
 
         $user = $request->user();
 
+        // --- ДОБАВЛЯЕМ ПРОВЕРКУ ДОСТУПА ПЕРЕД ГЕНЕРАЦИЕЙ ---
+        if (!$user || !$user->canAccessTemplate($template)) {
+            abort(403, 'You do not have permission to generate this document.');
+        }
+        // --- КОНЕЦ ПРОВЕРКИ ---
+
         if (!$user->canPerformAction('download')) {
             $errorMessage = __('messages.limit_exhausted_error', ['url' => route('pricing', app()->getLocale())]);
             return back()->withInput()->with('error_html', $errorMessage);
@@ -143,8 +164,17 @@ class DocumentController extends Controller
         }
 
         if ($request->has('generate_docx')) {
+            // --- НАЧАЛО ИСПРАВЛЕНИЙ ДЛЯ DOCX ---
+            // 1. Заменяем все теги <br> на пробел.
+            $docxHtml = str_ireplace(['<br>', '<br/>', '<br />'], ' ', $fullHtml);
+
+            // 2. Декодируем HTML-сущности (например, &nbsp;).
+            $docxHtml = html_entity_decode($docxHtml, ENT_QUOTES, 'UTF-8');
+            // --- КОНЕЦ ИСПРАВЛЕНИЙ ---
+
             $wordService = new WordExportService();
-            return $wordService->generateFromHtml($fullHtml, $fileName . '.docx');
+            // Передаем очищенный HTML
+            return $wordService->generateFromHtml($docxHtml, $fileName . '.docx');
         }
 
         return redirect()->back()->with('error', 'Не удалось определить тип файла для генерации.');

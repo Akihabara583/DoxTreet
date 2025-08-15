@@ -350,4 +350,26 @@ class User extends Authenticatable implements MustVerifyEmail
                 return false;
         }
     }
+
+    public function canAccessTemplate(Template $template): bool
+    {
+        // Администратор может все
+        if ($this->is_admin) {
+            return true;
+        }
+
+        $userPlan = $this->subscription_plan ?? 'base';
+
+        // Определяем "уровень" плана пользователя
+        $planLevels = ['base' => 0, 'standard' => 1, 'pro' => 2];
+        $userLevel = $planLevels[$userPlan] ?? 0;
+
+        // Определяем "уровень", необходимый для шаблона
+        $templateLevels = ['free' => 0, 'standard' => 1, 'pro' => 2];
+        $templateLevel = $templateLevels[$template->access_level] ?? 0;
+
+        // Пользователь имеет доступ, если его уровень не ниже уровня шаблона
+        return $userLevel >= $templateLevel;
+    }
+
 }

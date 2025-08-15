@@ -21,6 +21,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 1. Исковое заявление о взыскании долга по расписке ---
             [
                 'slug' => 'statement-claim-debt-receipt-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -163,6 +164,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 2. Исковое заявление о расторжении брака ---
             [
                 'slug' => 'statement-claim-divorce-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -291,6 +293,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 3. Исковое заявление о взыскании алиментов ---
             [
                 'slug' => 'statement-claim-alimony-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -432,6 +435,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 4. Исковое заявление о возмещении ущерба при ДТП ---
             [
                 'slug' => 'statement-claim-road-accident-damages-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -547,6 +551,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 5. Исковое заявление о защите прав потребителей ---
             [
                 'slug' => 'statement-claim-consumer-rights-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -656,6 +661,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 6. Генеральная доверенность ---
             [
                 'slug' => 'general-power-of-attorney-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},
@@ -746,6 +752,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 7. Доверенность на представление интересов в суде ---
             [
                 'slug' => 'power-of-attorney-court-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},
@@ -838,6 +845,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 8. Доверенность на получение документов ---
             [
                 'slug' => 'power-of-attorney-documents-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},
@@ -925,6 +933,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 9. Отзыв доверенности ---
             [
                 'slug' => 'power-of-attorney-revocation-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання відкликання","en":"City of Revocation Compilation", "pl":"Miejscowość sporządzenia odwołania", "de":"Ort der Widerrufserklärung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},
@@ -1006,6 +1015,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 10. Завещание (общая форма) ---
             [
                 'slug' => 'will-general-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання заповіту","en":"City of Will Compilation", "pl":"Miejscowość sporządzenia testamentu", "de":"Ort der Testamentserstellung"}},
                     {"name":"testator_name","type":"text","required":true,"labels":{"uk":"ПІБ заповідача","en":"Testator\'s Full Name", "pl":"Imię i nazwisko testatora", "de":"Vollständiger Name des Erblassers"}},
@@ -1095,6 +1105,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 11. Ходатайство об отложении судебного заседания ---
             [
                 'slug' => 'motion-postpone-hearing-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -1202,6 +1213,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 12. Ходатайство о приобщении документов к делу ---
             [
                 'slug' => 'motion-add-documents-to-case-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},
                     {"name":"court_address","type":"text","required":true,"labels":{"uk":"Адреса суду","en":"Court Address", "pl":"Adres sądu", "de":"Gerichtsadresse"}},
@@ -1298,6 +1310,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 13. Апелляционная жалоба (структура) ---
             [
                 'slug' => 'appeal-complaint-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"appellate_court_name","type":"text","required":true,"labels":{"uk":"Назва апеляційного суду","en":"Appellate Court Name", "pl":"Nazwa sądu apelacyjnego", "de":"Name des Berufungsgerichts"}},
                     {"name":"appellate_court_address","type":"text","required":true,"labels":{"uk":"Адреса апеляційного суду","en":"Appellate Court Address", "pl":"Adres sądu apelacyjnego", "de":"Adresse des Berufungsgerichts"}},
@@ -1393,6 +1406,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 14. Кассационная жалоба (структура) ---
             [
                 'slug' => 'cassation-complaint-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"cassation_court_name","type":"text","required":true,"labels":{"uk":"Назва касаційного суду","en":"Cassation Court Name", "pl":"Nazwa sądu kasacyjnego", "de":"Name des Kassationsgerichts"}},
                     {"name":"cassation_court_address","type":"text","required":true,"labels":{"uk":"Адреса касаційного суду","en":"Cassation Court Address", "pl":"Adres sądu kasacyjnego", "de":"Adresse des Kassationsgerichts"}},
@@ -1480,6 +1494,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 15. Жалоба в прокуратуру ---
             [
                 'slug' => 'complaint-prosecutor-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"prosecutor_office_name","type":"text","required":true,"labels":{"uk":"Назва органу прокуратури","en":"Prosecutor\'s Office Name", "pl":"Nazwa prokuratury", "de":"Name der Staatsanwaltschaft"}},
                     {"name":"prosecutor_office_address","type":"text","required":true,"labels":{"uk":"Адреса органу прокуратури","en":"Prosecutor\'s Office Address", "pl":"Adres prokuratury", "de":"Adresse der Staatsanwaltschaft"}},
@@ -1592,6 +1607,7 @@ class UaLegalDocumentsSeeder extends Seeder
             // --- 16. Мировое соглашение ---
             [
                 'slug' => 'amicable-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"court_name","type":"text","required":true,"labels":{"uk":"Назва суду","en":"Court Name", "pl":"Nazwa sądu", "de":"Gerichtsname"}},

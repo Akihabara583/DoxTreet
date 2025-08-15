@@ -22,6 +22,7 @@ class UsWorkSeeder extends Seeder
             // --- Резюме (классическое) / Resume (Classic) ---
             [
                 'slug' => 'resume-classic-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"en":"Full Name","uk":"Повне ім\'я","de":"Vollständiger Name","pl":"Imię i Nazwisko"}},
                     {"name":"phone","type":"text","required":true,"labels":{"en":"Phone","uk":"Телефон","de":"Telefon","pl":"Telefon"}},
@@ -125,6 +126,7 @@ class UsWorkSeeder extends Seeder
             // --- Резюме (хронологическое) / Resume (Chronological) ---
             [
                 'slug' => 'resume-chronological-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"en":"Full Name","uk":"Повне ім\'я","de":"Vollständiger Name","pl":"Imię i Nazwisko"}},
                     {"name":"phone","type":"text","required":true,"labels":{"en":"Phone","uk":"Телефон","de":"Telefon","pl":"Telefon"}},
@@ -218,6 +220,7 @@ class UsWorkSeeder extends Seeder
             // --- Резюме (функциональное) / Resume (Functional) ---
             [
                 'slug' => 'resume-functional-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"en":"Full Name","uk":"Повне ім\'я","de":"Vollständiger Name","pl":"Imię i Nazwisko"}},
                     {"name":"phone","type":"text","required":true,"labels":{"en":"Phone","uk":"Телефон","de":"Telefon","pl":"Telefon"}},
@@ -311,6 +314,7 @@ class UsWorkSeeder extends Seeder
             // --- Сопроводительное письмо к резюме / Cover Letter ---
             [
                 'slug' => 'cover-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -434,6 +438,7 @@ class UsWorkSeeder extends Seeder
             // --- Заявление о приеме на работу / Job Application Statement ---
             [
                 'slug' => 'job-application-statement-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -564,6 +569,7 @@ class UsWorkSeeder extends Seeder
             // --- Трудовой договор (бессрочный) / Employment Agreement (At-Will) ---
             [
                 'slug' => 'employment-agreement-at-will-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -732,6 +738,7 @@ class UsWorkSeeder extends Seeder
             // --- Срочный трудовой договор / Fixed-Term Employment Agreement ---
             [
                 'slug' => 'fixed-term-employment-agreement-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -897,6 +904,7 @@ class UsWorkSeeder extends Seeder
             // --- Договор о неразглашении (NDA) / Non-Disclosure Agreement (NDA) ---
             [
                 'slug' => 'nda-agreement-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1054,6 +1062,7 @@ class UsWorkSeeder extends Seeder
             // --- Договор о материальной ответственности / Material Liability Agreement ---
             [
                 'slug' => 'material-liability-agreement-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1207,6 +1216,7 @@ class UsWorkSeeder extends Seeder
             // --- Должностная инструкция / Job Description ---
             [
                 'slug' => 'job-description-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"en":"Company Name","uk":"Назва компанії","de":"Firmenname","pl":"Nazwa firmy"}},
                     {"name":"job_title","type":"text","required":true,"labels":{"en":"Job Title","uk":"Назва посади","de":"Stellenbezeichnung","pl":"Stanowisko"}},
@@ -1357,6 +1367,7 @@ class UsWorkSeeder extends Seeder
             // --- Приказ о приеме на работу / Employment Confirmation Letter ---
             [
                 'slug' => 'employment-confirmation-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1491,6 +1502,7 @@ class UsWorkSeeder extends Seeder
             // --- Приказ о переводе на другую должность / Transfer Order ---
             [
                 'slug' => 'transfer-order-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1621,6 +1633,7 @@ class UsWorkSeeder extends Seeder
             // --- Заявление на ежегодный оплачиваемый отпуск / Annual Paid Leave Request ---
             [
                 'slug' => 'annual-paid-leave-request-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1739,6 +1752,7 @@ class UsWorkSeeder extends Seeder
 // --- Заявление на отпуск за свой счет (без сохранения заработной платы) / Leave of Absence Request (Unpaid) ---
             [
                 'slug' => 'unpaid-leave-request-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1858,6 +1872,7 @@ class UsWorkSeeder extends Seeder
             // --- Заявление на учебный отпуск / Educational Leave Request ---
             [
                 'slug' => 'educational-leave-request-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -1978,6 +1993,7 @@ class UsWorkSeeder extends Seeder
             // --- Заявление на отпуск по уходу за ребенком / Parental Leave Request ---
             [
                 'slug' => 'parental-leave-request-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2095,6 +2111,7 @@ class UsWorkSeeder extends Seeder
             // --- Приказ на отпуск / Leave Approval Form ---
             [
                 'slug' => 'leave-approval-form-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2226,6 +2243,7 @@ class UsWorkSeeder extends Seeder
             // --- Заявление на увольнение по собственному желанию / Resignation Letter ---
             [
                 'slug' => 'resignation-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
                     {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2361,6 +2379,7 @@ class UsWorkSeeder extends Seeder
             // --- Заявление на увольнение по соглашению сторон / Mutual Separation Agreement ---
             [
                 'slug' => 'mutual-separation-agreement-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
             {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2412,6 +2431,7 @@ class UsWorkSeeder extends Seeder
             // --- Соглашение о расторжении трудового договора / Termination of Employment Agreement ---
             [
                 'slug' => 'termination-employment-agreement-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
             {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2462,6 +2482,7 @@ class UsWorkSeeder extends Seeder
             // --- Приказ об увольнении / Termination Letter ---
             [
                 'slug' => 'termination-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
             {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2512,6 +2533,7 @@ class UsWorkSeeder extends Seeder
             // --- Рекомендательное письмо / Letter of Recommendation ---
             [
                 'slug' => 'letter-of-recommendation-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
             {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2563,6 +2585,7 @@ class UsWorkSeeder extends Seeder
             // --- Характеристика на сотрудника / Employee Performance Review ---
             [
                 'slug' => 'employee-performance-review-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
             {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2615,6 +2638,7 @@ class UsWorkSeeder extends Seeder
             // --- Служебная записка / Memo ---
             [
                 'slug' => 'memo-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"en":"City","uk":"Місто","de":"Ort","pl":"Miejscowość"}},
             {"name":"state","type":"text","required":true,"labels":{"en":"State","uk":"Штат","de":"Bundesstaat","pl":"Stan"}},
@@ -2658,6 +2682,7 @@ class UsWorkSeeder extends Seeder
             // --- Объяснительная записка / Explanation Letter (Explanation Letter) ---
             [
                 'slug' => 'explanation-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
             {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data","en":"Date","uk":"Дата","de":"Datum"}},
@@ -2706,6 +2731,7 @@ class UsWorkSeeder extends Seeder
             // --- Табель учета рабочего времени / Timesheet (Timesheet) ---
             [
                 'slug' => 'timesheet-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
             {"name":"employee_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -2765,6 +2791,7 @@ class UsWorkSeeder extends Seeder
             // --- Командировочное удостоверение / Business Trip Form (Business Trip Authorization Form) ---
             [
                 'slug' => 'business-trip-form-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
             {"name":"form_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia formularza","en":"Form Date","uk":"Дата складання форми","de":"Datum des Formulars"}},
@@ -2816,6 +2843,7 @@ class UsWorkSeeder extends Seeder
             // --- Коммерческое предложение / Business Proposal (Business Proposal) ---
             [
                 'slug' => 'business-proposal-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
             {"name":"proposal_date","type":"date","required":true,"labels":{"pl":"Data oferty","en":"Proposal Date","uk":"Дата пропозиції","de":"Angebotsdatum"}},
@@ -2866,6 +2894,7 @@ class UsWorkSeeder extends Seeder
             // --- Письмо-претензия / Demand Letter ---
             [
                 'slug' => 'demand-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"sender_city","type":"text","required":true,"labels":{"pl":"Miejscowość (Nadawca)","en":"City (Sender)","uk":"Місто (Відправник)","de":"Ort (Absender)"}},
             {"name":"sender_state","type":"text","required":true,"labels":{"pl":"Stan (Nadawca)","en":"State (Sender)","uk":"Штат (Відправник)","de":"Bundesstaat (Absender)"}},
@@ -2921,6 +2950,7 @@ class UsWorkSeeder extends Seeder
             // --- Гарантийное письмо / Letter of Guarantee ---
             [
                 'slug' => 'guarantee-letter-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
             {"name":"state","type":"text","required":true,"labels":{"pl":"Stan","en":"State","uk":"Штат","de":"Bundesstaat"}},
@@ -2972,6 +3002,7 @@ class UsWorkSeeder extends Seeder
             // --- Официальный запрос / Official Request (Formal Inquiry) ---
             [
                 'slug' => 'official-inquiry-us',
+        'access_level' => 'free',
                 'fields' => '[
             {"name":"sender_city","type":"text","required":true,"labels":{"pl":"Miejscowość (Nadawca)","en":"City (Sender)","uk":"Місто (Відправник)","de":"Ort (Absender)"}},
             {"name":"sender_state","type":"text","required":true,"labels":{"pl":"Stan (Nadawca)","en":"State (Sender)","uk":"Штат (Відправник)","de":"Bundesstaat (Absender)"}},

@@ -19,6 +19,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Договор купли-продажи автомобиля / Car Sale Agreement ---
             [
                 'slug' => 'car-sale-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -153,6 +154,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Акт приема-передачи автомобиля / Car Handover Protocol ---
             [
                 'slug' => 'car-handover-protocol-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia protokołu","en":"Protocol Date","uk":"Дата складання протоколу","de":"Datum der Protokollerstellung"}},
@@ -289,6 +291,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Расписка в получении денег за автомобиль / Receipt of Money for Car ---
             [
                 'slug' => 'receipt-money-car-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"receipt_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pokwitowania","en":"Receipt Date","uk":"Дата видачі розписки","de":"Datum der Quittung"}},
@@ -361,6 +364,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Доверенность на управление автомобилем / Power of Attorney for Car Management ---
             [
                 'slug' => 'poa-car-management-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},
@@ -460,6 +464,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Доверенность на продажу автомобиля / Power of Attorney for Car Sale ---
             [
                 'slug' => 'poa-car-sale-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},
@@ -563,6 +568,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Договор аренды автомобиля / Car Rental Agreement ---
             [
                 'slug' => 'car-rental-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -704,6 +710,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Европротокол (извещение о ДТП) / European Accident Statement ---
             [
                 'slug' => 'european-accident-statement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"statement_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia oświadczenia","en":"Statement Date","uk":"Дата складання заяви","de":"Datum der Erklärung"}},
@@ -854,6 +861,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Претензия в страховую компанию о выплате возмещения / Claim to Insurance Company for Compensation ---
             [
                 'slug' => 'claim-insurance-compensation-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"claim_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia roszczenia","en":"Claim Date","uk":"Дата складання претензії","de":"Datum der Forderung"}},
@@ -961,6 +969,7 @@ class PlCarsTravelSeeder extends Seeder
             // --- Журнал учета технического обслуживания автомобиля / Car Maintenance Log ---
             [
                 'slug' => 'car-maintenance-log-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"car_owner_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko właściciela pojazdu","en":"Car Owner\'s Full Name","uk":"ПІБ власника автомобіля","de":"Vollständiger Name des Fahrzeughalters"}},
                     {"name":"car_make","type":"text","required":true,"labels":{"pl":"Marka pojazdu","en":"Vehicle Make","uk":"Марка транспортного засобу","de":"Fahrzeugmarke"}},

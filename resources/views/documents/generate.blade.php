@@ -1,89 +1,87 @@
-{{-- resources/views/documents/generate.blade.php --}}
-@extends('layouts.app') {{-- Используем ваш основной шаблон --}}
+@extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto py-8">
-        {{-- Получаем название документа из локализации или используем базовое --}}
-        @php
-            $documentTitle = $template['localization'][$currentLocale]['document_title']
-                             ?? $template['template_info']['name']
-                             ?? 'Document Generator';
-        @endphp
+    @php
+        $documentTitle = $template['localization'][$currentLocale]['document_title']
+                         ?? $template['template_info']['name']
+                         ?? 'Document Generator';
+    @endphp
 
-        <h1 class="text-3xl font-bold mb-6">{{ $documentTitle }}</h1>
+    @section('title', $documentTitle . ' - ' . config('app.name'))
 
-        <form action="{{ route('documents.generate', ['locale' => $currentLocale, 'countryCode' => $countryCode, 'templateSlug' => $templateSlug]) }}" method="POST">
-            @csrf
+    @push('styles')
+        <style>
+            .page-layout { padding: 4rem 0; background-color: var(--bg-secondary); }
+            .form-container { background-color: var(--bg-primary); border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem; box-shadow: var(--shadow-lg); }
+            .form-title { font-size: 2rem; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 2rem; }
+            .section-title { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; color: var(--text-primary); }
+            .static-text { margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); background-color: var(--bg-secondary); padding: 1rem; border-radius: 12px; }
+        </style>
+    @endpush
 
-            {{-- Проходим по всем элементам структуры из JSON --}}
-            @foreach($template['structure'] as $field)
-                @php
-                    // Получаем переведенное название поля для текущего языка
-                    $label = $template['localization'][$currentLocale][$field['id']] ?? $field['id'];
-                    $isRequired = $field['required'] ?? false;
-                @endphp
+    <div class="page-layout">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-8">
+                    <div class="form-container">
+                        <h1 class="form-title">{{ $documentTitle }}</h1>
 
-                {{-- В зависимости от типа поля, рендерим разный HTML --}}
-                @switch($field['type'])
-                    @case('section')
-                        <h2 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">{{ $label }}</h2>
-                        @break
+                        <form action="{{ route('documents.generate', ['locale' => $currentLocale, 'countryCode' => $countryCode, 'templateSlug' => $templateSlug]) }}" method="POST">
+                            @csrf
 
-                    @case('text')
-                    @case('email')
-                    @case('tel')
-                        <div class="mb-4">
-                            <label for="{{ $field['id'] }}" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ $label }} @if($isRequired)<span class="text-red-500">*</span>@endif
-                            </label>
-                            <input type="{{ $field['type'] }}"
-                                   id="{{ $field['id'] }}"
-                                   name="{{ $field['id'] }}"
-                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                   @if($isRequired) required @endif>
-                        </div>
-                        @break
+                            @foreach($template['structure'] as $field)
+                                @php
+                                    $label = $template['localization'][$currentLocale][$field['id']] ?? $field['id'];
+                                    $isRequired = $field['required'] ?? false;
+                                @endphp
 
-                    @case('textarea')
-                        <div class="mb-4">
-                            <label for="{{ $field['id'] }}" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ $label }} @if($isRequired)<span class="text-red-500">*</span>@endif
-                            </label>
-                            <textarea id="{{ $field['id'] }}"
-                                      name="{{ $field['id'] }}"
-                                      rows="4"
-                                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                      @if($isRequired) required @endif></textarea>
-                        </div>
-                        @break
+                                @switch($field['type'])
+                                    @case('section')
+                                        <h2 class="section-title">{{ $label }}</h2>
+                                        @break
 
-                    @case('static_text')
-                        <p class="mt-6 text-sm text-gray-600 bg-gray-100 p-4 rounded">
-                            {{ $label }}
-                        </p>
-                        @break
+                                    @case('text')
+                                    @case('email')
+                                    @case('tel')
+                                        <div class="mb-4">
+                                            <label for="{{ $field['id'] }}" class="form-label modern-form-label">
+                                                {{ $label }} @if($isRequired)<span class="text-danger">*</span>@endif
+                                            </label>
+                                            <input type="{{ $field['type'] }}" id="{{ $field['id'] }}" name="{{ $field['id'] }}" class="form-control modern-form-control" @if($isRequired) required @endif>
+                                        </div>
+                                        @break
 
-                    @case('image')
-                        <div class="mb-4">
-                            <label for="{{ $field['id'] }}" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ $label }}
-                            </label>
-                            <input type="file"
-                                   id="{{ $field['id'] }}"
-                                   name="{{ $field['id'] }}"
-                                   class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
-                                   accept="image/*">
-                        </div>
-                        @break
+                                    @case('textarea')
+                                        <div class="mb-4">
+                                            <label for="{{ $field['id'] }}" class="form-label modern-form-label">
+                                                {{ $label }} @if($isRequired)<span class="text-danger">*</span>@endif
+                                            </label>
+                                            <textarea id="{{ $field['id'] }}" name="{{ $field['id'] }}" rows="4" class="form-control modern-form-control" @if($isRequired) required @endif></textarea>
+                                        </div>
+                                        @break
 
-                @endswitch
-            @endforeach
+                                    @case('static_text')
+                                        <p class="static-text">{{ $label }}</p>
+                                        @break
 
-            <div class="mt-8">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Сгенерировать документ
-                </button>
+                                    @case('image')
+                                        <div class="mb-4">
+                                            <label for="{{ $field['id'] }}" class="form-label modern-form-label">{{ $label }}</label>
+                                            <input type="file" id="{{ $field['id'] }}" name="{{ $field['id'] }}" class="form-control modern-form-control" accept="image/*">
+                                        </div>
+                                        @break
+                                @endswitch
+                            @endforeach
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary-modern btn-modern btn-lg">
+                                    Сгенерировать документ
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 @endsection

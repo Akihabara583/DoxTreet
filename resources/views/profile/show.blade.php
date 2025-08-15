@@ -64,6 +64,30 @@
             box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
             color: white;
         }
+
+        /* ✅ ИСПРАВЛЕННЫЙ CSS ТОЛЬКО ДЛЯ ВЫПАДАЮЩЕГО СПИСКА */
+        .navbar .dropdown-menu {
+            border-radius: 16px !important;
+            border: 1px solid var(--border, #e5e1f5) !important;
+            box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
+            padding: 0.5rem !important;
+            margin-top: 0.75rem !important;
+            background-color: var(--bg-primary, #ffffff) !important;
+        }
+        .navbar .dropdown-item {
+            border-radius: 12px;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+        .navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+            background-color: var(--bg-secondary, #faf7ff);
+            color: var(--primary, #8b5cf6);
+        }
+        .navbar .dropdown-item i {
+            margin-right: 0.75rem;
+        }
+        /* ✅ КОНЕЦ ИСПРАВЛЕННОГО CSS */
+
     </style>
 @endpush
 

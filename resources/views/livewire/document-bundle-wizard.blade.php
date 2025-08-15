@@ -233,3 +233,59 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Убедимся, что скрипт запускается каждый раз, когда Livewire обновляет DOM
+            function initializeFormSaver(formId) {
+                const form = document.getElementById(formId);
+                if (!form) return;
+
+                // Проверяем, не был ли обработчик уже назначен
+                if (form.dataset.saverInitialized) return;
+                form.dataset.saverInitialized = 'true';
+
+                const isUserLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
+                const storageKey = 'bundle_form_data_{{ $bundle->id }}';
+
+                function loadFormData() {
+                    const savedData = sessionStorage.getItem(storageKey);
+                    if (savedData) {
+                        const data = JSON.parse(savedData);
+                        for (const key in data) {
+                            const field = form.querySelector(`[name="${key}"]`);
+                            if (field && !field.value) {
+                                field.value = data[key];
+                            }
+                        }
+                    }
+                }
+
+                function saveFormData() {
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    delete data._token;
+                    sessionStorage.setItem(storageKey, JSON.stringify(data));
+                }
+
+                loadFormData();
+                form.addEventListener('input', saveFormData);
+
+                form.addEventListener('submit', function() {
+                    if (isUserLoggedIn) {
+                        setTimeout(() => sessionStorage.removeItem(storageKey), 500);
+                    }
+                });
+            }
+
+            // Инициализируем для формы при первой загрузке
+            initializeFormSaver('bundle-wizard-form');
+
+            // Инициализируем повторно после каждого обновления Livewire
+            Livewire.on('component.init', () => {
+                initializeFormSaver('bundle-wizard-form');
+            });
+        });
+    </script>
+@endpush

@@ -19,6 +19,7 @@ class PlEducationSeeder extends Seeder
             // --- Заявление на академический отпуск / Application for Academic Leave ---
             [
                 'slug' => 'academic-leave-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko studenta","en":"Student\'s Full Name","uk":"ПІБ студента","de":"Vollständiger Name des Studenten"}},
@@ -115,6 +116,7 @@ class PlEducationSeeder extends Seeder
             // --- Заявление о переводе на другую специальность / Application for Transfer to Another Specialization ---
             [
                 'slug' => 'transfer-specialization-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko studenta","en":"Student\'s Full Name","uk":"ПІБ студента","de":"Vollständiger Name des Studenten"}},
@@ -210,6 +212,7 @@ class PlEducationSeeder extends Seeder
             // --- Заявление о переводе в другой ВУЗ / Application for Transfer to Another University ---
             [
                 'slug' => 'transfer-university-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko studenta","en":"Student\'s Full Name","uk":"ПІБ студента","de":"Vollständiger Name des Studenten"}},
@@ -306,6 +309,7 @@ class PlEducationSeeder extends Seeder
             // --- План курсовой работы / Coursework Plan ---
             [
                 'slug' => 'coursework-plan-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"pl":"Nazwa uczelni","en":"University Name","uk":"Назва ВНЗ","de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"pl":"Nazwa wydziału","en":"Faculty Name","uk":"Назва факультету","de":"Name der Fakultät"}},
@@ -393,6 +397,7 @@ class PlEducationSeeder extends Seeder
             // --- План дипломной работы / Diploma Thesis Plan ---
             [
                 'slug' => 'diploma-thesis-plan-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"pl":"Nazwa uczelni","en":"University Name","uk":"Назва ВНЗ","de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"pl":"Nazwa wydziału","en":"Faculty Name","uk":"Назва факультету","de":"Name der Fakultät"}},
@@ -480,6 +485,7 @@ class PlEducationSeeder extends Seeder
             // --- Титульный лист для реферата / Title Page for Essay/Report ---
             [
                 'slug' => 'essay-title-page-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"pl":"Nazwa uczelni","en":"University Name","uk":"Назва ВНЗ","de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"pl":"Nazwa wydziału","en":"Faculty Name","uk":"Назва факультету","de":"Name der Fakultät"}},
@@ -587,6 +593,7 @@ class PlEducationSeeder extends Seeder
             // --- Титульный лист для курсовой работы / Title Page for Coursework ---
             [
                 'slug' => 'coursework-title-page-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"pl":"Nazwa uczelni","en":"University Name","uk":"Назва ВНЗ","de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"pl":"Nazwa wydziału","en":"Faculty Name","uk":"Назва факультету","de":"Name der Fakultät"}},
@@ -693,6 +700,7 @@ class PlEducationSeeder extends Seeder
             // --- Титульный лист для дипломной работы / Title Page for Diploma Thesis ---
             [
                 'slug' => 'diploma-thesis-title-page-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"pl":"Nazwa uczelni","en":"University Name","uk":"Назва ВНЗ","de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"pl":"Nazwa wydziału","en":"Faculty Name","uk":"Назва факультету","de":"Name der Fakultät"}},
@@ -800,6 +808,7 @@ class PlEducationSeeder extends Seeder
             // --- Рецензия на научную работу / Review of Scientific Work ---
             [
                 'slug' => 'scientific-work-review-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"review_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia recenzji","en":"Review Date","uk":"Дата складання рецензії","de":"Datum der Rezension"}},
@@ -881,6 +890,7 @@ class PlEducationSeeder extends Seeder
             // --- Отзыв научного руководителя / Supervisor's Review ---
             [
                 'slug' => 'supervisor-review-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"review_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia opinii","en":"Review Date","uk":"Дата складання відгуку","de":"Datum der Stellungnahme"}},
@@ -963,6 +973,7 @@ class PlEducationSeeder extends Seeder
             // --- Портфолио студента/ученика / Student/Pupil Portfolio ---
             [
                 'slug' => 'student-portfolio-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"portfolio_owner_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko właściciela portfolio","en":"Portfolio Owner\'s Full Name","uk":"ПІБ власника портфоліо","de":"Vollständiger Name des Portfolio-Inhabers"}},
                     {"name":"portfolio_owner_school_university","type":"text","required":true,"labels":{"pl":"Szkoła/Uczelnia","en":"School/University","uk":"Школа/ВНЗ","de":"Schule/Universität"}},
@@ -1073,6 +1084,7 @@ class PlEducationSeeder extends Seeder
             // --- Мотивационное письмо для поступления в ВУЗ / Motivation Letter for University Admission ---
             [
                 'slug' => 'university-motivation-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia listu","en":"Letter Date","uk":"Дата складання листа","de":"Datum des Schreibens"}},

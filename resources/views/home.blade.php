@@ -758,7 +758,14 @@
                                     <h4 class="fw-bold mb-3">{{ $bundle->title }}</h4>
 
                                     @php
-                                        $hasAccess = Auth::check() && Auth::user()->canAccessBundle($bundle);
+                                        $hasAccess = false; // По умолчанию доступа нет
+                                        if ($bundle->access_level == 'all') {
+                                            // Если пакет для всех, даем доступ
+                                            $hasAccess = true;
+                                        } elseif (Auth::check()) {
+                                            // Если пользователь залогинен, проверяем его права
+                                            $hasAccess = Auth::user()->canAccessBundle($bundle);
+                                        }
                                     @endphp
 
                                     <div class="flex-grow-1 @if(!$hasAccess) blurred-content @endif">

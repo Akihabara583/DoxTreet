@@ -19,6 +19,7 @@ class PlEventsTravelSeeder extends Seeder
             // --- Приглашение на мероприятие (официальное) / Official Event Invitation ---
             [
                 'slug' => 'official-event-invitation-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"invitation_date","type":"date","required":true,"labels":{"pl":"Data wystawienia zaproszenia","en":"Invitation Date","uk":"Дата виставлення запрошення","de":"Datum der Einladung"}},
@@ -124,6 +125,7 @@ class PlEventsTravelSeeder extends Seeder
             // --- Приглашение на день рождения/свадьбу (неофициальное) / Birthday/Wedding Invitation (Informal) ---
             [
                 'slug' => 'informal-party-invitation-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"invitation_date","type":"date","required":true,"labels":{"pl":"Data wystawienia zaproszenia","en":"Invitation Date","uk":"Дата виставлення запрошення","de":"Datum der Einladung"}},
@@ -219,6 +221,7 @@ class PlEventsTravelSeeder extends Seeder
             // --- План мероприятия / Event Plan ---
             [
                 'slug' => 'event-plan-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_name","type":"text","required":true,"labels":{"pl":"Nazwa wydarzenia","en":"Event Name","uk":"Назва події","de":"Name der Veranstaltung"}},
                     {"name":"plan_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia planu","en":"Plan Date","uk":"Дата складання плану","de":"Datum des Plans"}},
@@ -319,6 +322,7 @@ class PlEventsTravelSeeder extends Seeder
             // --- Бюджет мероприятия / Event Budget ---
             [
                 'slug' => 'event-budget-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_name","type":"text","required":true,"labels":{"pl":"Nazwa wydarzenia","en":"Event Name","uk":"Назва події","de":"Name der Veranstaltung"}},
                     {"name":"budget_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia budżetu","en":"Budget Date","uk":"Дата складання бюджету","de":"Datum des Budgets"}},
@@ -412,6 +416,7 @@ class PlEventsTravelSeeder extends Seeder
             // --- Список гостей / Guest List ---
             [
                 'slug' => 'guest-list-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_name","type":"text","required":true,"labels":{"pl":"Nazwa wydarzenia","en":"Event Name","uk":"Назва події","de":"Name der Veranstaltung"}},
                     {"name":"list_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia listy","en":"List Date","uk":"Дата складання списку","de":"Datum der Liste"}},
@@ -507,6 +512,7 @@ Name | RSVP Status | Anmerkungen
             // --- Договор с ведущим/фотографом/кейтерингом / Agreement with Host/Photographer/Catering ---
             [
                 'slug' => 'service-provider-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -635,6 +641,7 @@ Name | RSVP Status | Anmerkungen
             // --- План путешествия / Маршрут / Travel Plan / Itinerary ---
             [
                 'slug' => 'travel-plan-itinerary-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"traveler_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko podróżującego","en":"Traveler\'s Name","uk":"ПІБ подорожуючого","de":"Name des Reisenden"}},
                     {"name":"plan_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia planu","en":"Plan Date","uk":"Дата складання плану","de":"Datum des Plans"}},
@@ -729,6 +736,7 @@ Name | RSVP Status | Anmerkungen
             // --- Бюджет путешествия / Travel Budget ---
             [
                 'slug' => 'travel-budget-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"traveler_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko podróżującego","en":"Traveler\'s Name","uk":"ПІБ подорожуючого","de":"Name des Reisenden"}},
                     {"name":"budget_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia budżetu","en":"Budget Date","uk":"Дата складання бюджету","de":"Datum des Budgets"}},
@@ -829,6 +837,7 @@ Name | RSVP Status | Anmerkungen
             // --- Список вещей в дорогу / Packing List ---
             [
                 'slug' => 'packing-list-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"traveler_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko podróżującego","en":"Traveler\'s Name","uk":"ПІБ подорожуючого","de":"Name des Reisenden"}},
                     {"name":"list_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia listy","en":"List Date","uk":"Дата складання списку","de":"Datum der Liste"}},
@@ -920,6 +929,7 @@ Kategorie | Name | Menge | Status (gepackt/nicht)
             // --- Согласие на выезд ребенка (дубликат из семейной категории) / Child Travel Consent (duplicate from family category) ---
             [
                 'slug' => 'child-travel-consent-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -1013,6 +1023,7 @@ Kategorie | Name | Menge | Status (gepackt/nicht)
             // --- Доверенность на ребенка для путешествия с третьим лицом / Power of Attorney for Child Travel with Third Party ---
             [
                 'slug' => 'poa-child-travel-third-party-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},

@@ -27,7 +27,7 @@ class DocumentBundleWizard extends Component
     {
 
 
-        if (!auth()->check() || !auth()->user()->canAccessBundle($bundle)) {
+        if (auth()->check() && !auth()->user()->canAccessBundle($bundle)) {
             abort(403, 'You do not have permission to access this document bundle.');
         }
 
@@ -103,9 +103,12 @@ class DocumentBundleWizard extends Component
 
     public function submit()
     {
-        // У цьому методі блок try...catch залишається, оскільки тут
-        // ми хочемо показати одне загальне повідомлення, якщо помилки
-        // знайдені на різних кроках перед фінальною генерацією.
+        if (!auth()->check()) {
+            // Вручную говорим Laravel: "Запомни эту страницу!"
+            session(['url.intended' => url()->previous()]);
+
+            return redirect()->route('login');
+        }
         try {
             foreach ($this->templates as $index => $template) {
                 $step = $index + 1;

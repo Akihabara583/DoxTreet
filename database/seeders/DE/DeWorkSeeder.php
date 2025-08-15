@@ -22,6 +22,7 @@ class DeWorkSeeder extends Seeder
 
             [
                 'slug' => 'resume-classic-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"de":"Vollständiger Name","en":"Full Name","uk":"Повне ім\'я","pl":"Imię i Nazwisko"}},
                     {"name":"address","type":"text","required":true,"labels":{"de":"Adresse","en":"Address","uk":"Адреса","pl":"Adres"}},
@@ -151,6 +152,7 @@ class DeWorkSeeder extends Seeder
             // --- Резюме (хронологическое) / Resume (Chronological) ---
             [
                 'slug' => 'resume-chronological-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"de":"Vollständiger Name","en":"Full Name","uk":"Повне ім\'я","pl":"Imię i Nazwisko"}},
                     {"name":"address","type":"text","required":true,"labels":{"de":"Adresse","en":"Address","uk":"Адреса","pl":"Adres"}},
@@ -260,6 +262,7 @@ class DeWorkSeeder extends Seeder
             // --- Резюме (функциональное) / Resume (Functional) ---
             [
                 'slug' => 'resume-functional-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"de":"Vollständiger Name","en":"Full Name","uk":"Повне ім\'я","pl":"Imię i Nazwisko"}},
                     {"name":"address","type":"text","required":true,"labels":{"de":"Adresse","en":"Address","uk":"Адреса","pl":"Adres"}},
@@ -369,6 +372,7 @@ class DeWorkSeeder extends Seeder
             // --- Сопроводительное письмо к резюме / Cover Letter ---
             [
                 'slug' => 'cover-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"de":"Vollständiger Name des Bewerbers","en":"Applicant\'s Full Name","uk":"ПІБ заявника","pl":"Imię i nazwisko aplikanta"}},
@@ -497,6 +501,7 @@ class DeWorkSeeder extends Seeder
             // --- Заявление о приеме на работу / Job Application Statement ---
             [
                 'slug' => 'job-application-statement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"de":"Vollständiger Name des Bewerbers","en":"Applicant\'s Full Name","uk":"ПІБ заявника","pl":"Imię i nazwisko wnioskodawcy"}},
@@ -624,6 +629,7 @@ class DeWorkSeeder extends Seeder
             // --- Трудовой договор (бессрочный) / Permanent Employment Contract ---
             [
                 'slug' => 'permanent-employment-contract-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"contract_date","type":"date","required":true,"labels":{"de":"Datum des Vertragsabschlusses","en":"Date of Contract Conclusion","uk":"Дата укладення договору","pl":"Data zawarcia umowy"}},
@@ -831,6 +837,7 @@ class DeWorkSeeder extends Seeder
             // --- Срочный трудовой договор / Fixed-Term Employment Contract ---
             [
                 'slug' => 'fixed-term-employment-contract-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"contract_date","type":"date","required":true,"labels":{"de":"Datum des Vertragsabschlusses","en":"Date of Contract Conclusion","uk":"Дата укладення договору","pl":"Data zawarcia umowy"}},
@@ -1039,6 +1046,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор о неразглашении (NDA) / Non-Disclosure Agreement (NDA) ---
             [
                 'slug' => 'nda-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"de":"Datum der Vereinbarung","en":"Agreement Date","uk":"Дата угоди","pl":"Data zawarcia umowy"}},
@@ -1206,6 +1214,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор о материальной ответственности / Material Liability Agreement ---
             [
                 'slug' => 'material-liability-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"de":"Datum der Vereinbarung","en":"Agreement Date","uk":"Дата угоди","pl":"Data zawarcia umowy"}},
@@ -1369,6 +1378,7 @@ class DeWorkSeeder extends Seeder
             // --- Должностная инструкция / Job Description ---
             [
                 'slug' => 'job-description-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"de":"Name des Unternehmens","en":"Company Name","uk":"Назва компанії","pl":"Nazwa firmy"}},
                     {"name":"job_title","type":"text","required":true,"labels":{"de":"Stellenbezeichnung","en":"Job Title","uk":"Назва посади","pl":"Stanowisko"}},
@@ -1506,6 +1516,7 @@ class DeWorkSeeder extends Seeder
             // --- Приказ о приеме на работу / Employment Confirmation ---
             [
                 'slug' => 'employment-confirmation-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"document_date","type":"date","required":true,"labels":{"de":"Datum des Dokuments","en":"Document Date","uk":"Дата документа","pl":"Data dokumentu"}},
@@ -1674,6 +1685,7 @@ class DeWorkSeeder extends Seeder
             // --- Приказ о переводе на другую должность / Transfer Order ---
             [
                 'slug' => 'transfer-order-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"de":"Ort","en":"City","uk":"Місто","pl":"Miejscowość"}},
                     {"name":"document_date","type":"date","required":true,"labels":{"de":"Datum des Dokuments","en":"Document Date","uk":"Дата документа","pl":"Data dokumentu"}},
@@ -1801,6 +1813,7 @@ class DeWorkSeeder extends Seeder
 // --- Заявление на ежегодный оплачиваемый отпуск / Antrag auf Jahresurlaub ---
             [
                 'slug' => 'annual-paid-leave-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -1926,6 +1939,7 @@ class DeWorkSeeder extends Seeder
             // --- Заявление на отпуск за свой счет (без сохранения заработной платы) / Antrag auf unbezahlten Urlaub ---
             [
                 'slug' => 'unpaid-leave-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -2050,6 +2064,7 @@ class DeWorkSeeder extends Seeder
             // --- Заявление на учебный отпуск / Antrag auf Bildungsurlaub ---
             [
                 'slug' => 'educational-leave-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -2188,6 +2203,7 @@ class DeWorkSeeder extends Seeder
             // --- Заявление на отпуск по уходу за ребенком / Antrag auf Elternzeit ---
             [
                 'slug' => 'parental-leave-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -2309,6 +2325,7 @@ class DeWorkSeeder extends Seeder
             // --- Приказ на отпуск / Urlaubsanordnung ---
             [
                 'slug' => 'leave-order-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"order_date","type":"date","required":true,"labels":{"pl":"Data zarządzenia","en":"Order Date","uk":"Дата наказу","de":"Datum der Anordnung"}},
@@ -2398,6 +2415,7 @@ class DeWorkSeeder extends Seeder
             // --- Заявление на увольнение по собственному желанию / Kündigungsschreiben des Arbeitnehmers ---
             [
                 'slug' => 'employee-resignation-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pisma","en":"Letter Date","uk":"Дата складання листа","de":"Datum des Schreibens"}},
@@ -2521,6 +2539,7 @@ class DeWorkSeeder extends Seeder
             // --- Заявление на увольнение по соглашению сторон / Antrag auf Aufhebungsvertrag ---
             [
                 'slug' => 'termination-mutual-agreement-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pisma","en":"Letter Date","uk":"Дата складання листа","de":"Datum des Schreibens"}},
@@ -2640,6 +2659,7 @@ class DeWorkSeeder extends Seeder
             // --- Соглашение о расторжении трудового договора / Aufhebungsvertrag ---
             [
                 'slug' => 'termination-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2760,6 +2780,7 @@ class DeWorkSeeder extends Seeder
             // --- Приказ об увольнении / Kündigungsbescheid des Arbeitgebers ---
             [
                 'slug' => 'employer-termination-notice-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"notice_date","type":"date","required":true,"labels":{"pl":"Data wystawienia wypowiedzenia","en":"Notice Date","uk":"Дата видачі повідомлення","de":"Datum der Kündigung"}},
@@ -2888,6 +2909,7 @@ class DeWorkSeeder extends Seeder
             // --- Рекомендательное письмо / Empfehlungsschreiben ---
             [
                 'slug' => 'recommendation-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pisma","en":"Letter Date","uk":"Дата складання листа","de":"Datum des Schreibens"}},
@@ -3001,6 +3023,7 @@ class DeWorkSeeder extends Seeder
             // --- Характеристика на сотрудника / Arbeitszeugnis ---
             [
                 'slug' => 'arbeitszeugnis-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"issue_date","type":"date","required":true,"labels":{"pl":"Data wystawienia","en":"Issue Date","uk":"Дата видачі","de":"Ausstellungsdatum"}},
@@ -3114,6 +3137,7 @@ class DeWorkSeeder extends Seeder
             // --- Служебная записка / Interne Notiz/Memo ---
             [
                 'slug' => 'internal-memo-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"memo_date","type":"date","required":true,"labels":{"pl":"Data notatki","en":"Memo Date","uk":"Дата записки","de":"Datum der Notiz"}},
@@ -3215,6 +3239,7 @@ class DeWorkSeeder extends Seeder
             // --- Объяснительная записка / Stellungnahme/Erklärung ---
             [
                 'slug' => 'explanation-statement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"statement_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia oświadczenia","en":"Statement Date","uk":"Дата складання заяви","de":"Datum der Erklärung"}},
@@ -3334,6 +3359,7 @@ class DeWorkSeeder extends Seeder
             // --- Табель учета рабочего времени / Arbeitszeiterfassung ---
             [
                 'slug' => 'timesheet-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
                     {"name":"reporting_period","type":"text","required":true,"labels":{"pl":"Okres rozliczeniowy (np. miesiąc i rok)","en":"Reporting Period (e.g., month and year)","uk":"Звітний період (напр., місяць і рік)","de":"Berichtszeitraum (z.B. Monat und Jahr)"}},
@@ -3598,6 +3624,7 @@ class DeWorkSeeder extends Seeder
             // --- Командировочное удостоверение / Dienstreiseantrag/-genehmigung ---
             [
                 'slug' => 'business-trip-request-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"request_date","type":"date","required":true,"labels":{"pl":"Data wniosku","en":"Request Date","uk":"Дата запиту","de":"Datum des Antrags"}},
@@ -3739,6 +3766,7 @@ class DeWorkSeeder extends Seeder
             // --- Коммерческое предложение / Angebot ---
             [
                 'slug' => 'commercial-offer-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"offer_date","type":"date","required":true,"labels":{"pl":"Data wystawienia oferty","en":"Offer Date","uk":"Дата виставлення оферти","de":"Angebotsdatum"}},
@@ -3867,6 +3895,7 @@ class DeWorkSeeder extends Seeder
             // --- Письмо-претензия / Mahnung/Reklamationsschreiben ---
             [
                 'slug' => 'complaint-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pisma","en":"Letter Date","uk":"Дата складання листа","de":"Datum des Schreibens"}},
@@ -3989,6 +4018,7 @@ class DeWorkSeeder extends Seeder
 // --- Гарантийное письмо / Guarantee Letter ---
             [
                 'slug' => 'guarantee-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"guarantor_company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy gwarantującej","en":"Guarantor Company Name","uk":"Назва компанії-гаранта","de":"Name des garantierenden Unternehmens"}},
@@ -4087,6 +4117,7 @@ class DeWorkSeeder extends Seeder
             // --- Официальный запрос / Official Request ---
             [
                 'slug' => 'official-request-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy wysyłającej","en":"Sending Company Name","uk":"Назва компанії-відправника","de":"Name des sendenden Unternehmens"}},
@@ -4180,6 +4211,7 @@ class DeWorkSeeder extends Seeder
             // --- Письмо-уведомление / Notification Letter ---
             [
                 'slug' => 'notification-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy wysyłającej","en":"Sending Company Name","uk":"Назва компанії-відправника","de":"Name des sendenden Unternehmens"}},
@@ -4272,6 +4304,7 @@ class DeWorkSeeder extends Seeder
             // --- Письмо-извинение / Apology Letter ---
             [
                 'slug' => 'apology-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -4364,6 +4397,7 @@ class DeWorkSeeder extends Seeder
             // --- Благодарственное письмо / Thank You Letter ---
             [
                 'slug' => 'thank-you-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -4455,6 +4489,7 @@ class DeWorkSeeder extends Seeder
             // --- Счет на оплату (Инвойс) / Invoice ---
             [
                 'slug' => 'invoice-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"invoice_number","type":"text","required":true,"labels":{"pl":"Numer faktury","en":"Invoice Number","uk":"Номер рахунку","de":"Rechnungsnummer"}},
                     {"name":"invoice_date","type":"date","required":true,"labels":{"pl":"Data wystawienia","en":"Issue Date","uk":"Дата виставлення","de":"Ausstellungsdatum"}},
@@ -4577,6 +4612,7 @@ class DeWorkSeeder extends Seeder
             // --- Акт выполненных работ / оказанных услуг / Acceptance Protocol of Works/Services ---
             [
                 'slug' => 'acceptance-protocol-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_number","type":"text","required":true,"labels":{"pl":"Numer protokołu","en":"Protocol Number","uk":"Номер протоколу","de":"Protokollnummer"}},
@@ -4689,6 +4725,7 @@ class DeWorkSeeder extends Seeder
             // --- Счет-фактура / VAT Invoice ---
             [
                 'slug' => 'vat-invoice-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"invoice_number","type":"text","required":true,"labels":{"pl":"Numer faktury VAT","en":"VAT Invoice Number","uk":"Номер ПДВ-рахунку","de":"USt-Rechnungsnummer"}},
                     {"name":"issue_date","type":"date","required":true,"labels":{"pl":"Data wystawienia","en":"Issue Date","uk":"Дата виставлення","de":"Ausstellungsdatum"}},
@@ -4811,6 +4848,7 @@ class DeWorkSeeder extends Seeder
             // --- Товарная накладная / Delivery Note ---
             [
                 'slug' => 'delivery-note-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"note_number","type":"text","required":true,"labels":{"pl":"Numer dowodu dostawy","en":"Delivery Note Number","uk":"Номер накладної","de":"Lieferscheinnummer"}},
@@ -4911,6 +4949,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор займа между юридическими лицами / Loan Agreement between Legal Entities ---
             [
                 'slug' => 'loan-agreement-legal-entities-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -5029,6 +5068,7 @@ class DeWorkSeeder extends Seeder
             // --- Авансовый отчет / Expense Report ---
             [
                 'slug' => 'expense-report-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"report_number","type":"text","required":true,"labels":{"pl":"Numer raportu","en":"Report Number","uk":"Номер звіту","de":"Berichtsnummer"}},
@@ -5137,6 +5177,7 @@ class DeWorkSeeder extends Seeder
             // --- Доверенность на получение ТМЦ / Power of Attorney for Goods Receipt ---
             [
                 'slug' => 'power-of-attorney-goods-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_number","type":"text","required":true,"labels":{"pl":"Numer pełnomocnictwa","en":"Power of Attorney Number","uk":"Номер довіреності","de":"Vollmachtnummer"}},
@@ -5216,6 +5257,7 @@ class DeWorkSeeder extends Seeder
             // --- Протокол разногласий к договору / Protocol of Disagreements to the Contract ---
             [
                 'slug' => 'protocol-disagreements-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_number","type":"text","required":true,"labels":{"pl":"Numer protokołu","en":"Protocol Number","uk":"Номер протоколу","de":"Protokollnummer"}},
@@ -5315,6 +5357,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор на разработку программного обеспечения / Software Development Agreement ---
             [
                 'slug' => 'software-development-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -5433,6 +5476,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор на создание и поддержку сайта / Website Creation and Support Agreement ---
             [
                 'slug' => 'website-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -5556,6 +5600,7 @@ class DeWorkSeeder extends Seeder
             // --- Техническое задание (ТЗ) на разработку / Technical Specification (TS) for Development ---
             [
                 'slug' => 'technical-specification-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"ts_number","type":"text","required":true,"labels":{"pl":"Numer TZ","en":"TS Number","uk":"Номер ТЗ","de":"TS-Nummer"}},
@@ -5680,6 +5725,7 @@ class DeWorkSeeder extends Seeder
             // --- Пользовательское соглашение для сайта / Website User Agreement (AGB) ---
             [
                 'slug' => 'website-user-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data wejścia w życie","en":"Effective Date","uk":"Дата набрання чинності","de":"Datum des Inkrafttretens"}},
@@ -5801,6 +5847,7 @@ class DeWorkSeeder extends Seeder
             // --- Политика конфиденциальности / Privacy Policy (Datenschutzerklärung) ---
             [
                 'slug' => 'privacy-policy-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"policy_date","type":"date","required":true,"labels":{"pl":"Data wejścia w życie","en":"Effective Date","uk":"Дата набрання чинності","de":"Datum des Inkrafttretens"}},
@@ -5918,6 +5965,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор оферты / Offer Agreement (Angebot) ---
             [
                 'slug' => 'offer-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"offer_date","type":"date","required":true,"labels":{"pl":"Data wystawienia oferty","en":"Offer Issue Date","uk":"Дата виставлення оферти","de":"Angebotsdatum"}},
@@ -6037,6 +6085,7 @@ class DeWorkSeeder extends Seeder
             // --- Соглашение об уровне обслуживания (SLA) / Service Level Agreement (SLA) ---
             [
                 'slug' => 'service-level-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia SLA","en":"SLA Date","uk":"Дата укладення SLA","de":"SLA-Datum"}},
@@ -6179,6 +6228,7 @@ class DeWorkSeeder extends Seeder
             // --- Договор с фрилансером (Gig-контракт) / Freelancer Agreement (Dienstvertrag/Werkvertrag) ---
             [
                 'slug' => 'freelancer-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},

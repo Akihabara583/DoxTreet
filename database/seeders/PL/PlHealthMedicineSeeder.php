@@ -19,6 +19,7 @@ class PlHealthMedicineSeeder extends Seeder
             // --- Запрос на получение копии медицинской документации / Request for Medical Records Copy ---
             [
                 'slug' => 'request-medical-records-copy-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pacjenta/wnioskodawcy","en":"Patient\'s/Applicant\'s Full Name","uk":"ПІБ пацієнта/заявника","de":"Vollständiger Name des Patienten/Antragstellers"}},
@@ -113,6 +114,7 @@ class PlHealthMedicineSeeder extends Seeder
             // --- Заявление о прикреплении к поликлинике / Application for Attachment to Polyclinic ---
             [
                 'slug' => 'attachment-polyclinic-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pacjenta","en":"Patient\'s Full Name","uk":"ПІБ пацієнта","de":"Vollständiger Name des Patienten"}},
@@ -201,6 +203,7 @@ class PlHealthMedicineSeeder extends Seeder
             // --- Отказ от медицинского вмешательства / Refusal of Medical Intervention ---
             [
                 'slug' => 'refusal-medical-intervention-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"statement_date","type":"date","required":true,"labels":{"pl":"Data oświadczenia","en":"Statement Date","uk":"Дата заяви","de":"Datum der Erklärung"}},
@@ -300,6 +303,7 @@ class PlHealthMedicineSeeder extends Seeder
             // --- Согласие на обработку персональных данных (медицинское) / Consent to Personal Data Processing (Medical) ---
             [
                 'slug' => 'consent-personal-data-medical-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -395,6 +399,7 @@ class PlHealthMedicineSeeder extends Seeder
             // --- Жалоба на врача / медицинское учреждение / Complaint about Doctor / Medical Facility ---
             [
                 'slug' => 'complaint-doctor-medical-facility-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"complainant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko skarżącego","en":"Complainant\'s Full Name","uk":"ПІБ скаржника","de":"Vollständiger Name des Beschwerdeführers"}},
@@ -499,6 +504,7 @@ class PlHealthMedicineSeeder extends Seeder
             // --- Дневник самочувствия (для отслеживания симптомов) / Well-being Diary (for symptom tracking) ---
             [
                 'slug' => 'well-being-diary-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"patient_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pacjenta","en":"Patient\'s Full Name","uk":"ПІБ пацієнта","de":"Vollständiger Name des Patienten"}},
                     {"name":"diary_period","type":"text","required":true,"labels":{"pl":"Okres prowadzenia dziennika (np. od-do, miesiąc)","en":"Diary period (e.g., from-to, month)","uk":"Період ведення щоденника (напр., від-до, місяць)","de":"Zeitraum des Tagebuchs (z.B. von-bis, Monat)"}},
@@ -584,6 +590,7 @@ Datum | Uhrzeit | Symptome | Intensität (1-10) | Anmerkungen
             // --- Дневник артериального давления / Blood Pressure Diary ---
             [
                 'slug' => 'blood-pressure-diary-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"patient_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pacjenta","en":"Patient\'s Full Name","uk":"ПІБ пацієнта","de":"Vollständiger Name des Patienten"}},
                     {"name":"diary_period","type":"text","required":true,"labels":{"pl":"Okres prowadzenia dziennika (np. od-do, miesiąc)","en":"Diary period (e.g., from-to, month)","uk":"Період ведення щоденника (напр., від-до, місяць)","de":"Zeitraum des Tagebuchs (z.B. von-bis, Monat)"}},
@@ -660,6 +667,7 @@ Datum | Uhrzeit | Systolisch | Diastolisch | Puls | Anmerkungen
             // --- Дневник головной боли / Headache Diary ---
             [
                 'slug' => 'headache-diary-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"patient_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pacjenta","en":"Patient\'s Full Name","uk":"ПІБ пацієнта","de":"Vollständiger Name des Patienten"}},
                     {"name":"diary_period","type":"text","required":true,"labels":{"pl":"Okres prowadzenia dziennika (np. od-do, miesiąc)","en":"Diary period (e.g., from-to, month)","uk":"Період ведення щоденника (напр., від-до, місяць)","de":"Zeitraum des Tagebuchs (z.B. von-bis, Monat)"}},

@@ -21,6 +21,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 1. Запрос на получение публичной информации / Request for Public Information ---
             [
                 'slug' => 'request-public-info-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -109,6 +110,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 2. Жалоба на бездействие должностного лица / Complaint about Inaction of an Official ---
             [
                 'slug' => 'complaint-official-inaction-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko skarżącego","en":"Complainant\'s Full Name","uk":"ПІБ скаржника","de":"Vollständiger Name des Beschwerdeführers"}},
@@ -228,6 +230,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 3. Заявление на получение справки о несудимости / Application for a Certificate of No Criminal Record ---
             [
                 'slug' => 'certificate-no-criminal-record-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -361,6 +364,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 4. Заявление на получение справки о составе семьи / Application for a Certificate of Family Composition ---
             [
                 'slug' => 'certificate-family-composition-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -475,6 +479,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 5. Заявление на смену имени/фамилии / Application for Name/Surname Change ---
             [
                 'slug' => 'name-surname-change-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -587,6 +592,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 6. Заявление на регистрацию/снятие с регистрации места жительства / Application for Registration/Deregistration of Residence ---
             [
                 'slug' => 'residence-registration-deregistration-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -698,6 +704,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 7. Заявление на получение загранпаспорта (общая форма) / Application for a Foreign Passport (General Form) ---
             [
                 'slug' => 'foreign-passport-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -821,6 +828,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 8. Заявление на получение идентификационного кода (ИНН) / Application for an Identification Code (Tax ID) ---
             [
                 'slug' => 'tax-id-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -944,6 +952,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 9. Заявление о приеме ребенка в детский сад / Application for Child Admission to Kindergarten ---
             [
                 'slug' => 'kindergarten-admission-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko rodzica/opiekuna","en":"Parent/Guardian Full Name","uk":"ПІБ батьків/опікуна","de":"Vollständiger Name des Elternteils/Vormunds"}},
@@ -1065,6 +1074,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 10. Заявление о приеме ребенка в школу / Application for Child Admission to School ---
             [
                 'slug' => 'school-admission-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko rodzica/opiekuna","en":"Parent/Guardian Full Name","uk":"ПІБ батьків/опікуна","de":"Vollständiger Name des Elternteils/Vormunds"}},
@@ -1187,6 +1197,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 11. Записка в школу об отсутствии ребенка / Note to School about Child's Absence ---
             [
                 'slug' => 'child-absence-note-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"parent_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko rodzica/opiekuna","en":"Parent/Guardian Full Name","uk":"ПІБ батьків/опікуна","de":"Vollständiger Name des Elternteils/Vormunds"}},
@@ -1296,6 +1307,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 12. Согласие родителей на выезд ребенка за границу / Parental Consent for Child to Travel Abroad ---
             [
                 'slug' => 'parental-travel-consent-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"parent_full_name_1","type":"text","required":true,"labels":{"pl":"Imię i nazwisko rodzica/opiekuna 1","en":"Parent/Guardian Full Name 1","uk":"ПІБ батьків/опікуна 1","de":"Vollständiger Name des Elternteils/Vormunds 1"}},
@@ -1411,6 +1423,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 13. Согласие на медицинское вмешательство для ребенка / Consent for Medical Intervention for a Child ---
             [
                 'slug' => 'medical-intervention-consent-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"parent_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko rodzica/opiekuna","en":"Parent/Guardian Full Name","uk":"ПІБ батьків/опікуна","de":"Vollständiger Name des Elternteils/Vormunds"}},
@@ -1506,6 +1519,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 14. Соглашение об уплате алиментов / Alimony Payment Agreement ---
             [
                 'slug' => 'alimony-payment-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1611,6 +1625,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 15. Брачный договор (общая структура) / Prenuptial Agreement (General Structure) ---
             [
                 'slug' => 'prenuptial-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1726,6 +1741,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 16. Заявление о регистрации брака / Application for Marriage Registration ---
             [
                 'slug' => 'marriage-registration-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name_1","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy 1","en":"Applicant 1 Full Name","uk":"ПІБ заявника 1","de":"Vollständiger Name des Antragstellers 1"}},
@@ -1812,6 +1828,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 17. Заявление о расторжении брака (в ЗАГС) / Application for Divorce (at Civil Registry Office) ---
             [
                 'slug' => 'divorce-application-civil-registry-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name_1","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy 1","en":"Applicant 1 Full Name","uk":"ПІБ заявника 1","de":"Vollständiger Name des Antragstellers 1"}},
@@ -1903,6 +1920,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- 18. Расписка в получении денежных средств в долг / Receipt for Money Received as Loan ---
             [
                 'slug' => 'loan-receipt-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"receipt_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pokwitowania","en":"Receipt Issue Date","uk":"Дата виставлення розписки","de":"Datum der Quittung"}},
@@ -1989,6 +2007,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Расписка о возврате денежного долга / Receipt of Money Debt Repayment ---
             [
                 'slug' => 'receipt-debt-repayment-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"debtor_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko dłużnika","en":"Debtor\'s Full Name","uk":"ПІБ боржника","de":"Vollständiger Name des Schuldners"}},
@@ -2080,6 +2099,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Досудебная претензия о возврате долга / Pre-court Claim for Debt Repayment ---
             [
                 'slug' => 'pre-court-debt-claim-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"claimant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wierzyciela","en":"Claimant\'s Full Name","uk":"ПІБ кредитора","de":"Vollständiger Name des Gläubigers"}},
@@ -2182,6 +2202,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Заявление в банк на реструктуризацию кредита / Application to Bank for Loan Restructuring ---
             [
                 'slug' => 'bank-loan-restructuring-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -2292,6 +2313,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Заявление в банк о спорной транзакции (чарджбэк) / Application to Bank for Disputed Transaction (Chargeback) ---
             [
                 'slug' => 'bank-disputed-transaction-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -2401,6 +2423,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Заявление на возврат товара надлежащего качества / Application for Return of Goods of Proper Quality ---
             [
                 'slug' => 'return-goods-proper-quality-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko kupującego","en":"Buyer\'s Full Name","uk":"ПІБ покупця","de":"Vollständiger Name des Käufers"}},
@@ -2509,6 +2532,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Претензия на некачественный товар / Claim for Defective Goods ---
             [
                 'slug' => 'claim-defective-goods-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"claimant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko kupującego","en":"Buyer\'s Full Name","uk":"ПІБ покупця","de":"Vollständiger Name des Käufers"}},
@@ -2617,6 +2641,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Бюджет на месяц (личный/семейный) / Monthly Budget (Personal/Family) ---
             [
                 'slug' => 'monthly-budget-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"month_year","type":"text","required":true,"labels":{"pl":"Miesiąc i rok","en":"Month and Year","uk":"Місяць та рік","de":"Monat und Jahr"}},
                     {"name":"budget_type","type":"text","required":true,"labels":{"pl":"Typ budżetu (osobisty/rodzinny)","en":"Budget Type (personal/family)","uk":"Тип бюджету (особистий/сімейний)","de":"Budgettyp (persönlich/familie)"}},
@@ -2723,6 +2748,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Список покупок / Shopping List ---
             [
                 'slug' => 'shopping-list-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"list_name","type":"text","required":true,"labels":{"pl":"Nazwa listy","en":"List Name","uk":"Назва списку","de":"Listenname"}},
                     {"name":"list_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia","en":"Date of Creation","uk":"Дата створення","de":"Erstellungsdatum"}},
@@ -2792,6 +2818,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Личное благодарственное письмо / Personal Thank You Letter ---
             [
                 'slug' => 'personal-thank-you-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -2886,6 +2913,7 @@ class PlPersonalFamilySeeder extends Seeder
             // --- Личное письмо с извинениями / Personal Apology Letter ---
             [
                 'slug' => 'personal-apology-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},

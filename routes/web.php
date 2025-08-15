@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\DocumentBundleController as AdminDocumentBundleCo
 
 
 
+
 Route::get('/verify-email-code', [EmailVerificationCodeController::class, 'showVerificationForm'])->name('verification.code.form');
 Route::post('/verify-email-code', [EmailVerificationCodeController::class, 'verifyCode'])->name('verification.code.verify');
 
@@ -97,12 +98,12 @@ Route::prefix('{locale}')
 
         Route::get('/bundles', [DocumentBundleController::class, 'index'])->name('bundles.index');
         Route::get('/bundles/{bundle:slug}', [DocumentBundleController::class, 'show'])
-            ->name('bundles.show')
-            ->middleware('auth');
+            ->name('bundles.show');
 
-        Route::get('/templates/{template}', [TemplateController::class, 'show'])->name('templates.show')->middleware('auth');
+
+        Route::get('/templates/{template}', [TemplateController::class, 'show'])->name('templates.show');
         Route::post('/templates/{template}/generate', [TemplateController::class, 'generateDocument'])->name('templates.generate')->middleware('auth');
-        Route::get('/documents/{countryCode}/{templateSlug}', [DocumentController::class, 'show'])->name('documents.show')->middleware('auth');
+        Route::get('/documents/{countryCode}/{templateSlug}', [DocumentController::class, 'show'])->name('documents.show');
         Route::post('/documents/{countryCode}/{templateSlug}/generate', [DocumentController::class, 'generate'])->name('documents.generate')->middleware('auth');
 
         Route::prefix('admin')->middleware(['auth', IsAdminMiddleware::class])->name('admin.')->group(function () {

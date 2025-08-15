@@ -26,6 +26,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 1. Запрос на получение публичной информации ---
             [
                 'slug' => 'request-public-info-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва установи, до якої звертаєтесь","en":"Name of the institution you are contacting", "pl":"Nazwa instytucji, do której się zwracasz", "de":"Name der anzuschreibenden Institution"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса установи","en":"Institution address", "pl":"Adres instytucji", "de":"Adresse der Institution"}},
@@ -143,6 +144,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 2. Жалоба на бездействие должностного лица ---
             [
                 'slug' => 'complaint-inaction-official-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_position","type":"text","required":true,"labels":{"uk":"Посада керівника, до якого звертаєтесь","en":"Position of the head you are addressing", "pl":"Stanowisko kierownika, do którego się zwracasz", "de":"Position des Leiters, an den Sie sich wenden"}},
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва установи","en":"Institution name", "pl":"Nazwa instytucji", "de":"Name der Institution"}},
@@ -267,6 +269,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 3. Заявление на получение справки о несудимости ---
             [
                 'slug' => 'application-no-criminal-record-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу, до якого звертаєтесь (напр., МВС України)","en":"Name of the authority you are contacting (e.g., Ministry of Internal Affairs of Ukraine)", "pl":"Nazwa organu, do którego się zwracasz (np. MSW Ukrainy)", "de":"Name der Behörde, an die Sie sich wenden (z.B. Innenministerium der Ukraine)"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу","en":"Authority address", "pl":"Adres organu", "de":"Adresse der Behörde"}},
@@ -375,6 +378,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 4. Заявление на получение справки о составе семьи ---
             [
                 'slug' => 'application-family-composition-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу, до якого звертаєтесь (напр., ЦНАП, ЖЕК)","en":"Name of the authority you are contacting (e.g., CSC, Housing Office)", "pl":"Nazwa organu, do którego się zwracasz (np. USC, Spółdzielnia Mieszkaniowa)", "de":"Name der Behörde, an die Sie sich wenden (z.B. Bürgeramt, Wohnungsamt)"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу","en":"Authority address", "pl":"Adres organu", "de":"Adresse der Behörde"}},
@@ -474,6 +478,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 5. Заявление на смену имени/фамилии ---
             [
                 'slug' => 'application-name-change-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу РАЦС","en":"Name of Civil Registry Office", "pl":"Nazwa USC", "de":"Name des Standesamtes"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу РАЦС","en":"Civil Registry Office address", "pl":"Adres USC", "de":"Adresse des Standesamtes"}},
@@ -587,6 +592,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 6. Заявление на регистрацию/снятие с регистрации места жительства ---
             [
                 'slug' => 'application-residence-registration-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу реєстрації (напр., ЦНАП)","en":"Name of registration authority (e.g., CSC)", "pl":"Nazwa organu rejestracji (np. USC)", "de":"Name der Registrierungsbehörde (z.B. Bürgeramt)"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу реєстрації","en":"Registration authority address", "pl":"Adres organu rejestracji", "de":"Adresse der Registrierungsbehörde"}},
@@ -702,6 +708,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 7. Заявление на получение загранпаспорта (общая форма) ---
             [
                 'slug' => 'application-foreign-passport-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу (напр., ДМС України)","en":"Name of authority (e.g., State Migration Service of Ukraine)", "pl":"Nazwa organu (np. Państwowa Służba Migracyjna Ukrainy)", "de":"Name der Behörde, an die Sie sich wenden (z.B. Staatlicher Migrationsdienst der Ukraine)"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу","en":"Authority address", "pl":"Adres organu", "de":"Adresse der Behörde"}},
@@ -810,6 +817,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 8. Заявление на получение идентификационного кода (ИНН) ---
             [
                 'slug' => 'application-tax-id-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу (напр., ДПС України)","en":"Name of authority (e.g., State Tax Service of Ukraine)", "pl":"Nazwa organu (np. Państwowa Służba Podatkowa Ukrainy)", "de":"Name der Behörde, an die Sie sich wenden (z.B. Staatlicher Steuerdienst der Ukraine)"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу","en":"Authority address", "pl":"Adres organu", "de":"Adresse der Behörde"}},
@@ -918,6 +926,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 9. Заявление о приеме ребенка в детский сад ---
             [
                 'slug' => 'application-kindergarten-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"kindergarten_name","type":"text","required":true,"labels":{"uk":"Назва дитячого садка","en":"Kindergarten Name", "pl":"Nazwa przedszkola", "de":"Name des Kindergartens"}},
                     {"name":"kindergarten_address","type":"text","required":true,"labels":{"uk":"Адреса дитячого садка","en":"Kindergarten address", "pl":"Adres przedszkola", "de":"Adresse des Kindergartens"}},
@@ -1019,6 +1028,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 10. Заявление о приеме ребенка в школу ---
             [
                 'slug' => 'application-school-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"school_name","type":"text","required":true,"labels":{"uk":"Назва школи","en":"School Name", "pl":"Nazwa szkoły", "de":"Name der Schule"}},
                     {"name":"school_address","type":"text","required":true,"labels":{"uk":"Адреса школи","en":"School address", "pl":"Adres szkoły", "de":"Adresse der Schule"}},
@@ -1121,6 +1131,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 11. Записка в школу об отсутствии ребенка ---
             [
                 'slug' => 'absence-note-school-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"school_name","type":"text","required":true,"labels":{"uk":"Назва школи","en":"School Name", "pl":"Nazwa szkoły", "de":"Name der Schule"}},
                     {"name":"school_address","type":"text","required":true,"labels":{"uk":"Адреса школи","en":"School address", "pl":"Adres szkoły", "de":"Adresse der Schule"}},
@@ -1223,6 +1234,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 12. Согласие родителей на выезд ребенка за границу ---
             [
                 'slug' => 'parental-consent-travel-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"parent_name_full","type":"text","required":true,"labels":{"uk":"ПІБ батька/матері","en":"Parent\'s Full Name", "pl":"Imię i nazwisko rodzica", "de":"Vollständiger Name des Elternteils"}},
@@ -1311,6 +1323,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 14. Соглашение об уплате алиментов ---
             [
                 'slug' => 'alimony-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"payer_name","type":"text","required":true,"labels":{"uk":"ПІБ платника аліментів","en":"Alimony Payer\'s Full Name", "pl":"Imię i nazwisko płatnika alimentów", "de":"Vollständiger Name des Unterhaltszahlers"}},
@@ -1472,6 +1485,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 15. Брачный договор (общая структура) ---
             [
                 'slug' => 'marriage-contract-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"husband_name","type":"text","required":true,"labels":{"uk":"ПІБ чоловіка","en":"Husband\'s Full Name", "pl":"Imię i nazwisko męża", "de":"Vollständiger Name des Ehemanns"}},
@@ -1643,6 +1657,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 16. Заявление о регистрации брака ---
             [
                 'slug' => 'application-marriage-registration-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу РАЦС","en":"Name of Civil Registry Office", "pl":"Nazwa USC", "de":"Name des Standesamtes"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу РАЦС","en":"Civil Registry Office address", "pl":"Adres USC", "de":"Adresse des Standesamtes"}},
@@ -1779,6 +1794,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 17. Заявление о расторжении брака (в ЗАГС) ---
             [
                 'slug' => 'application-divorce-registry-office-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_organization","type":"text","required":true,"labels":{"uk":"Назва органу РАЦС","en":"Name of Civil Registry Office", "pl":"Nazwa USC", "de":"Name des Standesamtes"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса органу РАЦС","en":"Civil Registry Office address", "pl":"Adres USC", "de":"Adresse des Standesamtes"}},
@@ -1911,6 +1927,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 18. Расписка в получении денежных средств в долг ---
             [
                 'slug' => 'receipt-money-debt-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"borrower_name","type":"text","required":true,"labels":{"uk":"ПІБ позичальника","en":"Borrower\'s Full Name", "pl":"Imię i nazwisko pożyczkobiorcy", "de":"Vollständiger Name des Kreditnehmers"}},
@@ -1990,6 +2007,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 19. Расписка о возврате денежного долга ---
             [
                 'slug' => 'receipt-debt-repayment-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"lender_name","type":"text","required":true,"labels":{"uk":"ПІБ позикодавця","en":"Lender\'s Full Name", "pl":"Imię i nazwisko pożyczkodawcy", "de":"Vollständiger Name des Kreditgebers"}},
@@ -2053,6 +2071,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 20. Досудебная претензия о возврате долга ---
             [
                 'slug' => 'pre-trial-claim-debt-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"claimant_name","type":"text","required":true,"labels":{"uk":"ПІБ кредитора","en":"Creditor\'s Full Name", "pl":"Imię i nazwisko wierzyciela", "de":"Vollständiger Name des Gläubigers"}},
                     {"name":"claimant_address","type":"text","required":true,"labels":{"uk":"Адреса кредитора","en":"Creditor\'s address", "pl":"Adres wierzyciela", "de":"Adresse des Gläubigers"}},
@@ -2166,6 +2185,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 21. Заявление в банк на реструктуризацию кредита ---
             [
                 'slug' => 'application-loan-restructuring-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"bank_name","type":"text","required":true,"labels":{"uk":"Назва банку","en":"Bank Name", "pl":"Nazwa banku", "de":"Bankname"}},
                     {"name":"bank_address","type":"text","required":true,"labels":{"uk":"Адреса банку","en":"Bank address", "pl":"Adres banku", "de":"Bankadresse"}},
@@ -2285,6 +2305,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 22. Заявление в банк о спорной транзакции (чарджбэк) ---
             [
                 'slug' => 'application-chargeback-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"bank_name","type":"text","required":true,"labels":{"uk":"Назва банку","en":"Bank Name", "pl":"Nazwa banku", "de":"Bankname"}},
                     {"name":"bank_address","type":"text","required":true,"labels":{"uk":"Адреса банку","en":"Bank address", "pl":"Adres banku", "de":"Bankadresse"}},
@@ -2395,6 +2416,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 23. Заявление на возврат товара надлежащего качества ---
             [
                 'slug' => 'application-goods-return-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"Назва продавця","en":"Seller Name", "pl":"Nazwa sprzedawcy", "de":"Verkäufername"}},
                     {"name":"seller_address","type":"text","required":true,"labels":{"uk":"Адреса продавця","en":"Seller Address", "pl":"Adres sprzedawcy", "de":"Verkäuferadresse"}},
@@ -2505,6 +2527,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 24. Претензия на некачественный товар ---
             [
                 'slug' => 'claim-defective-goods-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"Назва продавця","en":"Seller Name", "pl":"Nazwa sprzedawcy", "de":"Verkäufername"}},
                     {"name":"seller_address","type":"text","required":true,"labels":{"uk":"Адреса продавця","en":"Seller Address", "pl":"Adres sprzedawcy", "de":"Verkäuferadresse"}},
@@ -2619,6 +2642,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 25. Бюджет на месяц (личный/семейный) ---
             [
                 'slug' => 'monthly-budget-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"budget_type","type":"text","required":true,"labels":{"uk":"Тип бюджету (особистий/сімейний)","en":"Budget Type (personal/family)", "pl":"Typ budżetu (osobisty/rodzinny)", "de":"Budgettyp (persönlich/Familie)"}},
                     {"name":"month_year","type":"text","required":true,"labels":{"uk":"Місяць, рік","en":"Month, Year", "pl":"Miesiąc, Rok", "de":"Monat, Jahr"}},
@@ -2799,6 +2823,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 26. Список покупок ---
             [
                 'slug' => 'shopping-list-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"list_name","type":"text","required":true,"labels":{"uk":"Назва списку","en":"List Name", "pl":"Nazwa listy", "de":"Listenname"}},
                     {"name":"items_list","type":"textarea","required":true,"labels":{"uk":"Перелік товарів (Количество, Название)","en":"List of Items (Quantity, Name)", "pl":"Lista pozycji (Ilość, Nazwa)", "de":"Liste der Artikel (Menge, Name)"}}
@@ -2854,6 +2879,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 27. Личное благодарственное письмо ---
             [
                 'slug' => 'personal-thank-you-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"sender_name","type":"text","required":true,"labels":{"uk":"ПІБ відправника","en":"Sender Full Name", "pl":"Imię i nazwisko nadawcy", "de":"Vollständiger Name des Absenders"}},
                     {"name":"sender_address","type":"text","required":true,"labels":{"uk":"Адреса відправника","en":"Sender Address", "pl":"Adres nadawcy", "de":"Absenderadresse"}},
@@ -2961,6 +2987,7 @@ class UaPersonalFamilySeeder extends Seeder
             // --- 28. Личное письмо с извинениями ---
             [
                 'slug' => 'personal-apology-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"sender_name","type":"text","required":true,"labels":{"uk":"ПІБ відправника","en":"Sender Full Name", "pl":"Imię i nazwisko nadawcy", "de":"Vollständiger Name des Absenders"}},
                     {"name":"sender_address","type":"text","required":true,"labels":{"uk":"Адреса відправника","en":"Sender Address", "pl":"Adres nadawcy", "de":"Absenderadresse"}},

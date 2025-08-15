@@ -21,6 +21,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 1. Договор аренды квартиры (долгосрочный) ---
             [
                 'slug' => 'long-term-apartment-lease-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -196,6 +197,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 2. Договор посуточной аренды квартиры ---
             [
                 'slug' => 'daily-apartment-lease-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -366,6 +368,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 3. Договор аренды комнаты ---
             [
                 'slug' => 'room-lease-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -541,6 +544,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 4. Договор аренды дома ---
             [
                 'slug' => 'house-lease-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -717,6 +721,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 5. Договор аренды коммерческого помещения (офис) ---
             [
                 'slug' => 'commercial-premises-lease-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"Назва орендодавця (ЮО)","en":"Landlord Name (Legal Entity)", "pl":"Nazwa wynajmującego (Osoba prawna)", "de":"Name des Vermieters (Juristische Person)"}},
@@ -890,6 +895,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 6. Договор аренды склада ---
             [
                 'slug' => 'warehouse-lease-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"Назва орендодавця (ЮО)","en":"Landlord Name (Legal Entity)", "pl":"Nazwa wynajmującego (Osoba prawna)", "de":"Name des Vermieters (Juristische Person)"}},
@@ -1063,6 +1069,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 7. Договор аренды гаража ---
             [
                 'slug' => 'garage-lease-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1233,6 +1240,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 8. Акт приема-передачи квартиры при аренде ---
             [
                 'slug' => 'apartment-handover-act-lease-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання акту","en":"City of Act Compilation", "pl":"Miejscowość sporządzenia protokołu", "de":"Ort der Akterstellung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1394,6 +1402,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 9. Опись имущества при сдаче в аренду ---
             [
                 'slug' => 'property-inventory-lease-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання опису","en":"City of Inventory Compilation", "pl":"Miejscowość sporządzenia inwentarza", "de":"Ort der Inventarerstellung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1589,6 +1598,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 10. Расписка в получении залога за аренду ---
             [
                 'slug' => 'receipt-security-deposit-lease-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання розписки","en":"City of Receipt Compilation", "pl":"Miejscowość sporządzenia pokwitowania", "de":"Ort der Quittungserstellung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1656,6 +1666,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 11. Соглашение о расторжении договора аренды ---
             [
                 'slug' => 'lease-termination-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1804,6 +1815,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 12. Уведомление о повышении арендной платы ---
             [
                 'slug' => 'rent-increase-notice-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання повідомлення","en":"City of Notice Compilation", "pl":"Miejscowość sporządzenia zawiadomienia", "de":"Ort der Benachrichtigungserstellung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1886,6 +1898,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 13. Требование о погашении задолженности по аренде ---
             [
                 'slug' => 'rent-debt-demand-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання вимоги","en":"City of Demand Compilation", "pl":"Miejscowość sporządzenia wezwania", "de":"Ort der Mahnungserstellung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -1963,6 +1976,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 14. Предварительный договор купли-продажи квартиры ---
             [
                 'slug' => 'preliminary-apartment-purchase-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -2132,6 +2146,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 15. Договор купли-продажи квартиры ---
             [
                 'slug' => 'apartment-purchase-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -2293,6 +2308,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 16. Договор купли-продажи дома с земельным участком ---
             [
                 'slug' => 'house-land-purchase-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -2456,6 +2472,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 17. Договор дарения квартиры ---
             [
                 'slug' => 'apartment-gift-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"donor_name","type":"text","required":true,"labels":{"uk":"ПІБ дарувальника","en":"Donor\'s Full Name", "pl":"Imię i nazwisko darczyńcy", "de":"Vollständiger Name des Schenkers"}},
@@ -2603,6 +2620,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 18. Договор дарения доли в квартире ---
             [
                 'slug' => 'apartment-share-gift-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"donor_name","type":"text","required":true,"labels":{"uk":"ПІБ дарувальника","en":"Donor\'s Full Name", "pl":"Imię i nazwisko darczyńcy", "de":"Vollständiger Name des Schenkers"}},
@@ -2750,6 +2768,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 19. Акт приема-передачи недвижимости при продаже ---
             [
                 'slug' => 'real-estate-handover-act-sale-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання акту","en":"City of Act Compilation", "pl":"Miejscowość sporządzenia protokołu", "de":"Ort der Akterstellung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -2911,6 +2930,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 20. Соглашение о задатке ---
             [
                 'slug' => 'earnest-money-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -3075,6 +3095,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 21. Согласие супруга на продажу недвижимости ---
             [
                 'slug' => 'spousal-consent-property-sale-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання згоди","en":"City of Consent Compilation", "pl":"Miejscowość sporządzenia zgody", "de":"Ort der Zustimmungserklärung"}},
                     {"name":"consenting_spouse_name","type":"text","required":true,"labels":{"uk":"ПІБ дружини/чоловіка, що дає згоду","en":"Consenting Spouse\'s Full Name", "pl":"Imię i nazwisko małżonka wyrażającego zgodę", "de":"Vollständiger Name des zustimmenden Ehepartners"}},
@@ -3156,6 +3177,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 22. Согласие супруга на покупку недвижимости ---
             [
                 'slug' => 'spousal-consent-property-purchase-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання згоди","en":"City of Consent Compilation", "pl":"Miejscowość sporządzenia zgody", "de":"Ort der Zustimmungserklärung"}},
                     {"name":"consenting_spouse_name","type":"text","required":true,"labels":{"uk":"ПІБ дружини/чоловіка, що дає згоду","en":"Consenting Spouse\'s Full Name", "pl":"Imię i nazwisko małżonka wyrażającego zgodę", "de":"Vollständiger Name des zustimmenden Ehepartners"}},
@@ -3236,6 +3258,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 23. Заявление в управляющую компанию (ЖЭК, ОСМД) ---
             [
                 'slug' => 'application-management-company-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"management_company_name","type":"text","required":true,"labels":{"uk":"Назва управляючої компанії (ЖЕК, ОСББ)","en":"Management Company Name (Housing Office, HOA)", "pl":"Nazwa firmy zarządzającej (Zarząd Budynków Mieszkalnych, Wspólnota Mieszkaniowa)", "de":"Name der Verwaltungsgesellschaft (Wohnungsamt, WEG)"}},
                     {"name":"management_company_address","type":"text","required":true,"labels":{"uk":"Адреса управляючої компанії","en":"Management Company Address", "pl":"Adres firmy zarządzającej", "de":"Adresse der Verwaltungsgesellschaft"}},
@@ -3339,6 +3362,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 24. Заявление о протечке крыши ---
             [
                 'slug' => 'roof-leak-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"management_company_name","type":"text","required":true,"labels":{"uk":"Назва управляючої компанії (ЖЕК, ОСББ)","en":"Management Company Name (Housing Office, HOA)", "pl":"Nazwa firmy zarządzającej (Zarząd Budynków Mieszkalnych, Wspólnota Mieszkaniowa)", "de":"Name der Verwaltungsgesellschaft (Wohnungsamt, WEG)"}},
                     {"name":"management_company_address","type":"text","required":true,"labels":{"uk":"Адреса управляючої компанії","en":"Management Company Address", "pl":"Adres firmy zarządzającej", "de":"Adresse der Verwaltungsgesellschaft"}},
@@ -3451,6 +3475,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 25. Жалоба на соседей (на шум, затопление) ---
             [
                 'slug' => 'neighbor-complaint-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"management_company_name","type":"text","required":true,"labels":{"uk":"Назва управляючої компанії (ЖЕК, ОСББ)","en":"Management Company Name (Housing Office, HOA)", "pl":"Nazwa firmy zarządzającej (Zarząd Budynków Mieszkalnych, Wspólnota Mieszkaniowa)", "de":"Name der Verwaltungsgesellschaft (Wohnungsamt, WEG)"}},
                     {"name":"management_company_address","type":"text","required":true,"labels":{"uk":"Адреса управляючої компанії","en":"Management Company Address", "pl":"Adres firmy zarządzającej", "de":"Adresse der Verwaltungsgesellschaft"}},
@@ -3565,6 +3590,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 26. Протокол общего собрания жильцов дома ---
             [
                 'slug' => 'residents-meeting-protocol-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто проведення зборів","en":"City of Meeting", "pl":"Miejscowość zebrania", "de":"Ort der Versammlung"}},
                     {"name":"house_address","type":"text","required":true,"labels":{"uk":"Адреса будинку","en":"House Address", "pl":"Adres domu", "de":"Hausadresse"}},
@@ -3648,6 +3674,7 @@ class UaRealEstateSeeder extends Seeder
             // --- 27. Доверенность на продажу/покупку недвижимости ---
             [
                 'slug' => 'power-of-attorney-real-estate-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},

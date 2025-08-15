@@ -30,6 +30,7 @@ class Template extends Model
         'is_active',
         'country_code',
         'fields',
+        'access_level',
     ];
 
     protected $appends = ['title'];

@@ -21,6 +21,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Załącznik nr 1 do wniosku o udzielenie zezwolenia na pobyt czasowy i pracę ---
             [
                 'slug' => 'attachment-1-karta-pobytu-work-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"employer_name","type":"text","required":true,"labels":{"pl":"Pełna nazwa pracodawcy","uk":"Повна назва роботодавця","en":"Employer\'s Full Name","de":"Vollständiger Name des Arbeitgebers"}},
                     {"name":"employer_address","type":"text","required":true,"labels":{"pl":"Adres siedziby pracodawcy","uk":"Адреса офісу роботодавця","en":"Employer\'s Address","de":"Adresse des Arbeitgebers"}},
@@ -143,6 +144,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Umowa najmu mieszkania ---
             [
                 'slug' => 'residential-lease-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","uk":"Дата укладення"}},
@@ -271,6 +273,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- НОВЫЙ ШАБЛОН: Декларация о предоставлении жилья ---
             [
                 'slug' => 'declaration-accommodation-pl',
+        'access_level' => 'free',
                 'fields' => '[
         {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто","en":"City","de":"Ort"}},
         {"name":"declaration_date","type":"date","required":true,"labels":{"pl":"Data","uk":"Дата","en":"Date","de":"Datum"}},
@@ -354,6 +357,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- НОВЫЙ ШАБЛОН: Доверенность на получение карты побыту ---
             [
                 'slug' => 'poa-collect-residence-card-pl',
+        'access_level' => 'free',
                 'fields' => '[
         {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто","en":"City","de":"Ort"}},
         {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data","uk":"Дата","en":"Date","de":"Datum"}},
@@ -430,6 +434,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- НОВЫЙ ШАБЛОН: Заявление об ускорении ---
             [
                 'slug' => 'request-expedite-decision-karta-pobytu-pl',
+        'access_level' => 'free',
                 'fields' => '[
         {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","uk":"Місто","en":"City","de":"Ort"}},
         {"name":"request_date","type":"date","required":true,"labels":{"pl":"Data","uk":"Дата","en":"Date","de":"Datum"}},
@@ -544,6 +549,7 @@ class PlLegalDocumentsSeeder extends Seeder
         // --- Исковое заявление о взыскании долга по расписке / Statement of Claim for Debt Collection by Receipt ---
             [
                 'slug' => 'statement-claim-debt-receipt-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"court_name","type":"text","required":true,"labels":{"pl":"Nazwa Sądu","en":"Court Name","uk":"Назва Суду","de":"Name des Gerichts"}},
@@ -689,6 +695,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Исковое заявление о расторжении брака / Statement of Claim for Divorce ---
             [
                 'slug' => 'statement-claim-divorce-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"court_name","type":"text","required":true,"labels":{"pl":"Nazwa Sądu Okręgowego","en":"District Court Name","uk":"Назва Окружного Суду","de":"Name des Bezirksgerichts"}},
@@ -839,6 +846,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Исковое заявление о взыскании алиментов / Statement of Claim for Alimony Collection ---
             [
                 'slug' => 'statement-claim-alimony-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"court_name","type":"text","required":true,"labels":{"pl":"Nazwa Sądu Rejonowego/Okręgowego","en":"District/Regional Court Name","uk":"Назва Районного/Окружного Суду","de":"Name des Amts-/Landgerichts"}},
@@ -959,6 +967,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Исковое заявление о возмещении ущерба при ДТП / Statement of Claim for Damages in a Road Accident ---
             [
                 'slug' => 'statement-claim-road-accident-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"court_name","type":"text","required":true,"labels":{"pl":"Nazwa Sądu Rejonowego/Okręgowego","en":"District/Regional Court Name","uk":"Назва Районного/Окружного Суду","de":"Name des Amts-/Landgerichts"}},
@@ -1093,6 +1102,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Исковое заявление о защите прав потребителей / Statement of Claim for Consumer Rights Protection ---
             [
                 'slug' => 'statement-claim-consumer-rights-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"court_name","type":"text","required":true,"labels":{"pl":"Nazwa Sądu Rejonowego/Okręgowego","en":"District/Regional Court Name","uk":"Назва Районного/Окружного Суду","de":"Name des Amts-/Landgerichts"}},
@@ -1224,6 +1234,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Генеральная доверенность / General Power of Attorney ---
             [
                 'slug' => 'general-power-of-attorney-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},
@@ -1311,6 +1322,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Доверенность на представление интересов в суде / Power of Attorney for Representation in Court ---
             [
                 'slug' => 'poa-representation-court-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},
@@ -1399,6 +1411,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Доверенность на получение документов / Power of Attorney for Document Collection ---
             [
                 'slug' => 'poa-document-collection-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},
@@ -1487,6 +1500,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Отзыв доверенности / Revocation of Power of Attorney ---
             [
                 'slug' => 'revocation-poa-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"revocation_date","type":"date","required":true,"labels":{"pl":"Data odwołania","en":"Revocation Date","uk":"Дата відкликання","de":"Datum des Widerrufs"}},
@@ -1568,6 +1582,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Завещание (общая форма) / Will (General Form) ---
             [
                 'slug' => 'will-general-form-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"will_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia testamentu","en":"Will Date","uk":"Дата складання заповіту","de":"Datum des Testaments"}},
@@ -1674,6 +1689,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Ходатайство об отложении судебного заседания / Motion for Adjournment of Court Hearing ---
             [
                 'slug' => 'motion-adjournment-court-hearing-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"motion_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia wniosku","en":"Motion Date","uk":"Дата складання клопотання","de":"Datum des Antrags"}},
@@ -1789,6 +1805,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Ходатайство о приобщении документов к делу / Motion for Attachment of Documents to the Case ---
             [
                 'slug' => 'motion-attachment-documents-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"motion_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia wniosku","en":"Motion Date","uk":"Дата складання клопотання","de":"Datum des Antrags"}},
@@ -1899,6 +1916,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Апелляционная жалоба (структура) / Appeal (Structure) ---
             [
                 'slug' => 'appeal-structure-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"appeal_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia apelacji","en":"Appeal Date","uk":"Дата складання апеляції","de":"Datum der Berufung"}},
@@ -2029,6 +2047,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Кассационная жалоба (структура) / Cassation Appeal (Structure) ---
             [
                 'slug' => 'cassation-appeal-structure-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"appeal_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia skargi kasacyjnej","en":"Appeal Date","uk":"Дата складання касаційної скарги","de":"Datum der Kassationsbeschwerde"}},
@@ -2150,6 +2169,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Жалоба в прокуратуру / Complaint to the Prosecutor's Office ---
             [
                 'slug' => 'complaint-prosecutors-office-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"complainant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko skarżącego","en":"Complainant\'s Full Name","uk":"ПІБ скаржника","de":"Vollständiger Name des Beschwerdeführers"}},
@@ -2261,6 +2281,7 @@ class PlLegalDocumentsSeeder extends Seeder
             // --- Мировое соглашение / Settlement Agreement ---
             [
                 'slug' => 'settlement-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia ugody","en":"Agreement Date","uk":"Дата укладення угоди","de":"Datum der Vereinbarung"}},

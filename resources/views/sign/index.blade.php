@@ -3,55 +3,145 @@
 @section('title', __('messages.sign_document') . ' - ' . config('app.name'))
 
 @push('styles')
-    {{-- Стили для страницы --}}
     <style>
-        #signature-pad {
-            border: 2px dashed #0D6EFD;
-            border-radius: 5px;
-            cursor: crosshair;
+        /* 1. БАЗОВЫЕ ПЕРЕМЕННЫЕ СТИЛЕЙ (как на home.blade.php) */
+        :root {
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --bg-primary: #ffffff;
+            --bg-secondary: #faf7ff;
+            --text-primary: #1e1b31;
+            --text-secondary: #4c495d;
+            --border: #e5e1f5;
+            --shadow-lg: 0 10px 15px -3px rgb(139 92 246 / 0.15), 0 4px 6px -4px rgb(139 92 246 / 0.05);
+            --gradient-brand: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
         }
+        [data-bs-theme="dark"] {
+            --bg-primary: #0f0a1a;
+            --bg-secondary: #1a1625;
+            --text-primary: #f1f0ff;
+            --text-secondary: #c9c6e0;
+            --border: #2d2438;
+        }
+
+        /* 2. СТИЛИЗУЕМ СУЩЕСТВУЮЩИЕ ЭЛЕМЕНТЫ СТРАНИЦЫ */
+
+        /* Основной контейнер-карточка */
+        .card.shadow-sm {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg) !important;
+        }
+        .card-header {
+            background-color: transparent !important;
+            border-bottom: none !important;
+            padding-top: 2rem !important;
+            padding-bottom: 0 !important;
+        }
+        .card-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Поля ввода и лейблы */
+        .form-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .form-control {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 12px !important;
+            padding: 0.75rem 1rem !important;
+            color: var(--text-primary) !important;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-control:focus {
+            outline: none !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important;
+            background-color: var(--bg-primary) !important;
+        }
+
+        /* Область для подписи */
         .signature-wrapper {
-            background-color: #e9ecef;
-            border-radius: .375rem;
+            background-color: var(--bg-secondary);
+            border-radius: 16px;
             padding: 1rem;
         }
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
+        #signature-pad {
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            cursor: crosshair;
+            background-color: var(--bg-primary);
         }
+
+        /* Область предпросмотра PDF */
         #pdf-render-area {
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             height: 500px;
             overflow-y: auto;
-            background-color: #f8f9fa;
+            background-color: var(--bg-secondary);
             padding: 10px;
             position: relative;
         }
         .pdf-page-container {
-            position: relative;
             margin: 0 auto 10px auto;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             width: fit-content;
             cursor: pointer;
         }
-        .pdf-page-canvas {
-            display: block;
+
+        /* Кнопки */
+        .btn-primary {
+            border-radius: 16px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            background: var(--gradient-brand);
+            color: white;
         }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+        .btn-outline-secondary {
+            border-radius: 12px;
+            font-weight: 600;
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .btn-outline-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Маркер подписи (тоже в новом стиле) */
         #signature-placement-marker {
             position: absolute;
             width: 150px;
             height: 75px;
-            background-color: rgba(13, 110, 253, 0.3);
-            border: 2px dashed #0D6EFD;
+            background-color: rgba(139, 92, 246, 0.3);
+            border: 2px dashed var(--primary);
             border-radius: 5px;
             display: none;
             align-items: center;
             justify-content: center;
-            color: #0D6EFD;
+            color: var(--primary);
             font-size: 12px;
             font-weight: bold;
-            pointer-events: all; /* Разрешаем события мыши для перетаскивания */
+            pointer-events: all;
             cursor: move;
             user-select: none;
             transform: translate(-50%, -50%);
@@ -61,6 +151,7 @@
 @endpush
 
 @section('content')
+    {{-- ВЕСЬ ТВОЙ ОРИГИНАЛЬНЫЙ HTML ОСТАЛСЯ БЕЗ ИЗМЕНЕНИЙ --}}
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -84,7 +175,6 @@
                             @endif
 
                             <div class="row">
-                                {{-- Левая колонка: Загрузка и предпросмотр --}}
                                 <div class="col-md-7">
                                     <h5>1. {{ __('messages.upload_document') }}</h5>
                                     <div class="mb-3">
@@ -100,7 +190,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Правая колонка: Подпись --}}
                                 <div class="col-md-5">
                                     <h5>2. {{ __('messages.place_your_signature_here') }}</h5>
                                     <div class="signature-wrapper">
@@ -139,6 +228,7 @@
 @endsection
 
 @push('scripts')
+    {{-- ВЕСЬ ТВОЙ JAVASCRIPT ОСТАЛСЯ НЕИЗМЕННЫМ --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script>
@@ -146,7 +236,6 @@
             pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
             const signaturePadCanvas = document.getElementById('signature-pad');
-            // ✅ ИСПРАВЛЕНИЕ 1: Убираем backgroundColor, чтобы фон был прозрачным
             const signaturePad = new SignaturePad(signaturePadCanvas);
 
             function resizeSignatureCanvas() {
@@ -201,13 +290,11 @@
 
                         await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
                     }
-                    // После рендера добавляем маркер в область
                     pdfRenderArea.appendChild(placementMarker);
                 };
                 fileReader.readAsArrayBuffer(file);
             }
 
-            // ✅ ИСПРАВЛЕНИЕ 2: ОБЪЕДИНЕННАЯ ЛОГИКА КЛИКА И ПЕРЕТАСКИВАНИЯ
             let isDragging = false;
             let initialX, initialY;
 
@@ -215,11 +302,9 @@
                 const pageRect = pageElement.getBoundingClientRect();
                 const renderAreaRect = pdfRenderArea.getBoundingClientRect();
 
-                // Координаты относительно страницы
                 const xOnPage = x - pageRect.left;
                 const yOnPage = y - pageRect.top;
 
-                // Координаты относительно всей области рендера
                 const xOnRenderArea = x - renderAreaRect.left + pdfRenderArea.scrollLeft;
                 const yOnRenderArea = y - renderAreaRect.top + pdfRenderArea.scrollTop;
 
@@ -227,24 +312,19 @@
                 placementMarker.style.top = yOnRenderArea + 'px';
                 placementMarker.style.display = 'flex';
 
-                // Обновляем скрытые поля
                 posXInput.value = Math.round((xOnPage / pageRect.width) * 100);
                 posYInput.value = Math.round((yOnPage / pageRect.height) * 100);
                 pageInput.value = pageElement.dataset.pageNumber;
             }
 
-            // Клик для установки маркера
             pdfRenderArea.addEventListener('click', (e) => {
-                // Игнорируем клик, если он был по самому маркеру (чтобы не сбивать перетаскивание)
                 if (e.target.id === 'signature-placement-marker') return;
-
                 const targetContainer = e.target.closest('.pdf-page-container');
                 if (targetContainer) {
                     updateMarkerPosition(e.clientX, e.clientY, targetContainer);
                 }
             });
 
-            // Перетаскивание маркера
             placementMarker.addEventListener('mousedown', (e) => {
                 isDragging = true;
                 initialX = e.clientX - placementMarker.offsetLeft;
@@ -259,7 +339,6 @@
                 let newX = e.clientX - renderAreaRect.left + pdfRenderArea.scrollLeft;
                 let newY = e.clientY - renderAreaRect.top + pdfRenderArea.scrollTop;
 
-                // Находим страницу под курсором
                 const pages = pdfRenderArea.querySelectorAll('.pdf-page-container');
                 let currentPageElement = pages[0];
                 for (const page of pages) {

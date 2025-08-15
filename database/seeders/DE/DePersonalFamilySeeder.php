@@ -21,6 +21,7 @@ class DePersonalFamilySeeder extends Seeder
 
             [
                 'slug' => 'request-public-info-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -123,6 +124,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Жалоба на бездействие должностного лица / Complaint on Inaction of Public Official (Dienstaufsichtsbeschwerde/Untätigkeitsklage) ---
             [
                 'slug' => 'complaint-official-inaction-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"complainant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko skarżącego","en":"Complainant\'s Full Name","uk":"ПІБ скаржника","de":"Vollständiger Name des Beschwerdeführers"}},
@@ -230,6 +232,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на получение справки о несудимости / Application for Certificate of No Criminal Record (Antrag auf Führungszeugnis) ---
             [
                 'slug' => 'certificate-no-criminal-record-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -331,6 +334,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на получение справки о составе семьи / Application for Certificate of Family Composition (Meldebescheinigung/Haushaltsbescheinigung) ---
             [
                 'slug' => 'certificate-family-composition-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -436,6 +440,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на смену имени/фамилии / Application for Name Change (Antrag auf Namensänderung) ---
             [
                 'slug' => 'name-change-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Obecne imię i nazwisko wnioskodawcy","en":"Applicant\'s Current Full Name","uk":"Поточне ПІБ заявника","de":"Aktueller vollständiger Name des Antragstellers"}},
@@ -539,6 +544,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на регистрацию/снятие с регистрации места жительства / Application for Registration/Deregistration of Residence (Anmeldung/Abmeldung des Wohnsitzes) ---
             [
                 'slug' => 'residence-registration-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Datum des Antrags"}},
@@ -642,6 +648,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на получение загранпаспорта (общая форма) / Application for Passport (General Form) (Antrag auf Reisepass) ---
             [
                 'slug' => 'passport-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Datum des Antrags"}},
@@ -746,6 +753,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на получение идентификационного кода (ИНН) / Application for Tax Identification Number (Antrag auf Steuer-Identifikationsnummer) ---
             [
                 'slug' => 'tax-id-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Datum des Antrags"}},
@@ -843,6 +851,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление о приеме ребенка в детский сад / Application for Kindergarten Admission (Anmeldung für einen Kindergartenplatz) ---
             [
                 'slug' => 'kindergarten-admission-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Datum des Antrags"}},
@@ -952,6 +961,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление о приеме ребенка в школу / Application for School Admission (Anmeldung für die Schule) ---
             [
                 'slug' => 'school-admission-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Datum des Antrags"}},
@@ -1057,6 +1067,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Записка в школу об отсутствии ребенка / Note to School about Child Absence (Entschuldigung für die Schule) ---
             [
                 'slug' => 'school-absence-note-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"note_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia notatki","en":"Note Date","uk":"Дата складання записки","de":"Datum der Notiz"}},
@@ -1147,6 +1158,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Согласие родителей на выезд ребенка за границу / Parental Consent for Child Travel Abroad (Reisevollmacht für Minderjährige) ---
             [
                 'slug' => 'child-travel-consent-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -1250,6 +1262,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Согласие на медицинское вмешательство для ребенка / Consent to Medical Intervention for Child (Einwilligungserklärung für medizinische Maßnahmen bei Minderjährigen) ---
             [
                 'slug' => 'consent-medical-intervention-child-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -1351,6 +1364,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Соглашение об уплате алиментов / Alimony Agreement (Unterhaltsvereinbarung) ---
             [
                 'slug' => 'alimony-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1481,6 +1495,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Брачный договор (общая структура) / Marriage Contract (General Structure) (Ehevertrag) ---
             [
                 'slug' => 'marriage-contract-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1606,6 +1621,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление о регистрации брака / Application for Marriage Registration ---
             [
                 'slug' => 'marriage-registration-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -1721,6 +1737,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление о расторжении брака (в ЗАГС) / Application for Divorce (to Registry Office) ---
             [
                 'slug' => 'divorce-application-registry-office-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -1823,6 +1840,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Расписка в получении денежных средств в долг / Receipt of Money Debt ---
             [
                 'slug' => 'receipt-money-debt-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"receipt_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pokwitowania","en":"Receipt Date","uk":"Дата видачі розписки","de":"Datum der Quittung"}},
@@ -1947,6 +1965,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Расписка о возврате денежного долга / Receipt of Money Debt Repayment ---
             [
                 'slug' => 'receipt-debt-repayment-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"receipt_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pokwitowania","en":"Receipt Date","uk":"Дата видачі розписки","de":"Datum der Quittung"}},
@@ -2059,6 +2078,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Досудебная претензия о возврате долга / Pre-court Claim for Debt Repayment (Mahnung) ---
             [
                 'slug' => 'pre-court-debt-claim-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"claim_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia wezwania","en":"Claim Date","uk":"Дата складання вимоги","de":"Datum der Mahnung"}},
@@ -2157,6 +2177,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление в банк на реструктуризацию кредита / Application to Bank for Loan Restructuring ---
             [
                 'slug' => 'bank-loan-restructuring-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -2264,6 +2285,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление в банк о спорной транзакции (чарджбэк) / Application to Bank for Disputed Transaction (Chargeback) ---
             [
                 'slug' => 'bank-disputed-transaction-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -2383,6 +2405,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Заявление на возврат товара надлежащего качества / Application for Return of Goods of Proper Quality (Widerrufsbelehrung) ---
             [
                 'slug' => 'return-goods-proper-quality-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -2495,6 +2518,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Претензия на некачественный товар / Claim for Defective Goods (Mängelrüge) ---
             [
                 'slug' => 'claim-defective-goods-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"claim_date","type":"date","required":true,"labels":{"pl":"Data złożenia reklamacji","en":"Claim Date","uk":"Дата подання претензії","de":"Datum der Mängelrüge"}},
@@ -2606,6 +2630,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Бюджет на месяц (личный/семейный) / Monthly Budget (Personal/Family) ---
             [
                 'slug' => 'monthly-budget-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"month_year","type":"text","required":true,"labels":{"pl":"Miesiąc i rok","en":"Month and Year","uk":"Місяць та рік","de":"Monat und Jahr"}},
                     {"name":"budget_type","type":"text","required":true,"labels":{"pl":"Typ budżetu (osobisty/rodzinny)","en":"Budget Type (personal/family)","uk":"Тип бюджету (особистий/сімейний)","de":"Budgettyp (persönlich/familie)"}},
@@ -2712,6 +2737,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Список покупок / Shopping List ---
             [
                 'slug' => 'shopping-list-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"list_name","type":"text","required":true,"labels":{"pl":"Nazwa listy","en":"List Name","uk":"Назва списку","de":"Listenname"}},
                     {"name":"list_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia listy","en":"Date of Creation","uk":"Дата створення","de":"Erstellungsdatum"}},
@@ -2781,6 +2807,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Личное благодарственное письмо / Personal Thank You Letter ---
             [
                 'slug' => 'personal-thank-you-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data listu","en":"Letter Date","uk":"Дата листа","de":"Datum des Schreibens"}},
@@ -2869,6 +2896,7 @@ class DePersonalFamilySeeder extends Seeder
             // --- Личное письмо с извинениями / Personal Apology Letter ---
             [
                 'slug' => 'personal-apology-letter-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"letter_date","type":"date","required":true,"labels":{"pl":"Data listu","en":"Letter Date","uk":"Дата листа","de":"Datum des Schreibens"}},

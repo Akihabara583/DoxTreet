@@ -21,6 +21,7 @@ class UaWorkSeeder extends Seeder
             // --- 1. Трудовий договір (безстроковий) - ФІНАЛЬНА ВЕРСІЯ ---
             [
                 'slug' => 'permanent-employment-contract-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Повна назва роботодавця (ТОВ «Ромашка»)", "en":"Employer Full Name", "pl":"Pełna nazwa pracodawcy", "de":"Vollständiger Name des Arbeitgebers"}},
@@ -354,6 +355,7 @@ class UaWorkSeeder extends Seeder
             // --- 2. Договір про нерозголошення (NDA) - ФІНАЛЬНА ВЕРСІЯ ---
             [
                 'slug' => 'nda-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто","en":"City", "pl":"Miejscowość", "de":"Ort"}},
                     {"name":"party_one_full_name","type":"text","required":true,"labels":{"uk":"Повна назва Сторони 1","en":"Party 1 Full Name", "pl":"Pełna nazwa Strony 1", "de":"Vollständiger Name der Partei 1"}},
@@ -509,6 +511,7 @@ class UaWorkSeeder extends Seeder
             // --- 3. Резюме (классическое) ---
             [
                 'slug' => 'resume-classic-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"uk":"ПІБ","en":"Full Name", "pl":"Imię i Nazwisko", "de":"Vollständiger Name"}},
                     {"name":"position","type":"text","required":true,"labels":{"uk":"Посада, на яку претендуєте","en":"Desired Position", "pl":"Stanowisko, na które aplikujesz", "de":"Angestrebte Position"}},
@@ -607,6 +610,7 @@ class UaWorkSeeder extends Seeder
             // --- 4. Заявление о приеме на работу ---
             [
                 'slug' => 'job-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -722,6 +726,7 @@ class UaWorkSeeder extends Seeder
             // --- 5. Політика конфіденційності ---
             [
                 'slug' => 'privacy-policy-ua',
+        'access_level' => 'free',
                 'fields' => '[{"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва компанії / сайту","en":"Company/Website Name", "pl":"Nazwa firmy / strony internetowej", "de":"Firmen-/Website-Name"}},{"name":"company_address","type":"text","required":true,"labels":{"uk":"Адреса компанії","en":"Company Address", "pl":"Adres firmy", "de":"Firmenadresse"}},{"name":"contact_email","type":"email","required":true,"labels":{"uk":"Контактний Email","en":"Contact Email", "pl":"Kontaktowy adres e-mail", "de":"Kontakt-E-Mail"}}]',
                 'translations' => [
                     'uk' => ['title' => 'Політика конфіденційності', 'description' => 'Юридичний документ, що пояснює, як сайт або компанія збирає, використовує та захищає персональні дані користувачів.', 'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px;">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ</h1><p>Редакція від [[current_date]]</p></div>', 'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: justify; line-height: 1.5; font-size: 12px;"><h2 style="font-size: 14px; font-weight: bold; margin-top: 15px;">1. Загальні положення</h2><p>1.1. Ця Політика конфіденційності описує порядок збору, обробки та захисту персональних даних користувачів сайту/сервісу <strong>[[company_name]]</strong> (далі – Компанія).</p><p>1.2. Володільцем персональних даних є <strong>[[company_name]]</strong>, що знаходиться за адресою: [[company_address]].</p><h2 style="font-size: 14px; font-weight: bold; margin-top: 15px;">2. Які дані ми збираємо</h2><p>2.1. Ми можемо збирати такі категорії персональних даних: ідентифікаційні дані (ПІБ, контактний телефон, адреса електронної пошти), технічні дані (IP-адреса, файли cookie) та інші дані, які ви добровільно надаєте.</p><h2 style="font-size: 14px; font-weight: bold; margin-top: 15px;">3. Мета обробки персональних даних</h2><p>3.1. Ваші дані обробляються з метою надання вам доступу до послуг сайту, обробки ваших запитів, інформування про нові продукти та послуги, а також для покращення роботи нашого сервісу.</p><h2 style="font-size: 14px; font-weight: bold; margin-top: 15px;">4. Права суб\'єкта персональних даних</h2><p>4.1. Відповідно до Закону України "Про захист персональних даних", ви маєте право на доступ до своїх даних, їх виправлення, видалення, а також відкликання згоди на їх обробку.</p></div>', 'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 40px; font-size: 12px;"><p>З усіх питань, пов\'язаних з обробкою ваших персональних даних, ви можете звертатися за адресою електронної пошти: [[contact_email]].</p></div>'],
@@ -752,6 +757,7 @@ class UaWorkSeeder extends Seeder
             // --- 6. Акт виконаних робіт / наданих послуг ---
             [
                 'slug' => 'acceptance-act-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"act_number","type":"text","required":true,"labels":{"uk":"Акт №","en":"Act #", "pl":"Protokół nr", "de":"Protokoll Nr."}},
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто","en":"City", "pl":"Miejscowość", "de":"Ort"}},
@@ -910,6 +916,7 @@ class UaWorkSeeder extends Seeder
             // --- 7. Доверенность на получение ТМЦ ---
             [
                 'slug' => 'power-of-attorney-tmc-ua',
+        'access_level' => 'free',
                 'fields' => '[{"name":"city","type":"text","required":true,"labels":{"uk":"Місто","en":"City", "pl":"Miejscowość", "de":"Ort"}},{"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa przedsiębiorstwa", "de":"Firmenname"}},{"name":"representative_name","type":"text","required":true,"labels":{"uk":"ПІБ представника","en":"Representative\'s Full Name", "pl":"Imię i nazwisko przedstawiciela", "de":"Name des Vertreters"}},{"name":"representative_passport","type":"text","required":true,"labels":{"uk":"Паспортні дані представника","en":"Representative\'s Passport Details", "pl":"Dane paszportowe przedstawiciela", "de":"Passdaten des Vertreters"}},{"name":"supplier_name","type":"text","required":true,"labels":{"uk":"Назва постачальника","en":"Supplier Name", "pl":"Nazwa dostawcy", "de":"Name des Lieferanten"}},{"name":"document_basis","type":"text","required":true,"labels":{"uk":"Документ-підстава (напр., Рахунок №)","en":"Basis Document (e.g., Invoice #)", "pl":"Dokument-podstawa (np. Faktura nr)", "de":"Basisdokument (z.B. Rechnung Nr.)"}}]',
                 'translations' => [
                     'uk' => ['title' => 'Довіреність на отримання ТМЦ', 'description' => 'Документ, що уповноважує особу отримати товарно-матеріальні цінності від імені підприємства.', 'header_html' => '<div style="font-family: DejaVu Sans, sans-serif; text-align: center;"><h1 style="font-size: 20px;">ДОВІРЕНІСТЬ</h1></div><table width="100%"><tr><td><p>м. [[city]]</p></td><td style="text-align: right;"><p>[[current_date]] р.</p></td></tr></table>', 'body_html' => '<div style="font-family: DejaVu Sans, sans-serif; font-size: 12px; line-height: 1.5; text-align: justify;"><p>Цією довіреністю <strong>[[company_name]]</strong> уповноважує громадянина(ку) <strong>[[representative_name]]</strong> (паспорт: [[representative_passport]]) отримати від <strong>[[supplier_name]]</strong> товарно-матеріальні цінності на підставі документу: [[document_basis]].</p><p>Довіреність дійсна до [[current_date]].</p></div>', 'footer_html' => '<div style="font-family: DejaVu Sans, sans-serif; margin-top: 40px; font-size: 12px;"><p>Підпис представника ___________________ засвідчую.</p><p>Керівник ___________________ / Підпис /</p><p>Головний бухгалтер ___________________ / Підпис /</p></div>'],
@@ -940,6 +947,7 @@ class UaWorkSeeder extends Seeder
             // --- 8. Договор о материальной ответственности ---
             [
                 'slug' => 'material-liability-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Повна назва підприємства","en":"Full Company Name", "pl":"Pełna nazwa firmy", "de":"Vollständiger Firmenname"}},
@@ -1090,6 +1098,7 @@ class UaWorkSeeder extends Seeder
             // --- 9. Должностная инструкция ---
             [
                 'slug' => 'job-description-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"position_name","type":"text","required":true,"labels":{"uk":"Назва посади","en":"Position Name", "pl":"Nazwa stanowiska", "de":"Positionsbezeichnung"}},
@@ -1184,6 +1193,7 @@ class UaWorkSeeder extends Seeder
             // --- 10. Приказ о приеме на работу ---
             [
                 'slug' => 'order-of-employment-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"order_number","type":"text","required":true,"labels":{"uk":"Номер наказу","en":"Order Number", "pl":"Numer rozkazu", "de":"Anordnungsnummer"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
@@ -1273,6 +1283,7 @@ class UaWorkSeeder extends Seeder
             // --- 11. Приказ о переводе на другую должность ---
             [
                 'slug' => 'order-of-transfer-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"order_number","type":"text","required":true,"labels":{"uk":"Номер наказу","en":"Order Number", "pl":"Numer rozkazu", "de":"Anordnungsnummer"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
@@ -1346,6 +1357,7 @@ class UaWorkSeeder extends Seeder
             // --- 12. Заявление на ежегодный оплачиваемый отпуск ---
             [
                 'slug' => 'annual-leave-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -1453,6 +1465,7 @@ class UaWorkSeeder extends Seeder
             // --- 13. Заявление на отпуск за свой счет (без сохранения заработной платы) ---
             [
                 'slug' => 'unpaid-leave-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -1559,6 +1572,7 @@ class UaWorkSeeder extends Seeder
             // --- 14. Заявление на учебный отпуск ---
             [
                 'slug' => 'study-leave-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -1670,6 +1684,7 @@ class UaWorkSeeder extends Seeder
             // --- 15. Заявление на отпуск по уходу за ребенком ---
             [
                 'slug' => 'childcare-leave-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -1775,6 +1790,7 @@ class UaWorkSeeder extends Seeder
             // --- 16. Приказ на отпуск ---
             [
                 'slug' => 'order-for-leave-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"order_number","type":"text","required":true,"labels":{"uk":"Номер наказу","en":"Order Number", "pl":"Numer rozkazu", "de":"Anordnungsnummer"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
@@ -1847,6 +1863,7 @@ class UaWorkSeeder extends Seeder
             // --- 17. Заявление на увольнение по собственному желанию ---
             [
                 'slug' => 'resignation-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -1955,6 +1972,7 @@ class UaWorkSeeder extends Seeder
             // --- 18. Заявление на увольнение по соглашению сторон ---
             [
                 'slug' => 'termination-by-agreement-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"director_position","type":"text","required":true,"labels":{"uk":"Посада керівника підприємства","en":"Position of Company Head", "pl":"Stanowisko kierownika firmy", "de":"Position des Unternehmensleiters"}},
                     {"name":"director_name_genitive","type":"text","required":true,"labels":{"uk":"ПІБ керівника у давальному відмінку","en":"Full Name of Company Head (Dative Case)", "pl":"Imię i nazwisko kierownika w celowniku", "de":"Name des Unternehmensleiters (Dativ)"}},
@@ -2059,6 +2077,7 @@ class UaWorkSeeder extends Seeder
             // (Этот шаблон был последним в предыдущем ответе, новые шаблоны добавляются после него)
             [
                 'slug' => 'agreement-on-termination-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Повна назва підприємства","en":"Full Company Name", "pl":"Pełna nazwa firmy", "de":"Vollständiger Firmenname"}},
@@ -2204,6 +2223,7 @@ class UaWorkSeeder extends Seeder
             // --- 20. Приказ об увольнении ---
             [
                 'slug' => 'order-of-termination-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"order_number","type":"text","required":true,"labels":{"uk":"Номер наказу","en":"Order Number", "pl":"Numer rozkazu", "de":"Anordnungsnummer"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
@@ -2271,6 +2291,7 @@ class UaWorkSeeder extends Seeder
             // --- 21. Рекомендательное письмо ---
             [
                 'slug' => 'recommendation-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"director_name","type":"text","required":true,"labels":{"uk":"ПІБ та посада керівника","en":"Full Name and Position of Head", "pl":"Imię i nazwisko oraz stanowisko kierownika", "de":"Name und Position des Leiters"}},
@@ -2344,6 +2365,7 @@ class UaWorkSeeder extends Seeder
             // --- 22. Характеристика на сотрудника ---
             [
                 'slug' => 'employee-character-reference-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"employee_name","type":"text","required":true,"labels":{"uk":"ПІБ працівника","en":"Employee Full Name", "pl":"Imię i nazwisko pracownika", "de":"Vollständiger Name des Arbeitnehmers"}},
@@ -2412,6 +2434,7 @@ class UaWorkSeeder extends Seeder
             // --- 23. Служебная записка ---
             [
                 'slug' => 'memo-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"to_position","type":"text","required":true,"labels":{"uk":"Кому (посада)","en":"To (position)", "pl":"Do (stanowisko)", "de":"An (Position)"}},
@@ -2504,6 +2527,7 @@ class UaWorkSeeder extends Seeder
             // --- 24. Объяснительная записка ---
             [
                 'slug' => 'explanatory-note-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"to_position","type":"text","required":true,"labels":{"uk":"Кому (посада)","en":"To (position)", "pl":"Do (stanowisko)", "de":"An (Position)"}},
@@ -2608,6 +2632,7 @@ class UaWorkSeeder extends Seeder
             // --- 25. Табель учета рабочего времени ---
             [
                 'slug' => 'timesheet-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"department","type":"text","required":true,"labels":{"uk":"Відділ/Підрозділ","en":"Department", "pl":"Dział/Oddział", "de":"Abteilung"}},
@@ -2679,6 +2704,7 @@ class UaWorkSeeder extends Seeder
             // --- 26. Командировочное удостоверение ---
             [
                 'slug' => 'travel-certificate-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"certificate_number","type":"text","required":true,"labels":{"uk":"Номер посвідчення","en":"Certificate Number", "pl":"Numer zaświadczenia", "de":"Bescheinigungsnummer"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
@@ -2753,6 +2779,7 @@ class UaWorkSeeder extends Seeder
             // --- 27. Коммерческое предложение ---
             [
                 'slug' => 'commercial-offer-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва компанії","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
                     {"name":"offer_number","type":"text","required":true,"labels":{"uk":"Номер пропозиції","en":"Offer Number", "pl":"Numer oferty", "de":"Angebotsnummer"}},
@@ -2839,6 +2866,7 @@ class UaWorkSeeder extends Seeder
             // --- 28. Письмо-претензия ---
             [
                 'slug' => 'claim-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
                     {"name":"claim_number","type":"text","required":true,"labels":{"uk":"Номер претензії","en":"Claim Number", "pl":"Numer reklamacji", "de":"Reklamationsnummer"}},
@@ -2944,6 +2972,7 @@ class UaWorkSeeder extends Seeder
             // --- 29. Гарантийное письмо ---
             [
                 'slug' => 'guarantee-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
                     {"name":"recipient_name","type":"text","required":true,"labels":{"uk":"Кому (назва компанії/ПІБ)","en":"To (Company Name/Full Name)", "pl":"Do (Nazwa firmy/Imię i Nazwisko)", "de":"An (Firmenname/Name)"}},
@@ -3018,6 +3047,7 @@ class UaWorkSeeder extends Seeder
             // --- 30. Официальный запрос ---
             [
                 'slug' => 'official-request-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
                     {"name":"request_number","type":"text","required":true,"labels":{"uk":"Номер запиту","en":"Request Number", "pl":"Numer zapytania", "de":"Anfragenummer"}},
@@ -3113,6 +3143,7 @@ class UaWorkSeeder extends Seeder
             // --- 31. Письмо-уведомление ---
             [
                 'slug' => 'notification-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
                     {"name":"notification_number","type":"text","required":true,"labels":{"uk":"Номер повідомлення","en":"Notification Number", "pl":"Numer powiadomienia", "de":"Benachrichtigungsnummer"}},
@@ -3203,6 +3234,7 @@ class UaWorkSeeder extends Seeder
             // --- 32. Письмо-извинение ---
             [
                 'slug' => 'apology-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
                     {"name":"recipient_name","type":"text","required":true,"labels":{"uk":"Кому (назва компанії/ПІБ)","en":"To (Company Name/Full Name)", "pl":"Do (Nazwa firmy/Imię i Nazwisko)", "de":"An (Firmenname/Name)"}},
@@ -3272,6 +3304,7 @@ class UaWorkSeeder extends Seeder
             // --- 33. Благодарственное письмо ---
             [
                 'slug' => 'thank-you-letter-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
                     {"name":"recipient_name","type":"text","required":true,"labels":{"uk":"Кому (назва компанії/ПІБ)","en":"To (Company Name/Full Name)", "pl":"Do (Nazwa firmy/Imię i Nazwisko)", "de":"An (Firmenname/Name)"}},
@@ -3340,6 +3373,7 @@ class UaWorkSeeder extends Seeder
             // --- 34. Счет на оплату (Инвойс) ---
             [
                 'slug' => 'invoice-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"invoice_number","type":"text","required":true,"labels":{"uk":"Номер рахунку","en":"Invoice Number", "pl":"Numer faktury", "de":"Rechnungsnummer"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"Назва продавця","en":"Seller Name", "pl":"Nazwa sprzedawcy", "de":"Verkäufername"}},
@@ -3500,6 +3534,7 @@ class UaWorkSeeder extends Seeder
             // --- 35. Счет-фактура ---
             [
                 'slug' => 'tax-invoice-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"invoice_number","type":"text","required":true,"labels":{"uk":"Номер податкової накладної","en":"Tax Invoice Number", "pl":"Numer faktury VAT", "de":"Steuerrechnungsnummer"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"Назва продавця","en":"Seller Name", "pl":"Nazwa sprzedawcy", "de":"Verkäufername"}},
@@ -3665,6 +3700,7 @@ class UaWorkSeeder extends Seeder
             // --- 36. Товарная накладная ---
             [
                 'slug' => 'waybill-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"waybill_number","type":"text","required":true,"labels":{"uk":"Номер товарної накладної","en":"Waybill Number", "pl":"Numer listu przewozowego", "de":"Lieferscheinnummer"}},
                     {"name":"shipper_name","type":"text","required":true,"labels":{"uk":"Назва відправника","en":"Shipper Name", "pl":"Nazwa nadawcy", "de":"Absendername"}},
@@ -3819,6 +3855,7 @@ class UaWorkSeeder extends Seeder
             // --- 37. Договор займа между юридическими лицами ---
             [
                 'slug' => 'loan-agreement-legal-entities-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"lender_name","type":"text","required":true,"labels":{"uk":"Назва позикодавця","en":"Lender Name", "pl":"Nazwa pożyczkodawcy", "de":"Name des Kreditgebers"}},
@@ -3984,6 +4021,7 @@ class UaWorkSeeder extends Seeder
             // --- 38. Авансовый отчет ---
             [
                 'slug' => 'advance-report-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"report_number","type":"text","required":true,"labels":{"uk":"Номер авансового звіту","en":"Report Number", "pl":"Numer raportu zaliczkowego", "de":"Spesenabrechnungsnummer"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва підприємства","en":"Company Name", "pl":"Nazwa firmy", "de":"Firmenname"}},
@@ -4125,6 +4163,7 @@ class UaWorkSeeder extends Seeder
             // --- 39. Протокол разногласий к договору ---
             [
                 'slug' => 'disagreement-protocol-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"contract_type","type":"text","required":true,"labels":{"uk":"Вид договору","en":"Contract Type", "pl":"Rodzaj umowy", "de":"Vertragsart"}},
@@ -4323,6 +4362,7 @@ class UaWorkSeeder extends Seeder
             // --- 40. Договор на разработку программного обеспечения ---
             [
                 'slug' => 'software-development-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"customer_name","type":"text","required":true,"labels":{"uk":"Назва Замовника","en":"Customer Name", "pl":"Nazwa Zamawiającego", "de":"Kundenname"}},
@@ -4489,6 +4529,7 @@ class UaWorkSeeder extends Seeder
             // --- 41. Договор на создание и поддержку сайта ---
             [
                 'slug' => 'website-development-support-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"customer_name","type":"text","required":true,"labels":{"uk":"Назва Замовника","en":"Customer Name", "pl":"Nazwa Zamawiającego", "de":"Kundenname"}},
@@ -4673,6 +4714,7 @@ class UaWorkSeeder extends Seeder
             // --- 42. Техническое задание (ТЗ) на разработку ---
             [
                 'slug' => 'technical-specification-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"project_name","type":"text","required":true,"labels":{"uk":"Назва проекту","en":"Project Name", "pl":"Nazwa projektu", "de":"Projektname"}},
                     {"name":"customer_name","type":"text","required":true,"labels":{"uk":"Назва Замовника","en":"Customer Name", "pl":"Nazwa Zamawiającego", "de":"Kundenname"}},
@@ -4783,6 +4825,7 @@ class UaWorkSeeder extends Seeder
             // --- 43. Пользовательское соглашение для сайта ---
             [
                 'slug' => 'user-agreement-website-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва компанії / сайту","en":"Company/Website Name", "pl":"Nazwa firmy / strony internetowej", "de":"Firmen-/Website-Name"}},
                     {"name":"website_url","type":"text","required":true,"labels":{"uk":"Адреса сайту","en":"Website URL", "pl":"Adres strony internetowej", "de":"Website-URL"}},
@@ -4880,6 +4923,7 @@ class UaWorkSeeder extends Seeder
             // --- 44. Договор оферты ---
             [
                 'slug' => 'offer-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"uk":"Назва вашої компанії","en":"Your Company Name", "pl":"Nazwa Twojej firmy", "de":"Name Ihres Unternehmens"}},
@@ -4976,6 +5020,7 @@ class UaWorkSeeder extends Seeder
             // --- 45. Соглашение об уровне обслуживания (SLA) ---
             [
                 'slug' => 'service-level-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"provider_name","type":"text","required":true,"labels":{"uk":"Назва постачальника послуг","en":"Service Provider Name", "pl":"Nazwa dostawcy usług", "de":"Name des Dienstleisters"}},
@@ -5155,6 +5200,7 @@ class UaWorkSeeder extends Seeder
             // --- 46. Договор с фрилансером (Gig-контракт) ---
             [
                 'slug' => 'freelancer-gig-contract-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"customer_name","type":"text","required":true,"labels":{"uk":"Назва Замовника","en":"Customer Name", "pl":"Nazwa Zamawiającego", "de":"Kundenname"}},

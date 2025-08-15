@@ -21,6 +21,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор аренды квартиры (долгосрочный) / Long-term Apartment Lease Agreement ---
             [
                 'slug' => 'long-term-apartment-lease-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -178,6 +179,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор посуточной аренды квартиры / Daily Apartment Rental Agreement ---
             [
                 'slug' => 'daily-apartment-rental-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -314,6 +316,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор аренды комнаты / Room Rental Agreement ---
             [
                 'slug' => 'room-rental-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -455,6 +458,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор аренды дома / House Lease Agreement ---
             [
                 'slug' => 'house-lease-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -608,6 +612,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор аренды коммерческого помещения (офис) / Commercial Premises Lease Agreement (Office) ---
             [
                 'slug' => 'commercial-office-lease-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -761,6 +766,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор аренды склада / Warehouse Lease Agreement ---
             [
                 'slug' => 'warehouse-lease-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -914,6 +920,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор аренды гаража / Garage Lease Agreement ---
             [
                 'slug' => 'garage-lease-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1064,6 +1071,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Акт приема-передачи квартиры при аренде / Apartment Handover Protocol for Lease ---
             [
                 'slug' => 'apartment-handover-lease-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia protokołu","en":"Protocol Date","uk":"Дата складання протоколу","de":"Protokolldatum"}},
@@ -1191,6 +1199,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Опись имущества при сдаче в аренду / Inventory of Property for Lease ---
             [
                 'slug' => 'inventory-lease-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"inventory_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia inwentaryzacji","en":"Inventory Date","uk":"Дата складання інвентаризації","de":"Inventurdatum"}},
@@ -1301,6 +1310,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Расписка в получении залога за аренду / Receipt of Rental Deposit ---
             [
                 'slug' => 'receipt-rental-deposit-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"receipt_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia pokwitowania","en":"Receipt Date","uk":"Дата складання розписки","de":"Quittungsdatum"}},
@@ -1372,6 +1382,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Соглашение о расторжении договора аренды / Lease Termination Agreement ---
             [
                 'slug' => 'lease-termination-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia porozumienia","en":"Agreement Date","uk":"Дата укладення угоди","de":"Vertragsdatum"}},
@@ -1484,6 +1495,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Уведомление о повышении арендной платы / Rent Increase Notification ---
             [
                 'slug' => 'rent-increase-notification-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"notification_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia zawiadomienia","en":"Notification Date","uk":"Дата складання повідомлення","de":"Benachrichtigungsdatum"}},
@@ -1585,6 +1597,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Требование о погашении задолженности по аренде / Demand for Rent Arrears Payment ---
             [
                 'slug' => 'demand-rent-arrears-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"demand_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia wezwania","en":"Demand Date","uk":"Дата складання вимоги","de":"Datum der Mahnung"}},
@@ -1690,6 +1703,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Предварительный договор купли-продажи квартиры / Preliminary Apartment Sale Agreement ---
             [
                 'slug' => 'preliminary-apartment-sale-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1822,6 +1836,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор купли-продажи квартиры / Apartment Sale Agreement ---
             [
                 'slug' => 'apartment-sale-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1954,6 +1969,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор купли-продажи дома с земельным участком / House and Land Sale Agreement ---
             [
                 'slug' => 'house-land-sale-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2087,6 +2103,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор дарения квартиры / Apartment Donation Agreement ---
             [
                 'slug' => 'apartment-donation-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2204,6 +2221,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Договор дарения доли в квартире / Apartment Share Donation Agreement ---
             [
                 'slug' => 'apartment-share-donation-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsдата"}},
@@ -2321,6 +2339,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Акт приема-передачи недвижимости при продаже / Real Estate Handover Protocol for Sale ---
             [
                 'slug' => 'real-estate-handover-protocol-sale-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia protokołu","en":"Protocol Date","uk":"Дата складання протоколу","de":"Datum der Protokollerstellung"}},
@@ -2453,6 +2472,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Соглашение о задатке / Deposit Agreement ---
             [
                 'slug' => 'deposit-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2565,6 +2585,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Согласие супруга на продажу недвижимости / Spouse\'s Consent to Property Sale ---
             [
                 'slug' => 'spouses-consent-property-sale-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -2646,6 +2667,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Согласие супруга на покупку недвижимости / Spouse\'s Consent to Property Purchase ---
             [
                 'slug' => 'spouses-consent-property-purchase-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -2730,6 +2752,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Заявление в управляющую компанию (ЖЭК, ОСМД) / Application to Management Company (Housing Cooperative, HOA) ---
             [
                 'slug' => 'application-management-company-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -2831,6 +2854,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Заявление о протечке крыши / Roof Leak Application ---
             [
                 'slug' => 'roof-leak-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -2937,6 +2961,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Жалоба на соседей (на шум, затопление) / Complaint about Neighbors (Noise, Flooding) ---
             [
                 'slug' => 'complaint-neighbors-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"complainant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko skarżącego","en":"Complainant\'s Full Name","uk":"ПІБ скаржника","de":"Vollständiger Name des Beschwerdeführers"}},
@@ -3044,6 +3069,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Протокол общего собрания жильцов дома / Protocol of General Meeting of House Residents ---
             [
                 'slug' => 'protocol-general-meeting-residents-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"meeting_date","type":"date","required":true,"labels":{"pl":"Data zebrania","en":"Meeting Date","uk":"Дата зборів","de":"Datum der Versammlung"}},
@@ -3148,6 +3174,7 @@ class PlRealEstateSeeder extends Seeder
             // --- Доверенность на продажу/покупку недвижимости / Power of Attorney for Real Estate Sale/Purchase ---
             [
                 'slug' => 'power-of-attorney-real-estate-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},

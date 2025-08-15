@@ -52,10 +52,10 @@
         .modern-accordion .accordion-item {
             background-color: var(--bg-primary);
             border: 1px solid var(--border);
-            border-radius: 24px !important; /* Important to override bootstrap */
+            border-radius: 24px !important;
             margin-bottom: 1rem;
             box-shadow: var(--shadow-sm);
-            overflow: hidden; /* Ensures children respect the border radius */
+            overflow: hidden;
         }
 
         .modern-accordion .accordion-header {
@@ -98,7 +98,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            position: relative; /* Для позиционирования значка */
+            position: relative;
         }
 
         .bundle-card:hover {
@@ -120,30 +120,39 @@
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
+            color: white;
+        }
+
+        .btn-modern:hover {
+            color: white;
+            transform: translateY(-3px);
         }
 
         .btn-primary-modern {
             background: var(--gradient-brand);
-            color: white;
         }
         .btn-primary-modern:hover {
-            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
-            color: white;
         }
 
-        .btn-pro {
-            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
-            color: white;
+        /* Стили для кнопок заблокированного контента из home.blade.php */
+        .btn-pro-locked {
+            background: linear-gradient(135deg, #d25ffb 0%, #fd836d 100%) !important;
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
         }
-        .btn-pro:hover {
-            transform: translateY(-3px);
+        .btn-pro-locked:hover {
             box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-            color: white;
         }
 
-        /* ✅ НОВЫЕ СТИЛИ ДЛЯ ЗНАЧКА ДОСТУПА */
+        .btn-standard-locked {
+            background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 100%);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .btn-standard-locked:hover {
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Стили для значков доступа из home.blade.php */
         .access-badge {
             position: absolute;
             top: 20px;
@@ -152,10 +161,17 @@
             font-weight: bold;
             padding: 0.3em 0.7em;
             border-radius: 50px;
+            color: white;
         }
-        .access-badge.pro { background-color: #8b5cf6; color: white; }
-        .access-badge.standard { background-color: #f59e0b; color: white; }
-        .access-badge.all { background-color: #10b981; color: white; }
+        .access-badge.pro {
+            background: linear-gradient(135deg, #d25ffb 0%, #fd836d 100%) !important;
+        }
+        .access-badge.standard {
+            background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 100%);
+        }
+        .access-badge.all {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        }
     </style>
 @endpush
 
@@ -182,18 +198,22 @@
                                     <div class="row row-cols-1 row-cols-lg-2 g-4 py-3">
                                         @foreach($bundles as $bundle)
                                             @php
-                                                // ✅ ГЛАВНОЕ ИЗМЕНЕНИЕ: Проверяем доступ для каждого пакета
-                                                $hasAccess = Auth::check() && Auth::user()->canAccessBundle($bundle);
+                                                $hasAccess = false;
+                                                if ($bundle->access_level == 'all') {
+                                                    $hasAccess = true;
+                                                } elseif (Auth::check()) {
+                                                    $hasAccess = Auth::user()->canAccessBundle($bundle);
+                                                }
                                             @endphp
                                             <div class="col">
                                                 <div class="bundle-card">
-                                                    {{-- ✅ ДОБАВЛЕНИЕ ЗНАЧКА УРОВНЯ ДОСТУПА --}}
+                                                    {{-- Логика для значков с ключами перевода из home.blade.php --}}
                                                     @if($bundle->access_level == 'pro')
-                                                        <span class="access-badge pro">PRO</span>
+                                                        <span class="access-badge pro">{{ __('messages.plan_pro') }}</span>
                                                     @elseif($bundle->access_level == 'standard')
-                                                        <span class="access-badge standard">Standard</span>
+                                                        <span class="access-badge standard">{{ __('messages.plan_standard') }}</span>
                                                     @else
-                                                        <span class="access-badge all">All</span>
+                                                        <span class="access-badge all">{{ __('messages.plan_all') }}</span>
                                                     @endif
 
                                                     <h4 class="card-title fw-bold mb-3" style="color: var(--text-primary);">{{ $bundle->title }}</h4>
@@ -210,9 +230,16 @@
                                                             <i class="bi bi-magic"></i> {{ __('messages.fill_bundle') }}
                                                         </a>
                                                     @else
-                                                        <a href="{{ route('pricing', $locale) }}" class="btn btn-pro btn-modern mt-auto">
-                                                            <i class="bi bi-gem"></i> {{ __('messages.available_in_pro') }}
-                                                        </a>
+                                                        {{-- Логика для кнопок и ключей перевода из home.blade.php --}}
+                                                        @if($bundle->access_level == 'standard')
+                                                            <a href="{{ route('pricing', $locale) }}" class="btn btn-standard-locked btn-modern mt-auto">
+                                                                <i class="bi bi-gem"></i> {{ __('messages.available_in_standard_or_pro') }}
+                                                            </a>
+                                                        @else
+                                                            <a href="{{ route('pricing', $locale) }}" class="btn btn-pro-locked btn-modern mt-auto">
+                                                                <i class="bi bi-gem"></i> {{ __('messages.available_in_pro') }}
+                                                            </a>
+                                                        @endif
                                                     @endif
                                                 </div>
                                             </div>

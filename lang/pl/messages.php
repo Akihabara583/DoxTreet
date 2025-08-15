@@ -194,6 +194,24 @@ return [
     'plan_pro' => 'PRO', // ✅ NOWY
     // ...
 
+    'plan_base_title' => 'Podstawowy',
+    'plan_base_feature1' => ':count pobrań dziennie',
+    'plan_base_feature2' => ':count podpisów dziennie',
+    'plan_base_feature_no_branding_disabled' => 'Dokumenty bez brandingu DoxTreet',
+    'plan_base_feature4' => 'Historia dokumentów',
+
+    'plan_standard_title' => 'Standard',
+    'plan_standard_feature1' => ':count pobrań dziennie',
+    'plan_standard_feature2' => ':count podpisów dziennie',
+    'plan_standard_feature3' => 'Dokumenty bez brandingu DoxTreet',
+    'plan_standard_feature4' => 'Pełna historia dokumentów',
+
+    'plan_pro_title' => 'Pro',
+    'plan_pro_feature1' => ':count pobrań dziennie',
+    'plan_pro_feature2' => ':count podpisów dziennie',
+    'plan_pro_feature3' => 'Gotowe pakiety dokumentów',
+    'plan_pro_feature5' => 'Dokumenty bez brandingu DoxTreet',
+    'plan_pro_feature4' => 'Tworzenie własnych szablonów',
 
     // --- Funkcja Podpisu ---
     'sign_document' => 'Podpisz dokument',
@@ -285,16 +303,9 @@ return [
     'limit_exhausted_custom_template_error' => 'Twój limit na tworzenie własnych szablonów został osiągnięty. Proszę <a href=":url" class="alert-link">zaktualizować swój plan</a>.',
     'your_current_plan' => 'Twój obecny plan',
     'choose_plan' => 'Wybierz plan',
-    'plan_base_feature1' => ':count pobrania dokumentów dziennie',
-    'plan_base_feature2' => ':count podpisania dokumentów dziennie',
-    'plan_standard_feature1' => ':count pobrań dokumentów dziennie',
-    'plan_standard_feature2' => ':count podpisań dokumentów dziennie',
-    'plan_standard_feature3' => 'Historia dokumentów',
-    'plan_pro_feature1' => ':count pobrań dokumentów dziennie',
-    'plan_pro_feature2' => ':count podpisań dokumentów dziennie',
-    'plan_pro_feature3' => ':count tworzenia własnych szablonów dziennie',
 
 
+    'download' => 'pobierz',
 
     // --- Pakiety Dokumentów ---
     'popular_bundles_title' => 'Popularne pakiety dokumentów',

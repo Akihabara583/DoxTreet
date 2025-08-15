@@ -21,6 +21,31 @@ class TemplateController extends Controller
         $locale = app()->getLocale();
         $searchQuery = $request->query('q');
 
+        $user = Auth::user();
+
+        // --- НАЧАЛО ИЗМЕНЕНИЙ ---
+        // Определяем, какие уровни доступа доступны текущему пользователю
+        $accessibleLevels = ['free']; // По умолчанию для гостей
+        if ($user) {
+            if ($user->is_admin) {
+                $accessibleLevels = ['free', 'standard', 'pro'];
+            } else {
+                switch ($user->subscription_plan) {
+                    case 'pro':
+                        $accessibleLevels = ['free', 'standard', 'pro'];
+                        break;
+                    case 'standard':
+                        $accessibleLevels = ['free', 'standard'];
+                        break;
+                    case 'base':
+                    default:
+                        $accessibleLevels = ['free'];
+                        break;
+                }
+            }
+        }
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
+
         $searchResults = null;
         $popularTemplates = collect();
         $countries = [];
@@ -33,8 +58,10 @@ class TemplateController extends Controller
             'DE' => ['uk' => 'Німеччина', 'en' => 'Germany', 'pl' => 'Niemcy', 'de' => 'Deutschland'],
         ];
 
+
         if ($searchQuery) {
             $searchResults = Template::where('is_active', true)
+                ->whereIn('access_level', $accessibleLevels)
                 ->whereHas('translations', function ($query) use ($searchQuery) {
                     $query->where('title', 'LIKE', "%$searchQuery%")
                         ->orWhere('description', 'LIKE', "%$searchQuery%");
@@ -52,6 +79,7 @@ class TemplateController extends Controller
             // ✅ НАЧАЛО: Логика для загрузки пакетов документов
             // Получаем активные пакеты вместе с их шаблонами и переводом названий этих шаблонов
             $documentBundles = DocumentBundle::where('is_active', true)
+
                 ->with(['templates' => function ($query) {
                     // Загружаем только активные шаблоны внутри пакета
                     $query->where('is_active', true)->with('translation');
@@ -64,13 +92,19 @@ class TemplateController extends Controller
 
             // Ваша существующая логика для популярных шаблонов
             $popularTemplateIds = GeneratedDocument::query()->whereNotNull('template_id')->select('template_id', DB::raw('count(*) as count'))->groupBy('template_id')->orderByDesc('count')->limit(4)->pluck('template_id');
-            $popularTemplates = Template::with('translation')->whereIn('id', $popularTemplateIds)->get();
+            $popularTemplates = Template::with('translation')
+                ->whereIn('id', $popularTemplateIds)
+                ->whereIn('access_level', $accessibleLevels) // ФИЛЬТРАЦИЯ
+                ->limit(4)
+                ->get();
 
             // Ваша существующая логика для категорий
             $allCategories = Category::query()
-                ->whereHas('templates', fn($q) => $q->where('is_active', true))
-                ->with(['templates' => function ($query) {
-                    $query->where('is_active', true)->with('translation');
+                ->whereHas('templates', fn($q) => $q->where('is_active', true)->whereIn('access_level', $accessibleLevels)) // ФИЛЬТРАЦИЯ
+                ->with(['templates' => function ($query) use ($accessibleLevels) {
+                    $query->where('is_active', true)
+                        ->whereIn('access_level', $accessibleLevels) // ФИЛЬТРАЦИЯ
+                        ->with('translation');
                 }])
                 ->get();
 

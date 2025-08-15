@@ -20,6 +20,7 @@ class PlWorkSeeder extends Seeder
             // --- 1. Резюме (классическое) / Resume (Classic) ---
             [
                 'slug' => 'resume-classic-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"pl":"Imię i Nazwisko","en":"Full Name","uk":"Ім\'я та Прізвище","de":"Vollständiger Name"}},
                     {"name":"position","type":"text","required":true,"labels":{"pl":"Stanowisko, na które aplikujesz","en":"Position Applied For","uk":"Посада, на яку претендуєте","de":"Angestrebte Position"}},
@@ -126,6 +127,7 @@ class PlWorkSeeder extends Seeder
             // --- 2. Резюме (хронологическое) / Resume (Chronological) ---
             [
                 'slug' => 'resume-chronological-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"pl":"Imię i Nazwisko","en":"Full Name","uk":"Ім\'я та Прізвище","de":"Vollständiger Name"}},
                     {"name":"position","type":"text","required":true,"labels":{"pl":"Stanowisko docelowe","en":"Target Position","uk":"Цільова посада","de":"Zielposition"}},
@@ -219,6 +221,7 @@ class PlWorkSeeder extends Seeder
             // --- 3. Резюме (функциональное) / Resume (Functional) ---
             [
                 'slug' => 'resume-functional-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"full_name","type":"text","required":true,"labels":{"pl":"Imię i Nazwisko","en":"Full Name","uk":"Ім\'я та Прізвище","de":"Vollständiger Name"}},
                     {"name":"phone","type":"text","required":true,"labels":{"pl":"Telefon","en":"Phone","uk":"Телефон","de":"Telefon"}},
@@ -319,6 +322,7 @@ class PlWorkSeeder extends Seeder
             // --- 4. Сопроводительное письмо к резюме / Cover Letter ---
             [
                 'slug' => 'cover-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko aplikanta","en":"Applicant\'s Full Name","uk":"ПІБ апліканта","de":"Vollständiger Name des Bewerbers"}},
@@ -450,6 +454,7 @@ class PlWorkSeeder extends Seeder
             // --- 5. Заявление о приеме на работу / Job Application Statement ---
             [
                 'slug' => 'job-application-statement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wnioskodawcy","en":"Applicant\'s Full Name","uk":"ПІБ заявника","de":"Vollständiger Name des Antragstellers"}},
@@ -567,6 +572,7 @@ class PlWorkSeeder extends Seeder
             // --- 6. Трудовой договор (бессрочный) / Permanent Employment Contract ---
             [
                 'slug' => 'permanent-employment-contract-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"employer_name","type":"text","required":true,"labels":{"pl":"Nazwa pracodawcy","en":"Employer Name","uk":"Назва роботодавця","de":"Name des Arbeitgebers"}},
@@ -692,6 +698,7 @@ class PlWorkSeeder extends Seeder
             // --- 7. Срочный трудовой договор / Fixed-Term Employment Contract ---
             [
                 'slug' => 'fixed-term-employment-contract-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"employer_name","type":"text","required":true,"labels":{"pl":"Nazwa pracodawcy","en":"Employer Name","uk":"Назва роботодавця","de":"Name des Arbeitgebers"}},
@@ -786,6 +793,7 @@ class PlWorkSeeder extends Seeder
             // --- 8. Договор о неразглашении (NDA) / NDA Agreement ---
             [
                 'slug' => 'nda-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"party_one_name","type":"text","required":true,"labels":{"pl":"Nazwa Strony Ujawniającej","en":"Disclosing Party Name","uk":"Назва Сторони, що розкриває","de":"Name der offenlegenden Partei"}},
@@ -873,6 +881,7 @@ class PlWorkSeeder extends Seeder
             // --- 9. Договор о материальной ответственности / Material Liability Agreement ---
             [
                 'slug' => 'material-liability-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"employer_name","type":"text","required":true,"labels":{"pl":"Nazwa pracodawcy","en":"Employer Name","uk":"Назва роботодавця","de":"Name des Arbeitgebers"}},
@@ -959,6 +968,7 @@ class PlWorkSeeder extends Seeder
             // --- 10. Должностная инструкция / Job Description ---
             [
                 'slug' => 'job-description-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"position_name","type":"text","required":true,"labels":{"pl":"Nazwa stanowiska","en":"Position Name","uk":"Назва посади","de":"Positionsbezeichnung"}},
                     {"name":"department","type":"text","required":true,"labels":{"pl":"Dział","en":"Department","uk":"Відділ","de":"Abteilung"}},
@@ -1054,6 +1064,7 @@ class PlWorkSeeder extends Seeder
             // --- 11. Приказ о приеме на работу / Order of Employment ---
             [
                 'slug' => 'order-of-employment-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
@@ -1151,6 +1162,7 @@ class PlWorkSeeder extends Seeder
             // --- 12. Приказ о переводе на другую должность / Order of Transfer to Another Position ---
             [
                 'slug' => 'order-transfer-position-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
@@ -1244,6 +1256,7 @@ class PlWorkSeeder extends Seeder
             // --- 13. Заявление на ежегодный оплачиваемый отпуск / Annual Paid Leave Application ---
             [
                 'slug' => 'annual-paid-leave-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -1365,6 +1378,7 @@ class PlWorkSeeder extends Seeder
             // --- 14. Заявление на отпуск за свой счет (без сохранения заработной платы) / Application for Unpaid Leave ---
             [
                 'slug' => 'unpaid-leave-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -1482,6 +1496,7 @@ class PlWorkSeeder extends Seeder
             // --- 15. Заявление на учебный отпуск / Study Leave Application ---
             [
                 'slug' => 'study-leave-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -1573,6 +1588,7 @@ class PlWorkSeeder extends Seeder
             // --- 16. Заявление на отпуск по уходу за ребенком / Parental Leave Application ---
             [
                 'slug' => 'parental-leave-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -1676,6 +1692,7 @@ class PlWorkSeeder extends Seeder
             // --- 17. Приказ на отпуск / Order for Leave ---
             [
                 'slug' => 'order-for-leave-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
@@ -1774,6 +1791,7 @@ class PlWorkSeeder extends Seeder
             // --- 18. Заявление на увольнение по собственному желанию / Resignation Letter ---
             [
                 'slug' => 'resignation-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -1891,6 +1909,7 @@ class PlWorkSeeder extends Seeder
             // --- 19. Заявление на увольнение по соглашению сторон / Application for Termination by Mutual Agreement ---
             [
                 'slug' => 'termination-mutual-agreement-application-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -2007,6 +2026,7 @@ class PlWorkSeeder extends Seeder
             // --- 20. Соглашение о расторжении трудового договора / Employment Contract Termination Agreement ---
             [
                 'slug' => 'employment-contract-termination-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"employer_name","type":"text","required":true,"labels":{"pl":"Nazwa pracodawcy","en":"Employer Name","uk":"Назва роботодавця","de":"Name des Arbeitgebers"}},
@@ -2107,6 +2127,7 @@ class PlWorkSeeder extends Seeder
             // --- 21. Приказ об увольнении / Order of Dismissal ---
             [
                 'slug' => 'order-of-dismissal-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
@@ -2200,6 +2221,7 @@ class PlWorkSeeder extends Seeder
             // --- 22. Рекомендательное письмо / Recommendation Letter ---
             [
                 'slug' => 'recommendation-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"recommender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko wystawiającego","en":"Recommender Full Name","uk":"ПІБ того, хто надає рекомендацію","de":"Vollständiger Name des Empfehlers"}},
@@ -2282,6 +2304,7 @@ class PlWorkSeeder extends Seeder
             // --- 23. Характеристика на сотрудника / Employee Performance Review / Character Reference ---
             [
                 'slug' => 'employee-performance-review-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
@@ -2384,6 +2407,7 @@ class PlWorkSeeder extends Seeder
             // --- 24. Служебная записка / Memo / Official Note ---
             [
                 'slug' => 'official-memo-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -2485,6 +2509,7 @@ class PlWorkSeeder extends Seeder
             // --- 25. Объяснительная записка / Explanation Letter ---
             [
                 'slug' => 'explanation-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"applicant_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko pracownika","en":"Employee Full Name","uk":"ПІБ працівника","de":"Vollständiger Name des Mitarbeiters"}},
@@ -2597,6 +2622,7 @@ class PlWorkSeeder extends Seeder
             // --- 26. Табель учета рабочего времени / Timesheet ---
             [
                 'slug' => 'timesheet-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
                     {"name":"reporting_period","type":"text","required":true,"labels":{"pl":"Okres rozliczeniowy (np. miesiąc i rok)","en":"Reporting Period (e.g., month and year)","uk":"Звітний період (напр., місяць і рік)","de":"Berichtszeitraum (z.B. Monat und Jahr)"}},
@@ -2835,6 +2861,7 @@ class PlWorkSeeder extends Seeder
             // --- 27. Командировочное удостоверение / Business Trip Certificate ---
             [
                 'slug' => 'business-trip-certificate-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy","en":"Company Name","uk":"Назва компанії","de":"Firmenname"}},
@@ -2935,6 +2962,7 @@ class PlWorkSeeder extends Seeder
             // --- 28. Коммерческое предложение / Commercial Offer ---
             [
                 'slug' => 'commercial-offer-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy oferującej","en":"Offering Company Name","uk":"Назва компанії-продавця","de":"Name des anbietenden Unternehmens"}},
@@ -3055,6 +3083,7 @@ class PlWorkSeeder extends Seeder
             // --- 29. Письмо-претензия / Complaint Letter ---
             [
                 'slug' => 'complaint-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -3168,6 +3197,7 @@ class PlWorkSeeder extends Seeder
             // --- 30. Гарантийное письмо / Guarantee Letter ---
             [
                 'slug' => 'guarantee-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"guarantor_company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy gwarantującej","en":"Guarantor Company Name","uk":"Назва компанії-гаранта","de":"Name des garantierenden Unternehmens"}},
@@ -3274,6 +3304,7 @@ class PlWorkSeeder extends Seeder
             // --- 31. Официальный запрос / Official Request ---
             [
                 'slug' => 'official-request-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy wysyłającej","en":"Sending Company Name","uk":"Назва компанії-відправника","de":"Name des sendenden Unternehmens"}},
@@ -3375,6 +3406,7 @@ class PlWorkSeeder extends Seeder
             // --- 32. Письмо-уведомление / Notification Letter ---
             [
                 'slug' => 'notification-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_company_name","type":"text","required":true,"labels":{"pl":"Nazwa firmy wysyłającej","en":"Sending Company Name","uk":"Назва компанії-відправника","de":"Name des sendenden Unternehmens"}},
@@ -3475,6 +3507,7 @@ class PlWorkSeeder extends Seeder
             // --- 33. Письмо-извинение / Apology Letter ---
             [
                 'slug' => 'apology-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -3574,6 +3607,7 @@ class PlWorkSeeder extends Seeder
             // --- 34. Благодарственное письмо / Thank You Letter ---
             [
                 'slug' => 'thank-you-letter-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sender_full_name","type":"text","required":true,"labels":{"pl":"Imię i nazwisko nadawcy","en":"Sender Full Name","uk":"ПІБ відправника","de":"Vollständiger Name des Absenders"}},
@@ -3664,6 +3698,7 @@ class PlWorkSeeder extends Seeder
             // --- 35. Счет на оплату (Инвойс) / Invoice ---
             [
                 'slug' => 'invoice-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"invoice_number","type":"text","required":true,"labels":{"pl":"Numer faktury","en":"Invoice Number","uk":"Номер рахунку","de":"Rechnungsnummer"}},
                     {"name":"invoice_date","type":"date","required":true,"labels":{"pl":"Data wystawienia","en":"Issue Date","uk":"Дата виставлення","de":"Ausstellungsdatum"}},
@@ -3762,6 +3797,7 @@ class PlWorkSeeder extends Seeder
             // --- 36. Акт выполненных работ / оказанных услуг / Acceptance Protocol of Works/Services ---
             [
                 'slug' => 'acceptance-protocol-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_number","type":"text","required":true,"labels":{"pl":"Numer protokołu","en":"Protocol Number","uk":"Номер протоколу","de":"Protokollnummer"}},
@@ -3874,6 +3910,7 @@ class PlWorkSeeder extends Seeder
             // --- 37. Счет-фактура / VAT Invoice ---
             [
                 'slug' => 'vat-invoice-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"invoice_number","type":"text","required":true,"labels":{"pl":"Numer faktury VAT","en":"VAT Invoice Number","uk":"Номер ПДВ-рахунку","de":"USt-Rechnungsnummer"}},
                     {"name":"issue_date","type":"date","required":true,"labels":{"pl":"Data wystawienia","en":"Issue Date","uk":"Дата виставлення","de":"Ausstellungsdatum"}},
@@ -3988,6 +4025,7 @@ class PlWorkSeeder extends Seeder
             // --- 38. Товарная накладная / Delivery Note ---
             [
                 'slug' => 'delivery-note-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"note_number","type":"text","required":true,"labels":{"pl":"Numer dowodu dostawy","en":"Delivery Note Number","uk":"Номер накладної","de":"Lieferscheinnummer"}},
@@ -4088,6 +4126,7 @@ class PlWorkSeeder extends Seeder
             // --- 39. Договор займа между юридическими лицами / Loan Agreement between Legal Entities ---
             [
                 'slug' => 'loan-agreement-legal-entities-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -4206,6 +4245,7 @@ class PlWorkSeeder extends Seeder
             // --- 40. Авансовый отчет / Expense Report ---
             [
                 'slug' => 'expense-report-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"report_number","type":"text","required":true,"labels":{"pl":"Numer raportu","en":"Report Number","uk":"Номер звіту","de":"Berichtsnummer"}},
@@ -4314,6 +4354,7 @@ class PlWorkSeeder extends Seeder
             // --- 41. Доверенность на получение ТМЦ / Power of Attorney for Goods Receipt ---
             [
                 'slug' => 'power-of-attorney-goods-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_number","type":"text","required":true,"labels":{"pl":"Numer pełnomocnictwa","en":"Power of Attorney Number","uk":"Номер довіреності","de":"Vollmachtnummer"}},
@@ -4397,6 +4438,7 @@ class PlWorkSeeder extends Seeder
             // --- 42. Протокол разногласий к договору / Protocol of Disagreements to the Contract ---
             [
                 'slug' => 'protocol-disagreements-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_number","type":"text","required":true,"labels":{"pl":"Numer protokołu","en":"Protocol Number","uk":"Номер протоколу","de":"Protokollnummer"}},
@@ -4496,6 +4538,7 @@ class PlWorkSeeder extends Seeder
             // --- 43. Договор на разработку программного обеспечения / Software Development Agreement ---
             [
                 'slug' => 'software-development-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -4618,6 +4661,7 @@ class PlWorkSeeder extends Seeder
             // --- 44. Договор на создание и поддержку сайта / Website Creation and Support Agreement ---
             [
                 'slug' => 'website-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -4743,6 +4787,7 @@ class PlWorkSeeder extends Seeder
             ],
             [
                 'slug' => 'technical-specification-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"ts_number","type":"text","required":true,"labels":{"pl":"Numer TZ","en":"TS Number","uk":"Номер ТЗ","de":"TS-Nummer"}},
@@ -4868,6 +4913,7 @@ class PlWorkSeeder extends Seeder
             // --- Пользовательское соглашение для сайта / Website User Agreement ---
             [
                 'slug' => 'website-user-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data wejścia w życie","en":"Effective Date","uk":"Дата набрання чинності","de":"Datum des Inkrafttretens"}},
@@ -4961,6 +5007,7 @@ class PlWorkSeeder extends Seeder
             // --- Политика конфиденциальности / Privacy Policy ---
             [
                 'slug' => 'privacy-policy-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"policy_date","type":"date","required":true,"labels":{"pl":"Data wejścia w życie","en":"Effective Date","uk":"Дата набрання чинності","de":"Datum des Inkrafttretens"}},
@@ -5071,6 +5118,7 @@ class PlWorkSeeder extends Seeder
             // --- Договор оферты / Offer Agreement ---
             [
                 'slug' => 'offer-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"offer_date","type":"date","required":true,"labels":{"pl":"Data wystawienia oferty","en":"Offer Issue Date","uk":"Дата виставлення оферти","de":"Angebotsdatum"}},
@@ -5173,6 +5221,7 @@ class PlWorkSeeder extends Seeder
             // --- Соглашение об уровне обслуживания (SLA) / Service Level Agreement (SLA) ---
             [
                 'slug' => 'service-level-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"sla_date","type":"date","required":true,"labels":{"pl":"Data zawarcia SLA","en":"SLA Date","uk":"Дата укладення SLA","de":"SLA-Datum"}},
@@ -5296,6 +5345,7 @@ class PlWorkSeeder extends Seeder
             // --- Договор с фрилансером (Gig-контракт) / Freelancer Agreement (Gig Contract) ---
             [
                 'slug' => 'freelancer-agreement-pl',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},

@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+
+
+
+
 use Illuminate\Database\Seeder;
 use \Database\Seeders\UA\UaWorkSeeder;
 use \Database\Seeders\UA\UaPersonalFamilySeeder;
@@ -21,6 +25,12 @@ use \Database\Seeders\PL\PlHealthMedicineSeeder;
 use \Database\Seeders\PL\PlEventsTravelSeeder;
 use \Database\Seeders\PL\PlCarsTravelSeeder;
 
+
+use \Database\Seeders\PL\PlFreeKartaPobytuTemplatesSeeder;
+use Database\Seeders\PL\PlStandardUniversityAdmissionTemplatesSeeder;
+use Database\Seeders\PL\PlProBusinessStartTemplatesSeeder;
+use Database\Seeders\PL\PlStandardCarPurchaseTemplatesSeeder;
+
 use \Database\Seeders\DE\DeWorkSeeder;
 use \Database\Seeders\DE\DePersonalFamilySeeder;
 use \Database\Seeders\DE\DeRealEstateSeeder;
@@ -29,6 +39,13 @@ use \Database\Seeders\DE\DeEducationSeeder;
 use \Database\Seeders\DE\DeHealthMedicineSeeder;
 use \Database\Seeders\DE\DeEventsTravelSeeder;
 use \Database\Seeders\DE\DeCarsTravelSeeder;
+
+
+
+use \Database\Seeders\DE\DeAnmeldungTemplatesSeeder;
+use \Database\Seeders\DE\DeFamilyPackageSeeder;
+use \Database\Seeders\DE\DeBlueCardPackageSeeder;
+use \Database\Seeders\DE\DeContractTerminationPackageSeeder;
 
 
 use \Database\Seeders\US\UsCarsTravelSeeder;
@@ -67,6 +84,8 @@ class DatabaseSeeder extends Seeder
             UaEventsTravelSeeder::class,
             UaCarsSeeder::class,
 
+
+
             PlWorkSeeder::class,
             PlPersonalFamilySeeder::class,
             PlRealEstateSeeder::class,
@@ -76,6 +95,11 @@ class DatabaseSeeder extends Seeder
             PlEventsTravelSeeder::class,
             PlCarsTravelSeeder::class,
 
+            PlFreeKartaPobytuTemplatesSeeder::class,
+            PlStandardUniversityAdmissionTemplatesSeeder::class,
+            PlProBusinessStartTemplatesSeeder::class,
+            PlStandardCarPurchaseTemplatesSeeder::class,
+
             DeWorkSeeder::class,
             DePersonalFamilySeeder::class,
             DeRealEstateSeeder::class,
@@ -84,6 +108,13 @@ class DatabaseSeeder extends Seeder
             DeHealthMedicineSeeder::class,
             DeEventsTravelSeeder::class,
             DeCarsTravelSeeder::class,
+
+
+
+            DeAnmeldungTemplatesSeeder::class,
+            DeFamilyPackageSeeder::class,
+            DeBlueCardPackageSeeder::class,
+            DeContractTerminationPackageSeeder::class,
 
             //UsWorkSeeder::class,
             //UsPersonalFamilySeeder::class,

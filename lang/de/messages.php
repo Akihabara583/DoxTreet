@@ -263,14 +263,7 @@ return [
     'limit_exhausted_custom_template_error' => 'Ihr Limit für die Erstellung eigener Vorlagen ist erreicht. Bitte <a href=":url" class="alert-link">aktualisieren Sie Ihren Plan</a>.',
     'your_current_plan' => 'Ihr aktueller Plan',
     'choose_plan' => 'Plan wählen',
-    'plan_base_feature1' => ':count Dokumenten-Downloads pro Tag',
-    'plan_base_feature2' => ':count Dokumentensignaturen pro Tag',
-    'plan_standard_feature1' => ':count Dokumenten-Downloads pro Tag',
-    'plan_standard_feature2' => ':count Dokumentensignaturen pro Tag',
-    'plan_standard_feature3' => 'Dokumentenverlauf',
-    'plan_pro_feature1' => ':count Dokumenten-Downloads pro Tag',
-    'plan_pro_feature2' => ':count Dokumentensignaturen pro Tag',
-    'plan_pro_feature3' => ':count Erstellungen eigener Vorlagen pro Tag',
+
     // Rate Limiter
     'rate_limit_exceeded' => 'Sie haben das tägliche Limit für die PDF-Erstellung überschritten. Bitte registrieren Sie sich für unbegrenzten Zugriff.',
     'rate_limit_info' => 'Gäste können ein Dokument pro Tag erstellen.',
@@ -285,15 +278,13 @@ return [
     'account_creation_error' => 'Beim Erstellen Ihres Kontos ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
 
 
-
+    'download' => 'herunterladen',
 
 
     // --- Subscription Page ---
 
     'current_plan_details' => 'Details zum aktuellen Plan',
-    'plan_base_title' => 'Basis-Plan (kostenlos)',
-    'plan_standard_title' => 'Standard-Plan',
-    'plan_pro_title' => 'Pro-Plan',
+
     'subscription_valid_until' => 'Abonnement gültig bis',
     'indefinite_subscription' => 'Unbefristeter (kostenloser) Plan',
     'change_plan' => 'Plan anzeigen',
@@ -315,6 +306,25 @@ return [
     'plan_standard' => 'Standard und PRO', // ✅ NEU
     'plan_pro' => 'PRO', // ✅ NEU
     // ...
+
+    'plan_base_title' => 'Basis',
+    'plan_base_feature1' => ':count Downloads pro Tag',
+    'plan_base_feature2' => ':count Signaturen pro Tag',
+    'plan_base_feature_no_branding_disabled' => 'Dokumente ohne DoxTreet-Branding',
+    'plan_base_feature4' => 'Dokumentenverlauf',
+
+    'plan_standard_title' => 'Standard',
+    'plan_standard_feature1' => ':count Downloads pro Tag',
+    'plan_standard_feature2' => ':count Signaturen pro Tag',
+    'plan_standard_feature3' => 'Dokumente ohne DoxTreet-Branding',
+    'plan_standard_feature4' => 'Vollständiger Dokumentenverlauf',
+
+    'plan_pro_title' => 'Pro',
+    'plan_pro_feature1' => ':count Downloads pro Tag',
+    'plan_pro_feature2' => ':count Signaturen pro Tag',
+    'plan_pro_feature3' => 'Fertige Dokumentenpakete',
+    'plan_pro_feature5' => 'Dokumente ohne DoxTreet-Branding',
+    'plan_pro_feature4' => 'Erstellung eigener Vorlagen',
 
     // --- Dokumentenpakete ---
     'popular_bundles_title' => 'Beliebte Dokumentenpakete',

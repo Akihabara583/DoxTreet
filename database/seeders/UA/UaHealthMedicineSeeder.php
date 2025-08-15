@@ -21,6 +21,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 1. Запрос на получение копии медицинской документации ---
             [
                 'slug' => 'request-medical-records-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"medical_institution_name","type":"text","required":true,"labels":{"uk":"Назва медичного закладу","en":"Medical Institution Name", "pl":"Nazwa placówki medycznej", "de":"Name der medizinischen Einrichtung"}},
                     {"name":"medical_institution_address","type":"text","required":true,"labels":{"uk":"Адреса медичного закладу","en":"Medical Institution Address", "pl":"Adres placówki medycznej", "de":"Adresse der medizinischen Einrichtung"}},
@@ -137,6 +138,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 2. Заявление о прикреплении к поликлинике ---
             [
                 'slug' => 'application-polyclinic-attachment-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"polyclinic_name","type":"text","required":true,"labels":{"uk":"Назва поліклініки","en":"Polyclinic Name", "pl":"Nazwa przychodni", "de":"Name der Poliklinik"}},
                     {"name":"polyclinic_address","type":"text","required":true,"labels":{"uk":"Адреса поліклініки","en":"Polyclinic Address", "pl":"Adres przychodni", "de":"Adresse der Poliklinik"}},
@@ -253,6 +255,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 3. Отказ от медицинского вмешательства ---
             [
                 'slug' => 'refusal-medical-intervention-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"medical_institution_name","type":"text","required":true,"labels":{"uk":"Назва медичного закладу","en":"Medical Institution Name", "pl":"Nazwa placówki medycznej", "de":"Name der medizinischen Einrichtung"}},
                     {"name":"medical_institution_address","type":"text","required":true,"labels":{"uk":"Адреса медичного закладу","en":"Medical Institution Address", "pl":"Adres placówki medycznej", "de":"Adresse der medizinischen Einrichtung"}},
@@ -369,6 +372,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 4. Согласие на обработку персональных данных (медицинское) ---
             [
                 'slug' => 'consent-medical-data-processing-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"medical_institution_name","type":"text","required":true,"labels":{"uk":"Назва медичного закладу","en":"Medical Institution Name", "pl":"Nazwa placówki medycznej", "de":"Name der medizinischen Einrichtung"}},
                     {"name":"medical_institution_address","type":"text","required":true,"labels":{"uk":"Адреса медичного закладу","en":"Medical Institution Address", "pl":"Adres placówki medycznej", "de":"Adresse der medizinischen Einrichtung"}},
@@ -441,6 +445,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 5. Жалоба на врача / медицинское учреждение ---
             [
                 'slug' => 'complaint-doctor-medical-institution-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"recipient_name","type":"text","required":true,"labels":{"uk":"Кому (ПІБ керівника або назва установи)","en":"To (Head\'s Full Name or Institution Name)", "pl":"Do (Imię i nazwisko kierownika lub nazwa instytucji)", "de":"An (Name des Leiters oder der Institution)"}},
                     {"name":"recipient_address","type":"text","required":true,"labels":{"uk":"Адреса отримувача","en":"Recipient Address", "pl":"Adres odbiorcy", "de":"Adresse des Empfängers"}},
@@ -566,6 +571,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 6. Дневник самочувствия (для отслеживания симптомов) ---
             [
                 'slug' => 'wellbeing-diary-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"patient_name","type":"text","required":true,"labels":{"uk":"ПІБ пацієнта","en":"Patient\'s Full Name", "pl":"Imię i nazwisko pacjenta", "de":"Vollständiger Name des Patienten"}},
                     {"name":"period_start_date","type":"date","required":true,"labels":{"uk":"Початок періоду","en":"Period Start Date", "pl":"Początek okresu", "de":"Beginn des Zeitraums"}},
@@ -623,6 +629,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 7. Дневник артериального давления ---
             [
                 'slug' => 'blood-pressure-diary-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"patient_name","type":"text","required":true,"labels":{"uk":"ПІБ пацієнта","en":"Patient\'s Full Name", "pl":"Imię i nazwisko pacjenta", "de":"Vollständiger Name des Patienten"}},
                     {"name":"period_start_date","type":"date","required":true,"labels":{"uk":"Початок періоду","en":"Period Start Date", "pl":"Początek okresu", "de":"Beginn des Zeitraums"}},
@@ -736,6 +743,7 @@ class UaHealthMedicineSeeder extends Seeder
             // --- 8. Дневник головной боли ---
             [
                 'slug' => 'headache-diary-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"patient_name","type":"text","required":true,"labels":{"uk":"ПІБ пацієнта","en":"Patient\'s Full Name", "pl":"Imię i nazwisko pacjenta", "de":"Vollständiger Name des Patienten"}},
                     {"name":"period_start_date","type":"date","required":true,"labels":{"uk":"Початок періоду","en":"Period Start Date", "pl":"Początek okresu", "de":"Beginn des Zeitraums"}},

@@ -21,6 +21,7 @@ class UaEducationSeeder extends Seeder
             // --- 1. Заявление на академический отпуск ---
             [
                 'slug' => 'academic-leave-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"rector_name","type":"text","required":true,"labels":{"uk":"ПІБ ректора","en":"Rector\'s Full Name", "pl":"Imię i nazwisko rektora", "de":"Vollständiger Name des Rektors"}},
@@ -133,6 +134,7 @@ class UaEducationSeeder extends Seeder
             // --- 2. Заявление о переводе на другую специальность ---
             [
                 'slug' => 'transfer-specialty-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"rector_name","type":"text","required":true,"labels":{"uk":"ПІБ ректора","en":"Rector\'s Full Name", "pl":"Imię i nazwisko rektora", "de":"Vollständiger Name des Rektors"}},
@@ -248,6 +250,7 @@ class UaEducationSeeder extends Seeder
             // --- 3. Заявление о переводе в другой ВУЗ ---
             [
                 'slug' => 'transfer-university-application-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"current_university_name","type":"text","required":true,"labels":{"uk":"Назва поточного ВНЗ","en":"Current University Name", "pl":"Nazwa obecnej uczelni", "de":"Name der aktuellen Universität"}},
                     {"name":"current_rector_name","type":"text","required":true,"labels":{"uk":"ПІБ ректора поточного ВНЗ","en":"Current Rector\'s Full Name", "pl":"Imię i nazwisko rektora obecnej uczelni", "de":"Vollständiger Name des aktuellen Rektors"}},
@@ -364,6 +367,7 @@ class UaEducationSeeder extends Seeder
             // --- 4. План курсовой работы ---
             [
                 'slug' => 'coursework-plan-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"uk":"Назва факультету","en":"Faculty Name", "pl":"Nazwa wydziału", "de":"Fakultätsname"}},
@@ -462,6 +466,7 @@ class UaEducationSeeder extends Seeder
             // --- 5. План дипломной работы ---
             [
                 'slug' => 'diploma-work-plan-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"uk":"Назва факультету","en":"Faculty Name", "pl":"Nazwa wydziału", "de":"Fakultätsname"}},
@@ -559,6 +564,7 @@ class UaEducationSeeder extends Seeder
             // --- 6. Титульный лист для реферата ---
             [
                 'slug' => 'abstract-title-page-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"uk":"Назва факультету","en":"Faculty Name", "pl":"Nazwa wydziału", "de":"Fakultätsname"}},
@@ -685,6 +691,7 @@ class UaEducationSeeder extends Seeder
             // --- 7. Титульный лист для курсовой работы ---
             [
                 'slug' => 'coursework-title-page-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"uk":"Назва факультету","en":"Faculty Name", "pl":"Nazwa wydziału", "de":"Fakultätsname"}},
@@ -813,6 +820,7 @@ class UaEducationSeeder extends Seeder
             // --- 8. Титульный лист для дипломной работы ---
             [
                 'slug' => 'diploma-title-page-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"faculty_name","type":"text","required":true,"labels":{"uk":"Назва факультету","en":"Faculty Name", "pl":"Nazwa wydziału", "de":"Fakultätsname"}},
@@ -927,6 +935,7 @@ class UaEducationSeeder extends Seeder
             // --- 9. Рецензия на научную работу ---
             [
                 'slug' => 'scientific-work-review-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"reviewer_name","type":"text","required":true,"labels":{"uk":"ПІБ рецензента","en":"Reviewer\'s Full Name", "pl":"Imię i nazwisko recenzenta", "de":"Vollständiger Name des Gutachters"}},
                     {"name":"reviewer_position","type":"text","required":true,"labels":{"uk":"Посада рецензента","en":"Reviewer\'s Position", "pl":"Stanowisko recenzenta", "de":"Position des Gutachters"}},
@@ -1010,6 +1019,7 @@ class UaEducationSeeder extends Seeder
             // --- 10. Отзыв научного руководителя ---
             [
                 'slug' => 'supervisor-review-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"supervisor_name","type":"text","required":true,"labels":{"uk":"ПІБ наукового керівника","en":"Supervisor\'s Full Name", "pl":"Imię i nazwisko promotora", "de":"Vollständiger Name des Betreuers"}},
                     {"name":"supervisor_position","type":"text","required":true,"labels":{"uk":"Посада наукового керівника","en":"Supervisor\'s Position", "pl":"Stanowisko promotora", "de":"Position des Betreuers"}},
@@ -1093,6 +1103,7 @@ class UaEducationSeeder extends Seeder
             // --- 11. Портфолио студента/ученика ---
             [
                 'slug' => 'student-portfolio-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"student_name","type":"text","required":true,"labels":{"uk":"ПІБ студента/учня","en":"Student\'s/Pupil\'s Full Name", "pl":"Imię i nazwisko studenta/ucznia", "de":"Vollständiger Name des Studenten/Schülers"}},
                     {"name":"institution_name","type":"text","required":true,"labels":{"uk":"Назва навчального закладу","en":"Educational Institution Name", "pl":"Nazwa instytucji edukacyjnej", "de":"Name der Bildungseinrichtung"}},
@@ -1181,6 +1192,7 @@ class UaEducationSeeder extends Seeder
             // --- 12. Мотивационное письмо для поступления в ВУЗ ---
             [
                 'slug' => 'motivation-letter-university-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"university_name","type":"text","required":true,"labels":{"uk":"Назва ВНЗ","en":"University Name", "pl":"Nazwa uczelni", "de":"Name der Universität"}},
                     {"name":"rector_name","type":"text","required":true,"labels":{"uk":"ПІБ ректора","en":"Rector\'s Full Name", "pl":"Imię i nazwisko rektora", "de":"Vollständiger Name des Rektors"}},

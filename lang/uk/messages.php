@@ -299,7 +299,7 @@ return [
 
 
     // ...
-
+    'download' => 'завантажити',
     // --- Subscription Page ---
     'daily_limits_usage_title'      => 'Використання денних лімітів',
     'limit_downloads_used'          => 'Використано завантажень',

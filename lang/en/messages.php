@@ -166,6 +166,25 @@ return [
     'plan_pro' => 'PRO', // ✅ НОВЫЙ
     // ...
 
+    'plan_base_title' => 'Base',
+    'plan_base_feature1' => ':count downloads per day',
+    'plan_base_feature2' => ':count signings per day',
+    'plan_base_feature_no_branding_disabled' => 'Documents without DoxTreet branding',
+    'plan_base_feature4' => 'Document history',
+
+    'plan_standard_title' => 'Standard',
+    'plan_standard_feature1' => ':count downloads per day',
+    'plan_standard_feature2' => ':count signings per day',
+    'plan_standard_feature3' => 'Documents without DoxTreet branding',
+    'plan_standard_feature4' => 'Full document history',
+
+    'plan_pro_title' => 'Pro',
+    'plan_pro_feature1' => ':count downloads per day',
+    'plan_pro_feature2' => ':count signings per day',
+    'plan_pro_feature3' => 'Ready Document Bundles',
+    'plan_pro_feature5' => 'Documents without DoxTreet branding',
+    'plan_pro_feature4' => 'Creation of own templates',
+
     'verification_sent' => 'A verification code has been sent to your email.',
     'registration_error' => 'Registration error. Please try again.',
     'session_expired' => 'Your session has expired. Please start the registration process again.',
@@ -223,23 +242,9 @@ return [
     'validation_error_title' => 'Please correct the errors:',
     'your_current_plan' => 'Your Current Plan',
     'plan_free_title' => 'Base',
-    'plan_base_title' => 'Base',
-    'plan_base_feature1' => ':count document downloads per day',
-    'plan_base_feature2' => ':count document signing per day',
     'plan_base_feature3' => 'Access to all templates',
 
-    'plan_standard_title' => 'Standard',
-    'plan_standard_feature1' => ':count document downloads per day',
-    'plan_standard_feature2' => ':count document signings per day',
-    'plan_standard_feature3' => 'Document history',
-    'plan_standard_feature4' => 'Email support',
-
-    'plan_pro_title' => 'Pro',
-    'plan_pro_feature1' => ':count document downloads per day',
-    'plan_pro_feature2' => ':count document signings per day',
-    'plan_pro_feature3' => ':count custom template creations per day',
-    'plan_pro_feature4' => 'Priority support',
-
+    'download' => 'download',
     // Страница "Моя подписка"
     'my_subscription' => 'My Subscription',
     'current_plan_details' => 'Current Plan Details',

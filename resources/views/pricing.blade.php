@@ -207,6 +207,48 @@
             padding: 1.5rem;
             text-align: center;
         }
+        .btn-modern {
+            border-radius: 16px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            color: white;
+        }
+
+        .btn-modern:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+        /* ✅ НОВЫЕ СТИЛИ ДЛЯ КНОПОК ВЫБОРА ПЛАНА */
+        .btn-standard {
+            background: linear-gradient(135deg, #d946ef 0%, #8b5cf6 100%);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .btn-standard:hover {
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-pro {
+            background: linear-gradient(135deg, #d25ffb 0%, #fd836d 100%) !important;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        .btn-pro:hover {
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+        /* ✅ КОНЕЦ НОВЫХ СТИЛЕЙ */
+
+        .limit-reset-card {
+            background-color: var(--bg-tertiary);
+            border: 1px dashed var(--primary);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
     </style>
 @endpush
 
@@ -278,10 +320,10 @@
                                 @if($currentPlan == 'standard')
                                     <button class="btn btn-outline-modern btn-modern" disabled>{{ __('messages.your_current_plan') }}</button>
                                 @else
-                                    <a href="https://doxtreet.gumroad.com/l/standardplan?email={{ auth()->user()->email }}" class="btn btn-primary-modern btn-modern">{{ __('messages.choose_plan') }}</a>
+                                    <a href="https://doxtreet.gumroad.com/l/standardplan?email={{ auth()->user()->email }}" class="btn btn-standard btn-modern">{{ __('messages.choose_plan') }}</a>
                                 @endif
                             @else
-                                <a href="https://doxtreet.gumroad.com/l/standardplan" class="btn btn-primary-modern btn-modern">{{ __('messages.choose_plan') }}</a>
+                                <a href="{{ route('login', ['locale' => app()->getLocale()]) }}" class="btn btn-standard btn-modern">{{ __('messages.choose_plan') }}</a>
                             @endguest
                         </div>
                     </div>
@@ -307,10 +349,10 @@
                                 @if($currentPlan == 'pro')
                                     <button class="btn btn-outline-modern btn-modern" disabled>{{ __('messages.your_current_plan') }}</button>
                                 @else
-                                    <a href="https://doxtreet.gumroad.com/l/proplan?email={{ auth()->user()->email }}" class="btn btn-primary-modern btn-modern">{{ __('messages.choose_plan') }}</a>
+                                    <a href="https://doxtreet.gumroad.com/l/proplan?email={{ auth()->user()->email }}" class="btn btn-pro btn-modern">{{ __('messages.choose_plan') }}</a>
                                 @endif
                             @else
-                                <a href="https://doxtreet.gumroad.com/l/proplan" class="btn btn-primary-modern btn-modern">{{ __('messages.choose_plan') }}</a>
+                                <a href="{{ route('login', ['locale' => app()->getLocale()]) }}" class="btn btn-pro btn-modern">{{ __('messages.choose_plan') }}</a>
                             @endguest
                         </div>
                     </div>

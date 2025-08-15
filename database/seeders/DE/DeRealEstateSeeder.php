@@ -22,6 +22,7 @@ class DeRealEstateSeeder extends Seeder
 // --- Договор аренды квартиры (долгосрочный) / Long-term Apartment Rental Agreement (Mietvertrag) ---
             [
                 'slug' => 'long-term-apartment-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -174,6 +175,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Договор посуточной аренды квартиры / Daily Apartment Rental Agreement (Kurzzeitmietvertrag) ---
             [
                 'slug' => 'daily-apartment-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -299,6 +301,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Договор аренды комнаты / Room Rental Agreement (Mietvertrag Zimmer) ---
             [
                 'slug' => 'room-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -456,6 +459,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Договор аренды дома / House Rental Agreement (Mietvertrag Haus) ---
             [
                 'slug' => 'house-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -608,6 +612,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Договор аренды коммерческого помещения (офис) / Commercial Property (Office) Rental Agreement (Gewerbemietvertrag Büro) ---
             [
                 'slug' => 'commercial-office-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -756,6 +761,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Договор аренды склада / Warehouse Rental Agreement (Mietvertrag Lager) ---
             [
                 'slug' => 'warehouse-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -903,6 +909,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Договор аренды гаража / Garage Rental Agreement (Mietvertrag Garage) ---
             [
                 'slug' => 'garage-rental-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1045,6 +1052,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Акт приема-передачи квартиры при аренде / Apartment Handover Protocol for Rental (Wohnungsübergabeprotokoll bei Mietbeginn) ---
             [
                 'slug' => 'apartment-handover-protocol-rental-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia protokołu","en":"Protocol Date","uk":"Дата складання протоколу","de":"Datum der Protokollerstellung"}},
@@ -1182,6 +1190,7 @@ class DeRealEstateSeeder extends Seeder
             // --- Опись имущества при сдаче в аренду / Inventory List for Rental (Übergabeprotokoll Inventar) ---
             [
                 'slug' => 'inventory-list-rental-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"list_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia listy","en":"List Date","uk":"Дата складання списку","de":"Datum der Liste"}},
@@ -1286,6 +1295,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Расписка в получении залога за аренду / Receipt for Rental Deposit (Quittung Mietkaution) ---
             [
                 'slug' => 'receipt-rental-deposit-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"receipt_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pokwitowania","en":"Receipt Date","uk":"Дата видачі розписки","de":"Datum der Quittung"}},
@@ -1368,6 +1378,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Соглашение о расторжении договора аренды / Rental Agreement Termination Agreement (Mietaufhebungsvertrag) ---
             [
                 'slug' => 'rental-agreement-termination-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1479,6 +1490,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Уведомление о повышении арендной платы / Notice of Rent Increase (Mieterhöhung) ---
             [
                 'slug' => 'rent-increase-notice-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"notice_date","type":"date","required":true,"labels":{"pl":"Data powiadomienia","en":"Notice Date","uk":"Дата повідомлення","de":"Datum der Mitteilung"}},
@@ -1588,6 +1600,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Требование о погашении задолженности по аренде / Demand for Rent Arrears (Mahnung Mietrückstand) ---
             [
                 'slug' => 'demand-rent-arrears-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"demand_date","type":"date","required":true,"labels":{"pl":"Data wezwania","en":"Demand Date","uk":"Дата вимоги","de":"Datum der Mahnung"}},
@@ -1693,6 +1706,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Предварительный договор купли-продажи квартиры / Preliminary Apartment Sale Agreement (Vorvertrag Wohnungskauf) ---
             [
                 'slug' => 'preliminary-apartment-sale-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1809,6 +1823,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Договор купли-продажи квартиры / Apartment Sale Agreement (Wohnungskaufvertrag) ---
             [
                 'slug' => 'apartment-sale-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -1925,6 +1940,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Договор купли-продажи дома с земельным участком / House and Land Sale Agreement (Hauskaufvertrag mit Grundstück) ---
             [
                 'slug' => 'house-land-sale-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2042,6 +2058,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Договор дарения квартиры / Apartment Donation Agreement (Wohnungsschenkungsvertrag) ---
             [
                 'slug' => 'apartment-donation-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2151,6 +2168,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Договор дарения доли в квартире / Apartment Share Donation Agreement (Schenkungsvertrag über einen Wohnungsanteil) ---
             [
                 'slug' => 'apartment-share-donation-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2260,6 +2278,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Акт приема-передачи недвижимости при продаже / Real Estate Handover Protocol for Sale (Übergabeprotokoll Immobilie) ---
             [
                 'slug' => 'real-estate-handover-protocol-sale-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"protocol_date","type":"date","required":true,"labels":{"pl":"Data sporządzenia protokołu","en":"Protocol Date","uk":"Дата складання протоколу","de":"Datum der Protokollerstellung"}},
@@ -2388,6 +2407,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Соглашение о задатке / Deposit Agreement (Reservierungsvereinbarung / Anzahlungsvereinbarung) ---
             [
                 'slug' => 'deposit-agreement-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"agreement_date","type":"date","required":true,"labels":{"pl":"Data zawarcia umowy","en":"Agreement Date","uk":"Дата укладення договору","de":"Vertragsdatum"}},
@@ -2492,6 +2512,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Согласие супруга на продажу недвижимости / Spouse's Consent to Property Sale (Ehegattenzustimmung zum Immobilienverkauf) ---
             [
                 'slug' => 'spouses-consent-property-sale-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -2574,6 +2595,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Согласие супруга на покупку недвижимости / Spouse's Consent to Property Purchase (Ehegattenzustimmung zum Immobilienkauf) ---
             [
                 'slug' => 'spouses-consent-property-purchase-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"consent_date","type":"date","required":true,"labels":{"pl":"Data wyrażenia zgody","en":"Consent Date","uk":"Дата надання згоди","de":"Datum der Zustimmung"}},
@@ -2655,6 +2677,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Заявление в управляющую компанию (ЖЭК, ОСМД) / Application to Management Company (Hausverwaltung, WEG) ---
             [
                 'slug' => 'application-management-company-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -2762,6 +2785,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Заявление о протечке крыши / Roof Leak Application (Meldung Dachschaden / Wasserschaden) ---
             [
                 'slug' => 'roof-leak-application-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"application_date","type":"date","required":true,"labels":{"pl":"Data złożenia wniosku","en":"Application Date","uk":"Дата подання заяви","de":"Antragsdatum"}},
@@ -2878,6 +2902,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Жалоба на соседей (на шум, затопление) / Complaint about Neighbors (Noise, Flooding) ---
             [
                 'slug' => 'complaint-neighbors-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"complaint_date","type":"date","required":true,"labels":{"pl":"Data złożenia skargi","en":"Complaint Date","uk":"Дата подання скарги","de":"Datum der Beschwerde"}},
@@ -2987,6 +3012,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Протокол общего собрания жильцов дома / Protocol of General Meeting of House Residents (Protokoll der Eigentümerversammlung) ---
             [
                 'slug' => 'protocol-general-meeting-residents-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"meeting_date","type":"date","required":true,"labels":{"pl":"Data zebrania","en":"Meeting Date","uk":"Дата зборів","de":"Datum der Versammlung"}},
@@ -3087,6 +3113,7 @@ Pomieszczenie | Przedmiot | Stan | Uwagi
             // --- Доверенность на продажу/покупку недвижимости / Power of Attorney for Real Estate Sale/Purchase (Vollmacht für Immobilienangelegenheiten) ---
             [
                 'slug' => 'power-of-attorney-real-estate-de',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"pl":"Miejscowość","en":"City","uk":"Місто","de":"Ort"}},
                     {"name":"poa_date","type":"date","required":true,"labels":{"pl":"Data wystawienia pełnomocnictwa","en":"POA Date","uk":"Дата видачі довіреності","de":"Datum der Vollmacht"}},

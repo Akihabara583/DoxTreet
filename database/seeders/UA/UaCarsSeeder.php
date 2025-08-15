@@ -21,6 +21,7 @@ class UaCarsSeeder extends Seeder
             // --- 1. Договор купли-продажи автомобиля ---
             [
                 'slug' => 'car-purchase-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -184,6 +185,7 @@ class UaCarsSeeder extends Seeder
             // --- 2. Акт приема-передачи автомобиля ---
             [
                 'slug' => 'car-handover-act-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання акту","en":"City of Act Compilation", "pl":"Miejscowość sporządzenia protokołu", "de":"Ort der Akterstellung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -350,6 +352,7 @@ class UaCarsSeeder extends Seeder
             // --- 3. Расписка в получении денег за автомобиль ---
             [
                 'slug' => 'receipt-car-payment-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання розписки","en":"City of Receipt Compilation", "pl":"Miejscowość sporządzenia pokwitowania", "de":"Ort der Quittungserstellung"}},
                     {"name":"seller_name","type":"text","required":true,"labels":{"uk":"ПІБ продавця","en":"Seller\'s Full Name", "pl":"Imię i nazwisko sprzedawcy", "de":"Vollständiger Name des Verkäufers"}},
@@ -417,6 +420,7 @@ class UaCarsSeeder extends Seeder
             // --- 4. Доверенность на управление автомобилем ---
             [
                 'slug' => 'power-of-attorney-car-management-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},
@@ -511,6 +515,7 @@ class UaCarsSeeder extends Seeder
             // --- 5. Доверенность на продажу автомобиля ---
             [
                 'slug' => 'power-of-attorney-car-sale-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"principal_name","type":"text","required":true,"labels":{"uk":"ПІБ довірителя","en":"Principal\'s Full Name", "pl":"Imię i nazwisko mocodawcy", "de":"Vollständiger Name des Vollmachtgebers"}},
@@ -605,6 +610,7 @@ class UaCarsSeeder extends Seeder
             // --- 6. Договор аренды автомобиля ---
             [
                 'slug' => 'car-lease-agreement-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"landlord_name","type":"text","required":true,"labels":{"uk":"ПІБ орендодавця","en":"Landlord\'s Full Name", "pl":"Imię i nazwisko wynajmującego", "de":"Vollständiger Name des Vermieters"}},
@@ -778,6 +784,7 @@ class UaCarsSeeder extends Seeder
             // --- 7. Европротокол (извещение о ДТП) ---
             [
                 'slug' => 'europrotocol-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання","en":"City of Compilation", "pl":"Miejscowość sporządzenia", "de":"Ort der Erstellung"}},
                     {"name":"accident_date","type":"date","required":true,"labels":{"uk":"Дата ДТП","en":"Accident Date", "pl":"Data wypadku", "de":"Datum des Unfalls"}},
@@ -913,6 +920,7 @@ class UaCarsSeeder extends Seeder
             // --- 8. Претензия в страховую компанию о выплате возмещения ---
             [
                 'slug' => 'claim-insurance-payout-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"insurance_company_name","type":"text","required":true,"labels":{"uk":"Назва страхової компанії","en":"Insurance Company Name", "pl":"Nazwa firmy ubezpieczeniowej", "de":"Name der Versicherungsgesellschaft"}},
                     {"name":"insurance_company_address","type":"text","required":true,"labels":{"uk":"Адреса страхової компанії","en":"Insurance Company Address", "pl":"Adres firmy ubezpieczeniowej", "de":"Adresse der Versicherungsgesellschaft"}},
@@ -1047,6 +1055,7 @@ class UaCarsSeeder extends Seeder
             // --- 9. Журнал учета технического обслуживания автомобиля ---
             [
                 'slug' => 'car-maintenance-log-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"car_make","type":"text","required":true,"labels":{"uk":"Марка автомобіля","en":"Car Make", "pl":"Marka samochodu", "de":"Fahrzeugmarke"}},
                     {"name":"car_model","type":"text","required":true,"labels":{"uk":"Модель автомобіля","en":"Car Model", "pl":"Model samochodu", "de":"Fahrzeugmodell"}},

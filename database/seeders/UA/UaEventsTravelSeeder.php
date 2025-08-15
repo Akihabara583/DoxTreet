@@ -22,6 +22,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 1. Приглашение на мероприятие (официальное) ---
             [
                 'slug' => 'official-event-invitation-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"organizer_name","type":"text","required":true,"labels":{"uk":"Назва організації-організатора","en":"Organizer Organization Name", "pl":"Nazwa organizacji-organizatora", "de":"Name der veranstaltenden Organisation"}},
                     {"name":"event_name","type":"text","required":true,"labels":{"uk":"Назва заходу","en":"Event Name", "pl":"Nazwa wydarzenia", "de":"Veranstaltungsname"}},
@@ -102,6 +103,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 2. Приглашение на день рождения/свадьбу (неофициальное) ---
             [
                 'slug' => 'informal-invitation-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_type","type":"text","required":true,"labels":{"uk":"Тип події (День народження, Весілля)","en":"Event Type (Birthday, Wedding)", "pl":"Rodzaj wydarzenia (Urodziny, Ślub)", "de":"Ereignistyp (Geburtstag, Hochzeit)"}},
                     {"name":"recipient_name","type":"text","required":true,"labels":{"uk":"Ім\'я запрошеного","en":"Invitee\'s Name", "pl":"Imię zaproszonego", "de":"Name des Eingeladenen"}},
@@ -187,6 +189,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 3. План мероприятия ---
             [
                 'slug' => 'event-plan-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_name","type":"text","required":true,"labels":{"uk":"Назва заходу","en":"Event Name", "pl":"Nazwa wydarzenia", "de":"Veranstaltungsname"}},
                     {"name":"event_date","type":"date","required":true,"labels":{"uk":"Дата заходу","en":"Event Date", "pl":"Data wydarzenia", "de":"Veranstaltungsdatum"}},
@@ -257,6 +260,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 4. Бюджет мероприятия ---
             [
                 'slug' => 'event-budget-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_name","type":"text","required":true,"labels":{"uk":"Назва заходу","en":"Event Name", "pl":"Nazwa wydarzenia", "de":"Veranstaltungsname"}},
                     {"name":"budget_items","type":"textarea","required":true,"labels":{"uk":"Статті витрат та доходи (Категорія, Сума)","en":"Budget Items (Category, Amount)", "pl":"Pozycje budżetowe (Kategoria, Kwota)", "de":"Budgetposten (Kategorie, Betrag)"}},
@@ -371,6 +375,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 5. Список гостей ---
             [
                 'slug' => 'guest-list-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"event_name","type":"text","required":true,"labels":{"uk":"Назва заходу","en":"Event Name", "pl":"Nazwa wydarzenia", "de":"Veranstaltungsname"}},
                     {"name":"event_date","type":"date","required":true,"labels":{"uk":"Дата заходу","en":"Event Date", "pl":"Data wydarzenia", "de":"Veranstaltungsdatum"}},
@@ -479,6 +484,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 6. Договор с ведущим/фотографом/кейтерингом ---
             [
                 'slug' => 'event-service-contract-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто укладення","en":"City of Signing", "pl":"Miejscowość zawarcia", "de":"Ort der Unterzeichnung"}},
                     {"name":"customer_name","type":"text","required":true,"labels":{"uk":"Назва Замовника (ЮО/ПІБ)","en":"Customer Name (Legal Entity/Full Name)", "pl":"Nazwa Zamawiającego (Osoba prawna/Imię i Nazwisko)", "de":"Kundenname (Juristische Person/Name)"}},
@@ -643,6 +649,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 7. План путешествия / Маршрут ---
             [
                 'slug' => 'travel-plan-route-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"travel_name","type":"text","required":true,"labels":{"uk":"Назва подорожі","en":"Travel Name", "pl":"Nazwa podróży", "de":"Reisename"}},
                     {"name":"travel_start_date","type":"date","required":true,"labels":{"uk":"Дата початку подорожі","en":"Travel Start Date", "pl":"Data rozpoczęcia podróży", "de":"Reisebeginn"}},
@@ -732,6 +739,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 8. Бюджет путешествия ---
             [
                 'slug' => 'travel-budget-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"travel_name","type":"text","required":true,"labels":{"uk":"Назва подорожі","en":"Travel Name", "pl":"Nazwa podróży", "de":"Reisename"}},
                     {"name":"travel_start_date","type":"date","required":true,"labels":{"uk":"Дата початку подорожі","en":"Travel Start Date", "pl":"Data rozpoczęcia podróży", "de":"Reisebeginn"}},
@@ -856,6 +864,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 9. Список вещей в дорогу ---
             [
                 'slug' => 'packing-list-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"trip_name","type":"text","required":true,"labels":{"uk":"Назва поїздки","en":"Trip Name", "pl":"Nazwa podróży", "de":"Reisename"}},
                     {"name":"trip_date","type":"text","required":true,"labels":{"uk":"Дати поїздки","en":"Trip Dates", "pl":"Daty podróży", "de":"Reisedaten"}},
@@ -912,6 +921,7 @@ class UaEventsTravelSeeder extends Seeder
             // --- 10. Доверенность на ребенка для путешествия с третьим лицом ---
             [
                 'slug' => 'power-of-attorney-child-travel-third-party-ua',
+        'access_level' => 'free',
                 'fields' => '[
                     {"name":"city","type":"text","required":true,"labels":{"uk":"Місто складання довіреності","en":"City of Power of Attorney Compilation", "pl":"Miejscowość sporządzenia pełnomocnictwa", "de":"Ort der Vollmachtserstellung"}},
                     {"name":"parent_name_full","type":"text","required":true,"labels":{"uk":"ПІБ батька/матері, що видає довіреність","en":"Parent\'s Full Name (issuing POA)", "pl":"Imię i nazwisko rodzica (wydającego pełnomocnictwo)", "de":"Vollständiger Name des Elternteils (Vollmachtgeber)"}},

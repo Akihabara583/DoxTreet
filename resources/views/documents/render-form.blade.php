@@ -220,45 +220,53 @@
 
 @push('scripts')
     <script>
-        // This script saves form data to session storage to prevent data loss on page refresh.
-        // It's preserved from the original file and requires no style changes.
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('document-form');
             if (!form) return;
 
-            const formFields = form.querySelectorAll('input[name]:not([type="hidden"]), textarea[name]');
-            const storageKey = 'form_data_{{ $templateModel->slug }}';
+            // Передаем из PHP в JavaScript, залогинен ли пользователь
+            const isUserLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
 
-            const saveFormData = () => {
-                const data = {};
-                formFields.forEach(field => {
-                    data[field.name] = field.value;
-                });
-                sessionStorage.setItem(storageKey, JSON.stringify(data));
-            };
+            const storageKey = 'form_data_{{ $templateModel->id }}';
 
-            const loadFormData = () => {
+            // Функция для загрузки данных и заполнения формы
+            function loadFormData() {
                 const savedData = sessionStorage.getItem(storageKey);
                 if (savedData) {
                     const data = JSON.parse(savedData);
-                    formFields.forEach(field => {
-                        // Only fill if the field is empty to respect pre-filled data from the server
-                        if (!field.value && data[field.name]) {
-                            field.value = data[field.name];
+                    for (const key in data) {
+                        const field = form.querySelector(`[name="${key}"]`);
+                        if (field && !field.value) { // Заполняем только если поле пустое
+                            field.value = data[key];
                         }
-                    });
+                    }
                 }
-            };
+            }
 
-            const clearFormData = () => {
-                sessionStorage.removeItem(storageKey);
-            };
+            // Функция для сохранения данных формы
+            function saveFormData() {
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                // Удаляем CSRF токен, чтобы не хранить лишнее
+                delete data._token;
+                sessionStorage.setItem(storageKey, JSON.stringify(data));
+            }
 
+            // Загружаем данные при открытии страницы
             loadFormData();
+
+            // Сохраняем данные каждый раз, когда пользователь что-то вводит
             form.addEventListener('input', saveFormData);
-            form.addEventListener('submit', () => {
-                // Clear data after a short delay to ensure it's submitted
-                setTimeout(clearFormData, 500);
+
+            // Вешаем обработчик на отправку формы
+            form.addEventListener('submit', function() {
+                // Очищаем данные ТОЛЬКО если пользователь уже залогинен.
+                // Если это гость, данные останутся в хранилище для восстановления.
+                if (isUserLoggedIn) {
+                    setTimeout(() => {
+                        sessionStorage.removeItem(storageKey);
+                    }, 500);
+                }
             });
         });
     </script>
