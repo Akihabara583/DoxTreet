@@ -88,8 +88,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        },
-        "cafile": "C:\\laragon\\etc\\ssl\\cacert.pem"
+        }
+
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
