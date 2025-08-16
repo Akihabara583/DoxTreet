@@ -1,0 +1,17 @@
+[variables]
+COMPOSER_DISABLE_TLS = "true"
+COMPOSER_SECURE_HTTP = "false"
+COMPOSER_ALLOW_SUPERUSER = "1"
+
+[phases.setup]
+nixPkgs = ["php82", "php82Packages.composer", "ca-certificates"]
+
+[phases.build]
+cmds = [
+    "composer config --global disable-tls true",
+    "composer config --global secure-http false",
+    "composer install --no-dev --optimize-autoloader --ignore-platform-reqs"
+]
+
+[start]
+cmd = "php artisan serve --host=0.0.0.0 --port=$PORT"
